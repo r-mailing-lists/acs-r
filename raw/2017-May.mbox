@@ -1,0 +1,51 @@
+From stoneyv at gmail.com  Thu May  4 23:37:13 2017
+From: stoneyv at gmail.com (Stoney Vintson)
+Date: Thu, 4 May 2017 20:37:13 -0700
+Subject: [acs-r] acs:acs.fetch missing key file_test library path
+Message-ID: <CAFW98DvE5gRqmosZeba3ucnEewOM1eNSCCUmHpk-CMJbG52TuA@mail.gmail.com>
+
+1. When the acs.fetch() function is called without a key, the file_test
+does not set the file_test parameter .lib_loc.  This causes it to fail on
+my Ubuntu 16.04 installation where the library is installed system wide at
+"/usr/local/lib/R/site-library/acs".  I am using acs.fetch through newer
+functionality in the package choroplethr.
+
+a. These functions and variables are good candidates for the file_test
+parameter .lib_loc which defaults to NULL.
+
+
+   - .libPaths()
+   - .Library.site
+
+b. Alternatively, you could prepend the correct library path from
+.libPaths() to the string literal using paste() or stringr:str_c()
+
+
+2. Instead of using acs:api.key.install() because of the system folder
+permissions, I was able to manually create the directory using
+sudo/administrative commands.
+
+> cd /usr/local/lib/R/site-library/acs
+> sudo mkdir exdata
+> sudo cp /home/<user_name>/key.rda exdata
+
+
+3.  I usually use the command line to install cran packages because it
+helps me work more efficiently when there are missing system libraries,
+older versions of system libraries, or missing R package dependencies.
+This is especially true with geospatial libraries such as GDAL/OGR.  I use
+both rstudio and rstudio server on different Ubuntu machines
+
+> sudo su - -c "R -e \"install.packages('acs', repos = '
+http://cran.rstudio.com/')\""
+
+
+-- 
+Stoney Vintson  ??
+http://www.stoneyphoto.com
+stoneyv at gmail.com
+503.830.8023 mobile
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170504/c374c933/attachment.html
+

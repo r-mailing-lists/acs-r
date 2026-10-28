@@ -1,0 +1,121 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-08",
+  "messages": [
+    {
+      "id": "msg-643d017a7113",
+      "message_id": "<ac862db62b264ac889d177e8041fa9ba@dhhs.nh.gov>",
+      "from_name": "Holt, Dennis",
+      "from_email_hash": "4ae59aed0e3e89c558d2c96cdc751fe7b69561638f64068c0ae78c406177b9ec",
+      "date": "2016-08-15T17:08:46Z",
+      "subject": "[acs-r] Problem with ACS package",
+      "subject_clean": "[acs-r] Problem with ACS package",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Ezra,\nI am having trouble with the ACS package today.\nThere is apparently a dependency with a web link to you files on the MIT server which is not working.\nHere is the command I ran and the results:\n\n      > year <- 2014\n      > nh.pop <- acs.fetch(endyear = year, geo = geo.make(state = 33),\n      +                     table.number = \"B01003\")\n      trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n      Content type 'application/xml' length 729614 bytes (712 KB)\n      downloaded 712 KB\n\n      Error in file(file, \"rt\") : cannot open the connection\n      > nh.pop  # for 2013\n      Error: object 'nh.pop' not found\n\nThank you for supporting this package,\nDennis\n\nDennis Holt\nEnvironmental Public Health Data Analyst\nDivision of Public Health Services\nNH Department of Health and Human Services\n(603) 271-8990  dennis.holt at dhhs.nh.gov\n\n\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160815/8fa65470/attachment.html",
+      "body_snippet": "Ezra,\nI am having trouble with the ACS package today.\nThere is apparently a dependency with a web link to you files on the MIT server which is not working.\nHere is the command I ran and the results:\n\n",
+      "thread_id": "thread-643d017a7113",
+      "thread_depth": 0,
+      "month": "2016-08"
+    },
+    {
+      "id": "msg-75dd12f5b873",
+      "message_id": "<86a8gdhply.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-08-15T18:08:25Z",
+      "subject": "[acs-r] Problem with ACS package",
+      "subject_clean": "[acs-r] Problem with ACS package",
+      "in_reply_to": "<ac862db62b264ac889d177e8041fa9ba@dhhs.nh.gov>",
+      "references": [
+        "<ac862db62b264ac889d177e8041fa9ba@dhhs.nh.gov>"
+      ],
+      "body_plain": "Strange -- this seems to be working for me now.  Can you try it one\nmore time, just to be sure?\n\nIt's possible that your connection is timing out due to the size of\nthe file being downloaded.  \n\n(Also, can you confirm that you are using the most recent version of\nacs, 2.0?)\n\n--Ezra\n\nOn Mon, 15 Aug 2016 13:08:46 -0400, Holt, Dennis wrote:\n> \n> [1  <text/plain; us-ascii (quoted-printable)>]\n> [2  <text/html; us-ascii (quoted-printable)>]\n> Ezra,\n> I am having trouble with the ACS package today.\n> There is apparently a dependency with a web link to you files on the MIT server which is\n> not working.\n> Here is the command I ran and the results:\n>  \n> > year <- 2014\n> > nh.pop <- acs.fetch(endyear = year, geo = geo.make(state = 33),\n> +                     table.number = \"B01003\")\n> trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n> Content type 'application/xml' length 729614 bytes (712 KB)\n> downloaded 712 KB\n>  \n> Error in file(file, \"rt\") : cannot open the connection\n> > nh.pop  # for 2013\n> Error: object 'nh.pop' not found\n>  \n> Thank you for supporting this package,\n> Dennis\n>  \n> Dennis Holt\n> Environmental Public Health Data Analyst\n> Division of Public Health Services\n> NH Department of Health and Human Services\n> (603) 271-8990  dennis.holt at dhhs.nh.gov\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Strange -- this seems to be working for me now.  Can you try it one\nmore time, just to be sure?\n\nIt's possible that your connection is timing out due to the size of\nthe file being downloaded.  \n\n(Also",
+      "thread_id": "thread-643d017a7113",
+      "thread_depth": 1,
+      "month": "2016-08"
+    },
+    {
+      "id": "msg-443b11278c73",
+      "message_id": "<cb8b68cc146346c9af3ecd9b48b7969d@dhhs.nh.gov>",
+      "from_name": "Holt, Dennis",
+      "from_email_hash": "4ae59aed0e3e89c558d2c96cdc751fe7b69561638f64068c0ae78c406177b9ec",
+      "date": "2016-08-15T18:15:11Z",
+      "subject": "[acs-r] Problem with ACS package",
+      "subject_clean": "[acs-r] Problem with ACS package",
+      "in_reply_to": "<86a8gdhply.wl-eglenn@mit.edu>",
+      "references": [
+        "<ac862db62b264ac889d177e8041fa9ba@dhhs.nh.gov>",
+        "<86a8gdhply.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Ezra,\nI just restarted R-Studio an reran the commands:\n      > nh.pop <- acs.fetch(endyear=year, geo = geo.make(state = 33),\n      + table.number = \"B01003\")\n      trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n      Content type 'application/xml' length 729614 bytes (712 KB)\n      downloaded 712 KB\n\n      Error in if (url.test[\"statusMessage\"] != \"OK\") { :\n        missing value where TRUE/FALSE needed\n      In addition: Warning message:\n      In (function (endyear, span = 5, dataset = \"acs\", keyword, table.name,  :\n        XML variable lookup tables for this request\n        seem to be missing from ' http://api.census.gov/data/2014/acs5/variables.xml ';\n        temporarily downloading and using archived copies instead;\n        since this is *much* slower, recommend running\n        acs.tables.install()\n\nThere was a delay that feels like a time-out.  Could be the MIT directory is not accessible from our location.  Or our State IT may have started blocking it for some unimaginable reason.\nPlease let me know if there is more I can try.\nDennis\n\n\n\n-----Original Message-----\nFrom: Ezra Haber Glenn [mailto:eglenn at mit.edu]\nSent: Monday, August 15, 2016 2:08 PM\nTo: Holt, Dennis\nCc: acs-r at mit.edu\nSubject: Re: Problem with ACS package\n\n\nStrange -- this seems to be working for me now.  Can you try it one more time, just to be sure?\n\nIt's possible that your connection is timing out due to the size of the file being downloaded.\n\n(Also, can you confirm that you are using the most recent version of acs, 2.0?)\n\n--Ezra\n\nOn Mon, 15 Aug 2016 13:08:46 -0400, Holt, Dennis wrote:\n>\n> [1  <text/plain; us-ascii (quoted-printable)>]\n> [2  <text/html; us-ascii (quoted-printable)>] Ezra, I am having\n> trouble with the ACS package today.\n> There is apparently a dependency with a web link to you files on the\n> MIT server which is not working.\n> Here is the command I ran and the results:\n>\n> > year <- 2014\n> > nh.pop <- acs.fetch(endyear = year, geo = geo.make(state = 33),\n> +                     table.number = \"B01003\")\n> trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n> Content type 'application/xml' length 729614 bytes (712 KB) downloaded\n> 712 KB\n>\n> Error in file(file, \"rt\") : cannot open the connection\n> > nh.pop  # for 2013\n> Error: object 'nh.pop' not found\n>\n> Thank you for supporting this package, Dennis\n>\n> Dennis Holt\n> Environmental Public Health Data Analyst Division of Public Health\n> Services NH Department of Health and Human Services\n> (603) 271-8990  dennis.holt at dhhs.nh.gov<mailto:dennis.holt at dhhs.nh.gov>\n>\n>\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning Massachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu<mailto:eglenn at mit.edu>\nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160815/49e324dc/attachment.html",
+      "body_snippet": "Ezra,\nI just restarted R-Studio an reran the commands:\n      > nh.pop <- acs.fetch(endyear=year, geo = geo.make(state = 33),\n      + table.number = \"B01003\")\n      trying URL 'http://web.mit.edu/eglen",
+      "thread_id": "thread-643d017a7113",
+      "thread_depth": 2,
+      "month": "2016-08"
+    },
+    {
+      "id": "msg-320875f34165",
+      "message_id": "<868tvxhomw.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-08-15T18:29:27Z",
+      "subject": "[acs-r] Problem with ACS package",
+      "subject_clean": "[acs-r] Problem with ACS package",
+      "in_reply_to": "<cb8b68cc146346c9af3ecd9b48b7969d@dhhs.nh.gov>",
+      "references": [
+        "<ac862db62b264ac889d177e8041fa9ba@dhhs.nh.gov>",
+        "<86a8gdhply.wl-eglenn@mit.edu>",
+        "<cb8b68cc146346c9af3ecd9b48b7969d@dhhs.nh.gov>"
+      ],
+      "body_plain": "What's strange is that the package should only be looking to my mit\narchive when it can't find the variable metadata at the census website\n*and* you don't have a local copy archived.  (The latter would be\nthere if you'd even run acs.tables.install(), a helper function.)\n\nCan you see whether you are able to access the following, either in R\nor just a browser:\n\n   http://api.census.gov/data/2014/acs5/variables.xml\n\n--Ezra\n\nOn Mon, 15 Aug 2016 14:15:11 -0400, Holt, Dennis wrote:\n> \n> [1  <text/plain; us-ascii (quoted-printable)>]\n> [2  <text/html; us-ascii (quoted-printable)>]\n> Ezra,\n> I just restarted R-Studio an reran the commands:\n> > nh.pop <- acs.fetch(endyear=year, geo = geo.make(state = 33),\n> + table.number = \"B01003\")\n> trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n> Content type 'application/xml' length 729614 bytes (712 KB)\n> downloaded 712 KB\n>  \n> Error in if (url.test[\"statusMessage\"] != \"OK\") { :\n>   missing value where TRUE/FALSE needed\n> In addition: Warning message:\n> In (function (endyear, span = 5, dataset = \"acs\", keyword, table.name,  :\n>   XML variable lookup tables for this request\n>   seem to be missing from ' http://api.census.gov/data/2014/acs5/variables.xml ';\n>   temporarily downloading and using archived copies instead;\n>   since this is *much* slower, recommend running\n>   acs.tables.install()\n>  \n> There was a delay that feels like a time-out.  Could be the MIT directory is not\n> accessible from our location.  Or our State IT may have started blocking it for some\n> unimaginable reason.\n> Please let me know if there is more I can try.\n> Dennis\n> \n> -----Original Message-----\n> From: Ezra Haber Glenn [mailto:eglenn at mit.edu]\n> Sent: Monday, August 15, 2016 2:08 PM\n> To: Holt, Dennis\n> Cc: acs-r at mit.edu\n> Subject: Re: Problem with ACS package\n> \n> Strange -- this seems to be working for me now.  Can you try it one more time, just to be\n> sure?\n>  \n> It's possible that your connection is timing out due to the size of the file being\n> downloaded. \n>  \n> (Also, can you confirm that you are using the most recent version of acs, 2.0?)\n>  \n> --Ezra\n>  \n> On Mon, 15 Aug 2016 13:08:46 -0400, Holt, Dennis wrote:\n> >\n> > [1  <text/plain; us-ascii (quoted-printable)>]\n> > [2  <text/html; us-ascii (quoted-printable)>] Ezra, I am having\n> > trouble with the ACS package today.\n> > There is apparently a dependency with a web link to you files on the\n> > MIT server which is not working.\n> > Here is the command I ran and the results:\n> > \n> > > year <- 2014\n> > > nh.pop <- acs.fetch(endyear = year, geo = geo.make(state = 33),\n> > +                     table.number = \"B01003\")\n> > trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2014_var.xml.gz'\n> > Content type 'application/xml' length 729614 bytes (712 KB) downloaded\n> > 712 KB\n> > \n> > Error in file(file, \"rt\") : cannot open the connection\n> > > nh.pop  # for 2013\n> > Error: object 'nh.pop' not found\n> > \n> > Thank you for supporting this package, Dennis\n> > \n> > Dennis Holt\n> > Environmental Public Health Data Analyst Division of Public Health\n> > Services NH Department of Health and Human Services\n> > (603) 271-8990  dennis.holt at dhhs.nh.gov\n> >\n> >\n>  \n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "What's strange is that the package should only be looking to my mit\narchive when it can't find the variable metadata at the census website\n*and* you don't have a local copy archived.  (The latter woul",
+      "thread_id": "thread-643d017a7113",
+      "thread_depth": 3,
+      "month": "2016-08"
+    },
+    {
+      "id": "msg-73c6ba293359",
+      "message_id": "<CAONq21Cmt-Y5bzBvUNRdFKyMkpM7n9b2ud_K5RChqHAvp6F0wQ@mail.gmail.com>",
+      "from_name": "Diego Grant",
+      "from_email_hash": "839de5bc13808a1b4abec6aefebae72cbab00809ef66c07e5e5006a8a6758948",
+      "date": "2016-08-29T18:01:06Z",
+      "subject": "[acs-r] MFI",
+      "subject_clean": "[acs-r] MFI",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hello Ezra,\n\nIs there a way to download all MFIs (table S1903) for all geographies for\nall states without doing it for each state.\n\nThank you.\n\n-- \nDiego\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160829/52f61541/attachment.html",
+      "body_snippet": "Hello Ezra,\n\nIs there a way to download all MFIs (table S1903) for all geographies for\nall states without doing it for each state.\n\nThank you.\n\n-- \nDiego\n-------------- next part --------------\nAn HTM",
+      "thread_id": "thread-73c6ba293359",
+      "thread_depth": 0,
+      "month": "2016-08"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-643d017a7113",
+      "subject": "[acs-r] Problem with ACS package",
+      "message_count": 4,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Holt, Dennis"
+      ],
+      "started": "2016-08-15T17:08:46Z",
+      "last_reply": "2016-08-15T18:29:27Z",
+      "root_message_id": "msg-643d017a7113"
+    },
+    {
+      "id": "thread-73c6ba293359",
+      "subject": "[acs-r] MFI",
+      "message_count": 1,
+      "participants": [
+        "Diego Grant"
+      ],
+      "started": "2016-08-29T18:01:06Z",
+      "last_reply": "2016-08-29T18:01:06Z",
+      "root_message_id": "msg-73c6ba293359"
+    }
+  ]
+}

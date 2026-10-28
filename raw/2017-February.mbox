@@ -1,0 +1,77 @@
+From yang.jianc at husky.neu.edu  Fri Feb 17 01:42:52 2017
+From: yang.jianc at husky.neu.edu (Jianchao Yang)
+Date: Fri, 17 Feb 2017 01:42:52 -0500
+Subject: [acs-r] Make "204 No Content" an acceptable status code
+Message-ID: <831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>
+
+Hi,
+
+First of all, thanks for creating this awesome tool.
+
+I found that when fetching data for a (valid) geographic unit without any data, census.gov API returns status code 204. But `acs` code breaks in this case.
+
+Wouldn?t it be nicer if it just returns empty values?
+
+
+
+Thanks,
+Jianchao
+
+
+
+From eglenn at mit.edu  Fri Feb 17 08:46:11 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 17 Feb 2017 08:46:11 -0500
+Subject: [acs-r] Make "204 No Content" an acceptable status code
+In-Reply-To: <831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>
+References: <831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>
+Message-ID: <86fujd2an0.wl-eglenn@mit.edu>
+
+
+Thanks for your email, and for using the package.  The package is
+pretty bad at this sort of "error-handling," and I agree it would be
+great if it was smarter about it -- maybe issuing a warning but still
+returning a well-formatted, empty acs object, as you suggest.
+
+The package is long overdue for an update, partially because I'm sort
+of looking for someone to help with maintenance and future development
+(any interest?), but I'll definitely add this to the "feature request"
+list.
+
+Thanks.
+
+--Ezra
+
+On Fri, 17 Feb 2017 01:42:52 -0500, Jianchao Yang wrote:
+> 
+> Hi,
+> 
+> First of all, thanks for creating this awesome tool.
+> 
+> I found that when fetching data for a (valid) geographic unit without any data, census.gov API returns status code 204. But `acs` code breaks in this case.
+> 
+> Wouldn?t it be nicer if it just returns empty values?
+> 
+> 
+> 
+> Thanks,
+> Jianchao
+> 
+> 
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+

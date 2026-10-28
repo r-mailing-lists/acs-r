@@ -1,0 +1,2134 @@
+From arilamstein at gmail.com  Sat Feb  1 22:13:04 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Sat, 1 Feb 2014 19:13:04 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <867g9r5vsr.wl%eglenn@mit.edu>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+Message-ID: <CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+
+Hi Ezra,
+
+Thanks for including this update.  I'm having a tough time figuring out
+what data is available via acs.R.  From what you've said before, I gather
+that it's "whatever is available via the Census API".  But that is also not
+clear to me.  For example, I found this page on the census website, which I
+think lists all ACS ever conducted:
+
+http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+
+But when I tried to get the 2005 or 2007 ACS I get an error message and
+lots of warnings.  Do you have any documentation of what data your package
+supports retrieving?
+
+I am interested in making animated gifs where each frame is a choropleth of
+some demographic measurement at a particular year.  Right now that's
+difficult because I'm just going hit or miss thru the list, and it seems to
+be a lot of misses.
+
+Also, in version 1.0 of choroplethr I am just using the 2011 (default) ACS.
+ In subsequent versions I would like users to use whatever (year, span)
+combinations acs.R supports.  I would also like to distribute a list of
+available data with my code, but right now I don't have one.
+
+Thanks.
+
+Ari
+
+On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Dear acs.R folks:
+>
+> As some of you have noticed, the new five-year Census ACS data has
+> just come out (see <http://www.census.gov/developers/data/>), and is
+> now available via the Census API. To make sure you are able to fetch
+> the freshest possible data to play with in R, I've updated the acs.R
+> package to version 1.2, which now includes full support for the
+> 2008-2012 ACS data.
+>
+> The latest version is now available on the CRAN repository -- see
+> <http://cran.r-project.org/web/packages/acs/index.html>. If you've
+> already installed the package in the past, you can easily update with
+> the update.packages() command; if you've never installed it, you can
+> just as easily install it for the first time, by simply typing
+> install.packages("acs"). In either case, be sure to load the library
+> after installing by typing library(acs), and install (or re-install)
+> an API key with api.key.install() -- see the documentation and the
+> latest version of the acs user guide for more info.
+>
+> To get the latest data, just continue to use the acs.fetch() function
+> as usual, but specify endyear=2012. (By default, endyear is set to
+> 2011 if no year is explicitly passed to acs.fetch, and I didn't want
+> to change this for fear of breaking existing user scripts. In the
+> future, we might to rethink this, so that it selects the most recent
+> endyear by default. Thoughts?)
+>
+> (Note: It might take a day or two for the updates to percolate through
+> the CRAN system.  If you update and you're not sure which version you
+> are using, you can always type packageVersion("acs") to find out.)
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140201/c2224cd0/attachment.htm
+
+From znmeb at znmeb.net  Sat Feb  1 22:24:01 2014
+From: znmeb at znmeb.net (M. Edward (Ed) Borasky)
+Date: Sat, 1 Feb 2014 19:24:01 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+Message-ID: <CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+
+I have a script that will extract table code names and their
+definitions into CSV files so one can browse, rather than doing a
+lookup via acs.r lookup functions. See
+https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+are XML files on the Census Bureau site equivalent to the ones in
+acs.r I could hack up the scripts to use them without much trouble if
+you have a use for this.
+
+As far as I can tell, choropleth.R only goes down to the county level,
+not census tract, block group or block. I'm also talking to Ramnath
+Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+making Census choropleth maps using Leaflet.js, which will rended
+automagically on Github Pages. I'm going to try to hack something up
+for that this week in the above-linked project.
+
+On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+> Hi Ezra,
+>
+> Thanks for including this update.  I'm having a tough time figuring out what
+> data is available via acs.R.  From what you've said before, I gather that
+> it's "whatever is available via the Census API".  But that is also not clear
+> to me.  For example, I found this page on the census website, which I think
+> lists all ACS ever conducted:
+>
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+>
+> But when I tried to get the 2005 or 2007 ACS I get an error message and lots
+> of warnings.  Do you have any documentation of what data your package
+> supports retrieving?
+>
+> I am interested in making animated gifs where each frame is a choropleth of
+> some demographic measurement at a particular year.  Right now that's
+> difficult because I'm just going hit or miss thru the list, and it seems to
+> be a lot of misses.
+>
+> Also, in version 1.0 of choroplethr I am just using the 2011 (default) ACS.
+> In subsequent versions I would like users to use whatever (year, span)
+> combinations acs.R supports.  I would also like to distribute a list of
+> available data with my code, but right now I don't have one.
+>
+> Thanks.
+>
+> Ari
+>
+>
+> On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>>
+>>
+>> Dear acs.R folks:
+>>
+>> As some of you have noticed, the new five-year Census ACS data has
+>> just come out (see <http://www.census.gov/developers/data/>), and is
+>> now available via the Census API. To make sure you are able to fetch
+>> the freshest possible data to play with in R, I?ve updated the acs.R
+>> package to version 1.2, which now includes full support for the
+>> 2008?2012 ACS data.
+>>
+>> The latest version is now available on the CRAN repository -- see
+>> <http://cran.r-project.org/web/packages/acs/index.html>. If you?ve
+>> already installed the package in the past, you can easily update with
+>> the update.packages() command; if you?ve never installed it, you can
+>> just as easily install it for the first time, by simply typing
+>> install.packages(?acs?). In either case, be sure to load the library
+>> after installing by typing library(acs), and install (or re-install)
+>> an API key with api.key.install() ? see the documentation and the
+>> latest version of the acs user guide for more info.
+>>
+>> To get the latest data, just continue to use the acs.fetch() function
+>> as usual, but specify endyear=2012. (By default, endyear is set to
+>> 2011 if no year is explicitly passed to acs.fetch, and I didn?t want
+>> to change this for fear of breaking existing user scripts. In the
+>> future, we might to rethink this, so that it selects the most recent
+>> endyear by default. Thoughts?)
+>>
+>> (Note: It might take a day or two for the updates to percolate through
+>> the CRAN system.  If you update and you?re not sure which version you
+>> are using, you can always type packageVersion(?acs?) to find out.)
+>> --
+>> Ezra Haber Glenn, AICP
+>> Department of Urban Studies and Planning
+>> Massachusetts Institute of Technology
+>> 77 Massachusetts Ave., Room 7-337
+>> Cambridge, MA 02139
+>> eglenn at mit.edu
+>> http://dusp.mit.edu/faculty/ezra-glenn |
+>> http://eglenn.scripts.mit.edu/citystate/
+>> 617.253.2024 (w)
+>> 617.721.7131 (c)
+>>
+>> _______________________________________________
+>> acs-r mailing list
+>> acs-r at mit.edu
+>> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+
+
+
+-- 
+Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+http://j.mp/CompJournoStickOverview
+
+My poltergeist can beat up your zeitgeist.
+
+
+From arilamstein at gmail.com  Sun Feb  2 01:25:32 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Sat, 1 Feb 2014 22:25:32 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+Message-ID: <CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+
+Ed,
+
+The pdxcensusdata project looks very interesting, but I still have the same
+question - which years are accessible with the current version of acs.R?
+
+You are (mostly) correct about the limitations of the current version of
+choroplethr.  But in addition to state and county level data, it also
+renders ZCTA (Zip Code Tabulated Area) level data.  Although I had trouble
+working with the ZCTA shapefile that the census releases, so I just render
+each ZIP as a colored dot, centered at the longitude and latitude of the
+ZIP.  At that point its no longer a proper choropleth (because it lacks a
+border), but I still thought it was worth including in the project.
+
+I spoke with Ramnath briefly as well about using rCharts for rendering
+choropleths, but I haven't had a chance to follow up with him yet.  Please
+send along any interesting results you get.  I think that choropleths are
+going to benefit a lot from the recent advances in interactive graphics.
+
+Ari
+
+
+On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky <znmeb at znmeb.net>wrote:
+
+> I have a script that will extract table code names and their
+> definitions into CSV files so one can browse, rather than doing a
+> lookup via acs.r lookup functions. See
+> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+> are XML files on the Census Bureau site equivalent to the ones in
+> acs.r I could hack up the scripts to use them without much trouble if
+> you have a use for this.
+>
+> As far as I can tell, choropleth.R only goes down to the county level,
+> not census tract, block group or block. I'm also talking to Ramnath
+> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+> making Census choropleth maps using Leaflet.js, which will rended
+> automagically on Github Pages. I'm going to try to hack something up
+> for that this week in the above-linked project.
+>
+> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+> > Hi Ezra,
+> >
+> > Thanks for including this update.  I'm having a tough time figuring out
+> what
+> > data is available via acs.R.  From what you've said before, I gather that
+> > it's "whatever is available via the Census API".  But that is also not
+> clear
+> > to me.  For example, I found this page on the census website, which I
+> think
+> > lists all ACS ever conducted:
+> >
+> >
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+> >
+> > But when I tried to get the 2005 or 2007 ACS I get an error message and
+> lots
+> > of warnings.  Do you have any documentation of what data your package
+> > supports retrieving?
+> >
+> > I am interested in making animated gifs where each frame is a choropleth
+> of
+> > some demographic measurement at a particular year.  Right now that's
+> > difficult because I'm just going hit or miss thru the list, and it seems
+> to
+> > be a lot of misses.
+> >
+> > Also, in version 1.0 of choroplethr I am just using the 2011 (default)
+> ACS.
+> > In subsequent versions I would like users to use whatever (year, span)
+> > combinations acs.R supports.  I would also like to distribute a list of
+> > available data with my code, but right now I don't have one.
+> >
+> > Thanks.
+> >
+> > Ari
+> >
+> >
+> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+> wrote:
+> >>
+> >>
+> >> Dear acs.R folks:
+> >>
+> >> As some of you have noticed, the new five-year Census ACS data has
+> >> just come out (see <http://www.census.gov/developers/data/>), and is
+> >> now available via the Census API. To make sure you are able to fetch
+> >> the freshest possible data to play with in R, I've updated the acs.R
+> >> package to version 1.2, which now includes full support for the
+> >> 2008-2012 ACS data.
+> >>
+> >> The latest version is now available on the CRAN repository -- see
+> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you've
+> >> already installed the package in the past, you can easily update with
+> >> the update.packages() command; if you've never installed it, you can
+> >> just as easily install it for the first time, by simply typing
+> >> install.packages("acs"). In either case, be sure to load the library
+> >> after installing by typing library(acs), and install (or re-install)
+> >> an API key with api.key.install() -- see the documentation and the
+> >> latest version of the acs user guide for more info.
+> >>
+> >> To get the latest data, just continue to use the acs.fetch() function
+> >> as usual, but specify endyear=2012. (By default, endyear is set to
+> >> 2011 if no year is explicitly passed to acs.fetch, and I didn't want
+> >> to change this for fear of breaking existing user scripts. In the
+> >> future, we might to rethink this, so that it selects the most recent
+> >> endyear by default. Thoughts?)
+> >>
+> >> (Note: It might take a day or two for the updates to percolate through
+> >> the CRAN system.  If you update and you're not sure which version you
+> >> are using, you can always type packageVersion("acs") to find out.)
+> >> --
+> >> Ezra Haber Glenn, AICP
+> >> Department of Urban Studies and Planning
+> >> Massachusetts Institute of Technology
+> >> 77 Massachusetts Ave., Room 7-337
+> >> Cambridge, MA 02139
+> >> eglenn at mit.edu
+> >> http://dusp.mit.edu/faculty/ezra-glenn |
+> >> http://eglenn.scripts.mit.edu/citystate/
+> >> 617.253.2024 (w)
+> >> 617.721.7131 (c)
+> >>
+> >> _______________________________________________
+> >> acs-r mailing list
+> >> acs-r at mit.edu
+> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+> >
+> >
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+>
+>
+>
+> --
+> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+> http://j.mp/CompJournoStickOverview
+>
+> My poltergeist can beat up your zeitgeist.
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140201/0ee6ec94/attachment-0001.htm
+
+From znmeb at znmeb.net  Sun Feb  2 01:33:42 2014
+From: znmeb at znmeb.net (M. Edward (Ed) Borasky)
+Date: Sat, 1 Feb 2014 22:33:42 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+Message-ID: <CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+
+My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+Census data for local journalists. The initial test case was going to
+be languages spoken at home, since the transportation planners here
+need that for signage and the mobile apps. And I'm personally
+interested in the Gini coefficient measures of inequality.
+
+I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+"end years", with a length parameter of 1, 3 or 5 years.
+
+On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+> Ed,
+>
+> The pdxcensusdata project looks very interesting, but I still have the same
+> question - which years are accessible with the current version of acs.R?
+>
+> You are (mostly) correct about the limitations of the current version of
+> choroplethr.  But in addition to state and county level data, it also
+> renders ZCTA (Zip Code Tabulated Area) level data.  Although I had trouble
+> working with the ZCTA shapefile that the census releases, so I just render
+> each ZIP as a colored dot, centered at the longitude and latitude of the
+> ZIP.  At that point its no longer a proper choropleth (because it lacks a
+> border), but I still thought it was worth including in the project.
+>
+> I spoke with Ramnath briefly as well about using rCharts for rendering
+> choropleths, but I haven't had a chance to follow up with him yet.  Please
+> send along any interesting results you get.  I think that choropleths are
+> going to benefit a lot from the recent advances in interactive graphics.
+>
+> Ari
+>
+>
+> On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky <znmeb at znmeb.net>
+> wrote:
+>>
+>> I have a script that will extract table code names and their
+>> definitions into CSV files so one can browse, rather than doing a
+>> lookup via acs.r lookup functions. See
+>> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+>> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+>> are XML files on the Census Bureau site equivalent to the ones in
+>> acs.r I could hack up the scripts to use them without much trouble if
+>> you have a use for this.
+>>
+>> As far as I can tell, choropleth.R only goes down to the county level,
+>> not census tract, block group or block. I'm also talking to Ramnath
+>> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+>> making Census choropleth maps using Leaflet.js, which will rended
+>> automagically on Github Pages. I'm going to try to hack something up
+>> for that this week in the above-linked project.
+>>
+>> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+>> > Hi Ezra,
+>> >
+>> > Thanks for including this update.  I'm having a tough time figuring out
+>> > what
+>> > data is available via acs.R.  From what you've said before, I gather
+>> > that
+>> > it's "whatever is available via the Census API".  But that is also not
+>> > clear
+>> > to me.  For example, I found this page on the census website, which I
+>> > think
+>> > lists all ACS ever conducted:
+>> >
+>> >
+>> > http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+>> >
+>> > But when I tried to get the 2005 or 2007 ACS I get an error message and
+>> > lots
+>> > of warnings.  Do you have any documentation of what data your package
+>> > supports retrieving?
+>> >
+>> > I am interested in making animated gifs where each frame is a choropleth
+>> > of
+>> > some demographic measurement at a particular year.  Right now that's
+>> > difficult because I'm just going hit or miss thru the list, and it seems
+>> > to
+>> > be a lot of misses.
+>> >
+>> > Also, in version 1.0 of choroplethr I am just using the 2011 (default)
+>> > ACS.
+>> > In subsequent versions I would like users to use whatever (year, span)
+>> > combinations acs.R supports.  I would also like to distribute a list of
+>> > available data with my code, but right now I don't have one.
+>> >
+>> > Thanks.
+>> >
+>> > Ari
+>> >
+>> >
+>> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+>> > wrote:
+>> >>
+>> >>
+>> >> Dear acs.R folks:
+>> >>
+>> >> As some of you have noticed, the new five-year Census ACS data has
+>> >> just come out (see <http://www.census.gov/developers/data/>), and is
+>> >> now available via the Census API. To make sure you are able to fetch
+>> >> the freshest possible data to play with in R, I?ve updated the acs.R
+>> >> package to version 1.2, which now includes full support for the
+>> >> 2008?2012 ACS data.
+>> >>
+>> >> The latest version is now available on the CRAN repository -- see
+>> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you?ve
+>> >> already installed the package in the past, you can easily update with
+>> >> the update.packages() command; if you?ve never installed it, you can
+>> >> just as easily install it for the first time, by simply typing
+>> >> install.packages(?acs?). In either case, be sure to load the library
+>> >> after installing by typing library(acs), and install (or re-install)
+>> >> an API key with api.key.install() ? see the documentation and the
+>> >> latest version of the acs user guide for more info.
+>> >>
+>> >> To get the latest data, just continue to use the acs.fetch() function
+>> >> as usual, but specify endyear=2012. (By default, endyear is set to
+>> >> 2011 if no year is explicitly passed to acs.fetch, and I didn?t want
+>> >> to change this for fear of breaking existing user scripts. In the
+>> >> future, we might to rethink this, so that it selects the most recent
+>> >> endyear by default. Thoughts?)
+>> >>
+>> >> (Note: It might take a day or two for the updates to percolate through
+>> >> the CRAN system.  If you update and you?re not sure which version you
+>> >> are using, you can always type packageVersion(?acs?) to find out.)
+>> >> --
+>> >> Ezra Haber Glenn, AICP
+>> >> Department of Urban Studies and Planning
+>> >> Massachusetts Institute of Technology
+>> >> 77 Massachusetts Ave., Room 7-337
+>> >> Cambridge, MA 02139
+>> >> eglenn at mit.edu
+>> >> http://dusp.mit.edu/faculty/ezra-glenn |
+>> >> http://eglenn.scripts.mit.edu/citystate/
+>> >> 617.253.2024 (w)
+>> >> 617.721.7131 (c)
+>> >>
+>> >> _______________________________________________
+>> >> acs-r mailing list
+>> >> acs-r at mit.edu
+>> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+>> >
+>> >
+>> >
+>> > _______________________________________________
+>> > acs-r mailing list
+>> > acs-r at mit.edu
+>> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>> >
+>>
+>>
+>>
+>> --
+>> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+>> http://j.mp/CompJournoStickOverview
+>>
+>> My poltergeist can beat up your zeitgeist.
+>
+>
+
+
+
+-- 
+Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+http://j.mp/CompJournoStickOverview
+
+My poltergeist can beat up your zeitgeist.
+
+
+From eglenn at MIT.EDU  Mon Feb  3 17:09:41 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 03 Feb 2014 17:09:41 -0500
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+	<CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+Message-ID: <86k3dbx2ze.wl%eglenn@mit.edu>
+
+
+The acs.R package is limited to data available via the API, listed
+here: <http://www.census.gov/developers/data/>.  In short, right now
+it's only the 5-year survey ending in 2010, 2011, 2012.  
+
+In addition, the package can only deal with the "Summary File"
+variables -- not the "Data Profiles," which are really in a different
+format -- more like short reports than summary tables.
+
+In the future, I expect that the census will add the 1- and 3-year
+summary files to the API, at which point the package will be able
+fetch those as well.
+
+--Ezra
+
+At Sat, 1 Feb 2014 22:33:42 -0800, M Edward (Ed) Borasky wrote:
+> 
+> My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+> Census data for local journalists. The initial test case was going to
+> be languages spoken at home, since the transportation planners here
+> need that for signage and the mobile apps. And I'm personally
+> interested in the Gini coefficient measures of inequality.
+> 
+> I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+> "end years", with a length parameter of 1, 3 or 5 years.
+> 
+> On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+> > Ed,
+> >
+> > The pdxcensusdata project looks very interesting, but I still have the same
+> > question - which years are accessible with the current version of acs.R?
+> >
+> > You are (mostly) correct about the limitations of the current version of
+> > choroplethr.  But in addition to state and county level data, it also
+> > renders ZCTA (Zip Code Tabulated Area) level data.  Although I had trouble
+> > working with the ZCTA shapefile that the census releases, so I just render
+> > each ZIP as a colored dot, centered at the longitude and latitude of the
+> > ZIP.  At that point its no longer a proper choropleth (because it lacks a
+> > border), but I still thought it was worth including in the project.
+> >
+> > I spoke with Ramnath briefly as well about using rCharts for rendering
+> > choropleths, but I haven't had a chance to follow up with him yet.  Please
+> > send along any interesting results you get.  I think that choropleths are
+> > going to benefit a lot from the recent advances in interactive graphics.
+> >
+> > Ari
+> >
+> >
+> > On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky <znmeb at znmeb.net>
+> > wrote:
+> >>
+> >> I have a script that will extract table code names and their
+> >> definitions into CSV files so one can browse, rather than doing a
+> >> lookup via acs.r lookup functions. See
+> >> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+> >> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+> >> are XML files on the Census Bureau site equivalent to the ones in
+> >> acs.r I could hack up the scripts to use them without much trouble if
+> >> you have a use for this.
+> >>
+> >> As far as I can tell, choropleth.R only goes down to the county level,
+> >> not census tract, block group or block. I'm also talking to Ramnath
+> >> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+> >> making Census choropleth maps using Leaflet.js, which will rended
+> >> automagically on Github Pages. I'm going to try to hack something up
+> >> for that this week in the above-linked project.
+> >>
+> >> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+> >> > Hi Ezra,
+> >> >
+> >> > Thanks for including this update.  I'm having a tough time figuring out
+> >> > what
+> >> > data is available via acs.R.  From what you've said before, I gather
+> >> > that
+> >> > it's "whatever is available via the Census API".  But that is also not
+> >> > clear
+> >> > to me.  For example, I found this page on the census website, which I
+> >> > think
+> >> > lists all ACS ever conducted:
+> >> >
+> >> >
+> >> > http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+> >> >
+> >> > But when I tried to get the 2005 or 2007 ACS I get an error message and
+> >> > lots
+> >> > of warnings.  Do you have any documentation of what data your package
+> >> > supports retrieving?
+> >> >
+> >> > I am interested in making animated gifs where each frame is a choropleth
+> >> > of
+> >> > some demographic measurement at a particular year.  Right now that's
+> >> > difficult because I'm just going hit or miss thru the list, and it seems
+> >> > to
+> >> > be a lot of misses.
+> >> >
+> >> > Also, in version 1.0 of choroplethr I am just using the 2011 (default)
+> >> > ACS.
+> >> > In subsequent versions I would like users to use whatever (year, span)
+> >> > combinations acs.R supports.  I would also like to distribute a list of
+> >> > available data with my code, but right now I don't have one.
+> >> >
+> >> > Thanks.
+> >> >
+> >> > Ari
+> >> >
+> >> >
+> >> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+> >> > wrote:
+> >> >>
+> >> >>
+> >> >> Dear acs.R folks:
+> >> >>
+> >> >> As some of you have noticed, the new five-year Census ACS data has
+> >> >> just come out (see <http://www.census.gov/developers/data/>), and is
+> >> >> now available via the Census API. To make sure you are able to fetch
+> >> >> the freshest possible data to play with in R, I?ve updated the acs.R
+> >> >> package to version 1.2, which now includes full support for the
+> >> >> 2008?2012 ACS data.
+> >> >>
+> >> >> The latest version is now available on the CRAN repository -- see
+> >> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you?ve
+> >> >> already installed the package in the past, you can easily update with
+> >> >> the update.packages() command; if you?ve never installed it, you can
+> >> >> just as easily install it for the first time, by simply typing
+> >> >> install.packages(?acs?). In either case, be sure to load the library
+> >> >> after installing by typing library(acs), and install (or re-install)
+> >> >> an API key with api.key.install() ? see the documentation and the
+> >> >> latest version of the acs user guide for more info.
+> >> >>
+> >> >> To get the latest data, just continue to use the acs.fetch() function
+> >> >> as usual, but specify endyear=2012. (By default, endyear is set to
+> >> >> 2011 if no year is explicitly passed to acs.fetch, and I didn?t want
+> >> >> to change this for fear of breaking existing user scripts. In the
+> >> >> future, we might to rethink this, so that it selects the most recent
+> >> >> endyear by default. Thoughts?)
+> >> >>
+> >> >> (Note: It might take a day or two for the updates to percolate through
+> >> >> the CRAN system.  If you update and you?re not sure which version you
+> >> >> are using, you can always type packageVersion(?acs?) to find out.)
+> >> >> --
+> >> >> Ezra Haber Glenn, AICP
+> >> >> Department of Urban Studies and Planning
+> >> >> Massachusetts Institute of Technology
+> >> >> 77 Massachusetts Ave., Room 7-337
+> >> >> Cambridge, MA 02139
+> >> >> eglenn at mit.edu
+> >> >> http://dusp.mit.edu/faculty/ezra-glenn |
+> >> >> http://eglenn.scripts.mit.edu/citystate/
+> >> >> 617.253.2024 (w)
+> >> >> 617.721.7131 (c)
+> >> >>
+> >> >> _______________________________________________
+> >> >> acs-r mailing list
+> >> >> acs-r at mit.edu
+> >> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+> >> >
+> >> >
+> >> >
+> >> > _______________________________________________
+> >> > acs-r mailing list
+> >> > acs-r at mit.edu
+> >> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> >> >
+> >>
+> >>
+> >>
+> >> --
+> >> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+> >> http://j.mp/CompJournoStickOverview
+> >>
+> >> My poltergeist can beat up your zeitgeist.
+> >
+> >
+> 
+> 
+> 
+> -- 
+> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+> http://j.mp/CompJournoStickOverview
+> 
+> My poltergeist can beat up your zeitgeist.
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From arilamstein at gmail.com  Thu Feb  6 20:20:29 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Thu, 6 Feb 2014 17:20:29 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <86k3dbx2ze.wl%eglenn@mit.edu>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+	<CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+	<86k3dbx2ze.wl%eglenn@mit.edu>
+Message-ID: <CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+
+I just created a petition on whitehouse.gov asking the Obama administration
+to make all census data from all years available via the Census Developer
+API.  Please consider signing it and sharing it with other people who you
+think might benefit from this: http://wh.gov/lnc3J
+
+
+On Mon, Feb 3, 2014 at 2:09 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> The acs.R package is limited to data available via the API, listed
+> here: <http://www.census.gov/developers/data/>.  In short, right now
+> it's only the 5-year survey ending in 2010, 2011, 2012.
+>
+> In addition, the package can only deal with the "Summary File"
+> variables -- not the "Data Profiles," which are really in a different
+> format -- more like short reports than summary tables.
+>
+> In the future, I expect that the census will add the 1- and 3-year
+> summary files to the API, at which point the package will be able
+> fetch those as well.
+>
+> --Ezra
+>
+> At Sat, 1 Feb 2014 22:33:42 -0800, M Edward (Ed) Borasky wrote:
+> >
+> > My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+> > Census data for local journalists. The initial test case was going to
+> > be languages spoken at home, since the transportation planners here
+> > need that for signage and the mobile apps. And I'm personally
+> > interested in the Gini coefficient measures of inequality.
+> >
+> > I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+> > "end years", with a length parameter of 1, 3 or 5 years.
+> >
+> > On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+> > > Ed,
+> > >
+> > > The pdxcensusdata project looks very interesting, but I still have the
+> same
+> > > question - which years are accessible with the current version of
+> acs.R?
+> > >
+> > > You are (mostly) correct about the limitations of the current version
+> of
+> > > choroplethr.  But in addition to state and county level data, it also
+> > > renders ZCTA (Zip Code Tabulated Area) level data.  Although I had
+> trouble
+> > > working with the ZCTA shapefile that the census releases, so I just
+> render
+> > > each ZIP as a colored dot, centered at the longitude and latitude of
+> the
+> > > ZIP.  At that point its no longer a proper choropleth (because it
+> lacks a
+> > > border), but I still thought it was worth including in the project.
+> > >
+> > > I spoke with Ramnath briefly as well about using rCharts for rendering
+> > > choropleths, but I haven't had a chance to follow up with him yet.
+>  Please
+> > > send along any interesting results you get.  I think that choropleths
+> are
+> > > going to benefit a lot from the recent advances in interactive
+> graphics.
+> > >
+> > > Ari
+> > >
+> > >
+> > > On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky <
+> znmeb at znmeb.net>
+> > > wrote:
+> > >>
+> > >> I have a script that will extract table code names and their
+> > >> definitions into CSV files so one can browse, rather than doing a
+> > >> lookup via acs.r lookup functions. See
+> > >> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+> > >> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+> > >> are XML files on the Census Bureau site equivalent to the ones in
+> > >> acs.r I could hack up the scripts to use them without much trouble if
+> > >> you have a use for this.
+> > >>
+> > >> As far as I can tell, choropleth.R only goes down to the county level,
+> > >> not census tract, block group or block. I'm also talking to Ramnath
+> > >> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+> > >> making Census choropleth maps using Leaflet.js, which will rended
+> > >> automagically on Github Pages. I'm going to try to hack something up
+> > >> for that this week in the above-linked project.
+> > >>
+> > >> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+> > >> > Hi Ezra,
+> > >> >
+> > >> > Thanks for including this update.  I'm having a tough time figuring
+> out
+> > >> > what
+> > >> > data is available via acs.R.  From what you've said before, I gather
+> > >> > that
+> > >> > it's "whatever is available via the Census API".  But that is also
+> not
+> > >> > clear
+> > >> > to me.  For example, I found this page on the census website, which
+> I
+> > >> > think
+> > >> > lists all ACS ever conducted:
+> > >> >
+> > >> >
+> > >> >
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+> > >> >
+> > >> > But when I tried to get the 2005 or 2007 ACS I get an error message
+> and
+> > >> > lots
+> > >> > of warnings.  Do you have any documentation of what data your
+> package
+> > >> > supports retrieving?
+> > >> >
+> > >> > I am interested in making animated gifs where each frame is a
+> choropleth
+> > >> > of
+> > >> > some demographic measurement at a particular year.  Right now that's
+> > >> > difficult because I'm just going hit or miss thru the list, and it
+> seems
+> > >> > to
+> > >> > be a lot of misses.
+> > >> >
+> > >> > Also, in version 1.0 of choroplethr I am just using the 2011
+> (default)
+> > >> > ACS.
+> > >> > In subsequent versions I would like users to use whatever (year,
+> span)
+> > >> > combinations acs.R supports.  I would also like to distribute a
+> list of
+> > >> > available data with my code, but right now I don't have one.
+> > >> >
+> > >> > Thanks.
+> > >> >
+> > >> > Ari
+> > >> >
+> > >> >
+> > >> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+> > >> > wrote:
+> > >> >>
+> > >> >>
+> > >> >> Dear acs.R folks:
+> > >> >>
+> > >> >> As some of you have noticed, the new five-year Census ACS data has
+> > >> >> just come out (see <http://www.census.gov/developers/data/>), and
+> is
+> > >> >> now available via the Census API. To make sure you are able to
+> fetch
+> > >> >> the freshest possible data to play with in R, I've updated the
+> acs.R
+> > >> >> package to version 1.2, which now includes full support for the
+> > >> >> 2008-2012 ACS data.
+> > >> >>
+> > >> >> The latest version is now available on the CRAN repository -- see
+> > >> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you've
+> > >> >> already installed the package in the past, you can easily update
+> with
+> > >> >> the update.packages() command; if you've never installed it, you
+> can
+> > >> >> just as easily install it for the first time, by simply typing
+> > >> >> install.packages("acs"). In either case, be sure to load the
+> library
+> > >> >> after installing by typing library(acs), and install (or
+> re-install)
+> > >> >> an API key with api.key.install() -- see the documentation and the
+> > >> >> latest version of the acs user guide for more info.
+> > >> >>
+> > >> >> To get the latest data, just continue to use the acs.fetch()
+> function
+> > >> >> as usual, but specify endyear=2012. (By default, endyear is set to
+> > >> >> 2011 if no year is explicitly passed to acs.fetch, and I didn't
+> want
+> > >> >> to change this for fear of breaking existing user scripts. In the
+> > >> >> future, we might to rethink this, so that it selects the most
+> recent
+> > >> >> endyear by default. Thoughts?)
+> > >> >>
+> > >> >> (Note: It might take a day or two for the updates to percolate
+> through
+> > >> >> the CRAN system.  If you update and you're not sure which version
+> you
+> > >> >> are using, you can always type packageVersion("acs") to find out.)
+> > >> >> --
+> > >> >> Ezra Haber Glenn, AICP
+> > >> >> Department of Urban Studies and Planning
+> > >> >> Massachusetts Institute of Technology
+> > >> >> 77 Massachusetts Ave., Room 7-337
+> > >> >> Cambridge, MA 02139
+> > >> >> eglenn at mit.edu
+> > >> >> http://dusp.mit.edu/faculty/ezra-glenn |
+> > >> >> http://eglenn.scripts.mit.edu/citystate/
+> > >> >> 617.253.2024 (w)
+> > >> >> 617.721.7131 (c)
+> > >> >>
+> > >> >> _______________________________________________
+> > >> >> acs-r mailing list
+> > >> >> acs-r at mit.edu
+> > >> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+> > >> >
+> > >> >
+> > >> >
+> > >> > _______________________________________________
+> > >> > acs-r mailing list
+> > >> > acs-r at mit.edu
+> > >> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> > >> >
+> > >>
+> > >>
+> > >>
+> > >> --
+> > >> Twitter: http://twitter.com/znmeb; Computational Journalism on a
+> Stick
+> > >> http://j.mp/CompJournoStickOverview
+> > >>
+> > >> My poltergeist can beat up your zeitgeist.
+> > >
+> > >
+> >
+> >
+> >
+> > --
+> > Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+> > http://j.mp/CompJournoStickOverview
+> >
+> > My poltergeist can beat up your zeitgeist.
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140206/c8f58436/attachment.htm
+
+From znmeb at znmeb.net  Thu Feb  6 20:25:45 2014
+From: znmeb at znmeb.net (M. Edward (Ed) Borasky)
+Date: Thu, 6 Feb 2014 17:25:45 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+	<CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+	<86k3dbx2ze.wl%eglenn@mit.edu>
+	<CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+Message-ID: <CAHkRx6HNdq5cYpmDXeuRRaNMOD9FxsRmQ8x4OrsxT_m_+z579g@mail.gmail.com>
+
+Done - signed, Scoop.it and tweeted!
+
+On Thu, Feb 6, 2014 at 5:20 PM,  <arilamstein at gmail.com> wrote:
+> I just created a petition on whitehouse.gov asking the Obama administration
+> to make all census data from all years available via the Census Developer
+> API.  Please consider signing it and sharing it with other people who you
+> think might benefit from this: http://wh.gov/lnc3J
+>
+>
+> On Mon, Feb 3, 2014 at 2:09 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>>
+>>
+>> The acs.R package is limited to data available via the API, listed
+>> here: <http://www.census.gov/developers/data/>.  In short, right now
+>> it's only the 5-year survey ending in 2010, 2011, 2012.
+>>
+>> In addition, the package can only deal with the "Summary File"
+>> variables -- not the "Data Profiles," which are really in a different
+>> format -- more like short reports than summary tables.
+>>
+>> In the future, I expect that the census will add the 1- and 3-year
+>> summary files to the API, at which point the package will be able
+>> fetch those as well.
+>>
+>> --Ezra
+>>
+>> At Sat, 1 Feb 2014 22:33:42 -0800, M Edward (Ed) Borasky wrote:
+>> >
+>> > My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+>> > Census data for local journalists. The initial test case was going to
+>> > be languages spoken at home, since the transportation planners here
+>> > need that for signage and the mobile apps. And I'm personally
+>> > interested in the Gini coefficient measures of inequality.
+>> >
+>> > I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+>> > "end years", with a length parameter of 1, 3 or 5 years.
+>> >
+>> > On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+>> > > Ed,
+>> > >
+>> > > The pdxcensusdata project looks very interesting, but I still have the
+>> > > same
+>> > > question - which years are accessible with the current version of
+>> > > acs.R?
+>> > >
+>> > > You are (mostly) correct about the limitations of the current version
+>> > > of
+>> > > choroplethr.  But in addition to state and county level data, it also
+>> > > renders ZCTA (Zip Code Tabulated Area) level data.  Although I had
+>> > > trouble
+>> > > working with the ZCTA shapefile that the census releases, so I just
+>> > > render
+>> > > each ZIP as a colored dot, centered at the longitude and latitude of
+>> > > the
+>> > > ZIP.  At that point its no longer a proper choropleth (because it
+>> > > lacks a
+>> > > border), but I still thought it was worth including in the project.
+>> > >
+>> > > I spoke with Ramnath briefly as well about using rCharts for rendering
+>> > > choropleths, but I haven't had a chance to follow up with him yet.
+>> > > Please
+>> > > send along any interesting results you get.  I think that choropleths
+>> > > are
+>> > > going to benefit a lot from the recent advances in interactive
+>> > > graphics.
+>> > >
+>> > > Ari
+>> > >
+>> > >
+>> > > On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky
+>> > > <znmeb at znmeb.net>
+>> > > wrote:
+>> > >>
+>> > >> I have a script that will extract table code names and their
+>> > >> definitions into CSV files so one can browse, rather than doing a
+>> > >> lookup via acs.r lookup functions. See
+>> > >> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+>> > >> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+>> > >> are XML files on the Census Bureau site equivalent to the ones in
+>> > >> acs.r I could hack up the scripts to use them without much trouble if
+>> > >> you have a use for this.
+>> > >>
+>> > >> As far as I can tell, choropleth.R only goes down to the county
+>> > >> level,
+>> > >> not census tract, block group or block. I'm also talking to Ramnath
+>> > >> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+>> > >> making Census choropleth maps using Leaflet.js, which will rended
+>> > >> automagically on Github Pages. I'm going to try to hack something up
+>> > >> for that this week in the above-linked project.
+>> > >>
+>> > >> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+>> > >> > Hi Ezra,
+>> > >> >
+>> > >> > Thanks for including this update.  I'm having a tough time figuring
+>> > >> > out
+>> > >> > what
+>> > >> > data is available via acs.R.  From what you've said before, I
+>> > >> > gather
+>> > >> > that
+>> > >> > it's "whatever is available via the Census API".  But that is also
+>> > >> > not
+>> > >> > clear
+>> > >> > to me.  For example, I found this page on the census website, which
+>> > >> > I
+>> > >> > think
+>> > >> > lists all ACS ever conducted:
+>> > >> >
+>> > >> >
+>> > >> >
+>> > >> > http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+>> > >> >
+>> > >> > But when I tried to get the 2005 or 2007 ACS I get an error message
+>> > >> > and
+>> > >> > lots
+>> > >> > of warnings.  Do you have any documentation of what data your
+>> > >> > package
+>> > >> > supports retrieving?
+>> > >> >
+>> > >> > I am interested in making animated gifs where each frame is a
+>> > >> > choropleth
+>> > >> > of
+>> > >> > some demographic measurement at a particular year.  Right now
+>> > >> > that's
+>> > >> > difficult because I'm just going hit or miss thru the list, and it
+>> > >> > seems
+>> > >> > to
+>> > >> > be a lot of misses.
+>> > >> >
+>> > >> > Also, in version 1.0 of choroplethr I am just using the 2011
+>> > >> > (default)
+>> > >> > ACS.
+>> > >> > In subsequent versions I would like users to use whatever (year,
+>> > >> > span)
+>> > >> > combinations acs.R supports.  I would also like to distribute a
+>> > >> > list of
+>> > >> > available data with my code, but right now I don't have one.
+>> > >> >
+>> > >> > Thanks.
+>> > >> >
+>> > >> > Ari
+>> > >> >
+>> > >> >
+>> > >> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+>> > >> > wrote:
+>> > >> >>
+>> > >> >>
+>> > >> >> Dear acs.R folks:
+>> > >> >>
+>> > >> >> As some of you have noticed, the new five-year Census ACS data has
+>> > >> >> just come out (see <http://www.census.gov/developers/data/>), and
+>> > >> >> is
+>> > >> >> now available via the Census API. To make sure you are able to
+>> > >> >> fetch
+>> > >> >> the freshest possible data to play with in R, I?ve updated the
+>> > >> >> acs.R
+>> > >> >> package to version 1.2, which now includes full support for the
+>> > >> >> 2008?2012 ACS data.
+>> > >> >>
+>> > >> >> The latest version is now available on the CRAN repository -- see
+>> > >> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you?ve
+>> > >> >> already installed the package in the past, you can easily update
+>> > >> >> with
+>> > >> >> the update.packages() command; if you?ve never installed it, you
+>> > >> >> can
+>> > >> >> just as easily install it for the first time, by simply typing
+>> > >> >> install.packages(?acs?). In either case, be sure to load the
+>> > >> >> library
+>> > >> >> after installing by typing library(acs), and install (or
+>> > >> >> re-install)
+>> > >> >> an API key with api.key.install() ? see the documentation and the
+>> > >> >> latest version of the acs user guide for more info.
+>> > >> >>
+>> > >> >> To get the latest data, just continue to use the acs.fetch()
+>> > >> >> function
+>> > >> >> as usual, but specify endyear=2012. (By default, endyear is set to
+>> > >> >> 2011 if no year is explicitly passed to acs.fetch, and I didn?t
+>> > >> >> want
+>> > >> >> to change this for fear of breaking existing user scripts. In the
+>> > >> >> future, we might to rethink this, so that it selects the most
+>> > >> >> recent
+>> > >> >> endyear by default. Thoughts?)
+>> > >> >>
+>> > >> >> (Note: It might take a day or two for the updates to percolate
+>> > >> >> through
+>> > >> >> the CRAN system.  If you update and you?re not sure which version
+>> > >> >> you
+>> > >> >> are using, you can always type packageVersion(?acs?) to find out.)
+>> > >> >> --
+>> > >> >> Ezra Haber Glenn, AICP
+>> > >> >> Department of Urban Studies and Planning
+>> > >> >> Massachusetts Institute of Technology
+>> > >> >> 77 Massachusetts Ave., Room 7-337
+>> > >> >> Cambridge, MA 02139
+>> > >> >> eglenn at mit.edu
+>> > >> >> http://dusp.mit.edu/faculty/ezra-glenn |
+>> > >> >> http://eglenn.scripts.mit.edu/citystate/
+>> > >> >> 617.253.2024 (w)
+>> > >> >> 617.721.7131 (c)
+>> > >> >>
+>> > >> >> _______________________________________________
+>> > >> >> acs-r mailing list
+>> > >> >> acs-r at mit.edu
+>> > >> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+>> > >> >
+>> > >> >
+>> > >> >
+>> > >> > _______________________________________________
+>> > >> > acs-r mailing list
+>> > >> > acs-r at mit.edu
+>> > >> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>> > >> >
+>> > >>
+>> > >>
+>> > >>
+>> > >> --
+>> > >> Twitter: http://twitter.com/znmeb; Computational Journalism on a
+>> > >> Stick
+>> > >> http://j.mp/CompJournoStickOverview
+>> > >>
+>> > >> My poltergeist can beat up your zeitgeist.
+>> > >
+>> > >
+>> >
+>> >
+>> >
+>> > --
+>> > Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+>> > http://j.mp/CompJournoStickOverview
+>> >
+>> > My poltergeist can beat up your zeitgeist.
+>>
+>> --
+>> Ezra Haber Glenn, AICP
+>> Department of Urban Studies and Planning
+>> Massachusetts Institute of Technology
+>> 77 Massachusetts Ave., Room 7-337
+>> Cambridge, MA 02139
+>> eglenn at mit.edu
+>> http://dusp.mit.edu/faculty/ezra-glenn |
+>> http://eglenn.scripts.mit.edu/citystate/
+>> 617.253.2024 (w)
+>> 617.721.7131 (c)
+>
+>
+
+
+
+-- 
+Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+http://j.mp/CompJournoStickOverview
+
+My poltergeist can beat up your zeitgeist.
+
+
+From arilamstein at gmail.com  Thu Feb  6 20:28:16 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Thu, 6 Feb 2014 17:28:16 -0800
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAHkRx6HNdq5cYpmDXeuRRaNMOD9FxsRmQ8x4OrsxT_m_+z579g@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+	<CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+	<86k3dbx2ze.wl%eglenn@mit.edu>
+	<CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+	<CAHkRx6HNdq5cYpmDXeuRRaNMOD9FxsRmQ8x4OrsxT_m_+z579g@mail.gmail.com>
+Message-ID: <CAEO2kuKJPvamHGi5XZjCS=bjPFRdRR2+9xbBJnd8FnTMQOVSmQ@mail.gmail.com>
+
+Thank you Ed!
+
+
+On Thu, Feb 6, 2014 at 5:25 PM, M. Edward (Ed) Borasky <znmeb at znmeb.net>wrote:
+
+> Done - signed, Scoop.it and tweeted!
+>
+> On Thu, Feb 6, 2014 at 5:20 PM,  <arilamstein at gmail.com> wrote:
+> > I just created a petition on whitehouse.gov asking the Obama
+> administration
+> > to make all census data from all years available via the Census Developer
+> > API.  Please consider signing it and sharing it with other people who you
+> > think might benefit from this: http://wh.gov/lnc3J
+> >
+> >
+> > On Mon, Feb 3, 2014 at 2:09 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> >>
+> >>
+> >> The acs.R package is limited to data available via the API, listed
+> >> here: <http://www.census.gov/developers/data/>.  In short, right now
+> >> it's only the 5-year survey ending in 2010, 2011, 2012.
+> >>
+> >> In addition, the package can only deal with the "Summary File"
+> >> variables -- not the "Data Profiles," which are really in a different
+> >> format -- more like short reports than summary tables.
+> >>
+> >> In the future, I expect that the census will add the 1- and 3-year
+> >> summary files to the API, at which point the package will be able
+> >> fetch those as well.
+> >>
+> >> --Ezra
+> >>
+> >> At Sat, 1 Feb 2014 22:33:42 -0800, M Edward (Ed) Borasky wrote:
+> >> >
+> >> > My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+> >> > Census data for local journalists. The initial test case was going to
+> >> > be languages spoken at home, since the transportation planners here
+> >> > need that for signage and the mobile apps. And I'm personally
+> >> > interested in the Gini coefficient measures of inequality.
+> >> >
+> >> > I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+> >> > "end years", with a length parameter of 1, 3 or 5 years.
+> >> >
+> >> > On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+> >> > > Ed,
+> >> > >
+> >> > > The pdxcensusdata project looks very interesting, but I still have
+> the
+> >> > > same
+> >> > > question - which years are accessible with the current version of
+> >> > > acs.R?
+> >> > >
+> >> > > You are (mostly) correct about the limitations of the current
+> version
+> >> > > of
+> >> > > choroplethr.  But in addition to state and county level data, it
+> also
+> >> > > renders ZCTA (Zip Code Tabulated Area) level data.  Although I had
+> >> > > trouble
+> >> > > working with the ZCTA shapefile that the census releases, so I just
+> >> > > render
+> >> > > each ZIP as a colored dot, centered at the longitude and latitude of
+> >> > > the
+> >> > > ZIP.  At that point its no longer a proper choropleth (because it
+> >> > > lacks a
+> >> > > border), but I still thought it was worth including in the project.
+> >> > >
+> >> > > I spoke with Ramnath briefly as well about using rCharts for
+> rendering
+> >> > > choropleths, but I haven't had a chance to follow up with him yet.
+> >> > > Please
+> >> > > send along any interesting results you get.  I think that
+> choropleths
+> >> > > are
+> >> > > going to benefit a lot from the recent advances in interactive
+> >> > > graphics.
+> >> > >
+> >> > > Ari
+> >> > >
+> >> > >
+> >> > > On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky
+> >> > > <znmeb at znmeb.net>
+> >> > > wrote:
+> >> > >>
+> >> > >> I have a script that will extract table code names and their
+> >> > >> definitions into CSV files so one can browse, rather than doing a
+> >> > >> lookup via acs.r lookup functions. See
+> >> > >> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However,
+> this
+> >> > >> only covers 2012, 2011 and 2010, not earlier data. I suspect if
+> there
+> >> > >> are XML files on the Census Bureau site equivalent to the ones in
+> >> > >> acs.r I could hack up the scripts to use them without much trouble
+> if
+> >> > >> you have a use for this.
+> >> > >>
+> >> > >> As far as I can tell, choropleth.R only goes down to the county
+> >> > >> level,
+> >> > >> not census tract, block group or block. I'm also talking to Ramnath
+> >> > >> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+> >> > >> making Census choropleth maps using Leaflet.js, which will rended
+> >> > >> automagically on Github Pages. I'm going to try to hack something
+> up
+> >> > >> for that this week in the above-linked project.
+> >> > >>
+> >> > >> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+> >> > >> > Hi Ezra,
+> >> > >> >
+> >> > >> > Thanks for including this update.  I'm having a tough time
+> figuring
+> >> > >> > out
+> >> > >> > what
+> >> > >> > data is available via acs.R.  From what you've said before, I
+> >> > >> > gather
+> >> > >> > that
+> >> > >> > it's "whatever is available via the Census API".  But that is
+> also
+> >> > >> > not
+> >> > >> > clear
+> >> > >> > to me.  For example, I found this page on the census website,
+> which
+> >> > >> > I
+> >> > >> > think
+> >> > >> > lists all ACS ever conducted:
+> >> > >> >
+> >> > >> >
+> >> > >> >
+> >> > >> >
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+> >> > >> >
+> >> > >> > But when I tried to get the 2005 or 2007 ACS I get an error
+> message
+> >> > >> > and
+> >> > >> > lots
+> >> > >> > of warnings.  Do you have any documentation of what data your
+> >> > >> > package
+> >> > >> > supports retrieving?
+> >> > >> >
+> >> > >> > I am interested in making animated gifs where each frame is a
+> >> > >> > choropleth
+> >> > >> > of
+> >> > >> > some demographic measurement at a particular year.  Right now
+> >> > >> > that's
+> >> > >> > difficult because I'm just going hit or miss thru the list, and
+> it
+> >> > >> > seems
+> >> > >> > to
+> >> > >> > be a lot of misses.
+> >> > >> >
+> >> > >> > Also, in version 1.0 of choroplethr I am just using the 2011
+> >> > >> > (default)
+> >> > >> > ACS.
+> >> > >> > In subsequent versions I would like users to use whatever (year,
+> >> > >> > span)
+> >> > >> > combinations acs.R supports.  I would also like to distribute a
+> >> > >> > list of
+> >> > >> > available data with my code, but right now I don't have one.
+> >> > >> >
+> >> > >> > Thanks.
+> >> > >> >
+> >> > >> > Ari
+> >> > >> >
+> >> > >> >
+> >> > >> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <
+> eglenn at mit.edu>
+> >> > >> > wrote:
+> >> > >> >>
+> >> > >> >>
+> >> > >> >> Dear acs.R folks:
+> >> > >> >>
+> >> > >> >> As some of you have noticed, the new five-year Census ACS data
+> has
+> >> > >> >> just come out (see <http://www.census.gov/developers/data/>),
+> and
+> >> > >> >> is
+> >> > >> >> now available via the Census API. To make sure you are able to
+> >> > >> >> fetch
+> >> > >> >> the freshest possible data to play with in R, I've updated the
+> >> > >> >> acs.R
+> >> > >> >> package to version 1.2, which now includes full support for the
+> >> > >> >> 2008-2012 ACS data.
+> >> > >> >>
+> >> > >> >> The latest version is now available on the CRAN repository --
+> see
+> >> > >> >> <http://cran.r-project.org/web/packages/acs/index.html>. If
+> you've
+> >> > >> >> already installed the package in the past, you can easily update
+> >> > >> >> with
+> >> > >> >> the update.packages() command; if you've never installed it, you
+> >> > >> >> can
+> >> > >> >> just as easily install it for the first time, by simply typing
+> >> > >> >> install.packages("acs"). In either case, be sure to load the
+> >> > >> >> library
+> >> > >> >> after installing by typing library(acs), and install (or
+> >> > >> >> re-install)
+> >> > >> >> an API key with api.key.install() -- see the documentation and
+> the
+> >> > >> >> latest version of the acs user guide for more info.
+> >> > >> >>
+> >> > >> >> To get the latest data, just continue to use the acs.fetch()
+> >> > >> >> function
+> >> > >> >> as usual, but specify endyear=2012. (By default, endyear is set
+> to
+> >> > >> >> 2011 if no year is explicitly passed to acs.fetch, and I didn't
+> >> > >> >> want
+> >> > >> >> to change this for fear of breaking existing user scripts. In
+> the
+> >> > >> >> future, we might to rethink this, so that it selects the most
+> >> > >> >> recent
+> >> > >> >> endyear by default. Thoughts?)
+> >> > >> >>
+> >> > >> >> (Note: It might take a day or two for the updates to percolate
+> >> > >> >> through
+> >> > >> >> the CRAN system.  If you update and you're not sure which
+> version
+> >> > >> >> you
+> >> > >> >> are using, you can always type packageVersion("acs") to find
+> out.)
+> >> > >> >> --
+> >> > >> >> Ezra Haber Glenn, AICP
+> >> > >> >> Department of Urban Studies and Planning
+> >> > >> >> Massachusetts Institute of Technology
+> >> > >> >> 77 Massachusetts Ave., Room 7-337
+> >> > >> >> Cambridge, MA 02139
+> >> > >> >> eglenn at mit.edu
+> >> > >> >> http://dusp.mit.edu/faculty/ezra-glenn |
+> >> > >> >> http://eglenn.scripts.mit.edu/citystate/
+> >> > >> >> 617.253.2024 (w)
+> >> > >> >> 617.721.7131 (c)
+> >> > >> >>
+> >> > >> >> _______________________________________________
+> >> > >> >> acs-r mailing list
+> >> > >> >> acs-r at mit.edu
+> >> > >> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+> >> > >> >
+> >> > >> >
+> >> > >> >
+> >> > >> > _______________________________________________
+> >> > >> > acs-r mailing list
+> >> > >> > acs-r at mit.edu
+> >> > >> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> >> > >> >
+> >> > >>
+> >> > >>
+> >> > >>
+> >> > >> --
+> >> > >> Twitter: http://twitter.com/znmeb; Computational Journalism on a
+> >> > >> Stick
+> >> > >> http://j.mp/CompJournoStickOverview
+> >> > >>
+> >> > >> My poltergeist can beat up your zeitgeist.
+> >> > >
+> >> > >
+> >> >
+> >> >
+> >> >
+> >> > --
+> >> > Twitter: http://twitter.com/znmeb; Computational Journalism on a
+> Stick
+> >> > http://j.mp/CompJournoStickOverview
+> >> >
+> >> > My poltergeist can beat up your zeitgeist.
+> >>
+> >> --
+> >> Ezra Haber Glenn, AICP
+> >> Department of Urban Studies and Planning
+> >> Massachusetts Institute of Technology
+> >> 77 Massachusetts Ave., Room 7-337
+> >> Cambridge, MA 02139
+> >> eglenn at mit.edu
+> >> http://dusp.mit.edu/faculty/ezra-glenn |
+> >> http://eglenn.scripts.mit.edu/citystate/
+> >> 617.253.2024 (w)
+> >> 617.721.7131 (c)
+> >
+> >
+>
+>
+>
+> --
+> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+> http://j.mp/CompJournoStickOverview
+>
+> My poltergeist can beat up your zeitgeist.
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140206/08a0f039/attachment-0001.htm
+
+From eglenn at MIT.EDU  Fri Feb  7 09:52:43 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Fri, 07 Feb 2014 09:52:43 -0500
+Subject: [acs-r] acs.R version 1.2: Now, with 2012 data
+In-Reply-To: <CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+References: <867g9r5vsr.wl%eglenn@mit.edu>
+	<CAEO2ku+YPrwK8krTG4fu3oCg+iQF4098MHY-OUjyKvwgLeY_uw@mail.gmail.com>
+	<CAHkRx6GhWNY5ePv4NpCP173idKCed00bFPGSfe_ahAaarUSMGQ@mail.gmail.com>
+	<CAEO2kuL2J2nwdfxYDin1uZ+Y8jDLqdn1yfEKYk9HAWVeq33A5Q@mail.gmail.com>
+	<CAHkRx6FVFRJh=fGMT9wh2GZxm2CptMr3OcMzBQ4F2KayENHfSQ@mail.gmail.com>
+	<86k3dbx2ze.wl%eglenn@mit.edu>
+	<CAEO2kuKZ1qVkcodFpLDzEu0q_zjL8JKGe=QCJqR5Nf=bh0y5Dg@mail.gmail.com>
+Message-ID: <86iosr9dqc.wl%eglenn@mit.edu>
+
+
+Great idea -- I'll sign now, and will help spread the word.
+
+--Ezra
+
+At Thu, 6 Feb 2014 17:20:29 -0800, arilamstein wrote:
+> 
+> [1  <text/plain; ISO-8859-1 (7bit)>]
+> 
+> [2  <text/html; ISO-8859-1 (quoted-printable)>]
+> I just created a petition on whitehouse.gov asking the Obama administration to make all
+> census data from all years available via the Census Developer API.  Please consider
+> signing it and sharing it with other people who you think might benefit from this: http://
+> wh.gov/lnc3J
+> 
+> On Mon, Feb 3, 2014 at 2:09 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> 
+>     The acs.R package is limited to data available via the API, listed
+>     here: <http://www.census.gov/developers/data/>.  In short, right now
+>     it's only the 5-year survey ending in 2010, 2011, 2012.
+>    
+>     In addition, the package can only deal with the "Summary File"
+>     variables -- not the "Data Profiles," which are really in a different
+>     format -- more like short reports than summary tables.
+>    
+>     In the future, I expect that the census will add the 1- and 3-year
+>     summary files to the API, at which point the package will be able
+>     fetch those as well.
+>    
+>     --Ezra
+>    
+>     At Sat, 1 Feb 2014 22:33:42 -0800, M Edward (Ed) Borasky wrote:
+>     >
+>     > My initial goal for pdxcensusdata was to provide a 'decoder ring' for
+>     > Census data for local journalists. The initial test case was going to
+>     > be languages spoken at home, since the transportation planners here
+>     > need that for signage and the mobile apps. And I'm personally
+>     > interested in the Gini coefficient measures of inequality.
+>     >
+>     > I'm pretty sure the acs.R package only accesses 2010, 2011 and 2012 as
+>     > "end years", with a length parameter of 1, 3 or 5 years.
+>     >
+>     > On Sat, Feb 1, 2014 at 10:25 PM,  <arilamstein at gmail.com> wrote:
+>     > > Ed,
+>     > >
+>     > > The pdxcensusdata project looks very interesting, but I still have the same
+>     > > question - which years are accessible with the current version of acs.R?
+>     > >
+>     > > You are (mostly) correct about the limitations of the current version of
+>     > > choroplethr.  But in addition to state and county level data, it also
+>     > > renders ZCTA (Zip Code Tabulated Area) level data.  Although I had trouble
+>     > > working with the ZCTA shapefile that the census releases, so I just render
+>     > > each ZIP as a colored dot, centered at the longitude and latitude of the
+>     > > ZIP.  At that point its no longer a proper choropleth (because it lacks a
+>     > > border), but I still thought it was worth including in the project.
+>     > >
+>     > > I spoke with Ramnath briefly as well about using rCharts for rendering
+>     > > choropleths, but I haven't had a chance to follow up with him yet.  Please
+>     > > send along any interesting results you get.  I think that choropleths are
+>     > > going to benefit a lot from the recent advances in interactive graphics.
+>     > >
+>     > > Ari
+>     > >
+>     > >
+>     > > On Sat, Feb 1, 2014 at 7:24 PM, M. Edward (Ed) Borasky <znmeb at znmeb.net>
+>     > > wrote:
+>     > >>
+>     > >> I have a script that will extract table code names and their
+>     > >> definitions into CSV files so one can browse, rather than doing a
+>     > >> lookup via acs.r lookup functions. See
+>     > >> https://github.com/znmeb/pdxcensusdata/tree/master/csv. However, this
+>     > >> only covers 2012, 2011 and 2010, not earlier data. I suspect if there
+>     > >> are XML files on the Census Bureau site equivalent to the ones in
+>     > >> acs.r I could hack up the scripts to use them without much trouble if
+>     > >> you have a use for this.
+>     > >>
+>     > >> As far as I can tell, choropleth.R only goes down to the county level,
+>     > >> not census tract, block group or block. I'm also talking to Ramnath
+>     > >> Vaidyanathan of rCharts (http://ramnathv.github.io/rCharts/) about
+>     > >> making Census choropleth maps using Leaflet.js, which will rended
+>     > >> automagically on Github Pages. I'm going to try to hack something up
+>     > >> for that this week in the above-linked project.
+>     > >>
+>     > >> On Sat, Feb 1, 2014 at 7:13 PM,  <arilamstein at gmail.com> wrote:
+>     > >> > Hi Ezra,
+>     > >> >
+>     > >> > Thanks for including this update.  I'm having a tough time figuring out
+>     > >> > what
+>     > >> > data is available via acs.R.  From what you've said before, I gather
+>     > >> > that
+>     > >> > it's "whatever is available via the Census API".  But that is also not
+>     > >> > clear
+>     > >> > to me.  For example, I found this page on the census website, which I
+>     > >> > think
+>     > >> > lists all ACS ever conducted:
+>     > >> >
+>     > >> >
+>     > >> > http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=
+>     survey&id=survey.en.ACS_ACS
+>     > >> >
+>     > >> > But when I tried to get the 2005 or 2007 ACS I get an error message and
+>     > >> > lots
+>     > >> > of warnings.  Do you have any documentation of what data your package
+>     > >> > supports retrieving?
+>     > >> >
+>     > >> > I am interested in making animated gifs where each frame is a choropleth
+>     > >> > of
+>     > >> > some demographic measurement at a particular year.  Right now that's
+>     > >> > difficult because I'm just going hit or miss thru the list, and it seems
+>     > >> > to
+>     > >> > be a lot of misses.
+>     > >> >
+>     > >> > Also, in version 1.0 of choroplethr I am just using the 2011 (default)
+>     > >> > ACS.
+>     > >> > In subsequent versions I would like users to use whatever (year, span)
+>     > >> > combinations acs.R supports.  I would also like to distribute a list of
+>     > >> > available data with my code, but right now I don't have one.
+>     > >> >
+>     > >> > Thanks.
+>     > >> >
+>     > >> > Ari
+>     > >> >
+>     > >> >
+>     > >> > On Wed, Jan 22, 2014 at 5:30 PM, Ezra Haber Glenn <eglenn at mit.edu>
+>     > >> > wrote:
+>     > >> >>
+>     > >> >>
+>     > >> >> Dear acs.R folks:
+>     > >> >>
+>     > >> >> As some of you have noticed, the new five-year Census ACS data has
+>     > >> >> just come out (see <http://www.census.gov/developers/data/>), and is
+>     > >> >> now available via the Census API. To make sure you are able to fetch
+>     > >> >> the freshest possible data to play with in R, I?ve updated the acs.R
+>     > >> >> package to version 1.2, which now includes full support for the
+>     > >> >> 2008?2012 ACS data.
+>     > >> >>
+>     > >> >> The latest version is now available on the CRAN repository -- see
+>     > >> >> <http://cran.r-project.org/web/packages/acs/index.html>. If you?ve
+>     > >> >> already installed the package in the past, you can easily update with
+>     > >> >> the update.packages() command; if you?ve never installed it, you can
+>     > >> >> just as easily install it for the first time, by simply typing
+>     > >> >> install.packages(?acs?). In either case, be sure to load the library
+>     > >> >> after installing by typing library(acs), and install (or re-install)
+>     > >> >> an API key with api.key.install() ? see the documentation and the
+>     > >> >> latest version of the acs user guide for more info.
+>     > >> >>
+>     > >> >> To get the latest data, just continue to use the acs.fetch() function
+>     > >> >> as usual, but specify endyear=2012. (By default, endyear is set to
+>     > >> >> 2011 if no year is explicitly passed to acs.fetch, and I didn?t want
+>     > >> >> to change this for fear of breaking existing user scripts. In the
+>     > >> >> future, we might to rethink this, so that it selects the most recent
+>     > >> >> endyear by default. Thoughts?)
+>     > >> >>
+>     > >> >> (Note: It might take a day or two for the updates to percolate through
+>     > >> >> the CRAN system.  If you update and you?re not sure which version you
+>     > >> >> are using, you can always type packageVersion(?acs?) to find out.)
+>     > >> >> --
+>     > >> >> Ezra Haber Glenn, AICP
+>     > >> >> Department of Urban Studies and Planning
+>     > >> >> Massachusetts Institute of Technology
+>     > >> >> 77 Massachusetts Ave., Room 7-337
+>     > >> >> Cambridge, MA 02139
+>     > >> >> eglenn at mit.edu
+>     > >> >> http://dusp.mit.edu/faculty/ezra-glenn |
+>     > >> >> http://eglenn.scripts.mit.edu/citystate/
+>     > >> >> 617.253.2024 (w)
+>     > >> >> 617.721.7131 (c)
+>     > >> >>
+>     > >> >> _______________________________________________
+>     > >> >> acs-r mailing list
+>     > >> >> acs-r at mit.edu
+>     > >> >> http://mailman.mit.edu/mailman/listinfo/acs-r
+>     > >> >
+>     > >> >
+>     > >> >
+>     > >> > _______________________________________________
+>     > >> > acs-r mailing list
+>     > >> > acs-r at mit.edu
+>     > >> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>     > >> >
+>     > >>
+>     > >>
+>     > >>
+>     > >> --
+>     > >> Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+>     > >> http://j.mp/CompJournoStickOverview
+>     > >>
+>     > >> My poltergeist can beat up your zeitgeist.
+>     > >
+>     > >
+>     >
+>     >
+>     >
+>     > --
+>     > Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+>     > http://j.mp/CompJournoStickOverview
+>     >
+>     > My poltergeist can beat up your zeitgeist.
+>    
+>     --
+>     Ezra Haber Glenn, AICP
+>     Department of Urban Studies and Planning
+>     Massachusetts Institute of Technology
+>     77 Massachusetts Ave., Room 7-337
+>     Cambridge, MA 02139
+>     eglenn at mit.edu
+>     http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+>     617.253.2024 (w)
+>     617.721.7131 (c)
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From Tim.Jacobs at xerox.com  Mon Feb 17 17:26:03 2014
+From: Tim.Jacobs at xerox.com (Jacobs, Tim W)
+Date: Mon, 17 Feb 2014 22:26:03 +0000
+Subject: [acs-r] data by school district
+Message-ID: <9D643721313FE043A42FCB724A68B09F05A8CFE5@USA7109MB016.na.xerox.net>
+
+Is it possible to get summary information by school district (i.e., summary level 970) through the acs package? If so, how?
+
+Thanks,
+Tim
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140217/eaefb7bf/attachment.htm
+
+From eglenn at MIT.EDU  Mon Feb 17 21:42:50 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 17 Feb 2014 21:42:50 -0500
+Subject: [acs-r] data by school district
+In-Reply-To: <9D643721313FE043A42FCB724A68B09F05A8CFE5@USA7109MB016.na.xerox.net>
+References: <9D643721313FE043A42FCB724A68B09F05A8CFE5@USA7109MB016.na.xerox.net>
+Message-ID: <86r471gmz9.wl%eglenn@mit.edu>
+
+
+At Mon, 17 Feb 2014 22:26:03 +0000, Jacobs, Tim W wrote:
+
+> Is it possible to get summary information by school district (i.e.,
+> summary level 970) through the acs package? If so, how?
+
+Tim:
+
+Yes, absolutely, although you'll need to specify which type of school
+district you want: the package supports school.district.elementary
+(summary level 950), school.district.secondary (summary level 960),
+and school.district.unified (summary level 970).  See help(geo.make)
+to see all the geographic options and more.
+
+Assuming you've created some valid geo.set containing school districts
+(and possibly other things), and you know which table you want, it's a
+snap:
+
+> my.schools=geo.make(state="CA", school.district.unified=c("Alameda","Escalon","Orange"))
+
+> acs.fetch(geography=my.schools, table.number="B01003")
+ACS DATA: 
+ 2007 -- 2011 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                                 B01003_001     
+Alameda City Unified School District, California 73239 +/- 46   
+Escalon Unified School District, California      14088 +/- 778  
+Orange Unified School District, California       216201 +/- 1969
+
+The various "school.district.XXX" options can attempt to match on
+names, or you can use FIPS codes, or the "*" wildcard for all.  From
+help(geo.make):
+
+
+school.district.elementary: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (elementary), or a character string to search for in the names of
+     these districts; setting state and school.district.elementary
+     without other options corresponds to using census summary level
+     950.
+
+school.district.secondary: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (secondary), or a character string to search for in the names of
+     these districts; setting state and school.district.secondary
+     without other options corresponds to using census summary level
+     960.
+
+school.district.unified: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (unified), or a character string to search for in the names of
+     these districts; setting state and school.district.unified
+     without other options corresponds to using census summary level
+     970.
+
+Do note, however, that the current Census API does not provide data
+from the 2006-2010 (five-year) ACS for these summary levels.  (By
+default, you'll get data from the 2007-2011 ACS.)  
+
+You can get data from 2008-2012, but depending on the version of the
+acs package you may see a warning, which can be ignored:
+
+> acs.fetch(geography=my.schools, table.number="B01003", endyear=2012)
+ACS DATA: 
+ 2008 -- 2012 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                                 B01003_001     
+Alameda City Unified School District, California 74023 +/- 47   
+Escalon Unified School District, California      14429 +/- 929  
+Orange Unified School District, California       218410 +/- 2416
+
+See help(geo.make) for more about the current valid combinations
+between year and summary levels via the API.
+
+Thanks for using the package, and hope this helps.  Let me know if you
+have additional questions.
+
+--Ezra
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From eglenn at MIT.EDU  Mon Feb 17 22:12:36 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 17 Feb 2014 22:12:36 -0500
+Subject: [acs-r] data by school district
+In-Reply-To: <9D643721313FE043A42FCB724A68B09F05A8CFE5@USA7109MB016.na.xerox.net>
+References: <9D643721313FE043A42FCB724A68B09F05A8CFE5@USA7109MB016.na.xerox.net>
+Message-ID: <86mwhpglln.wl%eglenn@mit.edu>
+
+
+Tim:
+
+Yes, absolutely, although you'll need to specify which type of school
+district you want: the package supports school.district.elementary
+(summary level 950), school.district.secondary (summary level 960),
+and school.district.unified (summary level 970).  See help(geo.make)
+to see all the geographic options and more.
+
+Assuming you've created some valid geo.set containing school districts
+(and possibly other things), and you know which table you want, it's a
+snap:
+
+> my.schools=geo.make(state="CA", school.district.unified=c("Alameda","Escalon","Orange"))
+
+> acs.fetch(geography=my.schools, table.number="B01003")
+ACS DATA: 
+ 2007 -- 2011 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                                 B01003_001     
+Alameda City Unified School District, California 73239 +/- 46   
+Escalon Unified School District, California      14088 +/- 778  
+Orange Unified School District, California       216201 +/- 1969
+
+The various "school.district.XXX" options can attempt to match on
+names, or you can use FIPS codes, or the "*" wildcard for all.  From
+help(geo.make):
+
+
+school.district.elementary: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (elementary), or a character string to search for in the names of
+     these districts; setting state and school.district.elementary
+     without other options corresponds to using census summary level
+     950.
+
+school.district.secondary: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (secondary), or a character string to search for in the names of
+     these districts; setting state and school.district.secondary
+     without other options corresponds to using census summary level
+     960.
+
+school.district.unified: a numeric code (or wildcard "*" for all)
+     corresponding to the desired FIPS state school district
+     (unified), or a character string to search for in the names of
+     these districts; setting state and school.district.unified
+     without other options corresponds to using census summary level
+     970.
+
+Do note, however, that the current Census API does not provide data
+from the 2006-2010 (five-year) ACS for these summary levels.  (By
+default, you'll get data from the 2007-2011 ACS.)  
+
+You can get data from 2008-2012, but depending on the version of the
+acs package you may see a warning, which can be ignored:
+
+> acs.fetch(geography=my.schools, table.number="B01003", endyear=2012)
+ACS DATA: 
+ 2008 -- 2012 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                                 B01003_001     
+Alameda City Unified School District, California 74023 +/- 47   
+Escalon Unified School District, California      14429 +/- 929  
+Orange Unified School District, California       218410 +/- 2416
+
+See help(geo.make) for more about the current valid combinations
+between year and summary levels via the API.
+
+Thanks for using the package, and hope this helps.  Let me know if you
+have additional questions.
+
+--Ezra
+
+
+At Mon, 17 Feb 2014 22:26:03 +0000, Jacobs, Tim W wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> 
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Is it possible to get summary information by school district (i.e., summary level 970)
+> through the acs package? If so, how?
+> 
+> Thanks,
+> 
+> Tim
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From Tim.Jacobs at xerox.com  Tue Feb 18 10:05:59 2014
+From: Tim.Jacobs at xerox.com (Jacobs, Tim W)
+Date: Tue, 18 Feb 2014 15:05:59 +0000
+Subject: [acs-r]  data by school district
+Message-ID: <9D643721313FE043A42FCB724A68B09F05A8E05D@USA7109MB016.na.xerox.net>
+
+Thank you Ezra. I believe I want summary level 970(State-School District(Unified)/Remainder). But I must admit I'm fairly ignorant about the entire ACS data sets. I'm not entirely clear how I can find out when I would want to query for elementary and secondary vs. unified, and I don't know what the meaning of "/Remainder" is (or if it is significant). Any pointers to documentation would be helpful.
+
+Thanks again for the help and for the great acs package.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140218/da035826/attachment.htm
+
+From eglenn at MIT.EDU  Tue Feb 18 15:37:35 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Tue, 18 Feb 2014 15:37:35 -0500
+Subject: [acs-r] data by school district
+In-Reply-To: <9D643721313FE043A42FCB724A68B09F05A8E05D@USA7109MB016.na.xerox.net>
+References: <9D643721313FE043A42FCB724A68B09F05A8E05D@USA7109MB016.na.xerox.net>
+Message-ID: <86lhx8f980.wl%eglenn@mit.edu>
+
+
+Sure.  The idea behind these summary levels is that there are actually
+different sorts of things that might be called "school districts" in
+different places, and also there might be places that don't fit into
+these categories, or places that belong to more than one of them.
+
+So, if a place has a single district (a single governmental body) for
+both the elementary and the secondary school, that would be a "unified
+district."  Of course, there may different *actual schools* for
+elementary and high school (and maybe even multiple elementary
+schools, a junior high, special ed, etc.), but if it is all under the
+management of a single school board and superintendent (or other
+oversight model), then it is a "unified district."
+
+On the other hand, in some places the elementary school may be governed
+by one district and the secondary school by another (often larger) one
+-- for example, a small town that runs K-8, but then sends kids to a
+regional school district with two other towns.  So for that, there
+might be three different elementary school districts (one for each
+town), and one larger overlapping secondary school district. 
+
+As for "/Remainder," that is a standard Census term, indicating that
+in addition to the data for each named district, they will aggregate
+all the other people or households -- the ones that for some reason
+don't belong to any district of that type -- and report them as the
+remainder.  For stuff like states or counties, which abut each other
+and cover all the country, they don't have this, but other geographies
+(like school districts, and lots of other things), they do include it.
+(As an example, imagine getting data on population in Nevada by
+American Indian Area.  You'd expect a lot of people in the state don't
+live in any of these -- they'd be reported in the Remainder.)
+
+Hope that helps.
+
+--Ezra
+
+At Tue, 18 Feb 2014 15:05:59 +0000, Jacobs, Tim W wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> 
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Thank you Ezra. I believe I want summary level 970(State-School District(Unified)/
+> Remainder). But I must admit I?m fairly ignorant about the entire ACS data sets. I?m not
+> entirely clear how I can find out when I would want to query for elementary and secondary
+> vs. unified, and I don?t know what the meaning of ?/Remainder? is (or if it is
+> significant). Any pointers to documentation would be helpful.
+> 
+> Thanks again for the help and for the great acs package.
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+

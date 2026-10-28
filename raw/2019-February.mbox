@@ -1,0 +1,218 @@
+From eglenn at mit.edu  Wed Feb 20 08:10:08 2019
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 20 Feb 2019 08:10:08 -0500
+Subject: [acs-r] acs version 2.1.4: now on CRAN
+Message-ID: <86woluy5an.wl-eglenn@mit.edu>
+
+
+Due to some pesky api address changes at the Census, we've updated the
+acs package with yet another quick patch.  Pretty much everything
+should work the same --- no improvements, just a fix to allow you to
+get data that wasn't fetching.  No other aspects of the package were
+changed with this release.
+
+*** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+#+BEGIN_SRC R
+
+> install.packages("acs", clean=T)
+> acs.tables.install()
+
+#+END_SRC
+
+If you're updating from a previous version, don't forget to re-install
+or "api.key.migrate()" your api key if it doesn't seem to have been
+migrated during install.  We also strongly recommend you run
+"acs.tables.install()" as well -- you only need to do this once per
+installation (or update), and it will really speed up the package.
+
+Thanks!
+
+--
+Ezra Haber Glenn, AICP  
+Department of Urban Studies and Planning  
+Massachusetts Institute of Technology  
+77 Massachusetts Ave., Room 7-346  
+Cambridge, MA 02139  
+eglenn at mit.edu  
+http://dusp.mit.edu/faculty/ezra-glenn  
+617.253.2024 (w)  
+617.721.7131 (c)  
+
+From Michael.Laviolette at dhhs.nh.gov  Wed Feb 20 08:27:52 2019
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Wed, 20 Feb 2019 13:27:52 +0000
+Subject: [acs-r] acs version 2.1.4: now on CRAN
+In-Reply-To: <86woluy5an.wl-eglenn@mit.edu>
+References: <86woluy5an.wl-eglenn@mit.edu>
+Message-ID: <328914c6513b4198930e87d3be632abc@dhhs.nh.gov>
+
+Hi Ezra--the data from acs.tables.install() is still going to the wrong folder on Windows. It should go to the extdata folder, right?
+
+Thanks,
+Mike
+
+Michael Laviolette PhD MPH
+Public Health Statistician
+Bureau of Public Health Statistics and Informatics
+New Hampshire Division of Public Health Services
+29 Hazen Drive
+Concord, NH 03301-6504
+(603) 271-5688
+Michael.Laviolette at dhhs.nh.gov
+
+
+-----Original Message-----
+From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn
+Sent: Wednesday, February 20, 2019 8:10 AM
+To: acs-r
+Subject: [acs-r] acs version 2.1.4: now on CRAN
+
+
+Due to some pesky api address changes at the Census, we've updated the
+acs package with yet another quick patch.  Pretty much everything
+should work the same --- no improvements, just a fix to allow you to
+get data that wasn't fetching.  No other aspects of the package were
+changed with this release.
+
+*** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+#+BEGIN_SRC R
+
+> install.packages("acs", clean=T)
+> acs.tables.install()
+
+#+END_SRC
+
+If you're updating from a previous version, don't forget to re-install
+or "api.key.migrate()" your api key if it doesn't seem to have been
+migrated during install.  We also strongly recommend you run
+"acs.tables.install()" as well -- you only need to do this once per
+installation (or update), and it will really speed up the package.
+
+Thanks!
+
+--
+Ezra Haber Glenn, AICP  
+Department of Urban Studies and Planning  
+Massachusetts Institute of Technology  
+77 Massachusetts Ave., Room 7-346  
+Cambridge, MA 02139  
+eglenn at mit.edu  
+https://urldefense.proofpoint.com/v2/url?u=http-3A__dusp.mit.edu_faculty_ezra-2Dglenn&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=9D5ijUtFSTK399OYJESz0-7B4nNs4WclmkYncThBjYo&e=  
+617.253.2024 (w)  
+617.721.7131 (c)  
+_______________________________________________
+acs-r mailing list
+acs-r at mit.edu
+https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=Nj5-2IZRdBFJiKTgqY7LyWQED0DeIk8dNb2IXgP8cnI&e=
+
+
+From eglenn at mit.edu  Wed Feb 20 08:39:30 2019
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 20 Feb 2019 08:39:30 -0500
+Subject: [acs-r] acs version 2.1.4: now on CRAN
+In-Reply-To: <328914c6513b4198930e87d3be632abc@dhhs.nh.gov>
+References: <86woluy5an.wl-eglenn@mit.edu>
+	<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>
+Message-ID: <86tvgyy3xp.wl-eglenn@mit.edu>
+
+
+Sorry, I think that's probably right -- I didn't change that.
+
+For a solution, I think you can just move the files into the extdata
+folder -- but based on the screenshot you sent before, you'll also
+need to rename each one to remove the "extdata" at the start of the
+name.  (That is, "extdataacs_5yr_2016_var.xml.gz" should become just
+"acs_5yr_2016_var.xml.gz", and so on -- I think the idea is that in
+windows, the "/" in the file path is getting ignored, resulting in both
+the wrong location and the wrong name.)
+
+I'll try to explore this to fix for 2.1.5, but if you can let me know
+whether this hands-on fix works for you, that would be much
+appreciated.
+
+Thanks.
+
+--Ezra
+
+On Wed, 20 Feb 2019 08:27:52 -0500, Laviolette, Michael wrote:
+> 
+> Hi Ezra--the data from acs.tables.install() is still going to the
+> wrong folder on Windows. It should go to the extdata folder, right?
+> 
+> Thanks,
+> Mike
+> 
+> Michael Laviolette PhD MPH
+> Public Health Statistician
+> Bureau of Public Health Statistics and Informatics
+> New Hampshire Division of Public Health Services
+> 29 Hazen Drive
+> Concord, NH 03301-6504
+> (603) 271-5688
+> Michael.Laviolette at dhhs.nh.gov
+> 
+> 
+> -----Original Message-----
+> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn
+> Sent: Wednesday, February 20, 2019 8:10 AM
+> To: acs-r
+> Subject: [acs-r] acs version 2.1.4: now on CRAN
+> 
+> 
+> Due to some pesky api address changes at the Census, we've updated the
+> acs package with yet another quick patch.  Pretty much everything
+> should work the same --- no improvements, just a fix to allow you to
+> get data that wasn't fetching.  No other aspects of the package were
+> changed with this release.
+> 
+> *** Downloading and installing
+> 
+> To install the updated version, simply fire up an R session and type:
+> 
+> #+BEGIN_SRC R
+> 
+> > install.packages("acs", clean=T)
+> > acs.tables.install()
+> 
+> #+END_SRC
+> 
+> If you're updating from a previous version, don't forget to re-install
+> or "api.key.migrate()" your api key if it doesn't seem to have been
+> migrated during install.  We also strongly recommend you run
+> "acs.tables.install()" as well -- you only need to do this once per
+> installation (or update), and it will really speed up the package.
+> 
+> Thanks!
+> 
+> --
+> Ezra Haber Glenn, AICP  
+> Department of Urban Studies and Planning  
+> Massachusetts Institute of Technology  
+> 77 Massachusetts Ave., Room 7-346  
+> Cambridge, MA 02139  
+> eglenn at mit.edu  
+> https://urldefense.proofpoint.com/v2/url?u=http-3A__dusp.mit.edu_faculty_ezra-2Dglenn&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=9D5ijUtFSTK399OYJESz0-7B4nNs4WclmkYncThBjYo&e=  
+> 617.253.2024 (w)  
+> 617.721.7131 (c)  
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=Nj5-2IZRdBFJiKTgqY7LyWQED0DeIk8dNb2IXgP8cnI&e=
+
+--
+Ezra Haber Glenn, AICP  
+Department of Urban Studies and Planning  
+Massachusetts Institute of Technology  
+77 Massachusetts Ave., Room 7-346  
+Cambridge, MA 02139  
+eglenn at mit.edu  
+http://dusp.mit.edu/faculty/ezra-glenn  
+617.253.2024 (w)  
+617.721.7131 (c)  
+

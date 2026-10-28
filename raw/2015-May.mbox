@@ -1,0 +1,83 @@
+From arilamstein at gmail.com  Mon May 18 13:34:05 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 18 May 2015 10:34:05 -0700
+Subject: [acs-r] reliability of census api
+Message-ID: <CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>
+
+I just tried to run the following query:
+
+state_geo = acs::geo.make(state = "*")
+race.data = acs::acs.fetch(geography = state_geo, table.number = "B03002",
+                           col.names = "pretty", endyear = 2013, span = 5)
+
+And got this error message:
+
+Error in matrix(unlist(value, recursive = FALSE, use.names = FALSE), nrow =
+nr,  :
+  'data' must be of a vector type, was 'NULL'
+
+I'm pretty sure that my code is valid: I've run it before. I've noticed
+that on and off I get errors like this. Is this due to the census api being
+down?
+
+Thanks.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150518/10d30a1f/attachment.htm
+
+From eglenn at mit.edu  Mon May 18 13:46:49 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 18 May 2015 13:46:49 -0400
+Subject: [acs-r] reliability of census api
+In-Reply-To: <CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>
+References: <CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>
+Message-ID: <86oalhok1i.wl%eglenn@mit.edu>
+
+
+It just worked fine for me, so yes, I think it is probably a
+temperamental API (or perhaps something related to the consistency of
+your internet connection...?).
+
+At Mon, 18 May 2015 10:34:05 -0700, arilamstein wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> I just tried to run the following query:
+> 
+> state_geo = acs::geo.make(state = "*")
+> race.data = acs::acs.fetch(geography = state_geo, table.number = "B03002", 
+>                            col.names = "pretty", endyear = 2013, span = 5)
+> 
+> And got this error message:
+> 
+> Error in matrix(unlist(value, recursive = FALSE, use.names = FALSE), nrow = nr,  : 
+>   'data' must be of a vector type, was 'NULL'
+> 
+> I'm pretty sure that my code is valid: I've run it before. I've noticed that on and off I
+> get errors like this. Is this due to the census api being down? 
+> 
+> Thanks.
+> 
+> Ari
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

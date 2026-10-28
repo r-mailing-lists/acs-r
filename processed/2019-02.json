@@ -1,0 +1,74 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2019-02",
+  "messages": [
+    {
+      "id": "msg-817bf9194bd5",
+      "message_id": "<86woluy5an.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2019-02-20T13:10:08Z",
+      "subject": "[acs-r] acs version 2.1.4: now on CRAN",
+      "subject_clean": "[acs-r] acs version 2.1.4: now on CRAN",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Due to some pesky api address changes at the Census, we've updated the\nacs package with yet another quick patch.  Pretty much everything\nshould work the same --- no improvements, just a fix to allow you to\nget data that wasn't fetching.  No other aspects of the package were\nchanged with this release.\n\n*** Downloading and installing\n\nTo install the updated version, simply fire up an R session and type:\n\n#+BEGIN_SRC R\n\n> install.packages(\"acs\", clean=T)\n> acs.tables.install()\n\n#+END_SRC\n\nIf you're updating from a previous version, don't forget to re-install\nor \"api.key.migrate()\" your api key if it doesn't seem to have been\nmigrated during install.  We also strongly recommend you run\n\"acs.tables.install()\" as well -- you only need to do this once per\ninstallation (or update), and it will really speed up the package.\n\nThanks!\n\n--\nEzra Haber Glenn, AICP  \nDepartment of Urban Studies and Planning  \nMassachusetts Institute of Technology  \n77 Massachusetts Ave., Room 7-346  \nCambridge, MA 02139  \neglenn at mit.edu  \nhttp://dusp.mit.edu/faculty/ezra-glenn  \n617.253.2024 (w)  \n617.721.7131 (c)",
+      "body_snippet": "Due to some pesky api address changes at the Census, we've updated the\nacs package with yet another quick patch.  Pretty much everything\nshould work the same --- no improvements, just a fix to allow y",
+      "thread_id": "thread-817bf9194bd5",
+      "thread_depth": 0,
+      "month": "2019-02"
+    },
+    {
+      "id": "msg-3598da245c70",
+      "message_id": "<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>",
+      "from_name": "Laviolette, Michael",
+      "from_email_hash": "0f1ad25c81a22d86c9e93f1a21c80c1045274e5015d59ff2df4afad9df1ab914",
+      "date": "2019-02-20T13:27:52Z",
+      "subject": "[acs-r] acs version 2.1.4: now on CRAN",
+      "subject_clean": "[acs-r] acs version 2.1.4: now on CRAN",
+      "in_reply_to": "<86woluy5an.wl-eglenn@mit.edu>",
+      "references": [
+        "<86woluy5an.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Hi Ezra--the data from acs.tables.install() is still going to the wrong folder on Windows. It should go to the extdata folder, right?\n\nThanks,\nMike\n\nMichael Laviolette PhD MPH\nPublic Health Statistician\nBureau of Public Health Statistics and Informatics\nNew Hampshire Division of Public Health Services\n29 Hazen Drive\nConcord, NH 03301-6504\n(603) 271-5688\nMichael.Laviolette at dhhs.nh.gov\n\n\n-----Original Message-----\nFrom: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn\nSent: Wednesday, February 20, 2019 8:10 AM\nTo: acs-r\nSubject: [acs-r] acs version 2.1.4: now on CRAN\n\n\nDue to some pesky api address changes at the Census, we've updated the\nacs package with yet another quick patch.  Pretty much everything\nshould work the same --- no improvements, just a fix to allow you to\nget data that wasn't fetching.  No other aspects of the package were\nchanged with this release.\n\n*** Downloading and installing\n\nTo install the updated version, simply fire up an R session and type:\n\n#+BEGIN_SRC R\n\n> install.packages(\"acs\", clean=T)\n> acs.tables.install()\n\n#+END_SRC\n\nIf you're updating from a previous version, don't forget to re-install\nor \"api.key.migrate()\" your api key if it doesn't seem to have been\nmigrated during install.  We also strongly recommend you run\n\"acs.tables.install()\" as well -- you only need to do this once per\ninstallation (or update), and it will really speed up the package.\n\nThanks!\n\n--\nEzra Haber Glenn, AICP  \nDepartment of Urban Studies and Planning  \nMassachusetts Institute of Technology  \n77 Massachusetts Ave., Room 7-346  \nCambridge, MA 02139  \neglenn at mit.edu  \nhttps://urldefense.proofpoint.com/v2/url?u=http-3A__dusp.mit.edu_faculty_ezra-2Dglenn&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=9D5ijUtFSTK399OYJESz0-7B4nNs4WclmkYncThBjYo&e=  \n617.253.2024 (w)  \n617.721.7131 (c)  \n_______________________________________________\nacs-r mailing list\nacs-r at mit.edu\nhttps://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=Nj5-2IZRdBFJiKTgqY7LyWQED0DeIk8dNb2IXgP8cnI&e=",
+      "body_snippet": "Hi Ezra--the data from acs.tables.install() is still going to the wrong folder on Windows. It should go to the extdata folder, right?\n\nThanks,\nMike\n\nMichael Laviolette PhD MPH\nPublic Health Statistici",
+      "thread_id": "thread-817bf9194bd5",
+      "thread_depth": 1,
+      "month": "2019-02"
+    },
+    {
+      "id": "msg-d99596f41b1e",
+      "message_id": "<86tvgyy3xp.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2019-02-20T13:39:30Z",
+      "subject": "[acs-r] acs version 2.1.4: now on CRAN",
+      "subject_clean": "[acs-r] acs version 2.1.4: now on CRAN",
+      "in_reply_to": "<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>",
+      "references": [
+        "<86woluy5an.wl-eglenn@mit.edu>",
+        "<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>"
+      ],
+      "body_plain": "Sorry, I think that's probably right -- I didn't change that.\n\nFor a solution, I think you can just move the files into the extdata\nfolder -- but based on the screenshot you sent before, you'll also\nneed to rename each one to remove the \"extdata\" at the start of the\nname.  (That is, \"extdataacs_5yr_2016_var.xml.gz\" should become just\n\"acs_5yr_2016_var.xml.gz\", and so on -- I think the idea is that in\nwindows, the \"/\" in the file path is getting ignored, resulting in both\nthe wrong location and the wrong name.)\n\nI'll try to explore this to fix for 2.1.5, but if you can let me know\nwhether this hands-on fix works for you, that would be much\nappreciated.\n\nThanks.\n\n--Ezra\n\nOn Wed, 20 Feb 2019 08:27:52 -0500, Laviolette, Michael wrote:\n> \n> Hi Ezra--the data from acs.tables.install() is still going to the\n> wrong folder on Windows. It should go to the extdata folder, right?\n> \n> Thanks,\n> Mike\n> \n> Michael Laviolette PhD MPH\n> Public Health Statistician\n> Bureau of Public Health Statistics and Informatics\n> New Hampshire Division of Public Health Services\n> 29 Hazen Drive\n> Concord, NH 03301-6504\n> (603) 271-5688\n> Michael.Laviolette at dhhs.nh.gov\n> \n> \n> -----Original Message-----\n> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn\n> Sent: Wednesday, February 20, 2019 8:10 AM\n> To: acs-r\n> Subject: [acs-r] acs version 2.1.4: now on CRAN\n> \n> \n> Due to some pesky api address changes at the Census, we've updated the\n> acs package with yet another quick patch.  Pretty much everything\n> should work the same --- no improvements, just a fix to allow you to\n> get data that wasn't fetching.  No other aspects of the package were\n> changed with this release.\n> \n> *** Downloading and installing\n> \n> To install the updated version, simply fire up an R session and type:\n> \n> #+BEGIN_SRC R\n> \n> > install.packages(\"acs\", clean=T)\n> > acs.tables.install()\n> \n> #+END_SRC\n> \n> If you're updating from a previous version, don't forget to re-install\n> or \"api.key.migrate()\" your api key if it doesn't seem to have been\n> migrated during install.  We also strongly recommend you run\n> \"acs.tables.install()\" as well -- you only need to do this once per\n> installation (or update), and it will really speed up the package.\n> \n> Thanks!\n> \n> --\n> Ezra Haber Glenn, AICP  \n> Department of Urban Studies and Planning  \n> Massachusetts Institute of Technology  \n> 77 Massachusetts Ave., Room 7-346  \n> Cambridge, MA 02139  \n> eglenn at mit.edu  \n> https://urldefense.proofpoint.com/v2/url?u=http-3A__dusp.mit.edu_faculty_ezra-2Dglenn&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=9D5ijUtFSTK399OYJESz0-7B4nNs4WclmkYncThBjYo&e=  \n> 617.253.2024 (w)  \n> 617.721.7131 (c)  \n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=7eNGcM_dguN7j-axqIPxZgjaBo8p1r0ZXVW37MfN4fQ&s=Nj5-2IZRdBFJiKTgqY7LyWQED0DeIk8dNb2IXgP8cnI&e=\n\n--\nEzra Haber Glenn, AICP  \nDepartment of Urban Studies and Planning  \nMassachusetts Institute of Technology  \n77 Massachusetts Ave., Room 7-346  \nCambridge, MA 02139  \neglenn at mit.edu  \nhttp://dusp.mit.edu/faculty/ezra-glenn  \n617.253.2024 (w)  \n617.721.7131 (c)",
+      "body_snippet": "Sorry, I think that's probably right -- I didn't change that.\n\nFor a solution, I think you can just move the files into the extdata\nfolder -- but based on the screenshot you sent before, you'll also\nn",
+      "thread_id": "thread-817bf9194bd5",
+      "thread_depth": 2,
+      "month": "2019-02"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-817bf9194bd5",
+      "subject": "[acs-r] acs version 2.1.4: now on CRAN",
+      "message_count": 3,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Laviolette, Michael"
+      ],
+      "started": "2019-02-20T13:10:08Z",
+      "last_reply": "2019-02-20T13:39:30Z",
+      "root_message_id": "msg-817bf9194bd5"
+    }
+  ]
+}

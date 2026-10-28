@@ -1,0 +1,2550 @@
+From eglenn at mit.edu  Tue Jul 11 14:57:04 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 11 Jul 2017 14:57:04 -0400
+Subject: [acs-r] acs version 2.1.0 update
+Message-ID: <861spm7qf3.wl-eglenn@mit.edu>
+
+
+We are pleased to announce the release of version 2.1.0 of the "acs"
+package, now available on CRAN
+<http://cran.r-project.org/web/packages/acs/index.html>.
+
+The package allows users to download, manipulate, analyze, and present
+demographic data from the U.S. Census, with special tools and methods
+to simplify the tasks of working with estimates and standard errors
+contained in data from the American Community Survey (ACS).  
+
+Important: version 2.1.0 of the package is a "minor update" in terms
+of features, but it includes a number of low-level tweaks necessary to
+accommodate upcoming changes in the Census API, including a shift to
+https transfer.  Current users are strongly encouraged to update as
+soon as possible to avoid problems at the end of the summer.
+
+Other minor changes include (a) removing plyr from a "dependency" and
+simply importing the required "rbind.fill" function, and (b) updating
+cbind/rbind options to be consistent with S3 methods.
+
+For more information on the package and the update, please visit:
+<http://eglenn.scripts.mit.edu/citystate/2016/03/acs-version-2-0-now-on-cran>,
+and the "Working with acs.R" user guide at
+<http://dusp.mit.edu/sites/dusp.mit.edu/files/attachments/publications/working_with_acs_R_v_2.0.pdf>.
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From eglenn at mit.edu  Tue Jul 11 15:32:30 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 11 Jul 2017 15:32:30 -0400
+Subject: [acs-r] acs version 2.1.0 update
+In-Reply-To: <861spm7qf3.wl-eglenn@mit.edu>
+References: <861spm7qf3.wl-eglenn@mit.edu>
+Message-ID: <86shi26a7l.wl-eglenn@mit.edu>
+
+
+PS, two additional thoughts for current acs-package users who are
+upgrading to 2.1.0:
+
+1) When updating, try the "clean=T" option, which may be able to
+   migrate your census api key:
+
+> update.packages("acs", clean=T)
+
+  If this fails to migrate the key, you can always try:
+
+> api.key.migrate()
+
+  And, if all else fails, just re-install a key with
+  api.key.install().
+
+
+2) After installing (and loading) the package, we *highly* recommend
+installing acs variable lookup tables on your system -- these are not
+migrated, and installing them greatly speeds up the package:
+
+> acs.tables.install()?
+
+ (And since you are *installing* the table, you only need to do this
+ once --- or just once, until new acs tables come out.)
+
+Best.
+Ezra
+
+
+On Tue, 11 Jul 2017 14:57:04 -0400, Ezra Haber Glenn wrote:
+> 
+> 
+> We are pleased to announce the release of version 2.1.0 of the "acs"
+> package, now available on CRAN
+> <http://cran.r-project.org/web/packages/acs/index.html>.
+> 
+> The package allows users to download, manipulate, analyze, and present
+> demographic data from the U.S. Census, with special tools and methods
+> to simplify the tasks of working with estimates and standard errors
+> contained in data from the American Community Survey (ACS).  
+> 
+> Important: version 2.1.0 of the package is a "minor update" in terms
+> of features, but it includes a number of low-level tweaks necessary to
+> accommodate upcoming changes in the Census API, including a shift to
+> https transfer.  Current users are strongly encouraged to update as
+> soon as possible to avoid problems at the end of the summer.
+> 
+> Other minor changes include (a) removing plyr from a "dependency" and
+> simply importing the required "rbind.fill" function, and (b) updating
+> cbind/rbind options to be consistent with S3 methods.
+> 
+> For more information on the package and the update, please visit:
+> <http://eglenn.scripts.mit.edu/citystate/2016/03/acs-version-2-0-now-on-cran>,
+> and the "Working with acs.R" user guide at
+> <http://dusp.mit.edu/sites/dusp.mit.edu/files/attachments/publications/working_with_acs_R_v_2.0.pdf>.
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From shintze at MARC.ORG  Thu Jul 13 12:33:39 2017
+From: shintze at MARC.ORG (Sara Hintze)
+Date: Thu, 13 Jul 2017 16:33:39 +0000
+Subject: [acs-r] ACS 2.1
+Message-ID: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+
+Hi all,
+
+I recently upgraded from acs 2.0 to 2.1 and am receiving errors from a script that previously worked under acs 2.0. I've attached the original script along with the console output. Have I missed something obvious and/or has anyone else had similar issues?
+
+Thanks,
+Sara
+
+Sara Hintze
+GIS Data Developer/Analyst | Research Services
+Mid-America Regional Council
+600 Broadway Blvd., Ste 200
+Kansas City, MO 64105
+816-701-8220 | www.marc.org
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170713/97129d5c/attachment.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: Script.r
+Type: application/octet-stream
+Size: 6101 bytes
+Desc: Script.r
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20170713/97129d5c/attachment.obj
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: ConsoleOutput.txt
+Url: http://mailman.mit.edu/pipermail/acs-r/attachments/20170713/97129d5c/attachment.txt
+
+From eglenn at mit.edu  Thu Jul 13 12:43:52 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 13 Jul 2017 12:43:52 -0400
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+Message-ID: <86d194ffsn.wl-eglenn@mit.edu>
+
+
+There have been some issues with the online variable lookup tables
+that the package needs to access.  Can you try this function (just
+once -- no need to use it every time) :
+
+> acs.tables.install()
+
+after that, see if your script works.
+
+Thanks.
+
+--Ezra
+
+
+On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Hi all,
+> 
+> I recently upgraded from acs 2.0 to 2.1 and am receiving errors from a script that
+> previously worked under acs 2.0. I?ve attached the original script along with the console
+> output. Have I missed something obvious and/or has anyone else had similar issues?
+> 
+> Thanks,
+> 
+> Sara
+> 
+> Sara Hintze
+> 
+> GIS Data Developer/Analyst | Research Services
+> 
+> Mid-America Regional Council
+> 
+> 600 Broadway Blvd., Ste 200
+> 
+> Kansas City, MO 64105
+> 
+> 816-701-8220 | www.marc.org
+> 
+> 
+> [2 Script.r <application/octet-stream (base64)>]
+> [3 ConsoleOutput.txt <text/plain (base64)>]
+> > # Call the acs package for data processing
+> > library(acs)
+> Loading required package: stringr
+> Loading required package: XML
+> 
+> Attaching package: ?acs?
+> 
+> The following object is masked from ?package:base?:
+> 
+>     apply
+> 
+> Warning message:
+> package ?acs? was built under R version 3.3.3 
+> > 
+> > # Variables to specify end year of ACS to pull from, as well as the span, which specifies the estimates to pull for that end year (1-year, 3-year, or 5-year), and the geographic level
+> > year_endyear = 2015
+> > year_span = 5 # 1-year estimates are not available at the tract or block group level
+> > fileGeo = "County"
+> > 
+> > # Additional geography fields for output
+> > countyFIPS = ""
+> > countyName = ""
+> > stateFIPS = ""
+> > stateAbbr = ""
+> > 
+> > if (fileGeo == "BlockGroup") {
+> + # Block Group Geographies
+> + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*", block.group="*") 
+> + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group="*")
+> + 
+> + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+> + geo = mo.geo + ks.geo
+> + } else if (fileGeo == "Tract") {
+> + # Tract Geographies:
+> + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*") 
+> + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*")
+> + 
+> + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+> + geo = mo.geo + ks.geo
+> + } else if (fileGeo == "Place") {
+> + # Place Geographies:
+> + mo.geo=geo.make(state=29, place="*")
+> + ks.geo=geo.make(state=20, place="*")
+> + 
+> + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+> + geo = mo.geo + ks.geo
+> + } else if (fileGeo == "County") {
+> + # County Geographies: 
+> + # Top 2 are for counties in the MSA, plus counties needed for REACH data (Allen County, KS and Lafayette County, MO)]
+> + # Bottom 2 are the counties in the MARC region only
+> + 
+> + #All Counties in the CSA (??) (plus Allen County, KS)
+> + if (year_span == 5){
+> + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177)) 
+> + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209))
+> + } else {
+> + #Counties Available within the 1-Year ACS Estimates
+> + mo.geo=geo.make(state=29, county=c(21,37,47,95,165)) 
+> + ks.geo=geo.make(state=20, county=c(45,91,103,209))
+> + }
+> + 
+> + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+> + geo = mo.geo + ks.geo
+> + } else if (fileGeo == "MSA") {
+> + # MSA Geographies - cannot be pulled by County or State, so getting all
+> + geo <- geo.make(msa="*") 
+> + # Set the stateFIPS so that data appends correctly
+> + stateFIPS = 99
+> + }
+> > 
+> > # Clean up variables that are no longer needed.
+> > if (fileGeo != "MSA") {
+> + rm(mo.geo, ks.geo)
+> + }
+> > 
+> > # Set up acs.lookup objects for data we want to retrieve
+> > population.under18 = acs.lookup(table.name = "B09001", span=year_span, endyear = year_endyear)
+> trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> Content type 'application/xml' length 735879 bytes (718 KB)
+> downloaded 718 KB
+> 
+> Warning message:
+> In acs.lookup(table.name = "B09001", span = year_span, endyear = year_endyear) :
+>   XML variable lookup tables for this request
+>   seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>   temporarily downloading and using archived copies instead;
+>   since this is *much* slower, recommend running
+>   acs.tables.install()
+> > ownChildren.byFamilyType = acs.lookup(table.name="B09002", span=year_span, endyear=year_endyear)
+> trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> Content type 'application/xml' length 735879 bytes (718 KB)
+> downloaded 718 KB
+> 
+> Warning message:
+> In acs.lookup(table.name = "B09002", span = year_span, endyear = year_endyear) :
+>   XML variable lookup tables for this request
+>   seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>   temporarily downloading and using archived copies instead;
+>   since this is *much* slower, recommend running
+>   acs.tables.install()
+> > 
+> > # Select out just those variables we want
+> > population.under18.vars = population.under18[1:10]
+> > ownchildren.byfamilytype.vars = ownChildren.byFamilyType[1:20]
+> > children.vars = population.under18.vars + ownchildren.byfamilytype.vars
+> > 
+> > # Request/fetch the data, and then add to a dataframe for output
+> > children.data = acs.fetch(endyear=year_endyear, span=year_span, geography=geo, variable=children.vars, dataset="acs")
+> Error in if (url.test["statusMessage"] != "OK") { : 
+>   missing value where TRUE/FALSE needed
+> > 
+> > # Create a complete FIPS code ID for the block group, tract, place, or county - this is what is used to join this data to geography
+> > if (fileGeo == "Tract") {
+> + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), geography(children.data)$tract, sep="")
+> + } else if (fileGeo == "County") {
+> + myFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+> + } else if (fileGeo == "Place") {
+> + myFIPS = paste(geography(children.data)$state, sprintf("%05s",geography(children.data)$place), sep="")
+> + } else if (fileGeo == "BlockGroup") {
+> + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), sprintf("%06d",geography(children.data)$tract), geography(children.data)$blockgroup, sep="")
+> + } else if (fileGeo == "MSA") {
+> + myFIPS = geography(children.data)$metropolitanstatisticalareamicropolitanstatisticalarea
+> + }
+> Error in geography(children.data) : object 'children.data' not found
+> > 
+> > if (fileGeo != "MSA" && fileGeo != "Place") {
+> + countyFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+> + stateFIPS = geography(children.data)$state
+> + } else if(fileGeo != "MSA") {
+> + stateFIPS = geography(children.data)$state
+> + }
+> Error in geography(children.data) : object 'children.data' not found
+> > 
+> > children.df = data.frame(geography(children.data)$NAME, myFIPS, countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span, estimate(children.data))
+> Error in geography(children.data) : object 'children.data' not found
+> > 
+> > # Overwrite default ACS field names with English
+> > cols_children = c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", "StateAbbr", "Period", "Dataset", "PopulationUnder18", "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8", "Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters", "OwnChildrenUnder18", "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3to4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMarriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3years","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleHoH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4years","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+> > colnames(children.df)=cols_children
+> Error in colnames(children.df) = cols_children : 
+>   object 'children.df' not found
+> > 
+> > # Set rownames to NULL, so it defaults to a sequential numeric output
+> > rownames(children.df) <- NULL
+> Error in rownames(children.df) <- NULL : object 'children.df' not found
+> > 
+> > #Clean up unneeded variables
+> > rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18, population.under18.vars, children.vars, children.data, children.df)
+> Warning messages:
+> 1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>   object 'ownChildren.byFamilytype' not found
+> 2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>   object 'children.data' not found
+> 3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>   object 'children.df' not found
+> > 
+> [4  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Thu Jul 13 12:52:40 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 13 Jul 2017 12:52:40 -0400
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <86d194ffsn.wl-eglenn@mit.edu>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>
+Message-ID: <F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+
+Ps, can you also confirm that you've reinstalled your api key?
+
+On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>
+>There have been some issues with the online variable lookup tables
+>that the package needs to access.  Can you try this function (just
+>once -- no need to use it every time) :
+>
+>> acs.tables.install()
+>
+>after that, see if your script works.
+>
+>Thanks.
+>
+>--Ezra
+>
+>
+>On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+>> 
+>> [1  <multipart/alternative (7bit)>]
+>> [1.1  <text/plain; us-ascii (quoted-printable)>]
+>> [1.2  <text/html; us-ascii (quoted-printable)>]
+>> Hi all,
+>> 
+>> I recently upgraded from acs 2.0 to 2.1 and am receiving errors from
+>a script that
+>> previously worked under acs 2.0. I?ve attached the original script
+>along with the console
+>> output. Have I missed something obvious and/or has anyone else had
+>similar issues?
+>> 
+>> Thanks,
+>> 
+>> Sara
+>> 
+>> Sara Hintze
+>> 
+>> GIS Data Developer/Analyst | Research Services
+>> 
+>> Mid-America Regional Council
+>> 
+>> 600 Broadway Blvd., Ste 200
+>> 
+>> Kansas City, MO 64105
+>> 
+>> 816-701-8220 | www.marc.org
+>> 
+>> 
+>> [2 Script.r <application/octet-stream (base64)>]
+>> [3 ConsoleOutput.txt <text/plain (base64)>]
+>> > # Call the acs package for data processing
+>> > library(acs)
+>> Loading required package: stringr
+>> Loading required package: XML
+>> 
+>> Attaching package: ?acs?
+>> 
+>> The following object is masked from ?package:base?:
+>> 
+>>     apply
+>> 
+>> Warning message:
+>> package ?acs? was built under R version 3.3.3 
+>> > 
+>> > # Variables to specify end year of ACS to pull from, as well as the
+>span, which specifies the estimates to pull for that end year (1-year,
+>3-year, or 5-year), and the geographic level
+>> > year_endyear = 2015
+>> > year_span = 5 # 1-year estimates are not available at the tract or
+>block group level
+>> > fileGeo = "County"
+>> > 
+>> > # Additional geography fields for output
+>> > countyFIPS = ""
+>> > countyName = ""
+>> > stateFIPS = ""
+>> > stateAbbr = ""
+>> > 
+>> > if (fileGeo == "BlockGroup") {
+>> + # Block Group Geographies
+>> + mo.geo=geo.make(state=29,
+>county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*",
+>block.group="*") 
+>> + ks.geo=geo.make(state=20,
+>county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group="*")
+>> + 
+>> + # Combine the Missouri and Kansas geographies, so we're pulling all
+>data in a single request
+>> + geo = mo.geo + ks.geo
+>> + } else if (fileGeo == "Tract") {
+>> + # Tract Geographies:
+>> + mo.geo=geo.make(state=29,
+>county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*") 
+>> + ks.geo=geo.make(state=20,
+>county=c(1,5,43,45,59,91,103,107,121,209), tract="*")
+>> + 
+>> + # Combine the Missouri and Kansas geographies, so we're pulling all
+>data in a single request
+>> + geo = mo.geo + ks.geo
+>> + } else if (fileGeo == "Place") {
+>> + # Place Geographies:
+>> + mo.geo=geo.make(state=29, place="*")
+>> + ks.geo=geo.make(state=20, place="*")
+>> + 
+>> + # Combine the Missouri and Kansas geographies, so we're pulling all
+>data in a single request
+>> + geo = mo.geo + ks.geo
+>> + } else if (fileGeo == "County") {
+>> + # County Geographies: 
+>> + # Top 2 are for counties in the MSA, plus counties needed for REACH
+>data (Allen County, KS and Lafayette County, MO)]
+>> + # Bottom 2 are the counties in the MARC region only
+>> + 
+>> + #All Counties in the CSA (??) (plus Allen County, KS)
+>> + if (year_span == 5){
+>> + mo.geo=geo.make(state=29,
+>county=c(3,13,21,25,37,47,49,63,95,101,107,165,177)) 
+>> + ks.geo=geo.make(state=20,
+>county=c(1,5,43,45,59,91,103,107,121,209))
+>> + } else {
+>> + #Counties Available within the 1-Year ACS Estimates
+>> + mo.geo=geo.make(state=29, county=c(21,37,47,95,165)) 
+>> + ks.geo=geo.make(state=20, county=c(45,91,103,209))
+>> + }
+>> + 
+>> + # Combine the Missouri and Kansas geographies, so we're pulling all
+>data in a single request
+>> + geo = mo.geo + ks.geo
+>> + } else if (fileGeo == "MSA") {
+>> + # MSA Geographies - cannot be pulled by County or State, so getting
+>all
+>> + geo <- geo.make(msa="*") 
+>> + # Set the stateFIPS so that data appends correctly
+>> + stateFIPS = 99
+>> + }
+>> > 
+>> > # Clean up variables that are no longer needed.
+>> > if (fileGeo != "MSA") {
+>> + rm(mo.geo, ks.geo)
+>> + }
+>> > 
+>> > # Set up acs.lookup objects for data we want to retrieve
+>> > population.under18 = acs.lookup(table.name = "B09001",
+>span=year_span, endyear = year_endyear)
+>> trying URL
+>'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>> Content type 'application/xml' length 735879 bytes (718 KB)
+>> downloaded 718 KB
+>> 
+>> Warning message:
+>> In acs.lookup(table.name = "B09001", span = year_span, endyear =
+>year_endyear) :
+>>   XML variable lookup tables for this request
+>>   seem to be missing from '
+>https://api.census.gov/data/2015/acs5/variables.xml ';
+>>   temporarily downloading and using archived copies instead;
+>>   since this is *much* slower, recommend running
+>>   acs.tables.install()
+>> > ownChildren.byFamilyType = acs.lookup(table.name="B09002",
+>span=year_span, endyear=year_endyear)
+>> trying URL
+>'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>> Content type 'application/xml' length 735879 bytes (718 KB)
+>> downloaded 718 KB
+>> 
+>> Warning message:
+>> In acs.lookup(table.name = "B09002", span = year_span, endyear =
+>year_endyear) :
+>>   XML variable lookup tables for this request
+>>   seem to be missing from '
+>https://api.census.gov/data/2015/acs5/variables.xml ';
+>>   temporarily downloading and using archived copies instead;
+>>   since this is *much* slower, recommend running
+>>   acs.tables.install()
+>> > 
+>> > # Select out just those variables we want
+>> > population.under18.vars = population.under18[1:10]
+>> > ownchildren.byfamilytype.vars = ownChildren.byFamilyType[1:20]
+>> > children.vars = population.under18.vars +
+>ownchildren.byfamilytype.vars
+>> > 
+>> > # Request/fetch the data, and then add to a dataframe for output
+>> > children.data = acs.fetch(endyear=year_endyear, span=year_span,
+>geography=geo, variable=children.vars, dataset="acs")
+>> Error in if (url.test["statusMessage"] != "OK") { : 
+>>   missing value where TRUE/FALSE needed
+>> > 
+>> > # Create a complete FIPS code ID for the block group, tract, place,
+>or county - this is what is used to join this data to geography
+>> > if (fileGeo == "Tract") {
+>> + myFIPS = paste(geography(children.data)$state,
+>sprintf("%03d",geography(children.data)$county),
+>geography(children.data)$tract, sep="")
+>> + } else if (fileGeo == "County") {
+>> + myFIPS = paste(geography(children.data)$state,
+>sprintf("%03s",geography(children.data)$county), sep="")
+>> + } else if (fileGeo == "Place") {
+>> + myFIPS = paste(geography(children.data)$state,
+>sprintf("%05s",geography(children.data)$place), sep="")
+>> + } else if (fileGeo == "BlockGroup") {
+>> + myFIPS = paste(geography(children.data)$state,
+>sprintf("%03d",geography(children.data)$county),
+>sprintf("%06d",geography(children.data)$tract),
+>geography(children.data)$blockgroup, sep="")
+>> + } else if (fileGeo == "MSA") {
+>> + myFIPS =
+>geography(children.data)$metropolitanstatisticalareamicropolitanstatisticalarea
+>> + }
+>> Error in geography(children.data) : object 'children.data' not found
+>> > 
+>> > if (fileGeo != "MSA" && fileGeo != "Place") {
+>> + countyFIPS = paste(geography(children.data)$state,
+>sprintf("%03s",geography(children.data)$county), sep="")
+>> + stateFIPS = geography(children.data)$state
+>> + } else if(fileGeo != "MSA") {
+>> + stateFIPS = geography(children.data)$state
+>> + }
+>> Error in geography(children.data) : object 'children.data' not found
+>> > 
+>> > children.df = data.frame(geography(children.data)$NAME, myFIPS,
+>countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span,
+>estimate(children.data))
+>> Error in geography(children.data) : object 'children.data' not found
+>> > 
+>> > # Overwrite default ACS field names with English
+>> > cols_children = c("GeoStr", "FIPS", "CountyFIPS", "CountyName",
+>"StateFIPS", "StateAbbr", "Period", "Dataset", "PopulationUnder18",
+>"Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8",
+>"Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters",
+>"OwnChildrenUnder18",
+>"InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3to4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMarriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3years","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleHoH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4years","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+>> > colnames(children.df)=cols_children
+>> Error in colnames(children.df) = cols_children : 
+>>   object 'children.df' not found
+>> > 
+>> > # Set rownames to NULL, so it defaults to a sequential numeric
+>output
+>> > rownames(children.df) <- NULL
+>> Error in rownames(children.df) <- NULL : object 'children.df' not
+>found
+>> > 
+>> > #Clean up unneeded variables
+>> > rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars,
+>population.under18, population.under18.vars, children.vars,
+>children.data, children.df)
+>> Warning messages:
+>> 1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars,
+>population.under18,  :
+>>   object 'ownChildren.byFamilytype' not found
+>> 2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars,
+>population.under18,  :
+>>   object 'children.data' not found
+>> 3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars,
+>population.under18,  :
+>>   object 'children.df' not found
+>> > 
+>> [4  <text/plain; us-ascii (7bit)>]
+>> _______________________________________________
+>> acs-r mailing list
+>> acs-r at mit.edu
+>> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>--
+>Ezra Haber Glenn, AICP
+>Department of Urban Studies and Planning
+>Massachusetts Institute of Technology
+>77 Massachusetts Ave., Room 7-346
+>Cambridge, MA 02139
+>eglenn at mit.edu 
+>http://dusp.mit.edu/faculty/ezra-glenn
+>617.253.2024 (w)
+>617.721.7131 (c)
+>
+>_______________________________________________
+>acs-r mailing list
+>acs-r at mit.edu
+>http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+eglenn at mit.edu / 617.721.7131
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170713/eea0a4ff/attachment.html
+
+From Michael.Laviolette at dhhs.nh.gov  Thu Jul 13 14:52:47 2017
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Thu, 13 Jul 2017 18:52:47 +0000
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>
+	<F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+Message-ID: <cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>
+
+When you run acs.tables.install(), where are the table files supposed to go? I found them in the main acs package folder; I would have expected them in the extdata folder where the key is stored.
+
+Michael Laviolette PhD MPH
+Public Health Statistician
+Bureau of Public Health Statistics and Informatics
+New Hampshire Division of Public Health Services
+29 Hazen Drive
+Concord, NH 03301-6504
+Phone: 603-271-5688
+Email: Michael.Laviolette at dhhs.nh.gov
+"Improving Health, Preventing Disease, Reducing Costs for All"
+
+From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn
+Sent: Thursday, July 13, 2017 12:53 PM
+To: acs-r at mit.edu; Sara Hintze
+Cc: 'acs-r at mit.edu'
+Subject: Re: [acs-r] ACS 2.1
+
+Ps, can you also confirm that you've reinstalled your api key?
+On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu<mailto:eglenn at mit.edu>> wrote:
+
+There have been some issues with the online variable lookup tables
+that the package needs to access.  Can you try this function (just
+once -- no need to use it every time) :
+
+ acs.tables.install()
+
+after that, see if your script works.
+
+Thanks.
+
+--Ezra
+
+
+On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+
+
+ [1  <multipart/alternative (7bit)>]
+ [1.1  <text/plain; us-ascii (quoted-printable)>]
+ [1.2  <text/html; us-ascii (quoted-printable)>]
+ Hi all,
+
+ I recently upgraded from acs 2.0 to 2.1 and am receiving errors from a script that
+ previously worked under acs 2.0. I?ve attached the original script along with the console
+ output. Have I missed something obvious and/or has anyone else had similar issues?
+
+ Thanks,
+
+ Sara
+
+ Sara Hintze
+
+ GIS Data Developer/Analyst | Research Services
+
+ Mid-America Regional Council
+
+ 600 Broadway Blvd., Ste 200
+
+ Kansas City, MO 64105
+
+ 816-701-8220 | www.marc.org<http://www.marc.org>
+
+
+ [2 Script.r <application/octet-stream (base64)>]
+ [3 ConsoleOutput.txt <text/plain (base64)>]
+
+ # Call the acs package for data processing
+ library(acs)
+
+ Loading required package: stringr
+ Loading required package: XML
+
+ Attaching package: ?acs?
+
+ The following object is masked from ?package:base?:
+
+     apply
+
+ Warning message:
+ package ?acs? was built under R version 3.3.3
+
+
+ # Variables to specify end year of ACS to pull from, as well as the span, which specifies the estimates to pull for that end year (1-year, 3-year, or 5-year), and the geographic level
+ year_endyear = 2015
+ year_span = 5 # 1-year estimates are not available at the tract or block group level
+ fileGeo = "County"
+
+ # Additional geography fields for output
+ countyFIPS = ""
+ countyName = ""
+ stateFIPS = ""
+ stateAbbr = ""
+
+ if (fileGeo == "BlockGroup") {
+
+ + # Block Group Geographies
+ + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*", block.group<http://block.group>="*")
+ + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group<http://block.group>="*")
+ +
+ + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+ + geo = mo.geo + ks.geo
+ + } else if (fileGeo == "Tract") {
+ + # Tract Geographies:
+ + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*")
+ + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*")
+ +
+ + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+ + geo = mo.geo + ks.geo
+ + } else if (fileGeo == "Place") {
+ + # Place Geographies:
+ + mo.geo=geo.make(state=29, place="*")
+ + ks.geo=geo.make(state=20, place="*")
+ +
+ + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+ + geo = mo.geo + ks.geo
+ + } else if (fileGeo == "County") {
+ + # County Geographies:
+ + # Top 2 are for counties in the MSA, plus counties needed for REACH data (Allen County, KS and Lafayette County, MO)]
+ + # Bottom 2 are the counties in the MARC region only
+ +
+ + #All Counties in the CSA (??) (plus Allen County, KS)
+ + if (year_span == 5){
+ + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177))
+ + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209))
+ + } else {
+ + #Counties Available within the 1-Year ACS Estimates
+ + mo.geo=geo.make(state=29, county=c(21,37,47,95,165))
+ + ks.geo=geo.make(state=20, county=c(45,91,103,209))
+ + }
+ +
+ + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+ + geo = mo.geo + ks.geo
+ + } else if (fileGeo == "MSA") {
+ + # MSA Geographies - cannot be pulled by County or State, so getting all
+ + geo <- geo.make(msa="*")
+ + # Set the stateFIPS so that data appends correctly
+ + stateFIPS = 99
+ + }
+
+
+ # Clean up variables that are no longer needed.
+ if (fileGeo != "MSA") {
+
+ + rm(mo.geo, ks.geo)
+ + }
+
+
+ # Set up acs.lookup objects for data we want to retrieve
+ population.under18 = acs.lookup(table.name<http://table.name> = "B09001", span=year_span, endyear = year_endyear)
+
+ trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+ Content type 'application/xml' length 735879 bytes (718 KB)
+ downloaded 718 KB
+
+ Warning message:
+ In acs.lookup(table.name<http://table.name> = "B09001", span = year_span, endyear = year_endyear) :
+   XML variable lookup tables for this request
+   seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+   temporarily downloading and using archived copies instead;
+   since this is *much* slower, recommend running
+   acs.tables.install()
+
+ ownChildren.byFamilyType = acs.lookup(table.name<http://table.name>="B09002", span=year_span, endyear=year_endyear)
+
+ trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+ Content type 'application/xml' length 735879 bytes (718 KB)
+ downloaded 718 KB
+
+ Warning message:
+ In acs.lookup(table.name<http://table.name> = "B09002", span = year_span, endyear = year_endyear) :
+   XML variable lookup tables for this request
+   seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+   temporarily downloading and using archived copies instead;
+   since this is *much* slower, recommend running
+   acs.tables.install()
+
+
+ # Select out just those variables we want
+ population.under18.vars = population.under18[1:10]
+ ownchildren.byfamilytype.vars = ownChildren.byFamilyType[1:20]
+ children.vars = population.under18.vars + ownchildren.byfamilytype.vars
+
+ # Request/fetch the data, and then add to a dataframe for output
+ children.data = acs.fetch(endyear=year_endyear, span=year_span, geography=geo, variable=children.vars, dataset="acs")
+
+ Error in if (url.test["statusMessage"] != "OK") { :
+   missing value where TRUE/FALSE needed
+
+
+ # Create a complete FIPS code ID for the block group, tract, place, or county - this is what is used to join this data to geography
+ if (fileGeo == "Tract") {
+
+ + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), geography(children.data)$tract, sep="")
+ + } else if (fileGeo == "County") {
+ + myFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+ + } else if (fileGeo == "Place") {
+ + myFIPS = paste(geography(children.data)$state, sprintf("%05s",geography(children.data)$place), sep="")
+ + } else if (fileGeo == "BlockGroup") {
+ + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), sprintf("%06d",geography(children.data)$tract), geography(children.data)$blockgroup, sep="")
+ + } else if (fileGeo == "MSA") {
+ + myFIPS = geography(children.data)$metropolitanstatisticalareamicropolitanstatisticalarea
+ + }
+ Error in geography(children.data) : object 'children.data' not found
+
+
+ if (fileGeo != "MSA" && fileGeo != "Place") {
+
+ + countyFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+ + stateFIPS = geography(children.data)$state
+ + } else if(fileGeo != "MSA") {
+ + stateFIPS = geography(children.data)$state
+ + }
+ Error in geography(children.data) : object 'children.data' not found
+
+
+ children.df = data.frame(geography(children.data)$NAME, myFIPS, countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span, estimate(children.data))
+
+ Error in geography(children.data) : object 'children.data' not found
+
+
+ # Overwrite default ACS field names with English
+ cols_children = c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", "StateAbbr", "Period", "Dataset", "PopulationUnder18", "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8", "Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters", "OwnChildrenUnder18", "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3to4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMarriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3years","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleHoH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4years","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+ colnames(children.df)=cols_children
+
+ Error in colnames(children.df) = cols_children :
+   object 'children.df' not found
+
+
+ # Set rownames to NULL, so it defaults to a sequential numeric output
+ rownames(children.df) <- NULL
+
+ Error in rownames(children.df) <- NULL : object 'children.df' not found
+
+
+ #Clean up unneeded variables
+ rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18, population.under18.vars, children.vars, children.data, children.df)
+
+ Warning messages:
+ 1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+   object 'ownChildren.byFamilytype' not found
+ 2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+   object 'children.data' not found
+ 3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+   object 'children.df' not found
+
+
+
+ [4  <text/plain; us-ascii (7bit)>]
+
+________________________________
+
+ acs-r mailing list
+ acs-r at mit.edu<mailto:acs-r at mit.edu>
+ http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu<mailto:eglenn at mit.edu>
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+________________________________
+
+acs-r mailing list
+acs-r at mit.edu<mailto:acs-r at mit.edu>
+http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+eglenn at mit.edu<mailto:eglenn at mit.edu> / 617.721.7131
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170713/926f86de/attachment-0001.html
+
+From eglenn at mit.edu  Thu Jul 13 14:59:36 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 13 Jul 2017 14:59:36 -0400
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>
+	<F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+	<cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>
+Message-ID: <86a848f9if.wl-eglenn@mit.edu>
+
+
+They should be in the package's extdata file, but now you've got me
+worried it's a windows thing.  What do you get when you run this is R:
+
+paste(system.file(package="acs"), "extdata", sep="/")
+
+?
+
+
+
+On Thu, 13 Jul 2017 14:52:47 -0400, Laviolette, Michael wrote:
+> 
+> [1  <text/plain; utf-8 (base64)>]
+> [2  <text/html; utf-8 (base64)>]
+> When you run acs.tables.install(), where are the table files supposed to go? I found them
+> in the main acs package folder; I would have expected them in the extdata folder where the
+> key is stored.
+> 
+> Michael Laviolette PhD MPH
+> 
+> Public Health Statistician
+> 
+> Bureau of Public Health Statistics and Informatics
+> 
+> New Hampshire Division of Public Health Services
+> 
+> 29 Hazen Drive
+> 
+> Concord, NH 03301-6504
+> 
+> Phone: 603-271-5688
+> 
+> Email: Michael.Laviolette at dhhs.nh.gov
+> 
+> "Improving Health, Preventing Disease, Reducing Costs for All"
+> 
+> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ezra Haber Glenn
+> Sent: Thursday, July 13, 2017 12:53 PM
+> To: acs-r at mit.edu; Sara Hintze
+> Cc: 'acs-r at mit.edu'
+> Subject: Re: [acs-r] ACS 2.1
+> 
+> Ps, can you also confirm that you've reinstalled your api key?
+> 
+> On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> 
+> There have been some issues with the online variable lookup tables
+> that the package needs to access.  Can you try this function (just
+> once -- no need to use it every time) :
+> 
+>  acs.tables.install()
+> 
+> after that, see if your script works.
+> 
+> Thanks.
+> 
+> --Ezra
+> 
+> On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+> 
+>  [1  <multipart/alternative (7bit)>]
+>  [1.1  <text/plain; us-ascii (quoted-printable)>]
+>  [1.2  <text/html; us-ascii (quoted-printable)>]
+>  Hi all,
+>  
+>  I recently upgraded from acs 2.0 to 2.1 and am receiving errors from a script that
+>  previously worked under acs 2.0. I?ve attached the original script along with the console
+>  output. Have I missed something obvious and/or has anyone else had similar issues?
+>  
+>  Thanks,
+>  
+>  Sara
+>  
+>  Sara Hintze
+>  
+>  GIS Data Developer/Analyst | Research Services
+>  
+>  Mid-America Regional Council
+>  
+>  600 Broadway Blvd., Ste 200
+>  
+>  Kansas City, MO 64105
+>  
+>  816-701-8220 | www.marc.org
+> 
+>  [2 Script.r <application/octet-stream (base64)>]
+>  [3 ConsoleOutput.txt <text/plain (base64)>]
+> 
+>  # Call the acs package for data processing
+>  library(acs)
+> 
+>  Loading required package: stringr
+>  Loading required package: XML
+>  
+>  Attaching package: ?acs?
+>  
+>  The following object is masked from ?package:base?:
+>  
+>      apply
+>  
+>  Warning message:
+>  package ?acs? was built under R version 3.3.3 
+> 
+>  # Variables to specify end year of ACS to pull from, as well as the span, which specifies the estimates to pull for that end year (1-year, 3-year, or 5-year), and the geographic level
+>  year_endyear = 2015
+>  year_span = 5 # 1-year estimates are not available at the tract or block group level
+>  fileGeo = "County"
+>  
+>  # Additional geography fields for output
+>  countyFIPS = ""
+>  countyName = ""
+>  stateFIPS = ""
+>  stateAbbr = ""
+>  
+>  if (fileGeo == "BlockGroup") {
+> 
+>  + # Block Group Geographies
+>  + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*", block.group="*") 
+>  + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group="*")
+>  + 
+>  + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+>  + geo = mo.geo + ks.geo
+>  + } else if (fileGeo == "Tract") {
+>  + # Tract Geographies:
+>  + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*") 
+>  + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), tract="*")
+>  + 
+>  + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+>  + geo = mo.geo + ks.geo
+>  + } else if (fileGeo == "Place") {
+>  + # Place Geographies:
+>  + mo.geo=geo.make(state=29, place="*")
+>  + ks.geo=geo.make(state=20, place="*")
+>  + 
+>  + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+>  + geo = mo.geo + ks.geo
+>  + } else if (fileGeo == "County") {
+>  + # County Geographies: 
+>  + # Top 2 are for counties in the MSA, plus counties needed for REACH data (Allen County, KS and Lafayette County, MO)]
+>  + # Bottom 2 are the counties in the MARC region only
+>  + 
+>  + #All Counties in the CSA (??) (plus Allen County, KS)
+>  + if (year_span == 5){
+>  + mo.geo=geo.make(state=29, county=c(3,13,21,25,37,47,49,63,95,101,107,165,177)) 
+>  + ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209))
+>  + } else {
+>  + #Counties Available within the 1-Year ACS Estimates
+>  + mo.geo=geo.make(state=29, county=c(21,37,47,95,165)) 
+>  + ks.geo=geo.make(state=20, county=c(45,91,103,209))
+>  + }
+>  + 
+>  + # Combine the Missouri and Kansas geographies, so we're pulling all data in a single request
+>  + geo = mo.geo + ks.geo
+>  + } else if (fileGeo == "MSA") {
+>  + # MSA Geographies - cannot be pulled by County or State, so getting all
+>  + geo <- geo.make(msa="*") 
+>  + # Set the stateFIPS so that data appends correctly
+>  + stateFIPS = 99
+>  + }
+> 
+>  # Clean up variables that are no longer needed.
+>  if (fileGeo != "MSA") {
+> 
+>  + rm(mo.geo, ks.geo)
+>  + }
+> 
+>  # Set up acs.lookup objects for data we want to retrieve
+>  population.under18 = acs.lookup(table.name = "B09001", span=year_span, endyear = year_endyear)
+> 
+>  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>  Content type 'application/xml' length 735879 bytes (718 KB)
+>  downloaded 718 KB
+>  
+>  Warning message:
+>  In acs.lookup(table.name = "B09001", span = year_span, endyear = year_endyear) :
+>    XML variable lookup tables for this request
+>    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>    temporarily downloading and using archived copies instead;
+>    since this is *much* slower, recommend running
+>    acs.tables.install()
+> 
+>  ownChildren.byFamilyType = acs.lookup(table.name="B09002", span=year_span, endyear=year_endyear)
+> 
+>  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>  Content type 'application/xml' length 735879 bytes (718 KB)
+>  downloaded 718 KB
+>  
+>  Warning message:
+>  In acs.lookup(table.name = "B09002", span = year_span, endyear = year_endyear) :
+>    XML variable lookup tables for this request
+>    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>    temporarily downloading and using archived copies instead;
+>    since this is *much* slower, recommend running
+>    acs.tables.install()
+> 
+>  # Select out just those variables we want
+>  population.under18.vars = population.under18[1:10]
+>  ownchildren.byfamilytype.vars = ownChildren.byFamilyType[1:20]
+>  children.vars = population.under18.vars + ownchildren.byfamilytype.vars
+>  
+>  # Request/fetch the data, and then add to a dataframe for output
+>  children.data = acs.fetch(endyear=year_endyear, span=year_span, geography=geo, variable=children.vars, dataset="acs")
+> 
+>  Error in if (url.test["statusMessage"] != "OK") { : 
+>    missing value where TRUE/FALSE needed
+> 
+>  # Create a complete FIPS code ID for the block group, tract, place, or county - this is what is used to join this data to geography
+>  if (fileGeo == "Tract") {
+> 
+>  + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), geography(children.data)$tract, sep="")
+>  + } else if (fileGeo == "County") {
+>  + myFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+>  + } else if (fileGeo == "Place") {
+>  + myFIPS = paste(geography(children.data)$state, sprintf("%05s",geography(children.data)$place), sep="")
+>  + } else if (fileGeo == "BlockGroup") {
+>  + myFIPS = paste(geography(children.data)$state, sprintf("%03d",geography(children.data)$county), sprintf("%06d",geography(children.data)$tract), geography(children.data)$blockgroup, sep="")
+>  + } else if (fileGeo == "MSA") {
+>  + myFIPS = geography(children.data)$metropolitanstatisticalareamicropolitanstatisticalarea
+>  + }
+>  Error in geography(children.data) : object 'children.data' not found
+> 
+>  if (fileGeo != "MSA" && fileGeo != "Place") {
+> 
+>  + countyFIPS = paste(geography(children.data)$state, sprintf("%03s",geography(children.data)$county), sep="")
+>  + stateFIPS = geography(children.data)$state
+>  + } else if(fileGeo != "MSA") {
+>  + stateFIPS = geography(children.data)$state
+>  + }
+>  Error in geography(children.data) : object 'children.data' not found
+> 
+>  children.df = data.frame(geography(children.data)$NAME, myFIPS, countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span, estimate(children.data))
+> 
+>  Error in geography(children.data) : object 'children.data' not found
+> 
+>  # Overwrite default ACS field names with English
+>  cols_children = c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", "StateAbbr", "Period", "Dataset", "PopulationUnder18", "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8", "Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters", "OwnChildrenUnder18", "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3to4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMarriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3years","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleHoH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4years","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+>  colnames(children.df)=cols_children
+> 
+>  Error in colnames(children.df) = cols_children : 
+>    object 'children.df' not found
+> 
+>  # Set rownames to NULL, so it defaults to a sequential numeric output
+>  rownames(children.df) <- NULL
+> 
+>  Error in rownames(children.df) <- NULL : object 'children.df' not found
+> 
+>  #Clean up unneeded variables
+>  rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18, population.under18.vars, children.vars, children.data, children.df)
+> 
+>  Warning messages:
+>  1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'ownChildren.byFamilytype' not found
+>  2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'children.data' not found
+>  3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'children.df' not found
+> 
+>  [4  <text/plain; us-ascii (7bit)>]
+> 
+> ------------------------------------------------------------------------------------------
+> 
+>  acs-r mailing list
+>  acs-r at mit.edu
+>  http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> 
+> ------------------------------------------------------------------------------------------
+> 
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> eglenn at mit.edu / 617.721.7131
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From Michael.Laviolette at dhhs.nh.gov  Thu Jul 13 15:17:13 2017
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Thu, 13 Jul 2017 19:17:13 +0000
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <86a848f9if.wl-eglenn@mit.edu>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>	<F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+	<cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>
+	<86a848f9if.wl-eglenn@mit.edu>
+Message-ID: <a37a72bc1b7a4d808dbd15740e75d865@dhhs.nh.gov>
+
+I got the path to my extdata folder, but that's not where the table files went. To be sure, I deleted them and re-ran acs.table.install. The files were still copied to the wrong location.
+
+-----Original Message-----
+From: Ezra Haber Glenn [mailto:eglenn at mit.edu] 
+Sent: Thursday, July 13, 2017 3:00 PM
+To: Laviolette, Michael
+Cc: acs-r at mit.edu
+Subject: Re: [acs-r] ACS 2.1
+
+
+They should be in the package's extdata file, but now you've got me worried it's a windows thing.  What do you get when you run this is R:
+
+paste(system.file(package="acs"), "extdata", sep="/")
+
+?
+
+
+
+On Thu, 13 Jul 2017 14:52:47 -0400, Laviolette, Michael wrote:
+> 
+> [1  <text/plain; utf-8 (base64)>]
+> [2  <text/html; utf-8 (base64)>]
+> When you run acs.tables.install(), where are the table files supposed 
+> to go? I found them in the main acs package folder; I would have 
+> expected them in the extdata folder where the key is stored.
+> 
+> Michael Laviolette PhD MPH
+> 
+> Public Health Statistician
+> 
+> Bureau of Public Health Statistics and Informatics
+> 
+> New Hampshire Division of Public Health Services
+> 
+> 29 Hazen Drive
+> 
+> Concord, NH 03301-6504
+> 
+> Phone: 603-271-5688
+> 
+> Email: Michael.Laviolette at dhhs.nh.gov
+> 
+> "Improving Health, Preventing Disease, Reducing Costs for All"
+> 
+> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf 
+> Of Ezra Haber Glenn
+> Sent: Thursday, July 13, 2017 12:53 PM
+> To: acs-r at mit.edu; Sara Hintze
+> Cc: 'acs-r at mit.edu'
+> Subject: Re: [acs-r] ACS 2.1
+> 
+> Ps, can you also confirm that you've reinstalled your api key?
+> 
+> On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> 
+> There have been some issues with the online variable lookup tables 
+> that the package needs to access.  Can you try this function (just 
+> once -- no need to use it every time) :
+> 
+>  acs.tables.install()
+> 
+> after that, see if your script works.
+> 
+> Thanks.
+> 
+> --Ezra
+> 
+> On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+> 
+>  [1  <multipart/alternative (7bit)>]
+>  [1.1  <text/plain; us-ascii (quoted-printable)>]
+>  [1.2  <text/html; us-ascii (quoted-printable)>]  Hi all,
+>  
+>  I recently upgraded from acs 2.0 to 2.1 and am receiving errors from 
+> a script that  previously worked under acs 2.0. I?ve attached the 
+> original script along with the console  output. Have I missed something obvious and/or has anyone else had similar issues?
+>  
+>  Thanks,
+>  
+>  Sara
+>  
+>  Sara Hintze
+>  
+>  GIS Data Developer/Analyst | Research Services
+>  
+>  Mid-America Regional Council
+>  
+>  600 Broadway Blvd., Ste 200
+>  
+>  Kansas City, MO 64105
+>  
+>  816-701-8220 | www.marc.org
+> 
+>  [2 Script.r <application/octet-stream (base64)>]
+>  [3 ConsoleOutput.txt <text/plain (base64)>]
+> 
+>  # Call the acs package for data processing
+>  library(acs)
+> 
+>  Loading required package: stringr
+>  Loading required package: XML
+>  
+>  Attaching package: ?acs?
+>  
+>  The following object is masked from ?package:base?:
+>  
+>      apply
+>  
+>  Warning message:
+>  package ?acs? was built under R version 3.3.3
+> 
+>  # Variables to specify end year of ACS to pull from, as well as the 
+> span, which specifies the estimates to pull for that end year (1-year, 
+> 3-year, or 5-year), and the geographic level  year_endyear = 2015  
+> year_span = 5 # 1-year estimates are not available at the tract or block group level  fileGeo = "County"
+>  
+>  # Additional geography fields for output  countyFIPS = ""
+>  countyName = ""
+>  stateFIPS = ""
+>  stateAbbr = ""
+>  
+>  if (fileGeo == "BlockGroup") {
+> 
+>  + # Block Group Geographies
+>  + mo.geo=geo.make(state=29, 
+> county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*", 
+> block.group="*")  + ks.geo=geo.make(state=20, 
+> county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group="*")  
+> +  + # Combine the Missouri and Kansas geographies, so we're pulling 
+> all data in a single request  + geo = mo.geo + ks.geo  + } else if 
+> (fileGeo == "Tract") {  + # Tract Geographies:
+>  + mo.geo=geo.make(state=29, 
+> county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*")  + 
+> ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), 
+> tract="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> we're pulling all data in a single request  + geo = mo.geo + ks.geo  + 
+> } else if (fileGeo == "Place") {  + # Place Geographies:
+>  + mo.geo=geo.make(state=29, place="*")  + ks.geo=geo.make(state=20, 
+> place="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> we're pulling all data in a single request  + geo = mo.geo + ks.geo  + 
+> } else if (fileGeo == "County") {  + # County Geographies:
+>  + # Top 2 are for counties in the MSA, plus counties needed for REACH 
+> data (Allen County, KS and Lafayette County, MO)]  + # Bottom 2 are 
+> the counties in the MARC region only  +  + #All Counties in the CSA 
+> (??) (plus Allen County, KS)  + if (year_span == 5){  + 
+> mo.geo=geo.make(state=29, 
+> county=c(3,13,21,25,37,47,49,63,95,101,107,165,177))
+>  + ks.geo=geo.make(state=20, 
+> county=c(1,5,43,45,59,91,103,107,121,209))
+>  + } else {
+>  + #Counties Available within the 1-Year ACS Estimates  + 
+> mo.geo=geo.make(state=29, county=c(21,37,47,95,165))  + 
+> ks.geo=geo.make(state=20, county=c(45,91,103,209))  + }  +  + # 
+> Combine the Missouri and Kansas geographies, so we're pulling all data 
+> in a single request  + geo = mo.geo + ks.geo  + } else if (fileGeo == 
+> "MSA") {  + # MSA Geographies - cannot be pulled by County or State, 
+> so getting all  + geo <- geo.make(msa="*")  + # Set the stateFIPS so 
+> that data appends correctly  + stateFIPS = 99  + }
+> 
+>  # Clean up variables that are no longer needed.
+>  if (fileGeo != "MSA") {
+> 
+>  + rm(mo.geo, ks.geo)
+>  + }
+> 
+>  # Set up acs.lookup objects for data we want to retrieve
+>  population.under18 = acs.lookup(table.name = "B09001", 
+> span=year_span, endyear = year_endyear)
+> 
+>  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>  Content type 'application/xml' length 735879 bytes (718 KB)  
+> downloaded 718 KB
+>  
+>  Warning message:
+>  In acs.lookup(table.name = "B09001", span = year_span, endyear = year_endyear) :
+>    XML variable lookup tables for this request
+>    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>    temporarily downloading and using archived copies instead;
+>    since this is *much* slower, recommend running
+>    acs.tables.install()
+> 
+>  ownChildren.byFamilyType = acs.lookup(table.name="B09002", 
+> span=year_span, endyear=year_endyear)
+> 
+>  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+>  Content type 'application/xml' length 735879 bytes (718 KB)  
+> downloaded 718 KB
+>  
+>  Warning message:
+>  In acs.lookup(table.name = "B09002", span = year_span, endyear = year_endyear) :
+>    XML variable lookup tables for this request
+>    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+>    temporarily downloading and using archived copies instead;
+>    since this is *much* slower, recommend running
+>    acs.tables.install()
+> 
+>  # Select out just those variables we want  population.under18.vars = 
+> population.under18[1:10]  ownchildren.byfamilytype.vars = 
+> ownChildren.byFamilyType[1:20]  children.vars = 
+> population.under18.vars + ownchildren.byfamilytype.vars
+>  
+>  # Request/fetch the data, and then add to a dataframe for output  
+> children.data = acs.fetch(endyear=year_endyear, span=year_span, 
+> geography=geo, variable=children.vars, dataset="acs")
+> 
+>  Error in if (url.test["statusMessage"] != "OK") { : 
+>    missing value where TRUE/FALSE needed
+> 
+>  # Create a complete FIPS code ID for the block group, tract, place, 
+> or county - this is what is used to join this data to geography  if 
+> (fileGeo == "Tract") {
+> 
+>  + myFIPS = paste(geography(children.data)$state, 
+> sprintf("%03d",geography(children.data)$county), 
+> geography(children.data)$tract, sep="")  + } else if (fileGeo == 
+> "County") {  + myFIPS = paste(geography(children.data)$state, 
+> sprintf("%03s",geography(children.data)$county), sep="")  + } else if 
+> (fileGeo == "Place") {  + myFIPS = 
+> paste(geography(children.data)$state, 
+> sprintf("%05s",geography(children.data)$place), sep="")  + } else if 
+> (fileGeo == "BlockGroup") {  + myFIPS = 
+> paste(geography(children.data)$state, 
+> sprintf("%03d",geography(children.data)$county), 
+> sprintf("%06d",geography(children.data)$tract), 
+> geography(children.data)$blockgroup, sep="")  + } else if (fileGeo == 
+> "MSA") {  + myFIPS = 
+> geography(children.data)$metropolitanstatisticalareamicropolitanstatis
+> ticalarea
+>  + }
+>  Error in geography(children.data) : object 'children.data' not found
+> 
+>  if (fileGeo != "MSA" && fileGeo != "Place") {
+> 
+>  + countyFIPS = paste(geography(children.data)$state, 
+> sprintf("%03s",geography(children.data)$county), sep="")  + stateFIPS 
+> = geography(children.data)$state  + } else if(fileGeo != "MSA") {  + 
+> stateFIPS = geography(children.data)$state  + }  Error in 
+> geography(children.data) : object 'children.data' not found
+> 
+>  children.df = data.frame(geography(children.data)$NAME, myFIPS, 
+> countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span, 
+> estimate(children.data))
+> 
+>  Error in geography(children.data) : object 'children.data' not found
+> 
+>  # Overwrite default ACS field names with English  cols_children = 
+> c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", 
+> "StateAbbr", "Period", "Dataset", "PopulationUnder18", 
+> "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8", 
+> "Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters", 
+> "OwnChildrenUnder18", 
+> "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3t
+> o4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMa
+> rriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3y
+> ears","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleH
+> oH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4yea
+> rs","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+>  colnames(children.df)=cols_children
+> 
+>  Error in colnames(children.df) = cols_children : 
+>    object 'children.df' not found
+> 
+>  # Set rownames to NULL, so it defaults to a sequential numeric output
+>  rownames(children.df) <- NULL
+> 
+>  Error in rownames(children.df) <- NULL : object 'children.df' not 
+> found
+> 
+>  #Clean up unneeded variables
+>  rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, 
+> population.under18, population.under18.vars, children.vars, 
+> children.data, children.df)
+> 
+>  Warning messages:
+>  1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'ownChildren.byFamilytype' not found
+>  2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'children.data' not found
+>  3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+>    object 'children.df' not found
+> 
+>  [4  <text/plain; us-ascii (7bit)>]
+> 
+> ----------------------------------------------------------------------
+> --------------------
+> 
+>  acs-r mailing list
+>  acs-r at mit.edu
+>  http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning Massachusetts Institute of 
+> Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> 
+> ----------------------------------------------------------------------
+> --------------------
+> 
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn
+> Department of Urban Studies and Planning Massachusetts Institute of 
+> Technology eglenn at mit.edu / 617.721.7131
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Thu Jul 13 15:27:05 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 13 Jul 2017 15:27:05 -0400
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <a37a72bc1b7a4d808dbd15740e75d865@dhhs.nh.gov>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>
+	<F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+	<cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>
+	<86a848f9if.wl-eglenn@mit.edu>
+	<a37a72bc1b7a4d808dbd15740e75d865@dhhs.nh.gov>
+Message-ID: <86zic8dto6.wl-eglenn@mit.edu>
+
+
+What do you get if you try:
+
+> dir.create(paste(system.file(package = "acs"), "test", sep = "/"), showWarnings = F)
+
+Does this create an empty folder called "test" system.file(package = "acs")...?
+
+--Ezra
+
+
+On Thu, 13 Jul 2017 15:17:13 -0400, Laviolette, Michael wrote:
+> 
+> I got the path to my extdata folder, but that's not where the table files went. To be sure, I deleted them and re-ran acs.table.install. The files were still copied to the wrong location.
+> 
+> -----Original Message-----
+> From: Ezra Haber Glenn [mailto:eglenn at mit.edu] 
+> Sent: Thursday, July 13, 2017 3:00 PM
+> To: Laviolette, Michael
+> Cc: acs-r at mit.edu
+> Subject: Re: [acs-r] ACS 2.1
+> 
+> 
+> They should be in the package's extdata file, but now you've got me worried it's a windows thing.  What do you get when you run this is R:
+> 
+> paste(system.file(package="acs"), "extdata", sep="/")
+> 
+> ?
+> 
+> 
+> 
+> On Thu, 13 Jul 2017 14:52:47 -0400, Laviolette, Michael wrote:
+> > 
+> > [1  <text/plain; utf-8 (base64)>]
+> > [2  <text/html; utf-8 (base64)>]
+> > When you run acs.tables.install(), where are the table files supposed 
+> > to go? I found them in the main acs package folder; I would have 
+> > expected them in the extdata folder where the key is stored.
+> > 
+> > Michael Laviolette PhD MPH
+> > 
+> > Public Health Statistician
+> > 
+> > Bureau of Public Health Statistics and Informatics
+> > 
+> > New Hampshire Division of Public Health Services
+> > 
+> > 29 Hazen Drive
+> > 
+> > Concord, NH 03301-6504
+> > 
+> > Phone: 603-271-5688
+> > 
+> > Email: Michael.Laviolette at dhhs.nh.gov
+> > 
+> > "Improving Health, Preventing Disease, Reducing Costs for All"
+> > 
+> > From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf 
+> > Of Ezra Haber Glenn
+> > Sent: Thursday, July 13, 2017 12:53 PM
+> > To: acs-r at mit.edu; Sara Hintze
+> > Cc: 'acs-r at mit.edu'
+> > Subject: Re: [acs-r] ACS 2.1
+> > 
+> > Ps, can you also confirm that you've reinstalled your api key?
+> > 
+> > On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> > 
+> > There have been some issues with the online variable lookup tables 
+> > that the package needs to access.  Can you try this function (just 
+> > once -- no need to use it every time) :
+> > 
+> >  acs.tables.install()
+> > 
+> > after that, see if your script works.
+> > 
+> > Thanks.
+> > 
+> > --Ezra
+> > 
+> > On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+> > 
+> >  [1  <multipart/alternative (7bit)>]
+> >  [1.1  <text/plain; us-ascii (quoted-printable)>]
+> >  [1.2  <text/html; us-ascii (quoted-printable)>]  Hi all,
+> >  
+> >  I recently upgraded from acs 2.0 to 2.1 and am receiving errors from 
+> > a script that  previously worked under acs 2.0. I?ve attached the 
+> > original script along with the console  output. Have I missed something obvious and/or has anyone else had similar issues?
+> >  
+> >  Thanks,
+> >  
+> >  Sara
+> >  
+> >  Sara Hintze
+> >  
+> >  GIS Data Developer/Analyst | Research Services
+> >  
+> >  Mid-America Regional Council
+> >  
+> >  600 Broadway Blvd., Ste 200
+> >  
+> >  Kansas City, MO 64105
+> >  
+> >  816-701-8220 | www.marc.org
+> > 
+> >  [2 Script.r <application/octet-stream (base64)>]
+> >  [3 ConsoleOutput.txt <text/plain (base64)>]
+> > 
+> >  # Call the acs package for data processing
+> >  library(acs)
+> > 
+> >  Loading required package: stringr
+> >  Loading required package: XML
+> >  
+> >  Attaching package: ?acs?
+> >  
+> >  The following object is masked from ?package:base?:
+> >  
+> >      apply
+> >  
+> >  Warning message:
+> >  package ?acs? was built under R version 3.3.3
+> > 
+> >  # Variables to specify end year of ACS to pull from, as well as the 
+> > span, which specifies the estimates to pull for that end year (1-year, 
+> > 3-year, or 5-year), and the geographic level  year_endyear = 2015  
+> > year_span = 5 # 1-year estimates are not available at the tract or block group level  fileGeo = "County"
+> >  
+> >  # Additional geography fields for output  countyFIPS = ""
+> >  countyName = ""
+> >  stateFIPS = ""
+> >  stateAbbr = ""
+> >  
+> >  if (fileGeo == "BlockGroup") {
+> > 
+> >  + # Block Group Geographies
+> >  + mo.geo=geo.make(state=29, 
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*", 
+> > block.group="*")  + ks.geo=geo.make(state=20, 
+> > county=c(1,5,43,45,59,91,103,107,121,209), tract="*", block.group="*")  
+> > +  + # Combine the Missouri and Kansas geographies, so we're pulling 
+> > all data in a single request  + geo = mo.geo + ks.geo  + } else if 
+> > (fileGeo == "Tract") {  + # Tract Geographies:
+> >  + mo.geo=geo.make(state=29, 
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*")  + 
+> > ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209), 
+> > tract="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> > we're pulling all data in a single request  + geo = mo.geo + ks.geo  + 
+> > } else if (fileGeo == "Place") {  + # Place Geographies:
+> >  + mo.geo=geo.make(state=29, place="*")  + ks.geo=geo.make(state=20, 
+> > place="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> > we're pulling all data in a single request  + geo = mo.geo + ks.geo  + 
+> > } else if (fileGeo == "County") {  + # County Geographies:
+> >  + # Top 2 are for counties in the MSA, plus counties needed for REACH 
+> > data (Allen County, KS and Lafayette County, MO)]  + # Bottom 2 are 
+> > the counties in the MARC region only  +  + #All Counties in the CSA 
+> > (??) (plus Allen County, KS)  + if (year_span == 5){  + 
+> > mo.geo=geo.make(state=29, 
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177))
+> >  + ks.geo=geo.make(state=20, 
+> > county=c(1,5,43,45,59,91,103,107,121,209))
+> >  + } else {
+> >  + #Counties Available within the 1-Year ACS Estimates  + 
+> > mo.geo=geo.make(state=29, county=c(21,37,47,95,165))  + 
+> > ks.geo=geo.make(state=20, county=c(45,91,103,209))  + }  +  + # 
+> > Combine the Missouri and Kansas geographies, so we're pulling all data 
+> > in a single request  + geo = mo.geo + ks.geo  + } else if (fileGeo == 
+> > "MSA") {  + # MSA Geographies - cannot be pulled by County or State, 
+> > so getting all  + geo <- geo.make(msa="*")  + # Set the stateFIPS so 
+> > that data appends correctly  + stateFIPS = 99  + }
+> > 
+> >  # Clean up variables that are no longer needed.
+> >  if (fileGeo != "MSA") {
+> > 
+> >  + rm(mo.geo, ks.geo)
+> >  + }
+> > 
+> >  # Set up acs.lookup objects for data we want to retrieve
+> >  population.under18 = acs.lookup(table.name = "B09001", 
+> > span=year_span, endyear = year_endyear)
+> > 
+> >  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> >  Content type 'application/xml' length 735879 bytes (718 KB)  
+> > downloaded 718 KB
+> >  
+> >  Warning message:
+> >  In acs.lookup(table.name = "B09001", span = year_span, endyear = year_endyear) :
+> >    XML variable lookup tables for this request
+> >    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+> >    temporarily downloading and using archived copies instead;
+> >    since this is *much* slower, recommend running
+> >    acs.tables.install()
+> > 
+> >  ownChildren.byFamilyType = acs.lookup(table.name="B09002", 
+> > span=year_span, endyear=year_endyear)
+> > 
+> >  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> >  Content type 'application/xml' length 735879 bytes (718 KB)  
+> > downloaded 718 KB
+> >  
+> >  Warning message:
+> >  In acs.lookup(table.name = "B09002", span = year_span, endyear = year_endyear) :
+> >    XML variable lookup tables for this request
+> >    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+> >    temporarily downloading and using archived copies instead;
+> >    since this is *much* slower, recommend running
+> >    acs.tables.install()
+> > 
+> >  # Select out just those variables we want  population.under18.vars = 
+> > population.under18[1:10]  ownchildren.byfamilytype.vars = 
+> > ownChildren.byFamilyType[1:20]  children.vars = 
+> > population.under18.vars + ownchildren.byfamilytype.vars
+> >  
+> >  # Request/fetch the data, and then add to a dataframe for output  
+> > children.data = acs.fetch(endyear=year_endyear, span=year_span, 
+> > geography=geo, variable=children.vars, dataset="acs")
+> > 
+> >  Error in if (url.test["statusMessage"] != "OK") { : 
+> >    missing value where TRUE/FALSE needed
+> > 
+> >  # Create a complete FIPS code ID for the block group, tract, place, 
+> > or county - this is what is used to join this data to geography  if 
+> > (fileGeo == "Tract") {
+> > 
+> >  + myFIPS = paste(geography(children.data)$state, 
+> > sprintf("%03d",geography(children.data)$county), 
+> > geography(children.data)$tract, sep="")  + } else if (fileGeo == 
+> > "County") {  + myFIPS = paste(geography(children.data)$state, 
+> > sprintf("%03s",geography(children.data)$county), sep="")  + } else if 
+> > (fileGeo == "Place") {  + myFIPS = 
+> > paste(geography(children.data)$state, 
+> > sprintf("%05s",geography(children.data)$place), sep="")  + } else if 
+> > (fileGeo == "BlockGroup") {  + myFIPS = 
+> > paste(geography(children.data)$state, 
+> > sprintf("%03d",geography(children.data)$county), 
+> > sprintf("%06d",geography(children.data)$tract), 
+> > geography(children.data)$blockgroup, sep="")  + } else if (fileGeo == 
+> > "MSA") {  + myFIPS = 
+> > geography(children.data)$metropolitanstatisticalareamicropolitanstatis
+> > ticalarea
+> >  + }
+> >  Error in geography(children.data) : object 'children.data' not found
+> > 
+> >  if (fileGeo != "MSA" && fileGeo != "Place") {
+> > 
+> >  + countyFIPS = paste(geography(children.data)$state, 
+> > sprintf("%03s",geography(children.data)$county), sep="")  + stateFIPS 
+> > = geography(children.data)$state  + } else if(fileGeo != "MSA") {  + 
+> > stateFIPS = geography(children.data)$state  + }  Error in 
+> > geography(children.data) : object 'children.data' not found
+> > 
+> >  children.df = data.frame(geography(children.data)$NAME, myFIPS, 
+> > countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, year_span, 
+> > estimate(children.data))
+> > 
+> >  Error in geography(children.data) : object 'children.data' not found
+> > 
+> >  # Overwrite default ACS field names with English  cols_children = 
+> > c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", 
+> > "StateAbbr", "Period", "Dataset", "PopulationUnder18", 
+> > "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", "Age6to8", 
+> > "Age9to11", "Age12to14", "Age15to17", "Under18InGroupQuarters", 
+> > "OwnChildrenUnder18", 
+> > "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_3t
+> > o4years","InMarriedCouples_5years","InMarriedCouples_6to11years","InMa
+> > rriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under3y
+> > ears","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","MaleH
+> > oH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4yea
+> > rs","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years")
+> >  colnames(children.df)=cols_children
+> > 
+> >  Error in colnames(children.df) = cols_children : 
+> >    object 'children.df' not found
+> > 
+> >  # Set rownames to NULL, so it defaults to a sequential numeric output
+> >  rownames(children.df) <- NULL
+> > 
+> >  Error in rownames(children.df) <- NULL : object 'children.df' not 
+> > found
+> > 
+> >  #Clean up unneeded variables
+> >  rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, 
+> > population.under18, population.under18.vars, children.vars, 
+> > children.data, children.df)
+> > 
+> >  Warning messages:
+> >  1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'ownChildren.byFamilytype' not found
+> >  2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'children.data' not found
+> >  3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'children.df' not found
+> > 
+> >  [4  <text/plain; us-ascii (7bit)>]
+> > 
+> > ----------------------------------------------------------------------
+> > --------------------
+> > 
+> >  acs-r mailing list
+> >  acs-r at mit.edu
+> >  http://mailman.mit.edu/mailman/listinfo/acs-r
+> > 
+> > --
+> > Ezra Haber Glenn, AICP
+> > Department of Urban Studies and Planning Massachusetts Institute of 
+> > Technology
+> > 77 Massachusetts Ave., Room 7-346
+> > Cambridge, MA 02139
+> > eglenn at mit.edu
+> > http://dusp.mit.edu/faculty/ezra-glenn
+> > 617.253.2024 (w)
+> > 617.721.7131 (c)
+> > 
+> > ----------------------------------------------------------------------
+> > --------------------
+> > 
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> > 
+> > --
+> > Ezra Haber Glenn
+> > Department of Urban Studies and Planning Massachusetts Institute of 
+> > Technology eglenn at mit.edu / 617.721.7131
+> > 
+> > 
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From Michael.Laviolette at dhhs.nh.gov  Thu Jul 13 15:43:47 2017
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Thu, 13 Jul 2017 19:43:47 +0000
+Subject: [acs-r] ACS 2.1
+In-Reply-To: <86zic8dto6.wl-eglenn@mit.edu>
+References: <47514DDF18593E46887CD0B0158306011DA3B646@JAZZ.marc.internal>
+	<86d194ffsn.wl-eglenn@mit.edu>	<F272AFBF-302D-40C5-9925-06C869786C29@mit.edu>
+	<cbe20971a62c40a2b71485988f784b35@dhhs.nh.gov>	<86a848f9if.wl-eglenn@mit.edu>
+	<a37a72bc1b7a4d808dbd15740e75d865@dhhs.nh.gov>
+	<86zic8dto6.wl-eglenn@mit.edu>
+Message-ID: <1abb474b3fea4d2cb5d17884299fbbda@dhhs.nh.gov>
+
+Yes.
+
+-----Original Message-----
+From: Ezra Haber Glenn [mailto:eglenn at mit.edu] 
+Sent: Thursday, July 13, 2017 3:27 PM
+To: Laviolette, Michael
+Cc: acs-r at mit.edu
+Subject: Re: [acs-r] ACS 2.1
+
+
+What do you get if you try:
+
+> dir.create(paste(system.file(package = "acs"), "test", sep = "/"), 
+> showWarnings = F)
+
+Does this create an empty folder called "test" system.file(package = "acs")...?
+
+--Ezra
+
+
+On Thu, 13 Jul 2017 15:17:13 -0400, Laviolette, Michael wrote:
+> 
+> I got the path to my extdata folder, but that's not where the table files went. To be sure, I deleted them and re-ran acs.table.install. The files were still copied to the wrong location.
+> 
+> -----Original Message-----
+> From: Ezra Haber Glenn [mailto:eglenn at mit.edu]
+> Sent: Thursday, July 13, 2017 3:00 PM
+> To: Laviolette, Michael
+> Cc: acs-r at mit.edu
+> Subject: Re: [acs-r] ACS 2.1
+> 
+> 
+> They should be in the package's extdata file, but now you've got me worried it's a windows thing.  What do you get when you run this is R:
+> 
+> paste(system.file(package="acs"), "extdata", sep="/")
+> 
+> ?
+> 
+> 
+> 
+> On Thu, 13 Jul 2017 14:52:47 -0400, Laviolette, Michael wrote:
+> > 
+> > [1  <text/plain; utf-8 (base64)>]
+> > [2  <text/html; utf-8 (base64)>]
+> > When you run acs.tables.install(), where are the table files 
+> > supposed to go? I found them in the main acs package folder; I would 
+> > have expected them in the extdata folder where the key is stored.
+> > 
+> > Michael Laviolette PhD MPH
+> > 
+> > Public Health Statistician
+> > 
+> > Bureau of Public Health Statistics and Informatics
+> > 
+> > New Hampshire Division of Public Health Services
+> > 
+> > 29 Hazen Drive
+> > 
+> > Concord, NH 03301-6504
+> > 
+> > Phone: 603-271-5688
+> > 
+> > Email: Michael.Laviolette at dhhs.nh.gov
+> > 
+> > "Improving Health, Preventing Disease, Reducing Costs for All"
+> > 
+> > From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf 
+> > Of Ezra Haber Glenn
+> > Sent: Thursday, July 13, 2017 12:53 PM
+> > To: acs-r at mit.edu; Sara Hintze
+> > Cc: 'acs-r at mit.edu'
+> > Subject: Re: [acs-r] ACS 2.1
+> > 
+> > Ps, can you also confirm that you've reinstalled your api key?
+> > 
+> > On July 13, 2017 12:43:52 PM EDT, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+> > 
+> > There have been some issues with the online variable lookup tables 
+> > that the package needs to access.  Can you try this function (just 
+> > once -- no need to use it every time) :
+> > 
+> >  acs.tables.install()
+> > 
+> > after that, see if your script works.
+> > 
+> > Thanks.
+> > 
+> > --Ezra
+> > 
+> > On Thu, 13 Jul 2017 12:33:39 -0400, Sara Hintze wrote:
+> > 
+> >  [1  <multipart/alternative (7bit)>]
+> >  [1.1  <text/plain; us-ascii (quoted-printable)>]
+> >  [1.2  <text/html; us-ascii (quoted-printable)>]  Hi all,
+> >  
+> >  I recently upgraded from acs 2.0 to 2.1 and am receiving errors 
+> > from a script that  previously worked under acs 2.0. I?ve attached 
+> > the original script along with the console  output. Have I missed something obvious and/or has anyone else had similar issues?
+> >  
+> >  Thanks,
+> >  
+> >  Sara
+> >  
+> >  Sara Hintze
+> >  
+> >  GIS Data Developer/Analyst | Research Services
+> >  
+> >  Mid-America Regional Council
+> >  
+> >  600 Broadway Blvd., Ste 200
+> >  
+> >  Kansas City, MO 64105
+> >  
+> >  816-701-8220 | www.marc.org
+> > 
+> >  [2 Script.r <application/octet-stream (base64)>]
+> >  [3 ConsoleOutput.txt <text/plain (base64)>]
+> > 
+> >  # Call the acs package for data processing
+> >  library(acs)
+> > 
+> >  Loading required package: stringr
+> >  Loading required package: XML
+> >  
+> >  Attaching package: ?acs?
+> >  
+> >  The following object is masked from ?package:base?:
+> >  
+> >      apply
+> >  
+> >  Warning message:
+> >  package ?acs? was built under R version 3.3.3
+> > 
+> >  # Variables to specify end year of ACS to pull from, as well as the 
+> > span, which specifies the estimates to pull for that end year 
+> > (1-year, 3-year, or 5-year), and the geographic level  year_endyear 
+> > = 2015 year_span = 5 # 1-year estimates are not available at the tract or block group level  fileGeo = "County"
+> >  
+> >  # Additional geography fields for output  countyFIPS = ""
+> >  countyName = ""
+> >  stateFIPS = ""
+> >  stateAbbr = ""
+> >  
+> >  if (fileGeo == "BlockGroup") {
+> > 
+> >  + # Block Group Geographies
+> >  + mo.geo=geo.make(state=29,
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*",
+> > block.group="*")  + ks.geo=geo.make(state=20, 
+> > county=c(1,5,43,45,59,91,103,107,121,209), tract="*", 
+> > block.group="*")
+> > +  + # Combine the Missouri and Kansas geographies, so we're pulling
+> > all data in a single request  + geo = mo.geo + ks.geo  + } else if 
+> > (fileGeo == "Tract") {  + # Tract Geographies:
+> >  + mo.geo=geo.make(state=29,
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177), tract="*")  + 
+> > ks.geo=geo.make(state=20, county=c(1,5,43,45,59,91,103,107,121,209),
+> > tract="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> > we're pulling all data in a single request  + geo = mo.geo + ks.geo  
+> > + } else if (fileGeo == "Place") {  + # Place Geographies:
+> >  + mo.geo=geo.make(state=29, place="*")  + ks.geo=geo.make(state=20,
+> > place="*")  +  + # Combine the Missouri and Kansas geographies, so 
+> > we're pulling all data in a single request  + geo = mo.geo + ks.geo  
+> > + } else if (fileGeo == "County") {  + # County Geographies:
+> >  + # Top 2 are for counties in the MSA, plus counties needed for 
+> > REACH data (Allen County, KS and Lafayette County, MO)]  + # Bottom 
+> > 2 are the counties in the MARC region only  +  + #All Counties in 
+> > the CSA
+> > (??) (plus Allen County, KS)  + if (year_span == 5){  + 
+> > mo.geo=geo.make(state=29,
+> > county=c(3,13,21,25,37,47,49,63,95,101,107,165,177))
+> >  + ks.geo=geo.make(state=20,
+> > county=c(1,5,43,45,59,91,103,107,121,209))
+> >  + } else {
+> >  + #Counties Available within the 1-Year ACS Estimates  + 
+> > mo.geo=geo.make(state=29, county=c(21,37,47,95,165))  + 
+> > ks.geo=geo.make(state=20, county=c(45,91,103,209))  + }  +  + # 
+> > Combine the Missouri and Kansas geographies, so we're pulling all 
+> > data in a single request  + geo = mo.geo + ks.geo  + } else if 
+> > (fileGeo ==
+> > "MSA") {  + # MSA Geographies - cannot be pulled by County or State, 
+> > so getting all  + geo <- geo.make(msa="*")  + # Set the stateFIPS so 
+> > that data appends correctly  + stateFIPS = 99  + }
+> > 
+> >  # Clean up variables that are no longer needed.
+> >  if (fileGeo != "MSA") {
+> > 
+> >  + rm(mo.geo, ks.geo)
+> >  + }
+> > 
+> >  # Set up acs.lookup objects for data we want to retrieve
+> >  population.under18 = acs.lookup(table.name = "B09001", 
+> > span=year_span, endyear = year_endyear)
+> > 
+> >  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> >  Content type 'application/xml' length 735879 bytes (718 KB) 
+> > downloaded 718 KB
+> >  
+> >  Warning message:
+> >  In acs.lookup(table.name = "B09001", span = year_span, endyear = year_endyear) :
+> >    XML variable lookup tables for this request
+> >    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+> >    temporarily downloading and using archived copies instead;
+> >    since this is *much* slower, recommend running
+> >    acs.tables.install()
+> > 
+> >  ownChildren.byFamilyType = acs.lookup(table.name="B09002", 
+> > span=year_span, endyear=year_endyear)
+> > 
+> >  trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_5yr_2015_var.xml.gz'
+> >  Content type 'application/xml' length 735879 bytes (718 KB) 
+> > downloaded 718 KB
+> >  
+> >  Warning message:
+> >  In acs.lookup(table.name = "B09002", span = year_span, endyear = year_endyear) :
+> >    XML variable lookup tables for this request
+> >    seem to be missing from ' https://api.census.gov/data/2015/acs5/variables.xml ';
+> >    temporarily downloading and using archived copies instead;
+> >    since this is *much* slower, recommend running
+> >    acs.tables.install()
+> > 
+> >  # Select out just those variables we want  population.under18.vars 
+> > = population.under18[1:10]  ownchildren.byfamilytype.vars = 
+> > ownChildren.byFamilyType[1:20]  children.vars = 
+> > population.under18.vars + ownchildren.byfamilytype.vars
+> >  
+> >  # Request/fetch the data, and then add to a dataframe for output 
+> > children.data = acs.fetch(endyear=year_endyear, span=year_span, 
+> > geography=geo, variable=children.vars, dataset="acs")
+> > 
+> >  Error in if (url.test["statusMessage"] != "OK") { : 
+> >    missing value where TRUE/FALSE needed
+> > 
+> >  # Create a complete FIPS code ID for the block group, tract, place, 
+> > or county - this is what is used to join this data to geography  if 
+> > (fileGeo == "Tract") {
+> > 
+> >  + myFIPS = paste(geography(children.data)$state,
+> > sprintf("%03d",geography(children.data)$county),
+> > geography(children.data)$tract, sep="")  + } else if (fileGeo ==
+> > "County") {  + myFIPS = paste(geography(children.data)$state,
+> > sprintf("%03s",geography(children.data)$county), sep="")  + } else 
+> > if (fileGeo == "Place") {  + myFIPS = 
+> > paste(geography(children.data)$state,
+> > sprintf("%05s",geography(children.data)$place), sep="")  + } else if 
+> > (fileGeo == "BlockGroup") {  + myFIPS = 
+> > paste(geography(children.data)$state,
+> > sprintf("%03d",geography(children.data)$county),
+> > sprintf("%06d",geography(children.data)$tract),
+> > geography(children.data)$blockgroup, sep="")  + } else if (fileGeo 
+> > ==
+> > "MSA") {  + myFIPS =
+> > geography(children.data)$metropolitanstatisticalareamicropolitanstat
+> > is
+> > ticalarea
+> >  + }
+> >  Error in geography(children.data) : object 'children.data' not 
+> > found
+> > 
+> >  if (fileGeo != "MSA" && fileGeo != "Place") {
+> > 
+> >  + countyFIPS = paste(geography(children.data)$state,
+> > sprintf("%03s",geography(children.data)$county), sep="")  + 
+> > stateFIPS = geography(children.data)$state  + } else if(fileGeo != 
+> > "MSA") {  + stateFIPS = geography(children.data)$state  + }  Error 
+> > in
+> > geography(children.data) : object 'children.data' not found
+> > 
+> >  children.df = data.frame(geography(children.data)$NAME, myFIPS, 
+> > countyFIPS, countyName, stateFIPS, stateAbbr, year_endyear, 
+> > year_span,
+> > estimate(children.data))
+> > 
+> >  Error in geography(children.data) : object 'children.data' not 
+> > found
+> > 
+> >  # Overwrite default ACS field names with English  cols_children = 
+> > c("GeoStr", "FIPS", "CountyFIPS", "CountyName", "StateFIPS", 
+> > "StateAbbr", "Period", "Dataset", "PopulationUnder18", 
+> > "Under18InHouseholds", "AgeUnder3Years", "Age3to4", "Age5", 
+> > "Age6to8", "Age9to11", "Age12to14", "Age15to17", 
+> > "Under18InGroupQuarters", "OwnChildrenUnder18", 
+> > "InMarriedCouples","InMarriedCouples_Under3years","InMarriedCouples_
+> > 3t 
+> > o4years","InMarriedCouples_5years","InMarriedCouples_6to11years","In
+> > Ma 
+> > rriedCouples_12to17years","InOtherFamilies","MaleHoH","MaleHoH_Under
+> > 3y 
+> > ears","MaleHoH_3to4years","MaleHoH_5years","MaleHoH_6to11years","Mal
+> > eH 
+> > oH_12to17years","FemaleHoH","FemaleHoH_Under3years","FemaleHoH_3to4y
+> > ea
+> > rs","FemaleHoH_5years","FemaleHoH_6to11years","FemaleHoH_12to17years
+> > ")  colnames(children.df)=cols_children
+> > 
+> >  Error in colnames(children.df) = cols_children : 
+> >    object 'children.df' not found
+> > 
+> >  # Set rownames to NULL, so it defaults to a sequential numeric 
+> > output
+> >  rownames(children.df) <- NULL
+> > 
+> >  Error in rownames(children.df) <- NULL : object 'children.df' not 
+> > found
+> > 
+> >  #Clean up unneeded variables
+> >  rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, 
+> > population.under18, population.under18.vars, children.vars, 
+> > children.data, children.df)
+> > 
+> >  Warning messages:
+> >  1: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'ownChildren.byFamilytype' not found
+> >  2: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'children.data' not found
+> >  3: In rm(ownChildren.byFamilytype, ownchildren.byfamilytype.vars, population.under18,  :
+> >    object 'children.df' not found
+> > 
+> >  [4  <text/plain; us-ascii (7bit)>]
+> > 
+> > --------------------------------------------------------------------
+> > --
+> > --------------------
+> > 
+> >  acs-r mailing list
+> >  acs-r at mit.edu
+> >  http://mailman.mit.edu/mailman/listinfo/acs-r
+> > 
+> > --
+> > Ezra Haber Glenn, AICP
+> > Department of Urban Studies and Planning Massachusetts Institute of 
+> > Technology
+> > 77 Massachusetts Ave., Room 7-346
+> > Cambridge, MA 02139
+> > eglenn at mit.edu
+> > http://dusp.mit.edu/faculty/ezra-glenn
+> > 617.253.2024 (w)
+> > 617.721.7131 (c)
+> > 
+> > --------------------------------------------------------------------
+> > --
+> > --------------------
+> > 
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> > 
+> > --
+> > Ezra Haber Glenn
+> > Department of Urban Studies and Planning Massachusetts Institute of 
+> > Technology eglenn at mit.edu / 617.721.7131
+> > 
+> > 
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning Massachusetts Institute of 
+> Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Sat Jul 22 11:06:56 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Sat, 22 Jul 2017 11:06:56 -0400
+Subject: [acs-r] acs version 2.1.1 update
+In-Reply-To: <86zica6bqf.wl-eglenn@mit.edu>
+References: <86zica6bqf.wl-eglenn@mit.edu>
+Message-ID: <86k230h5nz.wl-eglenn@mit.edu>
+
+
+acs.R users:
+
+Short Summary: acs v.2.1.0 users who are experiencing problems with
+  acs.fetch (especially on windows) may want to consider updating to
+  version 2.1.1, now on CRAN.
+
+Shortly after releasing acs version 2.1.0, I'd heard from some Windows
+users that the package was unable to connect to the API to fetch data.
+After troubleshooting a bit, it became clear that the problem stemmed
+from the package's switch to https (which will be required by the
+Census API in late summer) and its reliance on the RCurl package,
+which didn't seem to be playing nicely with Windows https and TLS
+authentication.  Sorry!
+
+To address the issue I've modified the package to use the httr package
+instead of RCurl, which I am told works better.  CRAN confirms that
+this seemed like a wise approach, and some initial user testing
+confirms this -- thanks, user community!  The new version (2.1.1) is
+now live on CRAN; windows binaries expected soon.
+
+If you've recently installed or updated to 2.1.0 and the functions are
+working for you, no need to update again; if you're getting errors
+when trying to fetch data, I'd recommend you run another update:
+
+> install.packages("acs", clean=T)
+
+Don't forget to reinstall or "api.key.migrate()" your api key if it
+doesn't seem to have been migrated during install.  I also strongly
+recommend you run "acs.tables.install()" as well -- you only need to
+do this once per installation (or update), and it will really speed up
+the package.
+
+   
+--Ezra
+
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From Michael.Laviolette at dhhs.nh.gov  Thu Jul 27 14:08:16 2017
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Thu, 27 Jul 2017 18:08:16 +0000
+Subject: [acs-r] Accessing 2015 five-year data
+Message-ID: <34844900eb40403b9fce5e8b4bd623b4@dhhs.nh.gov>
+
+Hi Ezra,
+
+In trying to access the five-year data for 2015, I ran
+
+educ.all <- acs.fetch(15, geography = geo.make(state = 33), table.number = "B15001")
+
+and got the "no variable lookup tables were available" message.  Going directly to Census API seemed to work.
+
+api.census.gov/data/2015/acs5?get=NAME,B15001_001E&for=state:33&key=
+
+[["NAME","B15001_001E","state"],
+["New Hampshire","1052521","33"]]
+
+Am I doing something wrong or does the package need updating?
+
+Thanks,
+Mike
+
+Michael Laviolette PhD MPH
+Public Health Statistician
+Bureau of Public Health Statistics and Informatics
+New Hampshire Division of Public Health Services
+29 Hazen Drive
+Concord, NH 03301-6504
+Phone: 603-271-5688
+Email: Michael.Laviolette at dhhs.nh.gov
+"Improving Health, Preventing Disease, Reducing Costs for All"
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170727/dce75461/attachment.html
+
+From eglenn at mit.edu  Thu Jul 27 16:06:58 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 27 Jul 2017 16:06:58 -0400
+Subject: [acs-r] Accessing 2015 five-year data
+In-Reply-To: <34844900eb40403b9fce5e8b4bd623b4@dhhs.nh.gov>
+References: <34844900eb40403b9fce5e8b4bd623b4@dhhs.nh.gov>
+Message-ID: <861sp11w65.wl-eglenn@mit.edu>
+
+
+Just to be sure: is it possible you wrote 15 instead of 2015 for the
+endyear?  That's what you pasted below...
+
+
+On Thu, 27 Jul 2017 14:08:16 -0400, Laviolette, Michael wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Hi Ezra,
+> 
+> In trying to access the five-year data for 2015, I ran
+> 
+> educ.all <- acs.fetch(15, geography = geo.make(state = 33), table.number = "B15001")
+> 
+> and got the ?no variable lookup tables were available? message.  Going directly to Census
+> API seemed to work.
+> 
+> api.census.gov/data/2015/acs5?get=NAME,B15001_001E&for=state:33&key=
+> 
+> [["NAME","B15001_001E","state"],
+> 
+> ["New Hampshire","1052521","33"]]
+> 
+> Am I doing something wrong or does the package need updating?
+> 
+> Thanks,
+> 
+> Mike
+> 
+> Michael Laviolette PhD MPH
+> 
+> Public Health Statistician
+> 
+> Bureau of Public Health Statistics and Informatics
+> 
+> New Hampshire Division of Public Health Services
+> 
+> 29 Hazen Drive
+> 
+> Concord, NH 03301-6504
+> 
+> Phone: 603-271-5688
+> 
+> Email: Michael.Laviolette at dhhs.nh.gov
+> 
+> "Improving Health, Preventing Disease, Reducing Costs for All"
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+

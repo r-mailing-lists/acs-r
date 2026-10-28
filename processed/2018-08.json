@@ -1,0 +1,82 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2018-08",
+  "messages": [
+    {
+      "id": "msg-fe5262f487e6",
+      "message_id": "<BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>",
+      "from_name": "Sara Hintze",
+      "from_email_hash": "10e65898906e356edecfc0132689c535fc7b38aa7ba9cb5eb6f1f391d2102a8c",
+      "date": "2018-08-02T20:52:38Z",
+      "subject": "[acs-r] 5-year data lookups for 2013",
+      "subject_clean": "[acs-r] 5-year data lookups for 2013",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I am receiving an error for just the 2013, 5-year data when using acs.lookup such as: sex.by.age = acs.lookup(table.number=\"B01001\", span=5, endyear=2013). The error within R reads: Error: XML content does not seem to be XML: ''\n\nThe request can be made for the 2013, 1-year data, or another year of the 5-year estimates, without issue. Any thoughts?\n\nThank you,\nSara\n\nSara Hintze\nGIS Data Developer/Analyst | Research Services\nMid-America Regional Council\n600 Broadway Blvd., Ste 200\nKansas City, MO 64105\n816-701-8220 | www.marc.org\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180802/2462ceea/attachment.html",
+      "body_snippet": "I am receiving an error for just the 2013, 5-year data when using acs.lookup such as: sex.by.age = acs.lookup(table.number=\"B01001\", span=5, endyear=2013). The error within R reads: Error: XML content",
+      "thread_id": "thread-fe5262f487e6",
+      "thread_depth": 0,
+      "month": "2018-08"
+    },
+    {
+      "id": "msg-76d1ab4cb2ee",
+      "message_id": "<2616727CE6B372D6.da9ac349-8814-4808-a8b1-067e6271564b@mail.outlook.com>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-08-03T02:29:53Z",
+      "subject": "[acs-r] 5-year data lookups for 2013",
+      "subject_clean": "[acs-r] 5-year data lookups for 2013",
+      "in_reply_to": "<BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>",
+      "references": [
+        "<BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>"
+      ],
+      "body_plain": "Can you try running acs.tables.install() once and seeing if it works then?\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu\nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)\n\n\n\n\nOn Thu, Aug 2, 2018 at 5:02 PM -0400, \"Sara Hintze\" <shintze at MARC.ORG<mailto:shintze at MARC.ORG>> wrote:\n\nI am receiving an error for just the 2013, 5-year data when using acs.lookup such as: sex.by.age = acs.lookup(table.number=\"B01001\", span=5, endyear=2013). The error within R reads: Error: XML content does not seem to be XML: ''\n\nThe request can be made for the 2013, 1-year data, or another year of the 5-year estimates, without issue. Any thoughts?\n\nThank you,\nSara\n\nSara Hintze\nGIS Data Developer/Analyst | Research Services\nMid-America Regional Council\n600 Broadway Blvd., Ste 200\nKansas City, MO 64105\n816-701-8220 | www.marc.org\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180802/8359fcc3/attachment.html",
+      "body_snippet": "Can you try running acs.tables.install() once and seeing if it works then?\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Av",
+      "thread_id": "thread-fe5262f487e6",
+      "thread_depth": 1,
+      "month": "2018-08"
+    },
+    {
+      "id": "msg-2c0ace4cfdf4",
+      "message_id": "<CAJPE=ohFbqjgjYHEoOkn3zy495d5w5OZC8snN9SOTvowk4VBEQ@mail.gmail.com>",
+      "from_name": "Tom Schenk Jr",
+      "from_email_hash": "e600f44400c2843bcb79160bc7ad28ed24d695d13a4db996749a3d87e6204f06",
+      "date": "2018-08-08T19:50:25Z",
+      "subject": "[acs-r] ACS 5-year for 2013",
+      "subject_clean": "[acs-r] ACS 5-year for 2013",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Similar to a prior thread, appears that 5-year ACS data is missing from the\n\"acs\" package (2.1.3). To replicate:\n\n```\nkey <- {KEY}\nplace_name <- \"Los Angeles city\"\nstate <- \"CA\"\nyear <- 2013\ngeo <- acs::geo.make(state = c(state), place = place_name)\nacs::acs.fetch(endyear = year, span = 5, geography = geo,\n  table.number = \"B23025\", col.names = \"pretty\",\n  key = key)\n```\n\nwhich results in:\n\n```\nError: XML content does not seem to be XML: ''\n```\n\nOther years and span seems to work. This problem can be replicated across\nvarious tables.\n\nAttempted to try `acs.tables.install()` which generated a lot of activity,\nbut rerunning the code did not work.\n\nI am not quite sure how these queries are assembled, but checked the ACS\nAPI which seemed to return valid data, e.g.,\nhttps://api.census.gov/data/2013/acs/acs5?get=B23025_001E&for=place:*\n-- \n\n\nTom Schenk Jr.\ntomschenkjr at gmail.com\ntomschenkjr.net\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180808/f4b72a90/attachment.html",
+      "body_snippet": "Similar to a prior thread, appears that 5-year ACS data is missing from the\n\"acs\" package (2.1.3). To replicate:\n\n```\nkey <- {KEY}\nplace_name <- \"Los Angeles city\"\nstate <- \"CA\"\nyear <- 2013\ngeo <- ac",
+      "thread_id": "thread-2c0ace4cfdf4",
+      "thread_depth": 0,
+      "month": "2018-08"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-fe5262f487e6",
+      "subject": "[acs-r] 5-year data lookups for 2013",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Sara Hintze"
+      ],
+      "started": "2018-08-02T20:52:38Z",
+      "last_reply": "2018-08-03T02:29:53Z",
+      "root_message_id": "msg-fe5262f487e6"
+    },
+    {
+      "id": "thread-2c0ace4cfdf4",
+      "subject": "[acs-r] ACS 5-year for 2013",
+      "message_count": 1,
+      "participants": [
+        "Tom Schenk Jr"
+      ],
+      "started": "2018-08-08T19:50:25Z",
+      "last_reply": "2018-08-08T19:50:25Z",
+      "root_message_id": "msg-2c0ace4cfdf4"
+    }
+  ]
+}

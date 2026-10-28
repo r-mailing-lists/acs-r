@@ -1,0 +1,305 @@
+From arilamstein at gmail.com  Sat Mar  1 16:38:06 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Sat, 1 Mar 2014 13:38:06 -0800
+Subject: [acs-r] Warning message
+Message-ID: <CAEO2kuKejNJkUTdzpksuTB1Mc1ysck-40UWFo_BDNbmwp66BXQ@mail.gmail.com>
+
+When I try to get median age of all ZCTAs I get a warning message that I
+don't understand:
+
+acs.data = acs.fetch(geography=geo.make(zip.code = "*"),
+                     table.number = "B01002",
+                     col.names = "pretty",
+                     endyear = 2012,
+                     span = 5)
+
+Warning message:
+NAs introduced by coercion
+
+The resulting data.frame appears OK to me:
+
+> head(acs.data)
+ACS DATA:
+ 2008 -- 2012 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+            Median Age by Sex: Median age -- Total: Median Age by Sex:
+Median age -- Male
+ZCTA5 00601 36.4 +/- 0.5                            34.7 +/- 0.9
+
+ZCTA5 00602 38 +/- 0.4                              37.2 +/- 0.5
+
+ZCTA5 00603 38.4 +/- 0.6                            36.7 +/- 0.7
+
+ZCTA5 00606 36.8 +/- 2                              36.8 +/- 3.2
+
+ZCTA5 00610 38.6 +/- 0.6                            36.1 +/- 0.8
+
+ZCTA5 00612 38.1 +/- 0.6                            36.9 +/- 1.2
+
+            Median Age by Sex: Median age -- Female
+ZCTA5 00601 37.7 +/- 1.5
+ZCTA5 00602 38.7 +/- 0.6
+ZCTA5 00603 40.1 +/- 0.6
+ZCTA5 00606 36.8 +/- 2.9
+ZCTA5 00610 40.5 +/- 0.5
+ZCTA5 00612 39.2 +/- 1
+
+Can someone tell me what this warning means, and whether I need to be
+concerned about the resulting data?
+
+Thanks.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140301/c299a64d/attachment.htm
+
+From eglenn at MIT.EDU  Sun Mar  2 10:15:09 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Sun, 02 Mar 2014 10:15:09 -0500
+Subject: [acs-r] Warning message
+In-Reply-To: <CAEO2kuKejNJkUTdzpksuTB1Mc1ysck-40UWFo_BDNbmwp66BXQ@mail.gmail.com>
+References: <CAEO2kuKejNJkUTdzpksuTB1Mc1ysck-40UWFo_BDNbmwp66BXQ@mail.gmail.com>
+Message-ID: <86iorwhbsy.wl%eglenn@mit.edu>
+
+
+There are sometimes when data is missing from the ACS for a particular
+geography and table -- I think when there were too few (or no)
+observations to report.  When this happens, the census API returns a
+special code, which the acs.R package converts to NA (a reasonable
+value for a missing values.)  
+
+The warning is simply R telling you that there you've applied some
+operations to NAs, which is something you might want a warning about.
+(When these missing values get manipulated -- e.g., when the script
+converts the NA margin of error into a standard deviation -- a
+division process -- you get NAs propagating.  This is perfectly
+appropriate, but the warning is helpful in R for other things, where
+you might be surprised -- e.g., 3+5+NA=NA, not 8.)  
+
+If you look at all the data you fetched (and hot just the "head"),
+you'll see a number of times this occurred -- actually, quite a few:
+
+> sum(is.na(estimate(acs.data)))
+[1] 1664
+> sum(is.na(standard.error(acs.data)))
+[1] 1671
+> 
+
+Taking one example -- ZCTA 60932 from your acs.data set -- you'll note
+that this is not simply an acs.R or Census API issue -- if you check
+FactFinder for this table and ZCTA, you will see that the fields are
+blank:
+
+<http://factfinder2.census.gov/bkmk/table/1.0/en/ACS/12_5YR/B01002/8600000US60932>
+
+As the notes there explain:
+
+   Explanation of Symbols:
+
+    An '**' entry in the margin of error column indicates that either
+    no sample observations or too few sample observations were
+    available to compute a standard error and thus the margin of
+    error. A statistical test is not appropriate.
+
+    An '-' entry in the estimate column indicates that either no
+    sample observations or too few sample observations were available
+    to compute an estimate, or a ratio of medians cannot be calculated
+    because one or both of the median estimates falls in the lowest
+    interval or upper interval of an open-ended distribution.
+
+(The "**" and "-" values are converted to NAs by acs.R.)
+
+My guess is that in your case you don't actually care that much about
+these NAs-- they are probably empty or tiny zip codes -- but if you
+next started to combine your ZCTAs, you'd actually start losing data
+-- the package doesn't treat NAs the same as 0s, for good reasons.
+Depending on what you're doing with this data, you might want to first
+investigate the NAs and decide what to do with them -- remove them,
+convert them to zero, etc.
+
+Hope that helps.
+
+--Ezra
+
+
+At Sat, 1 Mar 2014 13:38:06 -0800, arilamstein wrote:
+> 
+> When I try to get median age of all ZCTAs I get a warning message that I don't understand:
+> 
+> acs.data = acs.fetch(geography=geo.make(zip.code = "*"), 
+>                      table.number = "B01002", 
+>                      col.names = "pretty", 
+>                      endyear = 2012, 
+>                      span = 5)
+> 
+> Warning message:
+> NAs introduced by coercion 
+> 
+> The resulting data.frame appears OK to me:
+> 
+> > head(acs.data)
+> ACS DATA: 
+>  2008 -- 2012 ;
+>   Estimates w/90% confidence intervals;
+>   for different intervals, see confint()
+>             Median Age by Sex: Median age -- Total: Median Age by Sex: Median age -- Male
+> ZCTA5 00601 36.4 +/- 0.5                            34.7 +/- 0.9                         
+> ZCTA5 00602 38 +/- 0.4                              37.2 +/- 0.5                         
+> ZCTA5 00603 38.4 +/- 0.6                            36.7 +/- 0.7                         
+> ZCTA5 00606 36.8 +/- 2                              36.8 +/- 3.2                         
+> ZCTA5 00610 38.6 +/- 0.6                            36.1 +/- 0.8                         
+> ZCTA5 00612 38.1 +/- 0.6                            36.9 +/- 1.2                         
+>             Median Age by Sex: Median age -- Female
+> ZCTA5 00601 37.7 +/- 1.5                           
+> ZCTA5 00602 38.7 +/- 0.6                           
+> ZCTA5 00603 40.1 +/- 0.6                           
+> ZCTA5 00606 36.8 +/- 2.9                           
+> ZCTA5 00610 40.5 +/- 0.5                           
+> ZCTA5 00612 39.2 +/- 1     
+> 
+> Can someone tell me what this warning means, and whether I need to be concerned about the
+> resulting data?
+> 
+> Thanks.
+> 
+> Ari
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From eglenn at MIT.EDU  Sun Mar  2 10:16:33 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Sun, 02 Mar 2014 10:16:33 -0500
+Subject: [acs-r] Warning message
+In-Reply-To: <CAEO2kuKejNJkUTdzpksuTB1Mc1ysck-40UWFo_BDNbmwp66BXQ@mail.gmail.com>
+References: <CAEO2kuKejNJkUTdzpksuTB1Mc1ysck-40UWFo_BDNbmwp66BXQ@mail.gmail.com>
+Message-ID: <86ha7ghbqm.wl%eglenn@mit.edu>
+
+
+There are sometimes when data is missing from the ACS for a particular
+geography and table -- I think when there were too few (or no)
+observations to report.  When this happens, the census API returns a
+special code, which the acs.R package converts to NA (a reasonable
+value for a missing values.)  
+
+The warning is simply R telling you that there you've applied some
+operations to NAs, which is something you might want a warning about.
+(When these missing values get manipulated -- e.g., when the script
+converts the NA margin of error into a standard deviation -- a
+division process -- you get NAs propagating.  This is perfectly
+appropriate, but the warning is helpful in R for other things, where
+you might be surprised -- e.g., 3+5+NA=NA, not 8.)  
+
+If you look at all the data you fetched (and hot just the "head"),
+you'll see a number of times this occurred -- actually, quite a few:
+
+> sum(is.na(estimate(acs.data)))
+[1] 1664
+> sum(is.na(standard.error(acs.data)))
+[1] 1671
+> 
+
+Taking one example -- ZCTA 60932 from your acs.data set -- you'll note
+that this is not simply an acs.R or Census API issue -- if you check
+FactFinder for this table and ZCTA, you will see that the fields are
+blank:
+
+<http://factfinder2.census.gov/bkmk/table/1.0/en/ACS/12_5YR/B01002/8600000US60932>
+
+As the notes there explain:
+
+   Explanation of Symbols:
+
+    An '**' entry in the margin of error column indicates that either
+    no sample observations or too few sample observations were
+    available to compute a standard error and thus the margin of
+    error. A statistical test is not appropriate.
+
+    An '-' entry in the estimate column indicates that either no
+    sample observations or too few sample observations were available
+    to compute an estimate, or a ratio of medians cannot be calculated
+    because one or both of the median estimates falls in the lowest
+    interval or upper interval of an open-ended distribution.
+
+(The "**" and "-" values are converted to NAs by acs.R.)
+
+My guess is that in your case you don't actually care that much about
+these NAs-- they are probably empty or tiny zip codes -- but if you
+next started to combine your ZCTAs, you'd actually start losing data
+-- the package doesn't treat NAs the same as 0s, for good reasons.
+Depending on what you're doing with this data, you might want to first
+investigate the NAs and decide what to do with them -- remove them,
+convert them to zero, etc.
+
+Hope that helps.
+
+--Ezra
+
+
+At Sat, 1 Mar 2014 13:38:06 -0800, arilamstein wrote:
+> 
+> When I try to get median age of all ZCTAs I get a warning message that I don't understand:
+> 
+> acs.data = acs.fetch(geography=geo.make(zip.code = "*"), 
+>                      table.number = "B01002", 
+>                      col.names = "pretty", 
+>                      endyear = 2012, 
+>                      span = 5)
+> 
+> Warning message:
+> NAs introduced by coercion 
+> 
+> The resulting data.frame appears OK to me:
+> 
+> > head(acs.data)
+> ACS DATA: 
+>  2008 -- 2012 ;
+>   Estimates w/90% confidence intervals;
+>   for different intervals, see confint()
+>             Median Age by Sex: Median age -- Total: Median Age by Sex: Median age -- Male
+> ZCTA5 00601 36.4 +/- 0.5                            34.7 +/- 0.9                         
+> ZCTA5 00602 38 +/- 0.4                              37.2 +/- 0.5                         
+> ZCTA5 00603 38.4 +/- 0.6                            36.7 +/- 0.7                         
+> ZCTA5 00606 36.8 +/- 2                              36.8 +/- 3.2                         
+> ZCTA5 00610 38.6 +/- 0.6                            36.1 +/- 0.8                         
+> ZCTA5 00612 38.1 +/- 0.6                            36.9 +/- 1.2                         
+>             Median Age by Sex: Median age -- Female
+> ZCTA5 00601 37.7 +/- 1.5                           
+> ZCTA5 00602 38.7 +/- 0.6                           
+> ZCTA5 00603 40.1 +/- 0.6                           
+> ZCTA5 00606 36.8 +/- 2.9                           
+> ZCTA5 00610 40.5 +/- 0.5                           
+> ZCTA5 00612 39.2 +/- 1     
+> 
+> Can someone tell me what this warning means, and whether I need to be concerned about the
+> resulting data?
+> 
+> Thanks.
+> 
+> Ari
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

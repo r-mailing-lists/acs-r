@@ -1,0 +1,94 @@
+From APatton at marincounty.org  Thu Aug  3 14:46:16 2017
+From: APatton at marincounty.org (Patton, Andrew)
+Date: Thu, 3 Aug 2017 18:46:16 +0000
+Subject: [acs-r] 2.1.1 Error Message
+Message-ID: <E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>
+
+Hi all,
+
+I just updated to 2.1.1 after some issues with earlier updates. I had several lengthy scripts that worked perfectly, but now there does not appear to be a connection that works.
+
+I removed the older package, installed 2.1.1, and acquired and activated a new key. The following code generates the attached error. When I run the code via the census api directly, it works fine.
+
+cali <- acs.fetch(endyear = 2014, geography = geo.make(state = 6), table.number = "B15001")
+Error in file(file, "rt") : cannot open the connection
+
+Thoughts on solutions? Am I just doing  something dumb somewhere? I'm on Windows.
+
+Thanks,
+
+Andrew
+
+Email Disclaimer: http://www.marincounty.org/main/disclaimers
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170803/615c60a5/attachment.html
+
+From eglenn at mit.edu  Thu Aug  3 15:04:23 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 03 Aug 2017 15:04:23 -0400
+Subject: [acs-r] 2.1.1 Error Message
+In-Reply-To: <E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>
+References: <E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>
+Message-ID: <861sosmq14.wl-eglenn@mit.edu>
+
+
+I just tested and this seems to work fine for me.  It may be that the
+API was just down for a little bit (it can sometimes drop out) -- can
+you try again to check?
+
+If it still fails, try it like this (with a blank key):
+
+> acs.fetch(key="", endyear = 2014, geography = geo.make(state = 6), table.number = "B15001")
+
+If that works, it may be that your key is bad.
+
+--Ezra
+
+On Thu, 03 Aug 2017 14:46:16 -0400, Patton, Andrew wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Hi all,
+> 
+> I just updated to 2.1.1 after some issues with earlier updates. I had several lengthy
+> scripts that worked perfectly, but now there does not appear to be a connection that
+> works.
+> 
+> I removed the older package, installed 2.1.1, and acquired and activated a new key. The
+> following code generates the attached error. When I run the code via the census api
+> directly, it works fine.
+> 
+> cali <- acs.fetch(endyear = 2014, geography = geo.make(state = 6), table.number =
+> "B15001")
+> 
+> Error in file(file, "rt") : cannot open the connection
+> 
+> Thoughts on solutions? Am I just doing  something dumb somewhere? I?m on Windows.
+> 
+> Thanks,
+> 
+> Andrew
+> 
+> Email Disclaimer: http://www.marincounty.org/main/disclaimers
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+

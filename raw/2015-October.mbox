@@ -1,0 +1,65 @@
+From beskelton at me.com  Mon Oct 12 14:34:56 2015
+From: beskelton at me.com (Bryan Skelton)
+Date: Mon, 12 Oct 2015 14:34:56 -0400
+Subject: [acs-r] access to specific table via ACS in R
+Message-ID: <7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>
+
+Question: I am trying to access a specific ACS table, S2401 to get income information.
+
+Please see error below when running the query.
+
+> library(choroplethr)
+> get_acs_data("S2401", "zip")
+Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+
+Is it possible this table is simply not yet available via the API?
+
+Thank you.
+Bryan
+
+From eglenn at mit.edu  Mon Oct 12 16:08:06 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 12 Oct 2015 16:08:06 -0400
+Subject: [acs-r] access to specific table via ACS in R
+In-Reply-To: <7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>
+References: <7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>
+Message-ID: <86612bx32x.wl%eglenn@mit.edu>
+
+
+As far as I know, the S2401 table is not provided through the API.  Is
+it something that perhaps can be derived from other tables?  For
+example, B24012 ("SEX BY OCCUPATION AND MEDIAN EARNINGS IN THE PAST 12
+MONTHS (IN 2013 INFLATION-ADJUSTED DOLLARS) FOR THE CIVILIAN EMPLOYED
+POPULATION 16 YEARS AND OVER"), which I believe is provided.
+
+
+At Mon, 12 Oct 2015 14:34:56 -0400, Bryan Skelton wrote:
+> 
+> Question: I am trying to access a specific ACS table, S2401 to get income information.
+> 
+> Please see error below when running the query.
+> 
+> > library(choroplethr)
+> > get_acs_data("S2401", "zip")
+> Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+> 
+> Is it possible this table is simply not yet available via the API?
+> 
+> Thank you.
+> Bryan
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

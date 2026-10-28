@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-08",
+  "messages": [
+    {
+      "id": "msg-13737c23dbab",
+      "message_id": "<CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>",
+      "from_name": "Chris Cambron",
+      "from_email_hash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+      "date": "2015-08-13T01:37:49Z",
+      "subject": "[acs-r] 2013 data release",
+      "subject_clean": "[acs-r] 2013 data release",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\nI'm wondering if there are any plans for 2013 data to be incorporated into\nthe acs package?\nThanks again for the package.  It's been tremendously helpful.\nBest,\nChris\n\n*Chris Cambron, MSW, MPP*\nDoctoral Student\nSocial Development Research Group\nSchool of Social Work   |  University of Washington\nccambron at uw.edu  |  www.sdrg.org\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150812/94e2bf77/attachment.htm",
+      "body_snippet": "Hi,\nI'm wondering if there are any plans for 2013 data to be incorporated into\nthe acs package?\nThanks again for the package.  It's been tremendously helpful.\nBest,\nChris\n\n*Chris Cambron, MSW, MPP*\nDo",
+      "thread_id": "thread-13737c23dbab",
+      "thread_depth": 0,
+      "month": "2015-08"
+    },
+    {
+      "id": "msg-1d0a660b1f48",
+      "message_id": "<86pp2lk5hn.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-08-17T20:46:44Z",
+      "subject": "[acs-r] 2013 data release",
+      "subject_clean": "[acs-r] 2013 data release",
+      "in_reply_to": "<CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>",
+      "references": [
+        "<CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks for your email, and for using the acs.R package.\n\nAt present, the package can actually fetch the 2013 5-year ACS data,\nwith two important caveats:\n\n(1) you must specify the table number or variable number directly --\n    you can't use keywords, since the current version of the package\n    lacks the correct lookup tables for 2013; and\n\n(2) the acs.fetch function will give you some warnings about how \"As\n    of the date of this version of the acs package Census API did not\n    provides data for selected endyear\" -- but you can safely ignore\n    that.\n\nSee below for a basic example.  (This said, I do want to release an\nupdated version soon that will include the lookup tables and avoid the\nwarnings.)\n\n--Ezra\n\n\n> acs.fetch(geography=geo.make(state=25, county=\"*\"), table.number=\"B01003\", endyear=2013)\nACS DATA: \n 2009 -- 2013 ;\n  Estimates w/90% confidence intervals;\n  for different intervals, see confint()\n                                 B01003_001   \nBarnstable County, Massachusetts 215449 +/- 0 \nBerkshire County, Massachusetts  130545 +/- 0 \nBristol County, Massachusetts    549870 +/- 0 \nDukes County, Massachusetts      16739 +/- 0  \nEssex County, Massachusetts      750808 +/- 0 \nFranklin County, Massachusetts   71408 +/- 0  \nHampden County, Massachusetts    465144 +/- 0 \nHampshire County, Massachusetts  159267 +/- 0 \nMiddlesex County, Massachusetts  1522533 +/- 0\nNantucket County, Massachusetts  10224 +/- 0  \nNorfolk County, Massachusetts    677296 +/- 0 \nPlymouth County, Massachusetts   497386 +/- 0 \nSuffolk County, Massachusetts    735701 +/- 0 \nWorcester County, Massachusetts  802688 +/- 0 \nWarning messages:\n1: In acs.fetch(geography = geo.make(state = 25, county = \"*\"), table.number = \"B01003\",  :\n  As of the date of this version of the acs package\n  Census API did not provides data for selected endyear\n2: In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :\n  As of the date of this version of the acs package\n  Census API did not provides data for selected endyear\n\nAt Wed, 12 Aug 2015 18:37:49 -0700, Chris Cambron wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi,\n> I'm wondering if there are any plans for 2013 data to be incorporated into the acs\n> package?\n> Thanks again for the package.  It's been tremendously helpful.\n> Best,\n> Chris\n> \n> Chris Cambron, MSW, MPP\n> Doctoral Student\n> Social Development Research Group\n> School of Social Work   |  University of Washington\n> ccambron at uw.edu  |  www.sdrg.org\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks for your email, and for using the acs.R package.\n\nAt present, the package can actually fetch the 2013 5-year ACS data,\nwith two important caveats:\n\n(1) you must specify the table number or vari",
+      "thread_id": "thread-13737c23dbab",
+      "thread_depth": 1,
+      "month": "2015-08"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-13737c23dbab",
+      "subject": "[acs-r] 2013 data release",
+      "message_count": 2,
+      "participants": [
+        "Chris Cambron",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2015-08-13T01:37:49Z",
+      "last_reply": "2015-08-17T20:46:44Z",
+      "root_message_id": "msg-13737c23dbab"
+    }
+  ]
+}

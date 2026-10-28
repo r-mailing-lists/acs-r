@@ -1,0 +1,539 @@
+[
+  {
+    "name": "Ezra Haber Glenn",
+    "slug": "ezra-haber-glenn",
+    "emailHash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+    "messageCount": 65,
+    "firstDate": "2014-10-14T15:07:00Z",
+    "lastDate": "2019-02-20T13:39:30Z",
+    "yearlyActivity": {
+      "2014": 4,
+      "2015": 11,
+      "2016": 17,
+      "2017": 20,
+      "2018": 11,
+      "2019": 2
+    }
+  },
+  {
+    "name": "arilamstein@gmail.com",
+    "slug": "arilamstein-gmail-com",
+    "emailHash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+    "messageCount": 26,
+    "firstDate": "2014-02-02T03:13:04Z",
+    "lastDate": "2018-11-02T18:33:41Z",
+    "yearlyActivity": {
+      "2014": 7,
+      "2015": 8,
+      "2016": 6,
+      "2017": 1,
+      "2018": 4
+    }
+  },
+  {
+    "name": "Ezra Haber Glenn",
+    "slug": "ezra-haber-glenn",
+    "emailHash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+    "messageCount": 25,
+    "firstDate": "2013-04-24T15:38:50Z",
+    "lastDate": "2014-04-14T16:47:38Z",
+    "yearlyActivity": {
+      "2013": 15,
+      "2014": 10
+    }
+  },
+  {
+    "name": "M. Edward (Ed) Borasky",
+    "slug": "m-edward-ed-borasky",
+    "emailHash": "1547f068602ee73a0f995763f6fbb1218dfdbe2d5a68ecf58b3a0315090e437f",
+    "messageCount": 10,
+    "firstDate": "2013-08-30T05:41:21Z",
+    "lastDate": "2016-12-08T21:04:03Z",
+    "yearlyActivity": {
+      "2013": 5,
+      "2014": 4,
+      "2016": 1
+    }
+  },
+  {
+    "name": "Laviolette, Michael",
+    "slug": "laviolette-michael",
+    "emailHash": "0f1ad25c81a22d86c9e93f1a21c80c1045274e5015d59ff2df4afad9df1ab914",
+    "messageCount": 7,
+    "firstDate": "2017-07-13T18:52:47Z",
+    "lastDate": "2019-08-06T18:28:14Z",
+    "yearlyActivity": {
+      "2017": 4,
+      "2019": 3
+    }
+  },
+  {
+    "name": "Chris Cambron",
+    "slug": "chris-cambron",
+    "emailHash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+    "messageCount": 7,
+    "firstDate": "2015-07-01T00:12:51Z",
+    "lastDate": "2016-11-11T01:47:00Z",
+    "yearlyActivity": {
+      "2015": 4,
+      "2016": 3
+    }
+  },
+  {
+    "name": "Corrales, Mark",
+    "slug": "corrales-mark",
+    "emailHash": "8700eff86e7f04de11c84d4cc4e4b5d19f986bc16a770eb98de57d01192a9f8a",
+    "messageCount": 5,
+    "firstDate": "2013-09-03T15:18:49Z",
+    "lastDate": "2016-10-27T16:26:53Z",
+    "yearlyActivity": {
+      "2013": 1,
+      "2015": 3,
+      "2016": 1
+    }
+  },
+  {
+    "name": "Mark White",
+    "slug": "mark-white",
+    "emailHash": "00a352ce1171dbd7a1dd0d07fde3f816618a3f00b594bece481ebb4e5d08879b",
+    "messageCount": 4,
+    "firstDate": "2017-09-14T23:08:34Z",
+    "lastDate": "2017-10-27T16:19:02Z",
+    "yearlyActivity": {
+      "2017": 4
+    }
+  },
+  {
+    "name": "Sara Hintze",
+    "slug": "sara-hintze",
+    "emailHash": "10e65898906e356edecfc0132689c535fc7b38aa7ba9cb5eb6f1f391d2102a8c",
+    "messageCount": 4,
+    "firstDate": "2017-07-13T16:33:39Z",
+    "lastDate": "2018-08-02T20:52:38Z",
+    "yearlyActivity": {
+      "2017": 3,
+      "2018": 1
+    }
+  },
+  {
+    "name": "Tiernan Martin",
+    "slug": "tiernan-martin",
+    "emailHash": "562f97894f3e8e0eb989bbf9cd7f7cf862fdc7165e398f306ae324521f406dc6",
+    "messageCount": 4,
+    "firstDate": "2016-01-12T18:47:20Z",
+    "lastDate": "2016-10-25T23:26:15Z",
+    "yearlyActivity": {
+      "2016": 4
+    }
+  },
+  {
+    "name": "john doe",
+    "slug": "john-doe",
+    "emailHash": "68e622fc4a15ec7a54e07e775d882e2bca26e42ce17692fab7290a54699bca6f",
+    "messageCount": 4,
+    "firstDate": "2013-07-05T23:32:43Z",
+    "lastDate": "2013-12-30T02:26:30Z",
+    "yearlyActivity": {
+      "2013": 4
+    }
+  },
+  {
+    "name": "Elizabeth Tighe",
+    "slug": "elizabeth-tighe",
+    "emailHash": "18ab83c1d72104ef472eb8b21d430b2aa10b69c9e20b926e23c1fe45b6e704ce",
+    "messageCount": 3,
+    "firstDate": "2017-01-27T22:09:20Z",
+    "lastDate": "2019-08-06T18:53:24Z",
+    "yearlyActivity": {
+      "2017": 1,
+      "2019": 2
+    }
+  },
+  {
+    "name": "Daniel Chen",
+    "slug": "daniel-chen",
+    "emailHash": "cb9a2bae7b6494fa3f862339c3429b0f441db4cb1915ab0992c574beed1d7fd0",
+    "messageCount": 3,
+    "firstDate": "2017-09-19T20:16:45Z",
+    "lastDate": "2017-09-20T17:25:13Z",
+    "yearlyActivity": {
+      "2017": 3
+    }
+  },
+  {
+    "name": "Brandon Taylor",
+    "slug": "brandon-taylor",
+    "emailHash": "d550fd8a9025a34a94c181bbc5f8f3f1aeb404296a9ea38ae3a7fd8aacf1c9a7",
+    "messageCount": 3,
+    "firstDate": "2021-03-29T15:06:58Z",
+    "lastDate": "2021-04-05T15:25:53Z",
+    "yearlyActivity": {
+      "2021": 3
+    }
+  },
+  {
+    "name": "Jon Zadra",
+    "slug": "jon-zadra",
+    "emailHash": "d8401be2a89bf70d6c6b05ccb995d3a8ccd5cedb074f5d6f1080a106b0f1e7e6",
+    "messageCount": 3,
+    "firstDate": "2018-04-08T16:40:20Z",
+    "lastDate": "2019-01-03T22:38:42Z",
+    "yearlyActivity": {
+      "2018": 2,
+      "2019": 1
+    }
+  },
+  {
+    "name": "Nevin Krishna",
+    "slug": "nevin-krishna",
+    "emailHash": "fb7fd7cbb1e347492a3c3c3e644914dd87bec92c547cd59b4053f5d9447d44b7",
+    "messageCount": 3,
+    "firstDate": "2014-10-14T01:27:10Z",
+    "lastDate": "2014-10-17T17:00:32Z",
+    "yearlyActivity": {
+      "2014": 3
+    }
+  },
+  {
+    "name": "Holt, Dennis",
+    "slug": "holt-dennis",
+    "emailHash": "4ae59aed0e3e89c558d2c96cdc751fe7b69561638f64068c0ae78c406177b9ec",
+    "messageCount": 2,
+    "firstDate": "2016-08-15T17:08:46Z",
+    "lastDate": "2016-08-15T18:15:11Z",
+    "yearlyActivity": {
+      "2016": 2
+    }
+  },
+  {
+    "name": "Jonah Newman",
+    "slug": "jonah-newman",
+    "emailHash": "4b6de00a1c2fa2dfe163031a9464f2349576f4edcaae097d3c5e818087583593",
+    "messageCount": 2,
+    "firstDate": "2016-04-18T21:29:31Z",
+    "lastDate": "2017-04-06T21:53:36Z",
+    "yearlyActivity": {
+      "2016": 1,
+      "2017": 1
+    }
+  },
+  {
+    "name": "Harald Kliems",
+    "slug": "harald-kliems",
+    "emailHash": "5b0e3b833cbd9e8004a1cb377f6e7b40ff06667a50adb24ca2355c508d5220a9",
+    "messageCount": 2,
+    "firstDate": "2018-04-15T19:19:18Z",
+    "lastDate": "2018-04-17T12:39:09Z",
+    "yearlyActivity": {
+      "2018": 2
+    }
+  },
+  {
+    "name": "Leo Barlach",
+    "slug": "leo-barlach",
+    "emailHash": "b2db66b0ad69b00ef6d2af49e40add630c33ca93e86bf10c737580d416e9845e",
+    "messageCount": 2,
+    "firstDate": "2018-11-02T16:38:41Z",
+    "lastDate": "2018-11-02T19:53:09Z",
+    "yearlyActivity": {
+      "2018": 2
+    }
+  },
+  {
+    "name": "Jacobs, Tim W",
+    "slug": "jacobs-tim-w",
+    "emailHash": "e1e68e3f83e6621e4db5bf69e349ca99af1593699dcd12ec4a6fdd2e1ca345ca",
+    "messageCount": 2,
+    "firstDate": "2014-02-17T22:26:03Z",
+    "lastDate": "2014-02-18T15:05:59Z",
+    "yearlyActivity": {
+      "2014": 2
+    }
+  },
+  {
+    "name": "Stoney Vintson",
+    "slug": "stoney-vintson",
+    "emailHash": "072b49fc2d8f152d462e2de457916170fc8b9479759e5000370075c86ce8034a",
+    "messageCount": 1,
+    "firstDate": "2017-05-05T03:37:13Z",
+    "lastDate": "2017-05-05T03:37:13Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "Ganz, Carl",
+    "slug": "ganz-carl",
+    "emailHash": "180bb2a7138c630a7efb7fd07b3e17efc90ba315c7d5af18ead1dc96f818ce35",
+    "messageCount": 1,
+    "firstDate": "2016-04-19T00:43:28Z",
+    "lastDate": "2016-04-19T00:43:28Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Patton, Andrew",
+    "slug": "patton-andrew",
+    "emailHash": "1f73e19c2e78b21fadf9ed87015b7bb4adeec2f5aca9284cbd2bd35ee3cbd369",
+    "messageCount": 1,
+    "firstDate": "2017-08-03T18:46:16Z",
+    "lastDate": "2017-08-03T18:46:16Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "BigLakeData LLC",
+    "slug": "biglakedata-llc",
+    "emailHash": "229305fd7cd9ede57113f893be2be876d6e864d01e18dc54a20cc74561111aa1",
+    "messageCount": 1,
+    "firstDate": "2015-03-13T15:46:28Z",
+    "lastDate": "2015-03-13T15:46:28Z",
+    "yearlyActivity": {
+      "2015": 1
+    }
+  },
+  {
+    "name": "Brian Bowling",
+    "slug": "brian-bowling",
+    "emailHash": "2b936123e9cd2b16046fce6456ef0abb7aeee9432acb60b1b6b211cb3096d7ad",
+    "messageCount": 1,
+    "firstDate": "2013-09-19T19:11:17Z",
+    "lastDate": "2013-09-19T19:11:17Z",
+    "yearlyActivity": {
+      "2013": 1
+    }
+  },
+  {
+    "name": "Pamela Dalal",
+    "slug": "pamela-dalal",
+    "emailHash": "31a6552f1b3ecafc2eadd1ed519233fb253cc8bdf4b55535dc4df89f1a435c1e",
+    "messageCount": 1,
+    "firstDate": "2013-11-06T01:25:06Z",
+    "lastDate": "2013-11-06T01:25:06Z",
+    "yearlyActivity": {
+      "2013": 1
+    }
+  },
+  {
+    "name": "John David Smith",
+    "slug": "john-david-smith",
+    "emailHash": "38d8ea80e978fb959569a289649150bbadb6a25192ee98f2d88c409f6eeb27b6",
+    "messageCount": 1,
+    "firstDate": "2016-03-15T17:48:23Z",
+    "lastDate": "2016-03-15T17:48:23Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Peter Schmiedeskamp",
+    "slug": "peter-schmiedeskamp",
+    "emailHash": "395bdcae5391dd34afd0785db67c914d38b6ceb7319da85df2cf76dc2047d8cd",
+    "messageCount": 1,
+    "firstDate": "2013-08-12T17:10:41Z",
+    "lastDate": "2013-08-12T17:10:41Z",
+    "yearlyActivity": {
+      "2013": 1
+    }
+  },
+  {
+    "name": "Curtis, Jacob",
+    "slug": "curtis-jacob",
+    "emailHash": "3d61dede2427864549606d6559b07063790abe055a792189960ac45efbab00e0",
+    "messageCount": 1,
+    "firstDate": "2016-11-10T23:19:12Z",
+    "lastDate": "2016-11-10T23:19:12Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Peter Cowan",
+    "slug": "peter-cowan",
+    "emailHash": "4b166531fb5de7387543aad1ea9ea4759f3242c2c6b933facd117f75522efad1",
+    "messageCount": 1,
+    "firstDate": "2013-06-01T17:45:21Z",
+    "lastDate": "2013-06-01T17:45:21Z",
+    "yearlyActivity": {
+      "2013": 1
+    }
+  },
+  {
+    "name": "Jacob Coblentz",
+    "slug": "jacob-coblentz",
+    "emailHash": "4ca4d96909fa143949d5055b95b0b5259a4bb49c55a958704b26e479fd1f7313",
+    "messageCount": 1,
+    "firstDate": "2018-03-01T14:01:35Z",
+    "lastDate": "2018-03-01T14:01:35Z",
+    "yearlyActivity": {
+      "2018": 1
+    }
+  },
+  {
+    "name": "Tyler Frazier",
+    "slug": "tyler-frazier",
+    "emailHash": "6c8f4869540a931ebfbe4f215b29ed9e67b3e71868515fadc470a358d6454845",
+    "messageCount": 1,
+    "firstDate": "2015-03-10T16:36:07Z",
+    "lastDate": "2015-03-10T16:36:07Z",
+    "yearlyActivity": {
+      "2015": 1
+    }
+  },
+  {
+    "name": "Camille Seaberry",
+    "slug": "camille-seaberry",
+    "emailHash": "80fdd129769d6fb6b3f0c8e3fa806d0038db64a14aaaec3957bb65b298fc9c52",
+    "messageCount": 1,
+    "firstDate": "2016-12-10T16:28:35Z",
+    "lastDate": "2016-12-10T16:28:35Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Diego Grant",
+    "slug": "diego-grant",
+    "emailHash": "839de5bc13808a1b4abec6aefebae72cbab00809ef66c07e5e5006a8a6758948",
+    "messageCount": 1,
+    "firstDate": "2016-08-29T18:01:06Z",
+    "lastDate": "2016-08-29T18:01:06Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Dennis.Holt@dhhs.state.nh.us",
+    "slug": "dennis-holt-dhhs-state-nh-us",
+    "emailHash": "8401949b8923692b150114a038b8f71723953973e4e6d3fb1a055c6968fedc35",
+    "messageCount": 1,
+    "firstDate": "2016-03-16T16:16:51Z",
+    "lastDate": "2016-03-16T16:16:51Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Jianchao Yang",
+    "slug": "jianchao-yang",
+    "emailHash": "841ae03477b20758a8910e850b4df5be6b8c07ab487e62189f77b7b6a43a3911",
+    "messageCount": 1,
+    "firstDate": "2017-02-17T06:42:52Z",
+    "lastDate": "2017-02-17T06:42:52Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "Williams, Michael",
+    "slug": "williams-michael",
+    "emailHash": "8a1b6dc63bb477d8b40365b37aada9b59d43ee4c55a3f486e02090aa92432f20",
+    "messageCount": 1,
+    "firstDate": "2016-04-19T13:16:53Z",
+    "lastDate": "2016-04-19T13:16:53Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Ricardo Ramirez",
+    "slug": "ricardo-ramirez",
+    "emailHash": "a6de71d17fcd09dc286ff6bcc9e51753e8cc7762414199fca3722c8256be2a84",
+    "messageCount": 1,
+    "firstDate": "2018-03-03T00:23:43Z",
+    "lastDate": "2018-03-03T00:23:43Z",
+    "yearlyActivity": {
+      "2018": 1
+    }
+  },
+  {
+    "name": "Meagan Pharis",
+    "slug": "meagan-pharis",
+    "emailHash": "a94594067e0f10ebe629af971b23029eb0c9a70ddf887ff3c433f1dd25b97b45",
+    "messageCount": 1,
+    "firstDate": "2017-10-04T18:55:25Z",
+    "lastDate": "2017-10-04T18:55:25Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "Kate Kelsey",
+    "slug": "kate-kelsey",
+    "emailHash": "cb0effadf8152aa08be362477f277f578d43a694fb84534a996c2212add040d1",
+    "messageCount": 1,
+    "firstDate": "2016-01-12T17:01:52Z",
+    "lastDate": "2016-01-12T17:01:52Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Carl Ganz",
+    "slug": "carl-ganz",
+    "emailHash": "cee81967f489de1934282dbc83fe70439e0adaca5c444e20b6e6324a5e937f56",
+    "messageCount": 1,
+    "firstDate": "2017-09-20T17:31:32Z",
+    "lastDate": "2017-09-20T17:31:32Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "Campbell, Ron (NBCUniversal)",
+    "slug": "campbell-ron-nbcuniversal",
+    "emailHash": "d3e1d1540703834e76e453302b3167ce813fd4c2f4661d2856e0e5fa15a2de12",
+    "messageCount": 1,
+    "firstDate": "2017-03-21T23:04:26Z",
+    "lastDate": "2017-03-21T23:04:26Z",
+    "yearlyActivity": {
+      "2017": 1
+    }
+  },
+  {
+    "name": "Tom Schenk Jr",
+    "slug": "tom-schenk-jr",
+    "emailHash": "e600f44400c2843bcb79160bc7ad28ed24d695d13a4db996749a3d87e6204f06",
+    "messageCount": 1,
+    "firstDate": "2018-08-08T19:50:25Z",
+    "lastDate": "2018-08-08T19:50:25Z",
+    "yearlyActivity": {
+      "2018": 1
+    }
+  },
+  {
+    "name": "Frank Lenk",
+    "slug": "frank-lenk",
+    "emailHash": "ea6e455712065e9ae27d81c819f6adcd25956a7bb92195bd0672be0e18a69621",
+    "messageCount": 1,
+    "firstDate": "2016-11-11T15:35:07Z",
+    "lastDate": "2016-11-11T15:35:07Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Tim Kiely",
+    "slug": "tim-kiely",
+    "emailHash": "ee05955a383ae36c08bd0be322f0784deee73f11e5d4d809b49356e3d6811c80",
+    "messageCount": 1,
+    "firstDate": "2016-05-05T20:25:08Z",
+    "lastDate": "2016-05-05T20:25:08Z",
+    "yearlyActivity": {
+      "2016": 1
+    }
+  },
+  {
+    "name": "Bryan Skelton",
+    "slug": "bryan-skelton",
+    "emailHash": "f2d627d121a35095ce867cbdeb7d8a907233078a1bd749ca84b3f2dfc62fa82a",
+    "messageCount": 1,
+    "firstDate": "2015-10-12T18:34:56Z",
+    "lastDate": "2015-10-12T18:34:56Z",
+    "yearlyActivity": {
+      "2015": 1
+    }
+  }
+]

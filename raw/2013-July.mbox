@@ -1,0 +1,383 @@
+From eglenn at MIT.EDU  Wed Jul  3 13:49:41 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Wed, 03 Jul 2013 13:49:41 -0400
+Subject: [acs-r]  Difficulty with worked example on blog
+Message-ID: <87hagbfs96.wl%eglenn@mit.edu>
+
+
+Peter:
+
+Sorry for the delay in replying -- this is a new list and I think the
+moderation settings were messed up.
+
+As far as I can tell, this seems to be a problem with your API key.
+Can you check your key again, run a fresh:
+
+> api.key.install(key="YOURKEYHERE")
+
+and let me know if it works?
+
+When I try it, I get the following:
+
+=================
+
+> my.tract=geo.make(state="MA", county="Middlesex",  tract=387201, block.group="*", check=T)
+Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County, Massachusetts .... OK.
+> total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+
+total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+> total.pop
+ACS DATA: 
+ 2007 -- 2011 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                                                     B01003_001  
+Block Group 1, Census Tract 3872.01, Middlesex County, Massachusetts 2681 +/- 319
+Block Group 2, Census Tract 3872.01, Middlesex County, Massachusetts 952 +/- 213 
+Block Group 3, Census Tract 3872.01, Middlesex County, Massachusetts 1010 +/- 156
+Block Group 4, Census Tract 3872.01, Middlesex County, Massachusetts 938 +/- 214 
+> 
+
+==================
+
+On Sat Jun 1 13:45:21 EDT 2013 Peter Cowan cowan.pd at gmail.com wrote:
+
+> I'm trying to work the example at:
+> 
+> http://eglenn.scripts.mit.edu/citystate/2013/03/acs-r-a-worked-example-using-blockgroup-level-data/
+>
+> There appears to be a problem with the acs.fetch function for me. I have
+> previously saved an API key file.
+>
+> > my.tract=geo.make(state="MA", county="Middlesex",
+> +   tract=387201, block.group="*", check=T)
+> Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County,
+> Massachusetts .... Error in seq.default(1, (length(in.data) - geo.length),
+> 2) :
+>   wrong sign in 'by' argument
+> > my.tract=geo.make(state="MA", county="Middlesex",
+> +   tract=387201, block.group="*")
+> > total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+> Error in seq.default(1, (length(in.data) - geo.length), 2) :
+>   wrong sign in 'by' argument
+>
+>  Thanks
+>
+> Peter
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From eglenn at MIT.EDU  Wed Jul  3 13:57:41 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Wed, 03 Jul 2013 13:57:41 -0400
+Subject: [acs-r] Difficulty with worked example on blog
+In-Reply-To: <87hagbfs96.wl%eglenn@mit.edu>
+References: <87hagbfs96.wl%eglenn@mit.edu>
+Message-ID: <87fvvvfrvu.wl%eglenn@mit.edu>
+
+
+One other thing to check: can you confirm that you are using the most
+recent version of the acs.R package -- currently version 1.0, which is
+now available directly from CRAN?  (See
+http://eglenn.scripts.mit.edu/citystate/2013/06/now-on-cran-acs-r-version-1-0/
+for more info.).
+
+--Ezra
+
+At Wed, 3 Jul 2013 13:49:41 -0400, Ezra Haber Glenn wrote:
+> 
+> 
+> Peter:
+> 
+> Sorry for the delay in replying -- this is a new list and I think the
+> moderation settings were messed up.
+> 
+> As far as I can tell, this seems to be a problem with your API key.
+> Can you check your key again, run a fresh:
+> 
+> > api.key.install(key="YOURKEYHERE")
+> 
+> and let me know if it works?
+> 
+> When I try it, I get the following:
+> 
+> =================
+> 
+> > my.tract=geo.make(state="MA", county="Middlesex",  tract=387201, block.group="*", check=T)
+> Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County, Massachusetts .... OK.
+> > total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+> 
+> total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+> > total.pop
+> ACS DATA: 
+>  2007 -- 2011 ;
+>   Estimates w/90% confidence intervals;
+>   for different intervals, see confint()
+>                                                                      B01003_001  
+> Block Group 1, Census Tract 3872.01, Middlesex County, Massachusetts 2681 +/- 319
+> Block Group 2, Census Tract 3872.01, Middlesex County, Massachusetts 952 +/- 213 
+> Block Group 3, Census Tract 3872.01, Middlesex County, Massachusetts 1010 +/- 156
+> Block Group 4, Census Tract 3872.01, Middlesex County, Massachusetts 938 +/- 214 
+> > 
+> 
+> ==================
+> 
+> On Sat Jun 1 13:45:21 EDT 2013 Peter Cowan cowan.pd at gmail.com wrote:
+> 
+> > I'm trying to work the example at:
+> > 
+> > http://eglenn.scripts.mit.edu/citystate/2013/03/acs-r-a-worked-example-using-blockgroup-level-data/
+> >
+> > There appears to be a problem with the acs.fetch function for me. I have
+> > previously saved an API key file.
+> >
+> > > my.tract=geo.make(state="MA", county="Middlesex",
+> > +   tract=387201, block.group="*", check=T)
+> > Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County,
+> > Massachusetts .... Error in seq.default(1, (length(in.data) - geo.length),
+> > 2) :
+> >   wrong sign in 'by' argument
+> > > my.tract=geo.make(state="MA", county="Middlesex",
+> > +   tract=387201, block.group="*")
+> > > total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+> > Error in seq.default(1, (length(in.data) - geo.length), 2) :
+> >   wrong sign in 'by' argument
+> >
+> >  Thanks
+> >
+> > Peter
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From anon.r.user at gmail.com  Fri Jul  5 19:32:43 2013
+From: anon.r.user at gmail.com (Anon RUser)
+Date: Fri, 5 Jul 2013 16:32:43 -0700
+Subject: [acs-r] Best way to visualize ACS data?
+Message-ID: <CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>
+
+Hello,
+
+I was very excited to learn about the R ACS package and think that it can
+be extremely useful for me.  I would like to create visualizations of
+demographic data.   For example, on Ezra's blog he explains how to get all
+census tract population data for Middlesex county:
+
+> my.tracts=geo.make(state="MA", county="Middlesex", tract="*")
+> acs.fetch(geography=my.tracts, table.number="B01003")
+
+I have two questions:
+
+1.  I would like to turn this data into a choropleth, but don't know how.
+I have created choropleths using ggplot2 as described in the R Graphics
+Cookbook (
+http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956).
+There they call ggplot2's "map_data()" function.  But while map_data can
+accept "usa" or "county", I don't think that it supports census tracts, so
+I don't know how to create a choropleth of this data.
+
+2.  How does table.number correspond to ACS question number?  I found what
+appears to be a complete list of ACS questions here:
+http://www.census.gov/acs/www/about_the_survey/questions_and_why_we_ask/
+
+How do these questions map to the table.number parameter?  For example, I
+would like to make a choropleth showing the ratio of people in Middlesex
+county who speak a language other than English at home (ie "% of people
+answering 'yes' to question 14(a)").  I don't know how to translate this to
+a table.number.
+
+Thank you very much!
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/mailman/private/acs-r/attachments/20130705/b51d37e7/attachment.htm
+
+From eglenn at MIT.EDU  Sun Jul 14 16:30:08 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Sun, 14 Jul 2013 16:30:08 -0400
+Subject: [acs-r] acs.R: version 1.1 now available
+Message-ID: <87k3ksq3zj.wl%eglenn@mit.edu>
+
+
+Dear acs-R Users:
+
+Development continues on the acs package for R, with the latest update
+(version 1.1) now officially available on the CRAN repository at
+<http://cran.r-project.org/web/packages/acs/index.html>. If you've
+already installed the package in the past, you can easily update with
+the update.packages() command; if you've never installed it, you can
+just as easily install it for the first time, by simply typing
+install.packages("acs"). In either case, be sure to load the library
+after installing by typing library(acs), and install (or re-install)
+an API key with api.key.install() ? see the documentation and the
+latest version of the acs user guide
+(<http://eglenn.scripts.mit.edu/citystate/wp-content/uploads/2013/07/wpid-working_with_acs_R1.pdf>,
+which still references version 1.0, but is otherwise fine for this
+version).
+
+Beyond improvements described on CityState about version 1.0
+(<http://eglenn.scripts.mit.edu/citystate/2013/06/now-on-cran-acs-r-version-1-0/>),
+the most significant change in the latest version is support for many
+more different combinations of census geography via the geo.make
+function. As described in the manual and on-line help, users can now
+specify options to create user-defined geographies composed of
+combinations of states, counties, county subdivisions, tracts, places,
+blockgroups (all available in the previous version), plus many more:
+public use microdata areas (PUMAs), metropolitan statistical areas
+(MSAs), combined statistical areas (CSAs), zip code tabulation areas,
+census regions and divisions, congressional district and state
+legislative districts (both upper and lower chambers), American Indian
+Areas, state school districts (of various types), New England County
+and Town Areas (NECTAs), and census urban areas. These geographies can
+be combined to create 25 different census summary levels, which can
+then even be bundled together to make even more complex geo.sets.
+
+Once created and saved, these new user-defined geo.sets can be fed
+into the existing acs.fetch function to immediately download data from
+the ACS for these areas, combining them as desired in the process (and
+handling all those pesky estimates and margins of error in
+statistically-appropriate ways.)
+
+We encourage you to update to the latest version and begin to explore
+the full power of the census data now available through the Census
+American Community Survey API.
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at MIT.EDU  Mon Jul 15 17:08:40 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 15 Jul 2013 17:08:40 -0400
+Subject: [acs-r] Best way to visualize ACS data?
+In-Reply-To: <CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>
+References: <CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>
+Message-ID: <878v17zg2v.wl%eglenn@mit.edu>
+
+
+Dear Anon RUser:
+
+Thanks for your question -- answers below.
+
+1) Concerning the use of the package to create choropleth maps, this
+   is really more of a question for the ggplot2/maps packages than for
+   the acs package.  As for tract-level data in particular, any data
+   you download via acs.fetch() -- including the tract data from that
+   example -- should be able to be fed into the these mapping
+   functions, but I don't believe that they currently support mapping
+   of tract boundaries at this point.
+
+   From what I can tell, the maps package and the map_data() function
+   do include support for county level maps in the US, so you could
+   definitely try that.  I've just added an example of this on the
+   CityState blog -- see
+   <http://eglenn.scripts.mit.edu/citystate/2013/07/using-acs-r-to-create-chorpleth-maps/>
+   for more.
+
+2) As for how Census table numbers relate to the questions in the
+   surveys they use, this is a pretty complicated one, and there is no
+   easy answer.  Census tables do not simply tabulate
+   question-by-question answers, but instead tabulate results across
+   questions.  To help you find the tables you want, the acs package
+   does include a special "acs.lookup" helper function, which will
+   take text strings to search for in with table names or variable
+   keywords -- see ?acs.lookup for more.
+
+Thanks for the feedback and query, and I this helps.
+
+--Ezra
+
+At Fri, 5 Jul 2013 16:32:43 -0700, Anon RUser wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; ISO-8859-1 (7bit)>]
+> 
+> [1.2  <text/html; ISO-8859-1 (quoted-printable)>]
+> Hello,
+> 
+> I was very excited to learn about the R ACS package and think that
+> it can be extremely useful for me.  I would like to create
+> visualizations of demographic data.  For example, on Ezra's blog he
+> explains how to get all census tract population data for Middlesex
+> county:
+> 
+> > my.tracts=geo.make(state="MA", county="Middlesex", tract="*") 
+> > acs.fetch(geography=my.tracts, table.number="B01003")
+> 
+> I have two questions:
+> 
+> 1.  I would like to turn this data into a choropleth, but don't know
+> how.  I have created choropleths using ggplot2 as described in the R
+> Graphics Cookbook
+> (http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/
+> 1449316956).  There they call ggplot2's "map_data()" function.  But
+> while map_data can accept "usa" or "county", I don't think that it
+> supports census tracts, so I don't know how to create a choropleth
+> of this data.
+> 
+> 2.  How does table.number correspond to ACS question number?  I
+> found what appears to be a complete list of ACS questions here:
+> http://www.census.gov/acs/www/about_the_survey/questions_and_why_we_ask/
+> 
+> How do these questions map to the table.number parameter?  For
+> example, I would like to make a choropleth showing the ratio of
+> people in Middlesex county who speak a language other than English
+> at home (ie "% of people answering 'yes' to question 14(a)").  I
+> don't know how to translate this to a table.number.
+> 
+> Thank you very much!
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

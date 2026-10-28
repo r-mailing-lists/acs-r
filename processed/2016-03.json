@@ -1,0 +1,210 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-03",
+  "messages": [
+    {
+      "id": "msg-bd8befad675d",
+      "message_id": "<86pov7egsf.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-03-06T16:02:08Z",
+      "subject": "[acs-r] acs version 1.3: test-drive it now",
+      "subject_clean": "[acs-r] acs version 1.3: test-drive it now",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs.R users:\n\nAfter far too long, we are nearing completion of version 1.3 of the\nacs package. As a special benefit to our loyal users and members of\nthe the acs.R mailing list (read: \"as a clever way to enlist some help\nto test-drive this thing before releasing on CRAN...\"), we are making\navailable a special sneak-peak, pre-release version for you to install\nand try out. \n\nThe biggest improvement is full support for all ACS, SF1, and SF3 data\ncurrently available via the Census API, including ACS data from\n2005-2014 and Decennial data from 1990, 2000, and 2010, but there are\nother small changes as well.\n\nFor the full story, and to learn how to get it now before it is\navailable on CRAN, see\n<http://eglenn.scripts.mit.edu/citystate/2016/03/acs-version-1-3-test-drive-it-now/>.\n\nThanks for using the acs package and helping spread the gospel of R!\n\n--Ezra\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs.R users:\n\nAfter far too long, we are nearing completion of version 1.3 of the\nacs package. As a special benefit to our loyal users and members of\nthe the acs.R mailing list (read: \"as a cleve",
+      "thread_id": "thread-bd8befad675d",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-c507380bacac",
+      "message_id": "<8E20894D-BEAD-44F9-AC05-CDE5DD789287@learningalliances.net>",
+      "from_name": "John David Smith",
+      "from_email_hash": "38d8ea80e978fb959569a289649150bbadb6a25192ee98f2d88c409f6eeb27b6",
+      "date": "2016-03-15T17:48:23Z",
+      "subject": "[acs-r] Getting at \"Table Universe\"",
+      "subject_clean": "[acs-r] Getting at \"Table Universe\"",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi everybody!\n\nI?ve been completely delighted to find the acs package and the treasure trove of data it opens up.  (So far, in my experience, it opens more questions than anything else, but so it goes?)\n\nHowever, I don?t see the acs.fetch function as returning any information about ?Table Universe?. This page contains a crucial bit of information for interpreting the counts in the table:  http://censusreporter.org/tables/B09010/ <http://censusreporter.org/tables/B09010/> My question: is there any way, apart from screen scraping this website, that I could access the fact that table B09010 contains counts of the ?Population Under 18 Years in Households??\n\nJohn\n____________________\n* John David Smith ~ Voice: 503.963.8229 ~ Skype & Twitter: smithjd http://gplus.to/smithjd\n* Portland, Oregon, USA http://www.learningAlliances.net\n* ?We could almost say that being willing to be a fool is one of the first wisdoms.\" -- Ch?gyam Trungpa, Rinpoche\n\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160315/1258d480/attachment.html",
+      "body_snippet": "Hi everybody!\n\nI?ve been completely delighted to find the acs package and the treasure trove of data it opens up.  (So far, in my experience, it opens more questions than anything else, but so it goes",
+      "thread_id": "thread-c507380bacac",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-64668a6aff69",
+      "message_id": "<OF436DCA21.58FA0BD1-ON85257F78.0058F013-85257F78.00596F4F@dhhs.state.nh.us>",
+      "from_name": "Dennis.Holt@dhhs.state.nh.us",
+      "from_email_hash": "8401949b8923692b150114a038b8f71723953973e4e6d3fb1a055c6968fedc35",
+      "date": "2016-03-16T16:16:51Z",
+      "subject": "[acs-r] acs-r Digest, Vol 24, Issue 2",
+      "subject_clean": "[acs-r] acs-r Digest, Vol 24, Issue 2",
+      "in_reply_to": "<mailman.733.1458144315.8323.acs-r@mit.edu>",
+      "references": [
+        "<mailman.733.1458144315.8323.acs-r@mit.edu>"
+      ],
+      "body_plain": "John,\nYou can find the \"Universe\" for each table in the Sequence Number/Table\nNumber Lookup File\ndownload available in several formats for either the 1-year or 5-year\ntables.\nGet it at:\nhttps://www.census.gov/programs-surveys/acs/technical-documentation/summary-file-documentation.html\n\nDennis Holt\n\n\n\n\nFrom:\tacs-r-request at mit.edu\nTo:\tacs-r at mit.edu\nDate:\t03/16/2016 12:05 PM\nSubject:\tacs-r Digest, Vol 24, Issue 2\nSent by:\tacs-r-bounces at mit.edu\n\n\n\nSend acs-r mailing list submissions to\n\t\t acs-r at mit.edu\n\nTo subscribe or unsubscribe via the World Wide Web, visit\n\t\t http://mailman.mit.edu/mailman/listinfo/acs-r\nor, via email, send a message with subject or body 'help' to\n\t\t acs-r-request at mit.edu\n\nYou can reach the person managing the list at\n\t\t acs-r-owner at mit.edu\n\nWhen replying, please edit your Subject line so it is more specific\nthan \"Re: Contents of acs-r digest...\"\n\n\nToday's Topics:\n\n   1. Getting at \"Table Universe\" (John David Smith)\n\n\n----------------------------------------------------------------------\n\nMessage: 1\nDate: Tue, 15 Mar 2016 10:48:23 -0700\nFrom: John David Smith <john.smith at learningalliances.net>\nSubject: [acs-r] Getting at \"Table Universe\"\nTo: acs-r at mit.edu\nMessage-ID:\n\t\t <8E20894D-BEAD-44F9-AC05-CDE5DD789287 at learningalliances.net>\nContent-Type: text/plain; charset=\"utf-8\"\n\nHi everybody!\n\nI?ve been completely delighted to find the acs package and the treasure\ntrove of data it opens up.  (So far, in my experience, it opens more\nquestions than anything else, but so it goes?)\n\nHowever, I don?t see the acs.fetch function as returning any information\nabout ?Table Universe?. This page contains a crucial bit of information for\ninterpreting the counts in the table:\nhttp://censusreporter.org/tables/B09010/ <\nhttp://censusreporter.org/tables/B09010/> My question: is there any way,\napart from screen scraping this website, that I could access the fact that\ntable B09010 contains counts of the ?Population Under 18 Years in\nHouseholds??\n\nJohn\n____________________\n* John David Smith ~ Voice: 503.963.8229 ~ Skype & Twitter: smithjd\nhttp://gplus.to/smithjd\n* Portland, Oregon, USA http://www.learningAlliances.net\n* ?We could almost say that being willing to be a fool is one of the first\nwisdoms.\" -- Ch?gyam Trungpa, Rinpoche\n\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL:\nhttp://mailman.mit.edu/pipermail/acs-r/attachments/20160315/1258d480/attachment-0001.html\n\n\n------------------------------\n\n_______________________________________________\nacs-r mailing list\nacs-r at mit.edu\nhttp://mailman.mit.edu/mailman/listinfo/acs-r\n\n\nEnd of acs-r Digest, Vol 24, Issue 2\n************************************",
+      "body_snippet": "John,\nYou can find the \"Universe\" for each table in the Sequence Number/Table\nNumber Lookup File\ndownload available in several formats for either the 1-year or 5-year\ntables.\nGet it at:\nhttps://www.ce",
+      "thread_id": "thread-64668a6aff69",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-b092d00c51b5",
+      "message_id": "<86oaabhq1n.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-03-18T13:30:12Z",
+      "subject": "[acs-r] acs version 2.0: an R package to download and analyze data from the US Census",
+      "subject_clean": "[acs-r] acs version 2.0: an R package to download and analyze data from the US Census",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "We are pleased to announce the release of version 2.0 of the \"acs\"\npackage, now available on CRAN\n<http://cran.r-project.org/web/packages/acs/index.html>.\n\nThe package allows users to download, manipulate, analyze, and present\ndemographic data from the U.S. Census, with special tools and methods\nto simplify the tasks of working with estimates and standard errors\ncontained in data from the American Community Survey (ACS).  \n\nVersion 2.0 of the package provides full support for all ACS data\navailable through the Census API -- including the most recent 2014\ndata -- as well as Decennial Census Data from 1990, 2000, and 2010.\nUsers can work with existing census geographies (states, counties,\ntracts, block-groups, places, zip code areas, congressional districts,\nschool districts, etc.), or create and save their own custom\ngeographies with the package's \"geo.make()\" function.\n\nFor more information please visit:\n<http://eglenn.scripts.mit.edu/citystate/2016/03/acs-version-2-0-now-on-cran>,\nand the newly-updated \"Working with acs.R\" user guide at\n<http://dusp.mit.edu/sites/dusp.mit.edu/files/attachments/publications/working_with_acs_R_v_2.0.pdf>.\n\nSpecial thanks to package beta testers (Ari, Arin, Bethany, Emma,\nJohn, and Michael) and the entire acs-r community, as well as to Uwe\nand Kurt at CRAN for their infinite patience and continuing care and\nstewardship of the system.\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "We are pleased to announce the release of version 2.0 of the \"acs\"\npackage, now available on CRAN\n<http://cran.r-project.org/web/packages/acs/index.html>.\n\nThe package allows users to download, manipu",
+      "thread_id": "thread-b092d00c51b5",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-e80c69886868",
+      "message_id": "<86mvpkyetx.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-03-26T23:55:22Z",
+      "subject": "[acs-r] census API down",
+      "subject_clean": "[acs-r] census API down",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs users:\n\nJust a quick warning: for some reason, the census API seems to be down\ntoday, so you may be getting errors when you try to fetch data.  They\nlook like this:\n\nError in file(file, \"rt\") : cannot open the connection\nIn addition: Warning message:\nNo data found at:\n  http://api.census.gov/data/2014/acs5?... [with lots more stuff here]\n\nThe error has nothing to do with the acs package or R, but is a\ncensus-side problem.  To my knowledge, the API has been pretty\nreliable, so let's hope it's back up soon.  Sorry for any problems.\n\n--Ezra\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs users:\n\nJust a quick warning: for some reason, the census API seems to be down\ntoday, so you may be getting errors when you try to fetch data.  They\nlook like this:\n\nError in file(file, \"rt\")",
+      "thread_id": "thread-e80c69886868",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-1f2aafb05c35",
+      "message_id": "<86io07xvpu.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-03-28T01:00:29Z",
+      "subject": "[acs-r] census API down",
+      "subject_clean": "[acs-r] census API down",
+      "in_reply_to": "<86mvpkyetx.wl%eglenn@mit.edu>",
+      "references": [
+        "<86mvpkyetx.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Update: the API seems to be back up.  Sorry for the outage, and fetch\naway!\n\nAt Sat, 26 Mar 2016 19:55:22 -0400, Ezra Haber Glenn wrote:\n> \n> \n> Dear acs users:\n> \n> Just a quick warning: for some reason, the census API seems to be down\n> today, so you may be getting errors when you try to fetch data.  They\n> look like this:\n> \n> Error in file(file, \"rt\") : cannot open the connection\n> In addition: Warning message:\n> No data found at:\n>   http://api.census.gov/data/2014/acs5?... [with lots more stuff here]\n> \n> The error has nothing to do with the acs package or R, but is a\n> census-side problem.  To my knowledge, the API has been pretty\n> reliable, so let's hope it's back up soon.  Sorry for any problems.\n> \n> --Ezra\n> \n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu \n> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Update: the API seems to be back up.  Sorry for the outage, and fetch\naway!\n\nAt Sat, 26 Mar 2016 19:55:22 -0400, Ezra Haber Glenn wrote:\n> \n> \n> Dear acs users:\n> \n> Just a quick warning: for some rea",
+      "thread_id": "thread-e80c69886868",
+      "thread_depth": 1,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-d6cecd21d383",
+      "message_id": "<CAEo23y5=eJYawjF+uCiam68f16-Bh97HHs6LQCjMj40jRS9afA@mail.gmail.com>",
+      "from_name": "Tiernan Martin",
+      "from_email_hash": "562f97894f3e8e0eb989bbf9cd7f7cf862fdc7165e398f306ae324521f406dc6",
+      "date": "2016-03-30T16:46:49Z",
+      "subject": "[acs-r] Best Practices Question for the acs.R Package",
+      "subject_clean": "[acs-r] Best Practices Question for the acs.R Package",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi all ?\n\nI'm wondering if there is a recommended way to use the acr.R package to\ngather census data for a given city at a given scale of analysis.\n\nThe above phrasing may be a bit confusing, so here's a practical example:\nif I want to collect census tract data (doesn't matter which table at this\npoint) for the city of Seattle, *how can I use the acs.R package* to get a\nlist of all the census tracts within the city limits?\n\nThanks in advance for your help,\n\nTiernan Martin\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160330/734b4c41/attachment.html",
+      "body_snippet": "Hi all ?\n\nI'm wondering if there is a recommended way to use the acr.R package to\ngather census data for a given city at a given scale of analysis.\n\nThe above phrasing may be a bit confusing, so here'",
+      "thread_id": "thread-d6cecd21d383",
+      "thread_depth": 0,
+      "month": "2016-03"
+    },
+    {
+      "id": "msg-c5e4a267be47",
+      "message_id": "<86bn5vvqgw.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-03-30T17:13:35Z",
+      "subject": "[acs-r] Best Practices Question for the acs.R Package",
+      "subject_clean": "[acs-r] Best Practices Question for the acs.R Package",
+      "in_reply_to": "<CAEo23y5=eJYawjF+uCiam68f16-Bh97HHs6LQCjMj40jRS9afA@mail.gmail.com>",
+      "references": [
+        "<CAEo23y5=eJYawjF+uCiam68f16-Bh97HHs6LQCjMj40jRS9afA@mail.gmail.com>"
+      ],
+      "body_plain": "The package is not able to necessarily download all tracts for a city,\nbut it can download all of them for a county -- what is known as\n\"Summary Level 140.\"  (Try ?geo.set for info on which combinations of\nstate, county, tract, place, etc. are available.)\n\nSeattle is in King County, so the following will include all the\ntracts there -- which are all of Seattle, plus some extras:\n\n> king.county=geo.make(state=\"Wash\", county=\"King\", tract=\"*\")\n \nThe following will the download total population for each tract in\nthis geo.set (Table B01003, which only has one column, Total\nPopulation):\n\n> king.pop=acs.fetch(endyear=2014, geography=king.county, table.number=\"B01003\")\n\nThen this will tell you the names of all those tracts:\n\n> geography(king.pop) \n\nAlternatively, you can go to Factfinder to find the list of all the\ntracts within the city: see\n<https://ask.census.gov/faq.php?id=5000&faqId=1605> for how to do\nthis.  Once you have that list, you could use it to create your own\nSeattle only geo.set of tracts, or use it to trim down the one\ndownloaded above.\n\n--Ezra\n\nAt Wed, 30 Mar 2016 16:46:49 +0000, Tiernan Martin wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (quoted-printable)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi all ?\n> \n> I'm wondering if there is a recommended way to use the acr.R package to gather census data\n> for a given city at a given scale of analysis.\n> \n> The above phrasing may be a bit confusing, so here's a practical example: if I want to\n> collect census tract data (doesn't matter which table at this point) for the city of\n> Seattle, how can I use the acs.R package to get a list of all the census tracts within the\n> city limits?\n> \n> Thanks in advance for your help,\n> \n> Tiernan Martin\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "The package is not able to necessarily download all tracts for a city,\nbut it can download all of them for a county -- what is known as\n\"Summary Level 140.\"  (Try ?geo.set for info on which combinatio",
+      "thread_id": "thread-d6cecd21d383",
+      "thread_depth": 1,
+      "month": "2016-03"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-bd8befad675d",
+      "subject": "[acs-r] acs version 1.3: test-drive it now",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2016-03-06T16:02:08Z",
+      "last_reply": "2016-03-06T16:02:08Z",
+      "root_message_id": "msg-bd8befad675d"
+    },
+    {
+      "id": "thread-c507380bacac",
+      "subject": "[acs-r] Getting at \"Table Universe\"",
+      "message_count": 1,
+      "participants": [
+        "John David Smith"
+      ],
+      "started": "2016-03-15T17:48:23Z",
+      "last_reply": "2016-03-15T17:48:23Z",
+      "root_message_id": "msg-c507380bacac"
+    },
+    {
+      "id": "thread-64668a6aff69",
+      "subject": "[acs-r] acs-r Digest, Vol 24, Issue 2",
+      "message_count": 1,
+      "participants": [
+        "Dennis.Holt@dhhs.state.nh.us"
+      ],
+      "started": "2016-03-16T16:16:51Z",
+      "last_reply": "2016-03-16T16:16:51Z",
+      "root_message_id": "msg-64668a6aff69"
+    },
+    {
+      "id": "thread-b092d00c51b5",
+      "subject": "[acs-r] acs version 2.0: an R package to download and analyze data from the US Census",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2016-03-18T13:30:12Z",
+      "last_reply": "2016-03-18T13:30:12Z",
+      "root_message_id": "msg-b092d00c51b5"
+    },
+    {
+      "id": "thread-e80c69886868",
+      "subject": "[acs-r] census API down",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2016-03-26T23:55:22Z",
+      "last_reply": "2016-03-28T01:00:29Z",
+      "root_message_id": "msg-e80c69886868"
+    },
+    {
+      "id": "thread-d6cecd21d383",
+      "subject": "[acs-r] Best Practices Question for the acs.R Package",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Tiernan Martin"
+      ],
+      "started": "2016-03-30T16:46:49Z",
+      "last_reply": "2016-03-30T17:13:35Z",
+      "root_message_id": "msg-d6cecd21d383"
+    }
+  ]
+}

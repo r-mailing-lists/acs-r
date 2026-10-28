@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-10",
+  "messages": [
+    {
+      "id": "msg-599ee9adc5bb",
+      "message_id": "<7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>",
+      "from_name": "Bryan Skelton",
+      "from_email_hash": "f2d627d121a35095ce867cbdeb7d8a907233078a1bd749ca84b3f2dfc62fa82a",
+      "date": "2015-10-12T18:34:56Z",
+      "subject": "[acs-r] access to specific table via ACS in R",
+      "subject_clean": "[acs-r] access to specific table via ACS in R",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Question: I am trying to access a specific ACS table, S2401 to get income information.\n\nPlease see error below when running the query.\n\n> library(choroplethr)\n> get_acs_data(\"S2401\", \"zip\")\nError in seq.default(1, length(names), 2) : wrong sign in 'by' argument\n\nIs it possible this table is simply not yet available via the API?\n\nThank you.\nBryan",
+      "body_snippet": "Question: I am trying to access a specific ACS table, S2401 to get income information.\n\nPlease see error below when running the query.\n\n> library(choroplethr)\n> get_acs_data(\"S2401\", \"zip\")\nError in s",
+      "thread_id": "thread-599ee9adc5bb",
+      "thread_depth": 0,
+      "month": "2015-10"
+    },
+    {
+      "id": "msg-95727c0a89a4",
+      "message_id": "<86612bx32x.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-10-12T20:08:06Z",
+      "subject": "[acs-r] access to specific table via ACS in R",
+      "subject_clean": "[acs-r] access to specific table via ACS in R",
+      "in_reply_to": "<7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>",
+      "references": [
+        "<7B99E99B-F8A6-427F-A93E-4E52FD500BF9@me.com>"
+      ],
+      "body_plain": "As far as I know, the S2401 table is not provided through the API.  Is\nit something that perhaps can be derived from other tables?  For\nexample, B24012 (\"SEX BY OCCUPATION AND MEDIAN EARNINGS IN THE PAST 12\nMONTHS (IN 2013 INFLATION-ADJUSTED DOLLARS) FOR THE CIVILIAN EMPLOYED\nPOPULATION 16 YEARS AND OVER\"), which I believe is provided.\n\n\nAt Mon, 12 Oct 2015 14:34:56 -0400, Bryan Skelton wrote:\n> \n> Question: I am trying to access a specific ACS table, S2401 to get income information.\n> \n> Please see error below when running the query.\n> \n> > library(choroplethr)\n> > get_acs_data(\"S2401\", \"zip\")\n> Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument\n> \n> Is it possible this table is simply not yet available via the API?\n> \n> Thank you.\n> Bryan\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "As far as I know, the S2401 table is not provided through the API.  Is\nit something that perhaps can be derived from other tables?  For\nexample, B24012 (\"SEX BY OCCUPATION AND MEDIAN EARNINGS IN THE P",
+      "thread_id": "thread-599ee9adc5bb",
+      "thread_depth": 1,
+      "month": "2015-10"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-599ee9adc5bb",
+      "subject": "[acs-r] access to specific table via ACS in R",
+      "message_count": 2,
+      "participants": [
+        "Bryan Skelton",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2015-10-12T18:34:56Z",
+      "last_reply": "2015-10-12T20:08:06Z",
+      "root_message_id": "msg-599ee9adc5bb"
+    }
+  ]
+}

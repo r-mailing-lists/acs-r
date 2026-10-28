@@ -1,0 +1,144 @@
+From arilamstein at gmail.com  Mon Jan  8 15:27:05 2018
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 8 Jan 2018 12:27:05 -0800
+Subject: [acs-r] Which tables are available?
+Message-ID: <CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>
+
+I am not clear whether the acs package is designed to fetch all acs data
+which the Census exposes via the API, or just a subset of it. And if a
+subset, which subset?
+
+For example, this page from the Census Bureau:
+
+https://api.census.gov/data/2016/acs/acs1.html
+
+lists 4 types of tables which are available via the API: Detailed,
+Comparison Profile, Data Profile and Subject Profile. I tried to pull a few
+Data Profile tables via the acs package but kept on getting error messages.
+
+Are only the Detailed tables available via the acs package?
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180108/0a037aea/attachment.html
+
+From eglenn at mit.edu  Mon Jan  8 16:12:37 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 08 Jan 2018 16:12:37 -0500
+Subject: [acs-r] Which tables are available?
+In-Reply-To: <CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>
+References: <CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>
+Message-ID: <864lnw3vi2.wl-eglenn@mit.edu>
+
+
+Just the Detailed Tables -- the others are generally in different
+formats, or represent combinations of datasets provided in the
+detailed ones.
+
+
+
+On Mon, 08 Jan 2018 15:27:05 -0500, arilamstein wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> I am not clear whether the acs package is designed to fetch all acs data which the Census
+> exposes via the API, or just a subset of it. And if a subset, which subset?
+> 
+> For example, this page from the Census Bureau:
+> 
+> https://api.census.gov/data/2016/acs/acs1.html
+> 
+> lists 4 types of tables which are available via the API: Detailed, Comparison Profile,
+> Data Profile and Subject Profile. I tried to pull a few Data Profile tables via the acs
+> package but kept on getting error messages. 
+> 
+> Are only the Detailed tables available via the acs package?
+> 
+> Ari
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From arilamstein at gmail.com  Mon Jan  8 16:38:14 2018
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 8 Jan 2018 13:38:14 -0800
+Subject: [acs-r] Which tables are available?
+In-Reply-To: <864lnw3vi2.wl-eglenn@mit.edu>
+References: <CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>
+	<864lnw3vi2.wl-eglenn@mit.edu>
+Message-ID: <CAEO2kuJ2drEFysfeJb0XaN8Dj40E4sRPRSc8TtztsL8u7r=oGQ@mail.gmail.com>
+
+Thank you!
+
+On Mon, Jan 8, 2018 at 1:12 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Just the Detailed Tables -- the others are generally in different
+> formats, or represent combinations of datasets provided in the
+> detailed ones.
+>
+>
+>
+> On Mon, 08 Jan 2018 15:27:05 -0500, arilamstein wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > I am not clear whether the acs package is designed to fetch all acs data
+> which the Census
+> > exposes via the API, or just a subset of it. And if a subset, which
+> subset?
+> >
+> > For example, this page from the Census Bureau:
+> >
+> > https://api.census.gov/data/2016/acs/acs1.html
+> >
+> > lists 4 types of tables which are available via the API: Detailed,
+> Comparison Profile,
+> > Data Profile and Subject Profile. I tried to pull a few Data Profile
+> tables via the acs
+> > package but kept on getting error messages.
+> >
+> > Are only the Detailed tables available via the acs package?
+> >
+> > Ari
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180108/da54a7c6/attachment.html
+

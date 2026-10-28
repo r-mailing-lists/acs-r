@@ -1,0 +1,1229 @@
+From markhwhiteii at gmail.com  Thu Sep 14 19:08:34 2017
+From: markhwhiteii at gmail.com (Mark White)
+Date: Thu, 14 Sep 2017 18:08:34 -0500
+Subject: [acs-r] 2016 data
+Message-ID: <CADbL1CfiZUPOaYKXY1nDc7vJesWmjEZC9w7ERVxTPf4xGwLbsQ@mail.gmail.com>
+
+Hello all,
+
+New to this list (but not the acs package), so I apologize if this has
+already been asked, but: How long will it be until the 2016 data is
+available through the Census API/the acs package? I'm looking for both
+1-year state-level data and the 5-year file for county-level data.
+
+Best,
+Mark
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170914/17c5a67f/attachment.html
+
+From eglenn at mit.edu  Tue Sep 19 10:39:08 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 19 Sep 2017 10:39:08 -0400
+Subject: [acs-r] 2016 data
+In-Reply-To: <CADbL1CfiZUPOaYKXY1nDc7vJesWmjEZC9w7ERVxTPf4xGwLbsQ@mail.gmail.com>
+References: <CADbL1CfiZUPOaYKXY1nDc7vJesWmjEZC9w7ERVxTPf4xGwLbsQ@mail.gmail.com>
+Message-ID: <86efr2eos3.wl-eglenn@mit.edu>
+
+
+Thanks for your question.  At present, the 1-year data seems to be
+available through the API, but unfortunately something changed in the
+way the API serves up to variable lookup tables, and the package is
+unable to get this data.  I'm troubleshooting and hope to figure out a
+fix soon.  (All the other tables seem to still work.)
+
+--Ezra
+
+On Thu, 14 Sep 2017 19:08:34 -0400, Mark White wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hello all,
+> 
+> New to this list (but not the acs package), so I apologize if this has already been asked,
+> but: How long will it be until the 2016 data is available through the Census API/the acs
+> package? I'm looking for both 1-year state-level data and the 5-year file for county-level
+> data.
+> 
+> Best,
+> Mark
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From chend at vt.edu  Tue Sep 19 16:16:45 2017
+From: chend at vt.edu (Daniel Chen)
+Date: Tue, 19 Sep 2017 16:16:45 -0400
+Subject: [acs-r] acs.fetch hangs in v2.1 vs 2.0
+Message-ID: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+
+I?ve seen the post in August that had a similar title, but the fix there
+(from 2.1.0 to 2.1.1) did not seem to fix the problem I?m having with the
+acs.fetch function.
+
+The follow lines of code hang up and crash R using the latest 2.1.1 of the
+acs package
+
+arlington <- geo.make(state = "VA", county = "Arlington", tract = "*",
+block.group = "*")
+
+Population_Total <- acs.fetch(geo=arlington, endyear = 2015,
+table.number="B01003")
+
+I?ve re-installed the api.key, and also ran acs.tables.install()
+
+The fix was to downgrade the package to v2.0
+
+devtools::install_version("acs", version = "2.0", repos =
+"http://cran.us.r-project.org")
+
+then the above code works within seconds.
+
+here?s the session info with v2.1.1
+
+> sessionInfo()
+R version 3.4.0 (2017-04-21)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+other attached packages:
+[1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0
+[4] RevoUtilsMath_10.0.0
+
+loaded via a namespace (and not attached):
+ [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4
+ [5] magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0      yaml_2.1.14
+ [9] Rcpp_0.12.12     stringi_1.1.5
+
+here?s the session info with 2.0
+
+> sessionInfo()
+R version 3.4.0 (2017-04-21)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+other attached packages:
+[1] acs_2.0              plyr_1.8.4           XML_3.98-1.9
+[4] stringr_1.2.0        RevoUtilsMath_10.0.0
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.12     digest_0.6.12    withr_1.0.2      bitops_1.0-6
+ [5] R6_2.2.2         magrittr_1.5     httr_1.3.1       stringi_1.1.5
+ [9] curl_2.8.1       devtools_1.13.2  RevoUtils_10.0.4 tools_3.4.0
+[13] RCurl_1.95-4.8   yaml_2.1.14      compiler_3.4.0   memoise_1.1.0
+
+?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170919/89e58f4c/attachment.html
+
+From eglenn at mit.edu  Tue Sep 19 17:01:28 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 19 Sep 2017 17:01:28 -0400
+Subject: [acs-r] acs.fetch hangs in v2.1 vs 2.0
+In-Reply-To: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+References: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+Message-ID: <86h8vycsif.wl-eglenn@mit.edu>
+
+
+Can you remove RCurl and then try it all?
+
+On Tue, 19 Sep 2017 16:16:45 -0400, Daniel Chen wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (quoted-printable)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> I?ve seen the post in August that had a similar title, but the fix there (from 2.1.0 to
+> 2.1.1) did not seem to fix the problem I?m having with the acs.fetch function.
+> 
+> The follow lines of code hang up and crash R using the latest 2.1.1 of the acs package
+> 
+> arlington <- geo.make(state = "VA", county = "Arlington", tract = "*", block.group = "*")
+> 
+> Population_Total <- acs.fetch(geo=arlington, endyear = 2015,  table.number="B01003")
+> 
+> I?ve re-installed the api.key, and also ran acs.tables.install()
+> 
+> The fix was to downgrade the package to v2.0
+> 
+> devtools::install_version("acs", version = "2.0", repos = "http://cran.us.r-project.org")
+> 
+> then the above code works within seconds.
+> 
+> here?s the session info with v2.1.1
+> 
+> > sessionInfo()
+> R version 3.4.0 (2017-04-21)
+> Platform: x86_64-pc-linux-gnu (64-bit)
+> Running under: CentOS Linux 7 (Core)
+> 
+> Matrix products: default
+> BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+> LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+> 
+> locale:
+>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+> 
+> attached base packages:
+> [1] stats     graphics  grDevices utils     datasets  methods   base     
+> 
+> other attached packages:
+> [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0       
+> [4] RevoUtilsMath_10.0.0
+> 
+> loaded via a namespace (and not attached):
+>  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4      
+>  [5] magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0      yaml_2.1.14     
+>  [9] Rcpp_0.12.12     stringi_1.1.5
+> 
+> here?s the session info with 2.0
+> 
+> > sessionInfo()
+> R version 3.4.0 (2017-04-21)
+> Platform: x86_64-pc-linux-gnu (64-bit)
+> Running under: CentOS Linux 7 (Core)
+> 
+> Matrix products: default
+> BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+> LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+> 
+> locale:
+>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+> 
+> attached base packages:
+> [1] stats     graphics  grDevices utils     datasets  methods   base     
+> 
+> other attached packages:
+> [1] acs_2.0              plyr_1.8.4           XML_3.98-1.9        
+> [4] stringr_1.2.0        RevoUtilsMath_10.0.0
+> 
+> loaded via a namespace (and not attached):
+>  [1] Rcpp_0.12.12     digest_0.6.12    withr_1.0.2      bitops_1.0-6    
+>  [5] R6_2.2.2         magrittr_1.5     httr_1.3.1       stringi_1.1.5   
+>  [9] curl_2.8.1       devtools_1.13.2  RevoUtils_10.0.4 tools_3.4.0     
+> [13] RCurl_1.95-4.8   yaml_2.1.14      compiler_3.4.0   memoise_1.1.0
+> 
+> ?
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From chend at vt.edu  Tue Sep 19 17:54:39 2017
+From: chend at vt.edu (Daniel Chen)
+Date: Tue, 19 Sep 2017 17:54:39 -0400
+Subject: [acs-r] acs.fetch hangs in v2.1 vs 2.0
+In-Reply-To: <86h8vycsif.wl-eglenn@mit.edu>
+References: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+	<86h8vycsif.wl-eglenn@mit.edu>
+Message-ID: <CAPB9EEfC=trgX-XNK4mki8rUDWvfo8WRFtqKbsMYe42_5BruxA@mail.gmail.com>
+
+Still have the same problem. when I get to the acs.fetch function, it
+pauses (longer than usual) and then R/Rstudio eventually crashes.
+
+I?ve tried both options(tigris_use_cache = FALSE) and options(tigris_use_cache
+= TRUE)
+
+Not sure if it matters, but this is running on rstudio-server.
+
+The current sessionInfo()
+
+
+> sessionInfo()
+R version 3.4.0 (2017-04-21)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+ [6] LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C
+               LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+other attached packages:
+[1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0
+RevoUtilsMath_10.0.0
+
+loaded via a namespace (and not attached):
+ [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4
+  magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0
+ [8] yaml_2.1.14      Rcpp_0.12.12     stringi_1.1.5
+
+?
+
+On Tue, Sep 19, 2017 at 5:01 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Can you remove RCurl and then try it all?
+>
+> On Tue, 19 Sep 2017 16:16:45 -0400, Daniel Chen wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (quoted-printable)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > I?ve seen the post in August that had a similar title, but the fix there
+> (from 2.1.0 to
+> > 2.1.1) did not seem to fix the problem I?m having with the acs.fetch
+> function.
+> >
+> > The follow lines of code hang up and crash R using the latest 2.1.1 of
+> the acs package
+> >
+> > arlington <- geo.make(state = "VA", county = "Arlington", tract = "*",
+> block.group = "*")
+> >
+> > Population_Total <- acs.fetch(geo=arlington, endyear = 2015,
+> table.number="B01003")
+> >
+> > I?ve re-installed the api.key, and also ran acs.tables.install()
+> >
+> > The fix was to downgrade the package to v2.0
+> >
+> > devtools::install_version("acs", version = "2.0", repos = "
+> http://cran.us.r-project.org")
+> >
+> > then the above code works within seconds.
+> >
+> > here?s the session info with v2.1.1
+> >
+> > > sessionInfo()
+> > R version 3.4.0 (2017-04-21)
+> > Platform: x86_64-pc-linux-gnu (64-bit)
+> > Running under: CentOS Linux 7 (Core)
+> >
+> > Matrix products: default
+> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+> >
+> > locale:
+> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+> >
+> > attached base packages:
+> > [1] stats     graphics  grDevices utils     datasets  methods   base
+> >
+> > other attached packages:
+> > [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0
+> > [4] RevoUtilsMath_10.0.0
+> >
+> > loaded via a namespace (and not attached):
+> >  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4
+> >  [5] magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0      yaml_2.1.14
+> >  [9] Rcpp_0.12.12     stringi_1.1.5
+> >
+> > here?s the session info with 2.0
+> >
+> > > sessionInfo()
+> > R version 3.4.0 (2017-04-21)
+> > Platform: x86_64-pc-linux-gnu (64-bit)
+> > Running under: CentOS Linux 7 (Core)
+> >
+> > Matrix products: default
+> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+> >
+> > locale:
+> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+> >
+> > attached base packages:
+> > [1] stats     graphics  grDevices utils     datasets  methods   base
+> >
+> > other attached packages:
+> > [1] acs_2.0              plyr_1.8.4           XML_3.98-1.9
+> > [4] stringr_1.2.0        RevoUtilsMath_10.0.0
+> >
+> > loaded via a namespace (and not attached):
+> >  [1] Rcpp_0.12.12     digest_0.6.12    withr_1.0.2      bitops_1.0-6
+> >  [5] R6_2.2.2         magrittr_1.5     httr_1.3.1       stringi_1.1.5
+> >  [9] curl_2.8.1       devtools_1.13.2  RevoUtils_10.0.4 tools_3.4.0
+> > [13] RCurl_1.95-4.8   yaml_2.1.14      compiler_3.4.0   memoise_1.1.0
+> >
+> > ?
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170919/93842221/attachment.html
+
+From chend at vt.edu  Wed Sep 20 13:25:13 2017
+From: chend at vt.edu (Daniel Chen)
+Date: Wed, 20 Sep 2017 13:25:13 -0400
+Subject: [acs-r] acs.fetch hangs in v2.1 vs 2.0
+In-Reply-To: <CAPB9EEfC=trgX-XNK4mki8rUDWvfo8WRFtqKbsMYe42_5BruxA@mail.gmail.com>
+References: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+	<86h8vycsif.wl-eglenn@mit.edu>
+	<CAPB9EEfC=trgX-XNK4mki8rUDWvfo8WRFtqKbsMYe42_5BruxA@mail.gmail.com>
+Message-ID: <CAPB9EEeDF=6Bmwo02sfgyYc48q55q8HGHXinjvKAjeEeorexGA@mail.gmail.com>
+
+I may have narrowed the issue to be related to microsoft-r-open.
+Will do a bit more testing to confirm.
+
+On Tue, Sep 19, 2017 at 5:54 PM, Daniel Chen <chend at vt.edu> wrote:
+
+> Still have the same problem. when I get to the acs.fetch function, it
+> pauses (longer than usual) and then R/Rstudio eventually crashes.
+>
+> I?ve tried both options(tigris_use_cache = FALSE) and options(tigris_use_cache
+> = TRUE)
+>
+> Not sure if it matters, but this is running on rstudio-server.
+>
+> The current sessionInfo()
+>
+>
+> > sessionInfo()
+> R version 3.4.0 (2017-04-21)
+> Platform: x86_64-pc-linux-gnu (64-bit)
+> Running under: CentOS Linux 7 (Core)
+>
+> Matrix products: default
+> BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+> LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>
+> locale:
+>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8
+>  [6] LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C
+> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>
+> attached base packages:
+> [1] stats     graphics  grDevices utils     datasets  methods   base
+>
+> other attached packages:
+> [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0        RevoUtilsMath_10.0.0
+>
+> loaded via a namespace (and not attached):
+>  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4       magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0
+>  [8] yaml_2.1.14      Rcpp_0.12.12     stringi_1.1.5
+>
+> ?
+>
+> On Tue, Sep 19, 2017 at 5:01 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>
+>>
+>> Can you remove RCurl and then try it all?
+>>
+>> On Tue, 19 Sep 2017 16:16:45 -0400, Daniel Chen wrote:
+>> >
+>> > [1  <multipart/alternative (7bit)>]
+>> > [1.1  <text/plain; UTF-8 (quoted-printable)>]
+>> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+>> > I?ve seen the post in August that had a similar title, but the fix
+>> there (from 2.1.0 to
+>> > 2.1.1) did not seem to fix the problem I?m having with the acs.fetch
+>> function.
+>> >
+>> > The follow lines of code hang up and crash R using the latest 2.1.1 of
+>> the acs package
+>> >
+>> > arlington <- geo.make(state = "VA", county = "Arlington", tract = "*",
+>> block.group = "*")
+>> >
+>> > Population_Total <- acs.fetch(geo=arlington, endyear = 2015,
+>> table.number="B01003")
+>> >
+>> > I?ve re-installed the api.key, and also ran acs.tables.install()
+>> >
+>> > The fix was to downgrade the package to v2.0
+>> >
+>> > devtools::install_version("acs", version = "2.0", repos = "
+>> http://cran.us.r-project.org")
+>> >
+>> > then the above code works within seconds.
+>> >
+>> > here?s the session info with v2.1.1
+>> >
+>> > > sessionInfo()
+>> > R version 3.4.0 (2017-04-21)
+>> > Platform: x86_64-pc-linux-gnu (64-bit)
+>> > Running under: CentOS Linux 7 (Core)
+>> >
+>> > Matrix products: default
+>> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+>> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>> >
+>> > locale:
+>> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+>> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+>> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+>> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+>> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+>> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>> >
+>> > attached base packages:
+>> > [1] stats     graphics  grDevices utils     datasets  methods   base
+>> >
+>> > other attached packages:
+>> > [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0
+>> > [4] RevoUtilsMath_10.0.0
+>> >
+>> > loaded via a namespace (and not attached):
+>> >  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4
+>> >  [5] magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0      yaml_2.1.14
+>> >  [9] Rcpp_0.12.12     stringi_1.1.5
+>> >
+>> > here?s the session info with 2.0
+>> >
+>> > > sessionInfo()
+>> > R version 3.4.0 (2017-04-21)
+>> > Platform: x86_64-pc-linux-gnu (64-bit)
+>> > Running under: CentOS Linux 7 (Core)
+>> >
+>> > Matrix products: default
+>> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+>> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>> >
+>> > locale:
+>> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+>> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+>> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+>> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+>> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+>> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>> >
+>> > attached base packages:
+>> > [1] stats     graphics  grDevices utils     datasets  methods   base
+>> >
+>> > other attached packages:
+>> > [1] acs_2.0              plyr_1.8.4           XML_3.98-1.9
+>> > [4] stringr_1.2.0        RevoUtilsMath_10.0.0
+>> >
+>> > loaded via a namespace (and not attached):
+>> >  [1] Rcpp_0.12.12     digest_0.6.12    withr_1.0.2      bitops_1.0-6
+>> >  [5] R6_2.2.2         magrittr_1.5     httr_1.3.1       stringi_1.1.5
+>> >  [9] curl_2.8.1       devtools_1.13.2  RevoUtils_10.0.4 tools_3.4.0
+>> > [13] RCurl_1.95-4.8   yaml_2.1.14      compiler_3.4.0   memoise_1.1.0
+>> >
+>> > ?
+>> >
+>> >
+>> > [2  <text/plain; us-ascii (7bit)>]
+>> > _______________________________________________
+>> > acs-r mailing list
+>> > acs-r at mit.edu
+>> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>>
+>> --
+>> Ezra Haber Glenn, AICP
+>> Department of Urban Studies and Planning
+>> Massachusetts Institute of Technology
+>> 77 Massachusetts Ave., Room 7-346
+>> Cambridge, MA 02139
+>> eglenn at mit.edu
+>> http://dusp.mit.edu/faculty/ezra-glenn
+>> 617.253.2024 (w)
+>> 617.721.7131 (c)
+>>
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170920/86e28870/attachment.html
+
+From carlganz at gmail.com  Wed Sep 20 13:31:32 2017
+From: carlganz at gmail.com (Carl Ganz)
+Date: Wed, 20 Sep 2017 10:31:32 -0700
+Subject: [acs-r] acs.fetch hangs in v2.1 vs 2.0
+In-Reply-To: <43cc13c3790c47aaa287169904bfb443@EMHUB6.ad.ucla.edu>
+References: <CAPB9EEc_2Y6eKevTfMWjY7v9XvoOO2MKXb-nfQXxJjuQxOhtkA@mail.gmail.com>
+	<86h8vycsif.wl-eglenn@mit.edu>
+	<CAPB9EEfC=trgX-XNK4mki8rUDWvfo8WRFtqKbsMYe42_5BruxA@mail.gmail.com>
+	<43cc13c3790c47aaa287169904bfb443@EMHUB6.ad.ucla.edu>
+Message-ID: <CALbY4SPF+vAh_HM6npkLFQ0S=Z6F4BdKfFXfEtCwQugiCXY0hw@mail.gmail.com>
+
+FWIW the default CRAN repository on Microsoft-R is not kept up-to-date like
+the regular CRAN repositories so it is possible the issue is related to
+that. Try reinstalling everything with repos="https://cran.rstudio.com" or
+whichever is your favorite repository.
+
+On Wed, Sep 20, 2017 at 10:25 AM, Daniel Chen <chend at vt.edu> wrote:
+
+> I may have narrowed the issue to be related to microsoft-r-open.
+> Will do a bit more testing to confirm.
+>
+> On Tue, Sep 19, 2017 at 5:54 PM, Daniel Chen <chend at vt.edu> wrote:
+>
+>> Still have the same problem. when I get to the acs.fetch function, it
+>> pauses (longer than usual) and then R/Rstudio eventually crashes.
+>>
+>> I?ve tried both options(tigris_use_cache = FALSE) and options(tigris_use_cache
+>> = TRUE)
+>>
+>> Not sure if it matters, but this is running on rstudio-server.
+>>
+>> The current sessionInfo()
+>>
+>>
+>> > sessionInfo()
+>> R version 3.4.0 (2017-04-21)
+>> Platform: x86_64-pc-linux-gnu (64-bit)
+>> Running under: CentOS Linux 7 (Core)
+>>
+>> Matrix products: default
+>> BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+>> LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>>
+>> locale:
+>>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8
+>>  [6] LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C
+>> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>>
+>> attached base packages:
+>> [1] stats     graphics  grDevices utils     datasets  methods   base
+>>
+>> other attached packages:
+>> [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0        RevoUtilsMath_10.0.0
+>>
+>> loaded via a namespace (and not attached):
+>>  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4       magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0
+>>  [8] yaml_2.1.14      Rcpp_0.12.12     stringi_1.1.5
+>>
+>> ?
+>>
+>> On Tue, Sep 19, 2017 at 5:01 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>>
+>>>
+>>> Can you remove RCurl and then try it all?
+>>>
+>>> On Tue, 19 Sep 2017 16:16:45 -0400, Daniel Chen wrote:
+>>> >
+>>> > [1  <multipart/alternative (7bit)>]
+>>> > [1.1  <text/plain; UTF-8 (quoted-printable)>]
+>>> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+>>> > I?ve seen the post in August that had a similar title, but the fix
+>>> there (from 2.1.0 to
+>>> > 2.1.1) did not seem to fix the problem I?m having with the acs.fetch
+>>> function.
+>>> >
+>>> > The follow lines of code hang up and crash R using the latest 2.1.1 of
+>>> the acs package
+>>> >
+>>> > arlington <- geo.make(state = "VA", county = "Arlington", tract = "*",
+>>> block.group = "*")
+>>> >
+>>> > Population_Total <- acs.fetch(geo=arlington, endyear = 2015,
+>>> table.number="B01003")
+>>> >
+>>> > I?ve re-installed the api.key, and also ran acs.tables.install()
+>>> >
+>>> > The fix was to downgrade the package to v2.0
+>>> >
+>>> > devtools::install_version("acs", version = "2.0", repos = "
+>>> http://cran.us.r-project.org")
+>>> >
+>>> > then the above code works within seconds.
+>>> >
+>>> > here?s the session info with v2.1.1
+>>> >
+>>> > > sessionInfo()
+>>> > R version 3.4.0 (2017-04-21)
+>>> > Platform: x86_64-pc-linux-gnu (64-bit)
+>>> > Running under: CentOS Linux 7 (Core)
+>>> >
+>>> > Matrix products: default
+>>> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+>>> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>>> >
+>>> > locale:
+>>> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+>>> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+>>> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+>>> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+>>> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+>>> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>>> >
+>>> > attached base packages:
+>>> > [1] stats     graphics  grDevices utils     datasets  methods   base
+>>> >
+>>> > other attached packages:
+>>> > [1] acs_2.1.1            XML_3.98-1.9         stringr_1.2.0
+>>> > [4] RevoUtilsMath_10.0.0
+>>> >
+>>> > loaded via a namespace (and not attached):
+>>> >  [1] httr_1.3.1       compiler_3.4.0   R6_2.2.2         plyr_1.8.4
+>>> >  [5] magrittr_1.5     RevoUtils_10.0.4 tools_3.4.0      yaml_2.1.14
+>>> >  [9] Rcpp_0.12.12     stringi_1.1.5
+>>> >
+>>> > here?s the session info with 2.0
+>>> >
+>>> > > sessionInfo()
+>>> > R version 3.4.0 (2017-04-21)
+>>> > Platform: x86_64-pc-linux-gnu (64-bit)
+>>> > Running under: CentOS Linux 7 (Core)
+>>> >
+>>> > Matrix products: default
+>>> > BLAS: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRblas.so
+>>> > LAPACK: /usr/lib64/microsoft-r/3.4/lib64/R/lib/libRlapack.so
+>>> >
+>>> > locale:
+>>> >  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+>>> >  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+>>> >  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+>>> >  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+>>> >  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+>>> > [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+>>> >
+>>> > attached base packages:
+>>> > [1] stats     graphics  grDevices utils     datasets  methods   base
+>>> >
+>>> > other attached packages:
+>>> > [1] acs_2.0              plyr_1.8.4           XML_3.98-1.9
+>>> > [4] stringr_1.2.0        RevoUtilsMath_10.0.0
+>>> >
+>>> > loaded via a namespace (and not attached):
+>>> >  [1] Rcpp_0.12.12     digest_0.6.12    withr_1.0.2      bitops_1.0-6
+>>> >  [5] R6_2.2.2         magrittr_1.5     httr_1.3.1       stringi_1.1.5
+>>> >  [9] curl_2.8.1       devtools_1.13.2  RevoUtils_10.0.4 tools_3.4.0
+>>> > [13] RCurl_1.95-4.8   yaml_2.1.14      compiler_3.4.0   memoise_1.1.0
+>>> >
+>>> > ?
+>>> >
+>>> >
+>>> > [2  <text/plain; us-ascii (7bit)>]
+>>> > _______________________________________________
+>>> > acs-r mailing list
+>>> > acs-r at mit.edu
+>>> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>>>
+>>> --
+>>> Ezra Haber Glenn, AICP
+>>> Department of Urban Studies and Planning
+>>> Massachusetts Institute of Technology
+>>> 77 Massachusetts Ave., Room 7-346
+>>> Cambridge, MA 02139
+>>> eglenn at mit.edu
+>>> http://dusp.mit.edu/faculty/ezra-glenn
+>>> 617.253.2024 (w)
+>>> 617.721.7131 (c)
+>>>
+>>
+>>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170920/b99fc9a0/attachment-0001.html
+
+From shintze at MARC.ORG  Mon Sep 25 13:01:01 2017
+From: shintze at MARC.ORG (Sara Hintze)
+Date: Mon, 25 Sep 2017 17:01:01 +0000
+Subject: [acs-r] 2016 1-year data - unable to acquire
+Message-ID: <47514DDF18593E46887CD0B0158306011DAEA511@JAZZ.marc.internal>
+
+Hi there,
+
+I am trying to use the R ACS package to retrieve the 2016 1-year estimates. The following call works for previous end-years, but not for 2016.
+
+sex.by.age = acs.lookup(table.number="B01001", span=1, endyear=2016)
+
+This is the R output from this call:
+
+trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_1yr_2016_var.xml.gz'
+Content type 'application/xml' length 3976355 bytes (3.8 MB)
+downloaded 3.8 MB
+
+Warning messages:
+1: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+  XML variable lookup tables for this request
+  seem to be missing from ' https://api.census.gov/data/2016/acs1/variables.xml ';
+  temporarily downloading and using archived copies instead;
+  since this is *much* slower, recommend running
+  acs.tables.install()
+2: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+  Sorry, no tables/keyword meets your search.
+  Suggestions:
+    try with 'case.sensitive=F',
+    remove search terms,
+    change 'keyword' to 'table.name' in search (or vice-versa)
+
+
+Note: I have run acs.tables.install(), and still get the same output.
+
+
+
+Is there something I am doing incorrectly? I have several scripts that work when accessing 1-year data from 2012 to 2015, but will not work with the 2016 data.
+
+
+
+Thank you for your time.
+
+
+
+Sara
+
+Sara Hintze
+GIS Data Developer/Analyst | Research Services
+Mid-America Regional Council
+600 Broadway Blvd., Ste 200
+Kansas City, MO 64105
+816-701-8220 | www.marc.org
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170925/fb564f40/attachment.html
+
+From markhwhiteii at gmail.com  Mon Sep 25 13:31:56 2017
+From: markhwhiteii at gmail.com (Mark White)
+Date: Mon, 25 Sep 2017 17:31:56 +0000
+Subject: [acs-r] 2016 1-year data - unable to acquire
+In-Reply-To: <47514DDF18593E46887CD0B0158306011DAEA511@JAZZ.marc.internal>
+References: <47514DDF18593E46887CD0B0158306011DAEA511@JAZZ.marc.internal>
+Message-ID: <CADbL1Cd=ps+KEzUPzJYHhtayWfzhnZQwNzBD98Yx5iCyMR+h2g@mail.gmail.com>
+
+Sara,
+
+The 1-year estimates have not been released by the Census Bureau yet.
+
+Best,
+Mark
+
+On Mon, Sep 25, 2017 at 12:01 PM Sara Hintze <shintze at marc.org> wrote:
+
+> Hi there,
+>
+>
+>
+> I am trying to use the R ACS package to retrieve the 2016 1-year
+> estimates. The following call works for previous end-years, but not for
+> 2016.
+>
+>
+>
+> sex.by.age = acs.lookup(table.number="B01001", span=1, endyear=2016)
+>
+>
+>
+> *This is the R output from this call:*
+>
+>
+>
+> trying URL '
+> http://web.mit.edu/eglenn/www/acs/acs-variables/acs_1yr_2016_var.xml.gz'
+>
+> Content type 'application/xml' length 3976355 bytes (3.8 MB)
+>
+> downloaded 3.8 MB
+>
+>
+>
+> Warning messages:
+>
+> 1: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+>
+>   XML variable lookup tables for this request
+>
+>   seem to be missing from '
+> https://api.census.gov/data/2016/acs1/variables.xml ';
+>
+>   temporarily downloading and using archived copies instead;
+>
+>   since this is *much* slower, recommend running
+>
+>   acs.tables.install()
+>
+> 2: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+>
+>   Sorry, no tables/keyword meets your search.
+>
+>   Suggestions:
+>
+>     try with 'case.sensitive=F',
+>
+>     remove search terms,
+>
+>     change 'keyword' to 'table.name' in search (or vice-versa)
+>
+>
+>
+> *Note: I have run acs.tables.install(), and still get the same output.*
+>
+>
+>
+> Is there something I am doing incorrectly? I have several scripts that work when accessing 1-year data from 2012 to 2015, but will not work with the 2016 data.
+>
+>
+>
+> Thank you for your time.
+>
+>
+>
+> Sara
+>
+>
+>
+> *Sara Hintze*
+>
+> GIS Data Developer/Analyst | Research Services
+>
+> Mid-America Regional Council
+>
+> 600 Broadway Blvd., Ste 200
+>
+> Kansas City, MO 64105
+>
+> 816-701-8220 | www.marc.org
+>
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170925/d5b0096f/attachment.html
+
+From eglenn at mit.edu  Tue Sep 26 10:53:58 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 26 Sep 2017 10:53:58 -0400
+Subject: [acs-r] 2016 1-year data - unable to acquire
+In-Reply-To: <CADbL1Cd=ps+KEzUPzJYHhtayWfzhnZQwNzBD98Yx5iCyMR+h2g@mail.gmail.com>
+References: <47514DDF18593E46887CD0B0158306011DAEA511@JAZZ.marc.internal>
+	<CADbL1Cd=ps+KEzUPzJYHhtayWfzhnZQwNzBD98Yx5iCyMR+h2g@mail.gmail.com>
+Message-ID: <8637791pfd.wl-eglenn@mit.edu>
+
+
+Actually, I believe that the 1-year 2016 data has been released, but
+the package is not finding it.  (They changed some stuff in the
+variable lookup tables without telling me; I've been trouble shooting
+over the weekend and am mostly done with a patch.)
+
+The 2016/5-year data is not available yet -- scheduled to be released
+in Dec.
+
+--Ezra
+
+On Mon, 25 Sep 2017 13:31:56 -0400, Mark White wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Sara,
+> 
+> The 1-year estimates have not been released by the Census Bureau yet. 
+> 
+> Best,
+> Mark
+> 
+> On Mon, Sep 25, 2017 at 12:01 PM Sara Hintze <shintze at marc.org> wrote:
+> 
+>     Hi there,
+> 
+>     I am trying to use the R ACS package to retrieve the 2016 1-year estimates. The
+>     following call works for previous end-years, but not for 2016.
+> 
+>     sex.by.age = acs.lookup(table.number="B01001", span=1, endyear=2016)
+> 
+>     This is the R output from this call:
+> 
+>     trying URL 'http://web.mit.edu/eglenn/www/acs/acs-variables/acs_1yr_2016_var.xml.gz'
+>    
+>     Content type 'application/xml' length 3976355 bytes (3.8 MB)
+>    
+>     downloaded 3.8 MB
+> 
+>     Warning messages:
+>    
+>     1: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+>    
+>       XML variable lookup tables for this request
+>    
+>       seem to be missing from ' https://api.census.gov/data/2016/acs1/variables.xml ';
+>    
+>       temporarily downloading and using archived copies instead;
+>    
+>       since this is *much* slower, recommend running
+>    
+>       acs.tables.install()
+>    
+>     2: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+>    
+>       Sorry, no tables/keyword meets your search.
+>    
+>       Suggestions:
+>    
+>         try with 'case.sensitive=F',
+>    
+>         remove search terms,
+>    
+>         change 'keyword' to 'table.name' in search (or vice-versa)
+> 
+>     Note: I have run acs.tables.install(), and still get the same output.
+> 
+>     Is there something I am doing incorrectly? I have several scripts that work when accessing 1-year data from 2012 to 2015, but will not work with the 2016 data.
+> 
+>     Thank you for your time.
+> 
+>     Sara
+> 
+>     Sara Hintze
+>    
+>     GIS Data Developer/Analyst | Research Services
+>    
+>     Mid-America Regional Council
+>    
+>     600 Broadway Blvd., Ste 200
+>    
+>     Kansas City, MO 64105
+>    
+>     816-701-8220 | www.marc.org
+> 
+>     _______________________________________________
+>     acs-r mailing list
+>     acs-r at mit.edu
+>     http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From markhwhiteii at gmail.com  Tue Sep 26 10:54:52 2017
+From: markhwhiteii at gmail.com (Mark White)
+Date: Tue, 26 Sep 2017 14:54:52 +0000
+Subject: [acs-r] 2016 1-year data - unable to acquire
+In-Reply-To: <8637791pfd.wl-eglenn@mit.edu>
+References: <47514DDF18593E46887CD0B0158306011DAEA511@JAZZ.marc.internal>
+	<CADbL1Cd=ps+KEzUPzJYHhtayWfzhnZQwNzBD98Yx5iCyMR+h2g@mail.gmail.com>
+	<8637791pfd.wl-eglenn@mit.edu>
+Message-ID: <CADbL1CcmpBTh_gP3RdVo4vCgj3fqF1K0WeQrqK9AfJxGMYH0+A@mail.gmail.com>
+
+Oops sorry, I got it backwards!
+
+On Tue, Sep 26, 2017 at 9:54 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Actually, I believe that the 1-year 2016 data has been released, but
+> the package is not finding it.  (They changed some stuff in the
+> variable lookup tables without telling me; I've been trouble shooting
+> over the weekend and am mostly done with a patch.)
+>
+> The 2016/5-year data is not available yet -- scheduled to be released
+> in Dec.
+>
+> --Ezra
+>
+> On Mon, 25 Sep 2017 13:31:56 -0400, Mark White wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > Sara,
+> >
+> > The 1-year estimates have not been released by the Census Bureau yet.
+> >
+> > Best,
+> > Mark
+> >
+> > On Mon, Sep 25, 2017 at 12:01 PM Sara Hintze <shintze at marc.org> wrote:
+> >
+> >     Hi there,
+> >
+> >     I am trying to use the R ACS package to retrieve the 2016 1-year
+> estimates. The
+> >     following call works for previous end-years, but not for 2016.
+> >
+> >     sex.by.age = acs.lookup(table.number="B01001", span=1, endyear=2016)
+> >
+> >     This is the R output from this call:
+> >
+> >     trying URL '
+> http://web.mit.edu/eglenn/www/acs/acs-variables/acs_1yr_2016_var.xml.gz'
+> >
+> >     Content type 'application/xml' length 3976355 bytes (3.8 MB)
+> >
+> >     downloaded 3.8 MB
+> >
+> >     Warning messages:
+> >
+> >     1: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+> >
+> >       XML variable lookup tables for this request
+> >
+> >       seem to be missing from '
+> https://api.census.gov/data/2016/acs1/variables.xml ';
+> >
+> >       temporarily downloading and using archived copies instead;
+> >
+> >       since this is *much* slower, recommend running
+> >
+> >       acs.tables.install()
+> >
+> >     2: In acs.lookup(table.number = "B01001", span = 1, endyear = 2016) :
+> >
+> >       Sorry, no tables/keyword meets your search.
+> >
+> >       Suggestions:
+> >
+> >         try with 'case.sensitive=F',
+> >
+> >         remove search terms,
+> >
+> >         change 'keyword' to 'table.name' in search (or vice-versa)
+> >
+> >     Note: I have run acs.tables.install(), and still get the same output.
+> >
+> >     Is there something I am doing incorrectly? I have several scripts
+> that work when accessing 1-year data from 2012 to 2015, but will not work
+> with the 2016 data.
+> >
+> >     Thank you for your time.
+> >
+> >     Sara
+> >
+> >     Sara Hintze
+> >
+> >     GIS Data Developer/Analyst | Research Services
+> >
+> >     Mid-America Regional Council
+> >
+> >     600 Broadway Blvd., Ste 200
+> >
+> >     Kansas City, MO 64105
+> >
+> >     816-701-8220 | www.marc.org
+> >
+> >     _______________________________________________
+> >     acs-r mailing list
+> >     acs-r at mit.edu
+> >     http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170926/934ed638/attachment.html
+

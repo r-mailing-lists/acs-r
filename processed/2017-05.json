@@ -1,0 +1,36 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-05",
+  "messages": [
+    {
+      "id": "msg-f7927858c048",
+      "message_id": "<CAFW98DvE5gRqmosZeba3ucnEewOM1eNSCCUmHpk-CMJbG52TuA@mail.gmail.com>",
+      "from_name": "Stoney Vintson",
+      "from_email_hash": "072b49fc2d8f152d462e2de457916170fc8b9479759e5000370075c86ce8034a",
+      "date": "2017-05-05T03:37:13Z",
+      "subject": "[acs-r] acs:acs.fetch missing key file_test library path",
+      "subject_clean": "[acs-r] acs:acs.fetch missing key file_test library path",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "1. When the acs.fetch() function is called without a key, the file_test\ndoes not set the file_test parameter .lib_loc.  This causes it to fail on\nmy Ubuntu 16.04 installation where the library is installed system wide at\n\"/usr/local/lib/R/site-library/acs\".  I am using acs.fetch through newer\nfunctionality in the package choroplethr.\n\na. These functions and variables are good candidates for the file_test\nparameter .lib_loc which defaults to NULL.\n\n\n   - .libPaths()\n   - .Library.site\n\nb. Alternatively, you could prepend the correct library path from\n.libPaths() to the string literal using paste() or stringr:str_c()\n\n\n2. Instead of using acs:api.key.install() because of the system folder\npermissions, I was able to manually create the directory using\nsudo/administrative commands.\n\n> cd /usr/local/lib/R/site-library/acs\n> sudo mkdir exdata\n> sudo cp /home/<user_name>/key.rda exdata\n\n\n3.  I usually use the command line to install cran packages because it\nhelps me work more efficiently when there are missing system libraries,\nolder versions of system libraries, or missing R package dependencies.\nThis is especially true with geospatial libraries such as GDAL/OGR.  I use\nboth rstudio and rstudio server on different Ubuntu machines\n\n> sudo su - -c \"R -e \\\"install.packages('acs', repos = '\nhttp://cran.rstudio.com/')\\\"\"\n\n\n-- \nStoney Vintson  ??\nhttp://www.stoneyphoto.com\nstoneyv at gmail.com\n503.830.8023 mobile\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170504/c374c933/attachment.html",
+      "body_snippet": "1. When the acs.fetch() function is called without a key, the file_test\ndoes not set the file_test parameter .lib_loc.  This causes it to fail on\nmy Ubuntu 16.04 installation where the library is inst",
+      "thread_id": "thread-f7927858c048",
+      "thread_depth": 0,
+      "month": "2017-05"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-f7927858c048",
+      "subject": "[acs-r] acs:acs.fetch missing key file_test library path",
+      "message_count": 1,
+      "participants": [
+        "Stoney Vintson"
+      ],
+      "started": "2017-05-05T03:37:13Z",
+      "last_reply": "2017-05-05T03:37:13Z",
+      "root_message_id": "msg-f7927858c048"
+    }
+  ]
+}

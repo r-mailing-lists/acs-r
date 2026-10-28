@@ -1,0 +1,54 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2021-03",
+  "messages": [
+    {
+      "id": "msg-24618d131154",
+      "message_id": "<CAEx8kLWD7D+2=NDasYdogjQETgqO3q=FSt+9FfHvXj7tQD0xow@mail.gmail.com>",
+      "from_name": "Brandon Taylor",
+      "from_email_hash": "d550fd8a9025a34a94c181bbc5f8f3f1aeb404296a9ea38ae3a7fd8aacf1c9a7",
+      "date": "2021-03-29T15:06:58Z",
+      "subject": "[acs-r] Issue",
+      "subject_clean": "[acs-r] Issue",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi all,\nI'm not sure if I'm asking this question in the right place...\nI'm running into an error using the package. The code I'm running is:\n\nzip_codes = geo.make(zip.code = \"*\")\ncensus_data = acs.fetch( 2015, dataset = \"acs\", geography = zip_codes, span\n= 5, variable = c( \"B01001_001\", \"B01001_003\", \"B01001_004\", \"B01001_005\",\n\"B01001_006\", \"B01001_007\", \"B01001_008\", \"B01001_009\", \"B01001_010\",\n\"B01001_011\", \"B01001_012\", \"B01001_013\", \"B01001_014\", \"B01001_015\",\n\"B01001_016\", \"B01001_017\", \"B01001_018\", \"B01001_019\", \"B01001_020\",\n\"B01001_021\", \"B01001_022\", \"B01001_023\", \"B01001_024\", \"B01001_025\",\n\"B01001_027\", \"B01001_028\", \"B01001_029\", \"B01001_030\", \"B01001_031\",\n\"B01001_032\", \"B01001_033\", \"B01001_034\", \"B01001_035\", \"B01001_036\",\n\"B01001_037\", \"B01001_038\", \"B01001_039\", \"B01001_040\", \"B01001_041\",\n\"B01001_042\", \"B01001_043\", \"B01001_044\", \"B01001_045\", \"B01001_046\",\n\"B01001_047\", \"B01001_048\", \"B01001_049\", \"B02001_001\", \"B02001_003\",\n\"B03001_001\", \"B03001_003\", \"B15003_001\", \"B15003_002\", \"B15003_003\",\n\"B15003_004\", \"B15003_005\", \"B15003_006\", \"B15003_007\", \"B15003_008\",\n\"B15003_009\", \"B15003_010\", \"B15003_011\", \"B15003_012\", \"B15003_013\",\n\"B15003_014\", \"B15003_015\", \"B15003_016\", \"B17001_001\", \"B17001_002\",\n\"B19013_001\", \"B25008_001\", \"B25008_002\", \"B25077_001\" ) )\n\nAnd the result I'm getting is\n\nError in dimnames(acs.obj at standard.error) <- list(acs.obj at geography[[1]],\n :\n  length of 'dimnames' [2] not equal to array extent\nIn addition: Warning message:\nIn acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :\n  NAs introduced by coercion\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20210329/c5e8b1b7/attachment.html",
+      "body_snippet": "Hi all,\nI'm not sure if I'm asking this question in the right place...\nI'm running into an error using the package. The code I'm running is:\n\nzip_codes = geo.make(zip.code = \"*\")\ncensus_data = acs.fet",
+      "thread_id": "thread-24618d131154",
+      "thread_depth": 0,
+      "month": "2021-03"
+    },
+    {
+      "id": "msg-bfa2332a0a60",
+      "message_id": "<CAEx8kLX64mP=XppWxzNHdU+UB1Ce_NYYVy9nhDoYRY3zArKZbQ@mail.gmail.com>",
+      "from_name": "Brandon Taylor",
+      "from_email_hash": "d550fd8a9025a34a94c181bbc5f8f3f1aeb404296a9ea38ae3a7fd8aacf1c9a7",
+      "date": "2021-03-30T14:55:55Z",
+      "subject": "[acs-r] Issue",
+      "subject_clean": "[acs-r] Issue",
+      "in_reply_to": "<CAEx8kLWD7D+2=NDasYdogjQETgqO3q=FSt+9FfHvXj7tQD0xow@mail.gmail.com>",
+      "references": [
+        "<CAEx8kLWD7D+2=NDasYdogjQETgqO3q=FSt+9FfHvXj7tQD0xow@mail.gmail.com>"
+      ],
+      "body_plain": "After a round of debugging, I think the issue is in this line:\n\ncol.names = names(in.data)[seq(1, (length(in.data) -\n        geo.length), 2)]\n\nBrowse[5]> names(in.data)[seq(1, (length(in.data) - +\ngeo.length), 2)] [1] \"X..B01001_001E\" \"B01001_003E\"    \"B01001_004E\"\n \"B01001_005E\"    \"B01001_006E\"\n [6] \"B01001_007E\"    \"B01001_008E\"    \"B01001_009E\"    \"B01001_010E\"\n  \"B01001_011E\"\n[11] \"B01001_012E\"    \"B01001_013E\"    \"B01001_014E\"    \"B01001_015E\"\n  \"B01001_016E\"\n[16] \"B01001_017E\"    \"B01001_018E\"    \"B01001_019E\"    \"B01001_020E\"    \"NAME\"\n\n\nI don't think NAME was supposed to have made it in there?\n\nOn Mon, Mar 29, 2021 at 11:06 AM Brandon Taylor <brandon.taylor221 at gmail.com>\nwrote:\n\n> Hi all,\n> I'm not sure if I'm asking this question in the right place...\n> I'm running into an error using the package. The code I'm running is:\n>\n> zip_codes = geo.make(zip.code = \"*\")\n> census_data = acs.fetch( 2015, dataset = \"acs\", geography = zip_codes,\n> span = 5, variable = c( \"B01001_001\", \"B01001_003\", \"B01001_004\",\n> \"B01001_005\", \"B01001_006\", \"B01001_007\", \"B01001_008\", \"B01001_009\",\n> \"B01001_010\", \"B01001_011\", \"B01001_012\", \"B01001_013\", \"B01001_014\",\n> \"B01001_015\", \"B01001_016\", \"B01001_017\", \"B01001_018\", \"B01001_019\",\n> \"B01001_020\", \"B01001_021\", \"B01001_022\", \"B01001_023\", \"B01001_024\",\n> \"B01001_025\", \"B01001_027\", \"B01001_028\", \"B01001_029\", \"B01001_030\",\n> \"B01001_031\", \"B01001_032\", \"B01001_033\", \"B01001_034\", \"B01001_035\",\n> \"B01001_036\", \"B01001_037\", \"B01001_038\", \"B01001_039\", \"B01001_040\",\n> \"B01001_041\", \"B01001_042\", \"B01001_043\", \"B01001_044\", \"B01001_045\",\n> \"B01001_046\", \"B01001_047\", \"B01001_048\", \"B01001_049\", \"B02001_001\",\n> \"B02001_003\", \"B03001_001\", \"B03001_003\", \"B15003_001\", \"B15003_002\",\n> \"B15003_003\", \"B15003_004\", \"B15003_005\", \"B15003_006\", \"B15003_007\",\n> \"B15003_008\", \"B15003_009\", \"B15003_010\", \"B15003_011\", \"B15003_012\",\n> \"B15003_013\", \"B15003_014\", \"B15003_015\", \"B15003_016\", \"B17001_001\",\n> \"B17001_002\", \"B19013_001\", \"B25008_001\", \"B25008_002\", \"B25077_001\" ) )\n>\n> And the result I'm getting is\n>\n> Error in dimnames(acs.obj at standard.error) <- list(acs.obj at geography[[1]],\n>  :\n>   length of 'dimnames' [2] not equal to array extent\n> In addition: Warning message:\n> In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :\n>   NAs introduced by coercion\n>\n\n\n-- \nbrandon taylor\n(978) 831-3135\npronouns: dealer's choice\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20210330/218cca97/attachment.html",
+      "body_snippet": "After a round of debugging, I think the issue is in this line:\n\ncol.names = names(in.data)[seq(1, (length(in.data) -\n        geo.length), 2)]\n\nBrowse[5]> names(in.data)[seq(1, (length(in.data) - +\ngeo",
+      "thread_id": "thread-24618d131154",
+      "thread_depth": 1,
+      "month": "2021-03"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-24618d131154",
+      "subject": "[acs-r] Issue",
+      "message_count": 2,
+      "participants": [
+        "Brandon Taylor"
+      ],
+      "started": "2021-03-29T15:06:58Z",
+      "last_reply": "2021-03-30T14:55:55Z",
+      "root_message_id": "msg-24618d131154"
+    }
+  ]
+}

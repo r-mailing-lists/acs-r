@@ -1,0 +1,322 @@
+From mpharis at pewtrusts.org  Wed Oct  4 14:55:25 2017
+From: mpharis at pewtrusts.org (Meagan Pharis)
+Date: Wed, 4 Oct 2017 18:55:25 +0000
+Subject: [acs-r] 2016 1-year data - unable to acquire
+Message-ID: <513c8f05cabe432a8942e8562f04eeab@pewtrusts.org>
+
+I'm also unable to acquire ACS 2016 1-year data using acs.fetch. I believe the function is calling the wrong url. My code, error message, and suggestion below.
+
+Code:
+phila = geo.make(state = "PA", county = 101, check = T)
+test <- acs.fetch(2016, span = 1, geography = phila, variable = "B01003_001E")
+Returns:
+
+Error in file(file, "rt") : cannot open the connection
+
+In addition: Warning message:
+
+No data found at:
+
+  https://api.census.gov/data/2016/acs1?key=9f1ca4bc23f2ff77ab0471d2c80758717b116428&get=B01003_001EE,B01003_001EM,NAME&for=county:101&in=state:42
+
+The correct url would be: https://api.census.gov/data/2016/acs/acs1?key=....
+See the extra "/acs/" in the url?
+
+I believe this is a census api address schema change. They've left the older ones open, allowing for call on 2015 acs data to still work.
+
+Thank you,
+
+
+Meagan Pharis
+Senior Associate, Research and Science - Philadelphia Research Initiative
+The Pew Charitable Trusts
+2005 Market Street, 28th Floor
+Philadelphia, PA 19103
+p: 215-575-4773 | e: mpharis at pewtrusts.org<mailto:mpharis at pewtrusts.org> |  www.pewtrusts.org<http://www.pewtrusts.org/>
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20171004/b593d145/attachment.html
+
+From eglenn at mit.edu  Wed Oct  4 15:01:12 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 04 Oct 2017 15:01:12 -0400
+Subject: [acs-r] 2016 1-year data - unable to acquire
+In-Reply-To: <513c8f05cabe432a8942e8562f04eeab@pewtrusts.org>
+References: <513c8f05cabe432a8942e8562f04eeab@pewtrusts.org>
+Message-ID: <86376y7n5z.wl-eglenn@mit.edu>
+
+
+
+Yes -- patch being tested as we speak, should be on cran by the end of
+the week.
+
+Sorry!
+
+On Wed, 04 Oct 2017 14:55:25 -0400, Meagan Pharis wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> I?m also unable to acquire ACS 2016 1-year data using acs.fetch. I believe the function is
+> calling the wrong url. My code, error message, and suggestion below.
+> 
+> Code:
+> 
+> phila = geo.make(state = "PA", county = 101, check = T)
+> 
+> test <- acs.fetch(2016, span = 1, geography = phila, variable = "B01003_001E")
+> 
+> Returns:
+> 
+> Error in file(file, "rt") : cannot open the connection
+> 
+> In addition: Warning message:
+> 
+> No data found at:
+> 
+>   https://api.census.gov/data/2016/acs1?key=9f1ca4bc23f2ff77ab0471d2c80758717b116428&get=B01003_001EE,B01003_001EM,NAME&for=county:101&in=state:42 
+> 
+> The correct url would be: https://api.census.gov/data/2016/acs/acs1?key=....
+> 
+> See the extra ?/acs/? in the url?
+> 
+> I believe this is a census api address schema change. They?ve left the older ones open,
+> allowing for call on 2015 acs data to still work.
+> 
+> Thank you,
+> 
+> Meagan Pharis
+> 
+> Senior Associate, Research and Science ? Philadelphia Research Initiative
+> 
+> The Pew Charitable Trusts
+> 
+> 2005 Market Street, 28^th Floor
+> 
+> Philadelphia, PA 19103
+> 
+> p: 215-575-4773 | e: mpharis at pewtrusts.org |  www.pewtrusts.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Fri Oct 27 10:35:20 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 27 Oct 2017 10:35:20 -0400
+Subject: [acs-r] Free Software Foundation "Social Benefit" award nominations
+Message-ID: <86zi8cd5g7.wl-eglenn@mit.edu>
+
+
+acs.R Community:
+
+The Free Software Foundation is now accepting nominations for the 2017
+"Project of Social Benefit Award," presented to the project or team
+responsible for applying free software, or the ideas of the free
+software movement, in a project that intentionally and significantly
+benefits society in other aspects of life.
+
+If anyone is willing to nominate the acs package, the recognition
+would be much appreciated -- the package has been generous supported
+by MIT and the Puget Sound Regional Council, as well as a great deal
+of user-feedback and creative development on the part of the
+ACS/Census/R community.
+
+The nomination form is quick and easy -- see
+<https://my.fsf.org/projects-of-social-benefit-award-nomination>.
+Deadline 11/5.
+
+More info at <https://www.fsf.org/awards/sb-award/>.
+
+Thanks!
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From arilamstein at gmail.com  Fri Oct 27 11:46:22 2017
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Fri, 27 Oct 2017 08:46:22 -0700
+Subject: [acs-r] Free Software Foundation "Social Benefit" award
+	nominations
+In-Reply-To: <86zi8cd5g7.wl-eglenn@mit.edu>
+References: <86zi8cd5g7.wl-eglenn@mit.edu>
+Message-ID: <CAEO2kuLTd_poUzW_b2fuzjqo0qK5_27Wuif8Y6TT7dieSV=qug@mail.gmail.com>
+
+Ezra,
+
+Thank you for letting us know about this easy way to support the acs
+package.
+
+I just filled out the nomination form. It was just a few questions. The
+whole process took me less than 5 minutes.
+
+As the author of a few R packages myself, I know firsthand how hard it is
+to get enough compensation (whether financial or simply professional
+recognition) to maintain multi-year support for package development and
+maintenance.
+
+I'm glad that you've been so responsive in this forum for many years. If
+helping you get nominated for this award helps you continue providing this
+level of support, then I'm glad to have helped with that.
+
+Ari
+
+
+On Fri, Oct 27, 2017 at 7:35 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> acs.R Community:
+>
+> The Free Software Foundation is now accepting nominations for the 2017
+> "Project of Social Benefit Award," presented to the project or team
+> responsible for applying free software, or the ideas of the free
+> software movement, in a project that intentionally and significantly
+> benefits society in other aspects of life.
+>
+> If anyone is willing to nominate the acs package, the recognition
+> would be much appreciated -- the package has been generous supported
+> by MIT and the Puget Sound Regional Council, as well as a great deal
+> of user-feedback and creative development on the part of the
+> ACS/Census/R community.
+>
+> The nomination form is quick and easy -- see
+> <https://my.fsf.org/projects-of-social-benefit-award-nomination>.
+> Deadline 11/5.
+>
+> More info at <https://www.fsf.org/awards/sb-award/>.
+>
+> Thanks!
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20171027/c3600e94/attachment.html
+
+From markhwhiteii at gmail.com  Fri Oct 27 12:19:02 2017
+From: markhwhiteii at gmail.com (Mark White)
+Date: Fri, 27 Oct 2017 11:19:02 -0500
+Subject: [acs-r] Free Software Foundation "Social Benefit" award
+	nominations
+In-Reply-To: <CAEO2kuLTd_poUzW_b2fuzjqo0qK5_27Wuif8Y6TT7dieSV=qug@mail.gmail.com>
+References: <86zi8cd5g7.wl-eglenn@mit.edu>
+	<CAEO2kuLTd_poUzW_b2fuzjqo0qK5_27Wuif8Y6TT7dieSV=qug@mail.gmail.com>
+Message-ID: <CADbL1Cex3q9o=RZjN1gPkdgQWyN7yVU9ogvC_5KyXe2KrzzT3A@mail.gmail.com>
+
+I did it as well.
+
+Thanks, Ezra!
+
+Mark
+
+On Fri, Oct 27, 2017 at 10:46 AM, <arilamstein at gmail.com> wrote:
+
+> Ezra,
+>
+> Thank you for letting us know about this easy way to support the acs
+> package.
+>
+> I just filled out the nomination form. It was just a few questions. The
+> whole process took me less than 5 minutes.
+>
+> As the author of a few R packages myself, I know firsthand how hard it is
+> to get enough compensation (whether financial or simply professional
+> recognition) to maintain multi-year support for package development and
+> maintenance.
+>
+> I'm glad that you've been so responsive in this forum for many years. If
+> helping you get nominated for this award helps you continue providing this
+> level of support, then I'm glad to have helped with that.
+>
+> Ari
+>
+>
+> On Fri, Oct 27, 2017 at 7:35 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>
+>>
+>> acs.R Community:
+>>
+>> The Free Software Foundation is now accepting nominations for the 2017
+>> "Project of Social Benefit Award," presented to the project or team
+>> responsible for applying free software, or the ideas of the free
+>> software movement, in a project that intentionally and significantly
+>> benefits society in other aspects of life.
+>>
+>> If anyone is willing to nominate the acs package, the recognition
+>> would be much appreciated -- the package has been generous supported
+>> by MIT and the Puget Sound Regional Council, as well as a great deal
+>> of user-feedback and creative development on the part of the
+>> ACS/Census/R community.
+>>
+>> The nomination form is quick and easy -- see
+>> <https://my.fsf.org/projects-of-social-benefit-award-nomination>.
+>> Deadline 11/5.
+>>
+>> More info at <https://www.fsf.org/awards/sb-award/>.
+>>
+>> Thanks!
+>>
+>> --
+>> Ezra Haber Glenn, AICP
+>> Department of Urban Studies and Planning
+>> Massachusetts Institute of Technology
+>> 77 Massachusetts Ave., Room 7-346
+>> Cambridge, MA 02139
+>> eglenn at mit.edu
+>> http://dusp.mit.edu/faculty/ezra-glenn
+>> 617.253.2024 (w)
+>> 617.721.7131 (c)
+>> _______________________________________________
+>> acs-r mailing list
+>> acs-r at mit.edu
+>> http://mailman.mit.edu/mailman/listinfo/acs-r
+>>
+>
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20171027/cd080646/attachment.html
+

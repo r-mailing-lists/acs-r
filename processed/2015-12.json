@@ -1,0 +1,82 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-12",
+  "messages": [
+    {
+      "id": "msg-5259f2baa425",
+      "message_id": "<86fuzh3ouj.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-12-04T21:07:00Z",
+      "subject": "[acs-r] ACS 2010-2014 Data Now Available",
+      "subject_clean": "[acs-r] ACS 2010-2014 Data Now Available",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs.R Users:\n\nJust in time for the holidays, the Census has released new American\nCommunity Survey data, covering all states, counties, cities, and\ntowns, down to the census tract and block-group level for the\n2010?2014 five-year period. Luckily, the data is also available via\nthe Census Census API, which mean it is available to users of the the\nacs.R package (version 1.2 or later; if you?re not sure which version\nyou are using, you can always type packageVersion(?acs?) to find out.)\n\nTo get the latest data, just continue to use the acs.fetch() function\nas usual, but specify endyear=2014.  (Note that by default, endyear is\nset to 2011 if no year is explicitly passed to acs.fetch, and I didn?t\nwant to change this for fear of breaking existing user scripts. In the\nfuture, we might to rethink this, so that it selects the most recent\nendyear by default.)\n\nAlso, be aware that the function will give you some warnings about how\n?As of the date of this version of the acs package Census API did not\nprovides data for selected endyear? ? but you can safely ignore that,\nand the data will still be fetched.\n\nHappy downloading!\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs.R Users:\n\nJust in time for the holidays, the Census has released new American\nCommunity Survey data, covering all states, counties, cities, and\ntowns, down to the census tract and block-group",
+      "thread_id": "thread-5259f2baa425",
+      "thread_depth": 0,
+      "month": "2015-12"
+    },
+    {
+      "id": "msg-51ac9db252a4",
+      "message_id": "<CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>",
+      "from_name": "Chris Cambron",
+      "from_email_hash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+      "date": "2015-12-21T20:09:55Z",
+      "subject": "[acs-r] ACS: Summing columns but keeping block group geographies",
+      "subject_clean": "[acs-r] ACS: Summing columns but keeping block group geographies",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\nI had a quick question that I can't seem to get a handle on.  I have an ACS\nobject of about a 1000 block groups on table B15002 (Sex by Education).\nI'm attempting to sum columns (i.e. all the columns that indicate not\nfinishing HS for both males and females) prior to dividing by the block\ngroup total.  However, when I sum columns, I seem to lose my block group\ngeography info and all the estimates are aggregated into a single number.\nIs there a way sum columns to be divided by the total but each geography?\n\nAny suggestions would be most appreciated.\n\n\nvars<-c('B15002001', #Total followed by Males vars then Female vars\n        'B15002002', #Total Male\n\n'B15002003','B15002004','B15002005','B15002006','B15002007','B15002008','B15002009','B15002010','B15002011',\n#HS\n\n'B15002012','B15002013','B15002014','B15002015','B15002016','B15002017','B15002018',\n#College\n        'B15002019', #Total Female\n\n'B15002020','B15002021','B15002022','B15002023','B15002024','B15002025','B15002026','B15002027','B15002028',\n#HS\n\n'B15002029','B15002030','B15002031','B15002032','B15002033','B15002034','B15002035')\n#College\n\nvars<-paste(substr(vars, 1L, 6L), substr(vars, 7L, 9L), sep = '_')\n\nblock.data<-acs.fetch(endyear=2010,span=5,geo=emah.blocks,variable=vars)\n\ncols.mf<-c(3:11,20:28)\nHSpct.mf <- sum(block.data[,cols.mf])\n\nThanks so much,\nBest,\nChris\n\n*Chris Cambron, MSW, MPP*\nDoctoral Student\nSocial Development Research Group\nSchool of Social Work   |  University of Washington\nccambron at uw.edu  |  www.sdrg.org\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20151221/26e129f5/attachment.html",
+      "body_snippet": "Hi,\nI had a quick question that I can't seem to get a handle on.  I have an ACS\nobject of about a 1000 block groups on table B15002 (Sex by Education).\nI'm attempting to sum columns (i.e. all the colu",
+      "thread_id": "thread-51ac9db252a4",
+      "thread_depth": 0,
+      "month": "2015-12"
+    },
+    {
+      "id": "msg-5efdf4a64e6d",
+      "message_id": "<8660zrtpb5.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-12-21T22:22:22Z",
+      "subject": "[acs-r] ACS: Summing columns but keeping block group geographies",
+      "subject_clean": "[acs-r] ACS: Summing columns but keeping block group geographies",
+      "in_reply_to": "<CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>",
+      "references": [
+        "<CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>"
+      ],
+      "body_plain": "Dear Chris:\n\nWhen called on an acs-class object, the \"sum\" function sums both rows\nand columns, so the geography gets collapsed into a single\n\"aggregate.\"   \n\nAlternatively, there is the possibility of using apply() if you only\nwant to sum rows (MARGIN=1) *or* columns (MARGIN=2).\n\n# to sum all rows *and* all \"cols.mf\" rows columns:\nHSpct.mf <- sum(block.data[,cols.mf])\n            \n# to sum all columns for each row:\n\nHSpct.mf <- apply(block.data[,cols.mf], MARGIN=2, FUN=\"sum\")\n\n(You could also sum all the rows and keep the columns -- just change\noption to MARGIN=1).\n\nHope that helps -- let me know if you have more questions.\n\n--Ezra\n\nAt Mon, 21 Dec 2015 12:09:55 -0800, Chris Cambron wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi,\n> I had a quick question that I can't seem to get a handle on.  I have an ACS object of about\n> a 1000 block groups on table B15002 (Sex by Education).  I'm attempting to sum columns\n> (i.e. all the columns that indicate not finishing HS for both males and females) prior to\n> dividing by the block group total.  However, when I sum columns, I seem to lose my block\n> group geography info and all the estimates are aggregated into a single number.  Is there a\n> way sum columns to be divided by the total but each geography?\n> \n> Any suggestions would be most appreciated.\n> \n> vars<-c('B15002001', #Total followed by Males vars then Female vars\n>         'B15002002', #Total Male\n>        \n> 'B15002003','B15002004','B15002005','B15002006','B15002007','B15002008','B15002009','B15002010','B15002011',\n> #HS\n>        \n> 'B15002012','B15002013','B15002014','B15002015','B15002016','B15002017','B15002018', #\n> College\n>         'B15002019', #Total Female\n>        \n> 'B15002020','B15002021','B15002022','B15002023','B15002024','B15002025','B15002026','B15002027','B15002028',\n> #HS\n>        \n> 'B15002029','B15002030','B15002031','B15002032','B15002033','B15002034','B15002035') #\n> College\n> \n> vars<-paste(substr(vars, 1L, 6L), substr(vars, 7L, 9L), sep = '_')\n> \n> block.data<-acs.fetch(endyear=2010,span=5,geo=emah.blocks,variable=vars)\n> \n> cols.mf<-c(3:11,20:28)\n> HSpct.mf <- sum(block.data[,cols.mf])\n> \n> Thanks so much,\n> Best,\n> Chris\n> \n> Chris Cambron, MSW, MPP\n> Doctoral Student\n> Social Development Research Group\n> School of Social Work   |  University of Washington\n> ccambron at uw.edu  |  www.sdrg.org\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear Chris:\n\nWhen called on an acs-class object, the \"sum\" function sums both rows\nand columns, so the geography gets collapsed into a single\n\"aggregate.\"   \n\nAlternatively, there is the possibility o",
+      "thread_id": "thread-51ac9db252a4",
+      "thread_depth": 1,
+      "month": "2015-12"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-5259f2baa425",
+      "subject": "[acs-r] ACS 2010-2014 Data Now Available",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2015-12-04T21:07:00Z",
+      "last_reply": "2015-12-04T21:07:00Z",
+      "root_message_id": "msg-5259f2baa425"
+    },
+    {
+      "id": "thread-51ac9db252a4",
+      "subject": "[acs-r] ACS: Summing columns but keeping block group geographies",
+      "message_count": 2,
+      "participants": [
+        "Chris Cambron",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2015-12-21T20:09:55Z",
+      "last_reply": "2015-12-21T22:22:22Z",
+      "root_message_id": "msg-51ac9db252a4"
+    }
+  ]
+}

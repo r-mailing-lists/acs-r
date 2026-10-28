@@ -1,0 +1,94 @@
+From tighe at brandeis.edu  Fri Jan 27 17:09:20 2017
+From: tighe at brandeis.edu (Elizabeth Tighe)
+Date: Fri, 27 Jan 2017 17:09:20 -0500
+Subject: [acs-r] table B15002H
+Message-ID: <a12faa89-8096-ddef-c4e9-8bc22439c6cb@brandeis.edu>
+
+
+I'm fairly new to use of this ACS package.  I'm currently trying to work 
+with tables B15002 & B15002H at the county level.  Table B15002 appears 
+as fetchable, but not B15002H.  I understand some estimates at the 
+county level in Table B15002H are suppressed because they are 
+unreliable, but for the many that are not suppressed and are available 
+on FactFinder, it would be speedier to work with the data through this 
+package than to manually download files from FactFinder.
+
+If this is something anyone in this group might have experience with, 
+tips/suggestions would be much appreciated!
+
+Thanks.
+
+-- 
+
+Elizabeth Tighe, Ph.D.
+Research Scientist
+Steinhardt Social Research Institute
+Brandeis University
+
+
+From eglenn at mit.edu  Tue Jan 31 08:49:25 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 31 Jan 2017 08:49:25 -0500
+Subject: [acs-r] table B15002H
+In-Reply-To: <a12faa89-8096-ddef-c4e9-8bc22439c6cb@brandeis.edu>
+References: <a12faa89-8096-ddef-c4e9-8bc22439c6cb@brandeis.edu>
+Message-ID: <868tprbaqi.wl-eglenn@mit.edu>
+
+
+>From what I can tell, the B15002X tables (e.g., B15002A, B15002B,
+B15002H, etc.) are not available via the census API, and thus not
+available through the acs package.  You can get this data via
+factfinder and import it to R.
+
+However, there is a "C15002X" version with all the A, B, C options
+(i.e., C15002, C15002A, C15002H, etc.) -- pretty much the same data,
+but the educational levels are grouped a bit (fewer categories).
+Compare
+<https://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_15_5YR_B15002#main_content>
+and
+<https://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_15_5YR_C15002H#main_content>.
+
+Hope that helps.
+
+--Ezra
+
+On Fri, 27 Jan 2017 17:09:20 -0500, Elizabeth Tighe wrote:
+> 
+> 
+> I'm fairly new to use of this ACS package.  I'm currently trying to work 
+> with tables B15002 & B15002H at the county level.  Table B15002 appears 
+> as fetchable, but not B15002H.  I understand some estimates at the 
+> county level in Table B15002H are suppressed because they are 
+> unreliable, but for the many that are not suppressed and are available 
+> on FactFinder, it would be speedier to work with the data through this 
+> package than to manually download files from FactFinder.
+> 
+> If this is something anyone in this group might have experience with, 
+> tips/suggestions would be much appreciated!
+> 
+> Thanks.
+> 
+> -- 
+> 
+> Elizabeth Tighe, Ph.D.
+> Research Scientist
+> Steinhardt Social Research Institute
+> Brandeis University
+> 
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+

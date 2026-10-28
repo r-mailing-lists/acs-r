@@ -1,0 +1,211 @@
+From katekelsey at gmail.com  Tue Jan 12 12:01:52 2016
+From: katekelsey at gmail.com (Kate Kelsey)
+Date: Tue, 12 Jan 2016 09:01:52 -0800
+Subject: [acs-r] Calculating median income for a new geography
+Message-ID: <CANjKV+xKWYVy7vGia0Q12Mhwi1oRT6hNvgOZvWuKUtWazz3O1A@mail.gmail.com>
+
+Hi All,
+I am working on a project where I need to calculate median household income
+for a group of census tracts.
+Because this is median income I can't just add the median income for each
+tract and divide by the total number of households.
+Does anyone have any code they can share to do this?
+Thanks,
+Kate
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160112/2f56925d/attachment.html
+
+From eglenn at mit.edu  Tue Jan 12 13:02:57 2016
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 12 Jan 2016 13:02:57 -0500
+Subject: [acs-r] Calculating median income for a new geography
+In-Reply-To: <CANjKV+xKWYVy7vGia0Q12Mhwi1oRT6hNvgOZvWuKUtWazz3O1A@mail.gmail.com>
+References: <CANjKV+xKWYVy7vGia0Q12Mhwi1oRT6hNvgOZvWuKUtWazz3O1A@mail.gmail.com>
+Message-ID: <86si22ekvi.wl%eglenn@mit.edu>
+
+
+Kate:
+
+Unfortunately, as I understand it, you simply cannot compute an actual
+median from a group of medians -- the exact data you need is  not
+there.  
+
+There are ways to approximate this -- a median of medians or a mean of
+medians (or even a weighted mean of medians) -- but they are sort of 
+guesses and approximations.  That said, for lots of planning types
+applications, close enough is close enough.  But maybe check with a
+statistician friend and discuss your options.
+
+--Ezra
+
+At Tue, 12 Jan 2016 09:01:52 -0800, Kate Kelsey wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi All,
+> I am working on a project where I need to calculate median household income for a group of
+> census tracts.  
+> Because this is median income I can't just add the median income for each tract and divide
+> by the total number of households. 
+> Does anyone have any code they can share to do this?
+> Thanks,
+> Kate 
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From tiernanmartin at gmail.com  Tue Jan 12 13:47:20 2016
+From: tiernanmartin at gmail.com (Tiernan Martin)
+Date: Tue, 12 Jan 2016 10:47:20 -0800
+Subject: [acs-r] Calculating median income for a new geography
+In-Reply-To: <86si22ekvi.wl%eglenn@mit.edu>
+References: <CANjKV+xKWYVy7vGia0Q12Mhwi1oRT6hNvgOZvWuKUtWazz3O1A@mail.gmail.com>
+	<86si22ekvi.wl%eglenn@mit.edu>
+Message-ID: <CAEo23y6zwHfgraAkbuDyVWE9gCDN=nbBOV3aD54EOroNBqRy7g@mail.gmail.com>
+
+Hi Kate,
+
+I have wrestled with this issue a bit myself. It baffles me that there
+isn't a clear breakdown of how to do this floating somewhere on the
+internet!
+
+The solution that I have arrived at was suggested here
+<https://www.reddit.com/r/statistics/comments/2s7icg/proper_way_to_aggregate_medians/>,
+and it involves estimating the median using interpolation
+<http://factfinder.census.gov/help/en/interpolation.htm>.
+
+Here's a quick breakdown of the steps:
+
+   1. Aggregate the B19001 table for the census tracts of interest
+   2. Find the income bracket where the median is expected to be
+   3. Use a method called pareto interpolation to estimate the median (or
+   linear interpolation if the bracket ranges are less than $2500)
+
+
+I found the most straightforward breakdown of pareto interpolation to be
+this one: http://www.s4.brown.edu/us2010/SUC/MHHINote.htm
+
+And this example should give you a decent idea of how to write a function
+(albeit this is a python script, but the idea is the same:
+https://gist.github.com/albertsun/1245817
+
+I can send you the R function that I wrote if it will save you some time,
+but I can't make any guarantees that it is statistically impeccable. If you
+want to calculate the sampling error you can find the method explained on
+p.16-17 of this document:
+http://www.census.gov/content/dam/Census/programs-surveys/sipp/tech-documentation/source-accuracy-statements/2008/SIPP%202008%20Panel%20Wave%2005%20-%20Core%20Source%20and%20Accuracy%20Statements.pdf
+
+
+If you find a better solution than this approach please share it!
+
+Best,
+
+Tiernan
+
+
+
+
+
+
+On Tue, Jan 12, 2016 at 10:02 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Kate:
+>
+> Unfortunately, as I understand it, you simply cannot compute an actual
+> median from a group of medians -- the exact data you need is  not
+> there.
+>
+> There are ways to approximate this -- a median of medians or a mean of
+> medians (or even a weighted mean of medians) -- but they are sort of
+> guesses and approximations.  That said, for lots of planning types
+> applications, close enough is close enough.  But maybe check with a
+> statistician friend and discuss your options.
+>
+> --Ezra
+>
+> At Tue, 12 Jan 2016 09:01:52 -0800, Kate Kelsey wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > Hi All,
+> > I am working on a project where I need to calculate median household
+> income for a group of
+> > census tracts.
+> > Because this is median income I can't just add the median income for
+> each tract and divide
+> > by the total number of households.
+> > Does anyone have any code they can share to do this?
+> > Thanks,
+> > Kate
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+
+
+
+-- 
+*Tiernan Martin*
+ 206.979.7801
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160112/77357cb7/attachment.html
+
+From arilamstein at gmail.com  Mon Jan 18 12:17:19 2016
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 18 Jan 2016 09:17:19 -0800
+Subject: [acs-r] Visualizing Census Estimate Margins of Error in R
+Message-ID: <CAEO2kuLmLTGgSt+9Mu=kY5GdLjH7+RaHAhNhiWyC-CVofvGdgA@mail.gmail.com>
+
+I do a lot of mapping of ACS data and was interested in understanding how
+the MoE increases as you "zoom in". I.e. as you go from state to county to
+tract. I used the acs package for this for this project and just wrote up
+my results on my blog. I thought that people on this list might be
+interested in the results, as well as the code that I used. You can see
+both here:
+
+Visualizing Census Estimate Margins of Error in R:
+http://www.arilamstein.com/blog/2016/01/18/visualize-census-estimate-errors-r/
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160118/bf7a4041/attachment.html
+

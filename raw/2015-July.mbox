@@ -1,0 +1,56 @@
+From eglenn at mit.edu  Wed Jul  1 08:43:53 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 01 Jul 2015 08:43:53 -0400
+Subject: [acs-r] calling specific block codes
+In-Reply-To: <CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>
+References: <CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>
+Message-ID: <86wpykvyie.wl%eglenn@mit.edu>
+
+
+Chris:
+
+Thanks for your email, and for using the acs.R package.
+
+When you say, "I'm working with a sample of people...," I'm assuming
+you mean a sample of blocks (or block groups), correct?  If so, then I
+think this should be possible, if we parse the complete fips codes to
+send the correct parts to state=, county=, tract=, etc.  Can you send
+me a few sample codes you'd want to us (maybe 5-10, ideally also
+telling me in plain English what geographies they represent), and I
+can recommend a couple lines of code to create the correct geo.set
+from them?
+
+--Ezra
+
+At Tue, 30 Jun 2015 17:12:51 -0700, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi, First off, this package is great.  Thank you!  Secondly, I'm
+> working with a sample of people scattered throughout the country.
+> Only one or two in some states, hundreds in others.  Can I input a
+> vector of block level fips codes to geo.make or acs.fetch so that I'm
+> only access census data for specific block codes?  I've tried a few
+> options but all I can figure is grabbing a whole state at the block
+> level and subsetting those I need.  Any thoughts would be much
+> appreciated.
+> 
+> Best, Chris
+> 
+> 
+> [2 <text/plain; us-ascii (7bit)>]
+> _______________________________________________ acs-r mailing list
+> acs-r at mit.edu http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

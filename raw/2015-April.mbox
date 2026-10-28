@@ -1,0 +1,666 @@
+From arilamstein at gmail.com  Wed Apr  1 19:35:53 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Wed, 1 Apr 2015 16:35:53 -0700
+Subject: [acs-r] ACS tables that deal with race
+Message-ID: <CAEO2ku+owU0nFvgthQzm0SG_Rwun0xN8jhiMC=3miZkjbFMAhw@mail.gmail.com>
+
+Hello,
+
+I am a bit confused by the ACS tables that deal with race.  For reference,
+I am currently working with the 2011 5 year ACS tables which are listed here
+<http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=dataset.en.ACS_11_5YR>,
+and I am trying to get data on ZCTAs. My goal is to create choropleth maps
+of San Francisco that show key demographic information.
+
+Table B02008 is listed as WHITE ALONE OR IN COMBINATION WITH ONE OR MORE
+OTHER RACES but it returns a count of people, not a percentage of the total
+population. There seem to be various "G" tables that give the percentage of
+people who are white alone (e.g. GCT0201), but a) none of those geographic
+units are ZCTAs and b) IIRC acs.r cannot retrieve tables that start with a
+G.
+
+Presumably I could just divide those numbers by the result of table B00001
+(UNWEIGHTED SAMPLE COUNT OF THE POPULATION ) or B01003 (TOTAL POPULATION ),
+but I'm not sure what the difference is between those two tables are. Can
+someone give me some pointers?
+
+Thanks.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150401/81f00252/attachment.htm
+
+From Corrales.Mark at epa.gov  Thu Apr  2 12:17:54 2015
+From: Corrales.Mark at epa.gov (Corrales, Mark)
+Date: Thu, 2 Apr 2015 16:17:54 +0000
+Subject: [acs-r] ACS tables that deal with race
+Message-ID: <SN1PR09MB08009A80522E820C58F63C93F2F20@SN1PR09MB0800.namprd09.prod.outlook.com>
+
+
+I would suggest using newer data (2009-2013 is available), and consider using tracts (or even block groups) instead of zip codes/ZCTAs because they are more stable over time and can be rolled up into county totals, etc.
+
+As to which table, you might consider table B03002, which in one table gives you all the counts you need, from which you can calculate percentages, for these eight race/ethnicity groups (which add up to the total population):
+
+Hispanic or Latino
+Not Hispanic or Latino: White alone
+Not Hispanic or Latino: Black or African American alone
+Not Hispanic or Latino: American Indian and Alaska Native alone
+Not Hispanic or Latino: Asian alone
+Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone
+Not Hispanic or Latino: Some other race alone
+Not Hispanic or Latino: Two or more races
+
+Just divide the count by the Total shown in that same table.
+
+http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_13_5YR_B03002#
+
+
+
+-----Original Message-----
+From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of acs-r-request at mit.edu
+Sent: Thursday, April 02, 2015 12:02 PM
+To: acs-r at mit.edu
+Subject: acs-r Digest, Vol 15, Issue 1
+
+Send acs-r mailing list submissions to
+	acs-r at mit.edu
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://mailman.mit.edu/mailman/listinfo/acs-r
+or, via email, send a message with subject or body 'help' to
+	acs-r-request at mit.edu
+
+You can reach the person managing the list at
+	acs-r-owner at mit.edu
+
+When replying, please edit your Subject line so it is more specific than "Re: Contents of acs-r digest..."
+
+
+Today's Topics:
+
+   1. ACS tables that deal with race (arilamstein at gmail.com)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 1 Apr 2015 16:35:53 -0700
+From: <arilamstein at gmail.com>
+Subject: [acs-r] ACS tables that deal with race
+To: acs-r <acs-r at mit.edu>
+Message-ID:
+	<CAEO2ku+owU0nFvgthQzm0SG_Rwun0xN8jhiMC=3miZkjbFMAhw at mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+
+Hello,
+
+I am a bit confused by the ACS tables that deal with race.  For reference, I am currently working with the 2011 5 year ACS tables which are listed here <http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=dataset.en.ACS_11_5YR>,
+and I am trying to get data on ZCTAs. My goal is to create choropleth maps of San Francisco that show key demographic information.
+
+Table B02008 is listed as WHITE ALONE OR IN COMBINATION WITH ONE OR MORE OTHER RACES but it returns a count of people, not a percentage of the total population. There seem to be various "G" tables that give the percentage of people who are white alone (e.g. GCT0201), but a) none of those geographic units are ZCTAs and b) IIRC acs.r cannot retrieve tables that start with a G.
+
+Presumably I could just divide those numbers by the result of table B00001 (UNWEIGHTED SAMPLE COUNT OF THE POPULATION ) or B01003 (TOTAL POPULATION ), but I'm not sure what the difference is between those two tables are. Can someone give me some pointers?
+
+Thanks.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150401/81f00252/attachment-0001.htm
+
+------------------------------
+
+_______________________________________________
+acs-r mailing list
+acs-r at mit.edu
+http://mailman.mit.edu/mailman/listinfo/acs-r
+
+
+End of acs-r Digest, Vol 15, Issue 1
+************************************
+
+
+From arilamstein at gmail.com  Thu Apr  2 16:26:17 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Thu, 2 Apr 2015 13:26:17 -0700
+Subject: [acs-r] ACS tables that deal with race
+In-Reply-To: <SN1PR09MB08009A80522E820C58F63C93F2F20@SN1PR09MB0800.namprd09.prod.outlook.com>
+References: <SN1PR09MB08009A80522E820C58F63C93F2F20@SN1PR09MB0800.namprd09.prod.outlook.com>
+Message-ID: <CAEO2kuLCKaBRvH9J3jitOp8fo+gFO+2-m0sXeEFiTzbypbcCnw@mail.gmail.com>
+
+Thanks Mark.
+
+I need to use zctas because I am creating a demo of my package which
+visualizes zctas in R (https://github.com/arilamstein/choroplethrZip).
+
+When I try to access 2013 data I get this warning:
+
+library(acs)
+zip_geo = geo.make(zip.code = "*")
+data = acs.fetch(geography=zip_geo, table.number = "B03002", col.names =
+"pretty", endyear = 2013, span = 5)
+
+Warning messages:
+1: In acs.fetch(geography = zip_geo, table.number = "B03002", col.names =
+"pretty",  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+
+Is this warning spurious?
+
+Thanks.
+
+Ari
+
+On Thu, Apr 2, 2015 at 9:17 AM, Corrales, Mark <Corrales.Mark at epa.gov>
+wrote:
+
+>
+> I would suggest using newer data (2009-2013 is available), and consider
+> using tracts (or even block groups) instead of zip codes/ZCTAs because they
+> are more stable over time and can be rolled up into county totals, etc.
+>
+> As to which table, you might consider table B03002, which in one table
+> gives you all the counts you need, from which you can calculate
+> percentages, for these eight race/ethnicity groups (which add up to the
+> total population):
+>
+> Hispanic or Latino
+> Not Hispanic or Latino: White alone
+> Not Hispanic or Latino: Black or African American alone
+> Not Hispanic or Latino: American Indian and Alaska Native alone
+> Not Hispanic or Latino: Asian alone
+> Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone
+> Not Hispanic or Latino: Some other race alone
+> Not Hispanic or Latino: Two or more races
+>
+> Just divide the count by the Total shown in that same table.
+>
+>
+> http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_13_5YR_B03002#
+>
+>
+>
+> -----Original Message-----
+> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of
+> acs-r-request at mit.edu
+> Sent: Thursday, April 02, 2015 12:02 PM
+> To: acs-r at mit.edu
+> Subject: acs-r Digest, Vol 15, Issue 1
+>
+> Send acs-r mailing list submissions to
+>         acs-r at mit.edu
+>
+> To subscribe or unsubscribe via the World Wide Web, visit
+>         http://mailman.mit.edu/mailman/listinfo/acs-r
+> or, via email, send a message with subject or body 'help' to
+>         acs-r-request at mit.edu
+>
+> You can reach the person managing the list at
+>         acs-r-owner at mit.edu
+>
+> When replying, please edit your Subject line so it is more specific than
+> "Re: Contents of acs-r digest..."
+>
+>
+> Today's Topics:
+>
+>    1. ACS tables that deal with race (arilamstein at gmail.com)
+>
+>
+> ----------------------------------------------------------------------
+>
+> Message: 1
+> Date: Wed, 1 Apr 2015 16:35:53 -0700
+> From: <arilamstein at gmail.com>
+> Subject: [acs-r] ACS tables that deal with race
+> To: acs-r <acs-r at mit.edu>
+> Message-ID:
+>         <CAEO2ku+owU0nFvgthQzm0SG_Rwun0xN8jhiMC=
+> 3miZkjbFMAhw at mail.gmail.com>
+> Content-Type: text/plain; charset="utf-8"
+>
+> Hello,
+>
+> I am a bit confused by the ACS tables that deal with race.  For reference,
+> I am currently working with the 2011 5 year ACS tables which are listed
+> here <
+> http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=dataset.en.ACS_11_5YR
+> >,
+> and I am trying to get data on ZCTAs. My goal is to create choropleth maps
+> of San Francisco that show key demographic information.
+>
+> Table B02008 is listed as WHITE ALONE OR IN COMBINATION WITH ONE OR MORE
+> OTHER RACES but it returns a count of people, not a percentage of the total
+> population. There seem to be various "G" tables that give the percentage of
+> people who are white alone (e.g. GCT0201), but a) none of those geographic
+> units are ZCTAs and b) IIRC acs.r cannot retrieve tables that start with a
+> G.
+>
+> Presumably I could just divide those numbers by the result of table B00001
+> (UNWEIGHTED SAMPLE COUNT OF THE POPULATION ) or B01003 (TOTAL POPULATION ),
+> but I'm not sure what the difference is between those two tables are. Can
+> someone give me some pointers?
+>
+> Thanks.
+>
+> Ari
+> -------------- next part --------------
+> An HTML attachment was scrubbed...
+> URL:
+> http://mailman.mit.edu/pipermail/acs-r/attachments/20150401/81f00252/attachment-0001.htm
+>
+> ------------------------------
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+> End of acs-r Digest, Vol 15, Issue 1
+> ************************************
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150402/eb0a4d72/attachment.htm
+
+From eglenn at mit.edu  Thu Apr  2 17:13:07 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 02 Apr 2015 17:13:07 -0400
+Subject: [acs-r] ACS tables that deal with race
+In-Reply-To: <CAEO2kuLCKaBRvH9J3jitOp8fo+gFO+2-m0sXeEFiTzbypbcCnw@mail.gmail.com>
+References: <SN1PR09MB08009A80522E820C58F63C93F2F20@SN1PR09MB0800.namprd09.prod.outlook.com>
+	<CAEO2kuLCKaBRvH9J3jitOp8fo+gFO+2-m0sXeEFiTzbypbcCnw@mail.gmail.com>
+Message-ID: <86twwy5j4s.wl%eglenn@mit.edu>
+
+
+Yes -- the warning is simply there because as of the most recent date
+of the package, the 2013 data wasn't available.  If you run your code,
+you'll see that despite the warning, the data gets fetched.  (This is
+why it is a warning and not an error, but I know it's confusing and
+will change in the next version.)
+
+--Ezra
+
+At Thu, 2 Apr 2015 13:26:17 -0700, arilamstein wrote:
+> 
+> Thanks Mark.
+> 
+> I need to use zctas because I am creating a demo of my package which visualizes zctas in R
+> (https://github.com/arilamstein/choroplethrZip).
+> 
+> When I try to access 2013 data I get this warning:
+> 
+> library(acs)
+> zip_geo = geo.make(zip.code = "*")
+> data = acs.fetch(geography=zip_geo, table.number = "B03002", col.names = "pretty", endyear
+> = 2013, span = 5)
+> 
+> Warning messages:
+> 1: In acs.fetch(geography = zip_geo, table.number = "B03002", col.names = "pretty",  :
+>   As of the date of this version of the acs package
+>   Census API did not provides data for selected endyear
+> 
+> Is this warning spurious?
+> 
+> Thanks.
+> 
+> Ari
+> 
+> On Thu, Apr 2, 2015 at 9:17 AM, Corrales, Mark <Corrales.Mark at epa.gov> wrote:
+> 
+>     I would suggest using newer data (2009-2013 is available), and consider using tracts
+>     (or even block groups) instead of zip codes/ZCTAs because they are more stable over
+>     time and can be rolled up into county totals, etc.
+>    
+>     As to which table, you might consider table B03002, which in one table gives you all
+>     the counts you need, from which you can calculate percentages, for these eight race/
+>     ethnicity groups (which add up to the total population):
+>    
+>     Hispanic or Latino
+>     Not Hispanic or Latino: White alone
+>     Not Hispanic or Latino: Black or African American alone
+>     Not Hispanic or Latino: American Indian and Alaska Native alone
+>     Not Hispanic or Latino: Asian alone
+>     Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone
+>     Not Hispanic or Latino: Some other race alone
+>     Not Hispanic or Latino: Two or more races
+>    
+>     Just divide the count by the Total shown in that same table.
+>    
+>     http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table
+>     &id=table.en.ACS_13_5YR_B03002#
+> 
+>     -----Original Message-----
+>     From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of 
+>     acs-r-request at mit.edu
+>     Sent: Thursday, April 02, 2015 12:02 PM
+>     To: acs-r at mit.edu
+>     Subject: acs-r Digest, Vol 15, Issue 1
+>    
+>     Send acs-r mailing list submissions to
+>             acs-r at mit.edu
+>    
+>     To subscribe or unsubscribe via the World Wide Web, visit
+>             http://mailman.mit.edu/mailman/listinfo/acs-r
+>     or, via email, send a message with subject or body 'help' to
+>             acs-r-request at mit.edu
+>    
+>     You can reach the person managing the list at
+>             acs-r-owner at mit.edu
+>    
+>     When replying, please edit your Subject line so it is more specific than "Re: Contents
+>     of acs-r digest..."
+> 
+>     Today's Topics:
+>    
+>        1. ACS tables that deal with race (arilamstein at gmail.com)
+> 
+>     ----------------------------------------------------------------------
+>    
+>     Message: 1
+>     Date: Wed, 1 Apr 2015 16:35:53 -0700
+>     From: <arilamstein at gmail.com>
+>     Subject: [acs-r] ACS tables that deal with race
+>     To: acs-r <acs-r at mit.edu>
+>     Message-ID:
+>             <CAEO2ku+owU0nFvgthQzm0SG_Rwun0xN8jhiMC=3miZkjbFMAhw at mail.gmail.com>
+>     Content-Type: text/plain; charset="utf-8"
+>    
+>     Hello,
+>    
+>     I am a bit confused by the ACS tables that deal with race.  For reference, I am
+>     currently working with the 2011 5 year ACS tables which are listed here <http://
+>     factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=
+>     dataset.en.ACS_11_5YR>,
+>     and I am trying to get data on ZCTAs. My goal is to create choropleth maps of San
+>     Francisco that show key demographic information.
+>    
+>     Table B02008 is listed as WHITE ALONE OR IN COMBINATION WITH ONE OR MORE OTHER RACES
+>     but it returns a count of people, not a percentage of the total population. There seem
+>     to be various "G" tables that give the percentage of people who are white alone (e.g.
+>     GCT0201), but a) none of those geographic units are ZCTAs and b) IIRC acs.r cannot
+>     retrieve tables that start with a G.
+>    
+>     Presumably I could just divide those numbers by the result of table B00001 (UNWEIGHTED
+>     SAMPLE COUNT OF THE POPULATION ) or B01003 (TOTAL POPULATION ), but I'm not sure what
+>     the difference is between those two tables are. Can someone give me some pointers?
+>    
+>     Thanks.
+>    
+>     Ari
+>     -------------- next part --------------
+>     An HTML attachment was scrubbed...
+>     URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150401/81f00252/
+>     attachment-0001.htm
+>    
+>     ------------------------------
+>    
+>     _______________________________________________
+>     acs-r mailing list
+>     acs-r at mit.edu
+>     http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+>     End of acs-r Digest, Vol 15, Issue 1
+>     ************************************
+>    
+>     _______________________________________________
+>     acs-r mailing list
+>     acs-r at mit.edu
+>     http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+//----------------------------------------------------------------------\\
+||         Sick and tired of surveillance?  Use GnuPG with me.          ||
+||                                                                      ||
+||                  My public key is available here:                    ||
+|| <https://pgp.mit.edu/pks/lookup?op=vindex&search=0x322B632172CDB8DF> ||
+\\----------------------------------------------------------------------//
+
+From arilamstein at gmail.com  Thu Apr  2 17:35:02 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Thu, 2 Apr 2015 14:35:02 -0700
+Subject: [acs-r] difference between "total population" and "unweighted
+ sample count of the population"?
+Message-ID: <CAEO2kuLPz7BpQE5xNpkru+ekRKOSHu_YBPru63Lq=BHOwogFbg@mail.gmail.com>
+
+I am having a hard time understanding the difference between these two
+tables:
+
+B00001 UNWEIGHTED SAMPLE COUNT OF THE POPULATION
+
+B01003 TOTAL POPULATION
+
+Can someone please explain the difference? When should one use one table
+over the other?
+
+Thank you.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150402/922c0d11/attachment.htm
+
+From arilamstein at gmail.com  Tue Apr  7 12:43:05 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Tue, 7 Apr 2015 09:43:05 -0700
+Subject: [acs-r] ACS tables that deal with race
+In-Reply-To: <86twwy5j4s.wl%eglenn@mit.edu>
+References: <SN1PR09MB08009A80522E820C58F63C93F2F20@SN1PR09MB0800.namprd09.prod.outlook.com>
+	<CAEO2kuLCKaBRvH9J3jitOp8fo+gFO+2-m0sXeEFiTzbypbcCnw@mail.gmail.com>
+	<86twwy5j4s.wl%eglenn@mit.edu>
+Message-ID: <CAEO2kuJM4jWf=Y_eRLHT1jV9gnFGT+WTLwcAUW9fMMVbS-tzPA@mail.gmail.com>
+
+I thought that people might want to see the analysis that I wound up doing.
+Thank you all for your help!
+
+http://blog.revolutionanalytics.com/2015/04/exploring-san-francisco-with-choropleth.html
+
+On Thu, Apr 2, 2015 at 2:13 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Yes -- the warning is simply there because as of the most recent date
+> of the package, the 2013 data wasn't available.  If you run your code,
+> you'll see that despite the warning, the data gets fetched.  (This is
+> why it is a warning and not an error, but I know it's confusing and
+> will change in the next version.)
+>
+> --Ezra
+>
+> At Thu, 2 Apr 2015 13:26:17 -0700, arilamstein wrote:
+> >
+> > Thanks Mark.
+> >
+> > I need to use zctas because I am creating a demo of my package which
+> visualizes zctas in R
+> > (https://github.com/arilamstein/choroplethrZip).
+> >
+> > When I try to access 2013 data I get this warning:
+> >
+> > library(acs)
+> > zip_geo = geo.make(zip.code = "*")
+> > data = acs.fetch(geography=zip_geo, table.number = "B03002", col.names =
+> "pretty", endyear
+> > = 2013, span = 5)
+> >
+> > Warning messages:
+> > 1: In acs.fetch(geography = zip_geo, table.number = "B03002", col.names
+> = "pretty",  :
+> >   As of the date of this version of the acs package
+> >   Census API did not provides data for selected endyear
+> >
+> > Is this warning spurious?
+> >
+> > Thanks.
+> >
+> > Ari
+> >
+> > On Thu, Apr 2, 2015 at 9:17 AM, Corrales, Mark <Corrales.Mark at epa.gov>
+> wrote:
+> >
+> >     I would suggest using newer data (2009-2013 is available), and
+> consider using tracts
+> >     (or even block groups) instead of zip codes/ZCTAs because they are
+> more stable over
+> >     time and can be rolled up into county totals, etc.
+> >
+> >     As to which table, you might consider table B03002, which in one
+> table gives you all
+> >     the counts you need, from which you can calculate percentages, for
+> these eight race/
+> >     ethnicity groups (which add up to the total population):
+> >
+> >     Hispanic or Latino
+> >     Not Hispanic or Latino: White alone
+> >     Not Hispanic or Latino: Black or African American alone
+> >     Not Hispanic or Latino: American Indian and Alaska Native alone
+> >     Not Hispanic or Latino: Asian alone
+> >     Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander
+> alone
+> >     Not Hispanic or Latino: Some other race alone
+> >     Not Hispanic or Latino: Two or more races
+> >
+> >     Just divide the count by the Total shown in that same table.
+> >
+> >
+> http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=table
+> >     &id=table.en.ACS_13_5YR_B03002#
+> >
+> >     -----Original Message-----
+> >     From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On
+> Behalf Of
+> >     acs-r-request at mit.edu
+> >     Sent: Thursday, April 02, 2015 12:02 PM
+> >     To: acs-r at mit.edu
+> >     Subject: acs-r Digest, Vol 15, Issue 1
+> >
+> >     Send acs-r mailing list submissions to
+> >             acs-r at mit.edu
+> >
+> >     To subscribe or unsubscribe via the World Wide Web, visit
+> >             http://mailman.mit.edu/mailman/listinfo/acs-r
+> >     or, via email, send a message with subject or body 'help' to
+> >             acs-r-request at mit.edu
+> >
+> >     You can reach the person managing the list at
+> >             acs-r-owner at mit.edu
+> >
+> >     When replying, please edit your Subject line so it is more specific
+> than "Re: Contents
+> >     of acs-r digest..."
+> >
+> >     Today's Topics:
+> >
+> >        1. ACS tables that deal with race (arilamstein at gmail.com)
+> >
+> >
+>  ----------------------------------------------------------------------
+> >
+> >     Message: 1
+> >     Date: Wed, 1 Apr 2015 16:35:53 -0700
+> >     From: <arilamstein at gmail.com>
+> >     Subject: [acs-r] ACS tables that deal with race
+> >     To: acs-r <acs-r at mit.edu>
+> >     Message-ID:
+> >             <CAEO2ku+owU0nFvgthQzm0SG_Rwun0xN8jhiMC=
+> 3miZkjbFMAhw at mail.gmail.com>
+> >     Content-Type: text/plain; charset="utf-8"
+> >
+> >     Hello,
+> >
+> >     I am a bit confused by the ACS tables that deal with race.  For
+> reference, I am
+> >     currently working with the 2011 5 year ACS tables which are listed
+> here <http://
+> >
+> factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=
+> >     dataset.en.ACS_11_5YR>,
+> >     and I am trying to get data on ZCTAs. My goal is to create
+> choropleth maps of San
+> >     Francisco that show key demographic information.
+> >
+> >     Table B02008 is listed as WHITE ALONE OR IN COMBINATION WITH ONE OR
+> MORE OTHER RACES
+> >     but it returns a count of people, not a percentage of the total
+> population. There seem
+> >     to be various "G" tables that give the percentage of people who are
+> white alone (e.g.
+> >     GCT0201), but a) none of those geographic units are ZCTAs and b)
+> IIRC acs.r cannot
+> >     retrieve tables that start with a G.
+> >
+> >     Presumably I could just divide those numbers by the result of table
+> B00001 (UNWEIGHTED
+> >     SAMPLE COUNT OF THE POPULATION ) or B01003 (TOTAL POPULATION ), but
+> I'm not sure what
+> >     the difference is between those two tables are. Can someone give me
+> some pointers?
+> >
+> >     Thanks.
+> >
+> >     Ari
+> >     -------------- next part --------------
+> >     An HTML attachment was scrubbed...
+> >     URL:
+> http://mailman.mit.edu/pipermail/acs-r/attachments/20150401/81f00252/
+> >     attachment-0001.htm
+> >
+> >     ------------------------------
+> >
+> >     _______________________________________________
+> >     acs-r mailing list
+> >     acs-r at mit.edu
+> >     http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+> >     End of acs-r Digest, Vol 15, Issue 1
+> >     ************************************
+> >
+> >     _______________________________________________
+> >     acs-r mailing list
+> >     acs-r at mit.edu
+> >     http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+> >
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+> //----------------------------------------------------------------------\\
+> ||         Sick and tired of surveillance?  Use GnuPG with me.          ||
+> ||                                                                      ||
+> ||                  My public key is available here:                    ||
+> || <https://pgp.mit.edu/pks/lookup?op=vindex&search=0x322B632172CDB8DF> ||
+> \\----------------------------------------------------------------------//
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150407/f198d3ac/attachment.htm
+

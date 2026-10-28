@@ -1,0 +1,92 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-02",
+  "messages": [
+    {
+      "id": "msg-f40cba284843",
+      "message_id": "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2016-02-23T01:03:13Z",
+      "subject": "[acs-r] accessing margin of error in acs.r",
+      "subject_clean": "[acs-r] accessing margin of error in acs.r",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I am trying to create a data.frame of acs data with 3 columns: region (for\nexample county fips), estimate and margin.of.error. I'm starting with this\ncode:\n\ncounties = geo.make(state=\"*\", county=\"*\")\ncounty_data = acs.fetch(geography=counties, table.number=\"B19301\")\nhead(county_data)\n\nI can construct the county fips code from county_data at geography\n\nI can construct the estimates from estimate(county_data).\n\nI am not sure how to get the margins of error. If I type\n\"head(county_data)\" the estimates are printed along with the margins of\nerror. However, there does not seem to be a \"margin.of.error\" function to\nstrip out just the margins of error:\n\n>head(county_data)\nACS DATA:\n 2007 -- 2011 ;\n  Estimates w/90% confidence intervals;\n  for different intervals, see confint()\n                        B19301_001\nAutauga County, Alabama 25035 +/- 916\nBaldwin County, Alabama 27217 +/- 591\nBarbour County, Alabama 15899 +/- 883\nBibb County, Alabama    18462 +/- 1267\nBlount County, Alabama  21185 +/- 862\nBullock County, Alabama 20678 +/- 3797\n\nHowever, there does seem to be a standard.error function which provides the\n standard errors:\n\n> head(standard.error(county_data))\n                        B19301_001\nAutauga County, Alabama   556.8389\nBaldwin County, Alabama   359.2705\nBarbour County, Alabama   536.7781\nBibb County, Alabama      770.2128\nBlount County, Alabama    524.0122\nBullock County, Alabama  2308.2067\n\nCan someone help me understand this discrepancy?\n\nAlso, it would be great if someone could provide guidance about which of\nthese metrics (margin of error vs standard deviation) is better to report\nalong with the esimate.\n\nMy situation is that I have a mapping package that uses the acs package to\nget census data estimates as a data.frame and then maps it. I would like to\nimprove the package by making the data.frames also have an error metric.\nBut I'm confused about whether margin of error or standard error is the\nbest metric to include.\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160222/ef084953/attachment.html",
+      "body_snippet": "I am trying to create a data.frame of acs data with 3 columns: region (for\nexample county fips), estimate and margin.of.error. I'm starting with this\ncode:\n\ncounties = geo.make(state=\"*\", county=\"*\")\n",
+      "thread_id": "thread-f40cba284843",
+      "thread_depth": 0,
+      "month": "2016-02"
+    },
+    {
+      "id": "msg-b98b4099d7c2",
+      "message_id": "<86y4ac1b8b.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-02-23T01:12:04Z",
+      "subject": "[acs-r] accessing margin of error in acs.r",
+      "subject_clean": "[acs-r] accessing margin of error in acs.r",
+      "in_reply_to": "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>",
+      "references": [
+        "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>"
+      ],
+      "body_plain": "The package keeps acs-class objects with geographies, estimates, and\nstandard.errors (not standard deviations -- lookup both to see the\ndifference).  When printing out such an object, the package\nautomatically converts the standard error to a 90% margin of error, by\nmultiplying it by 1.645.  (For other MOEs, you'd need to use a\ndifferent multiplier.) \n\nSo for your table, you can use 1.645*standard.error(county_data) to\nget the 90% MOEs.\n\n--Ezra\n\nAt Mon, 22 Feb 2016 17:03:13 -0800, arilamstein wrote:\n> \n> I am trying to create a data.frame of acs data with 3 columns: region (for example county\n> fips), estimate and margin.of.error. I'm starting with this code:\n> \n> counties = geo.make(state=\"*\", county=\"*\")\n> county_data = acs.fetch(geography=counties, table.number=\"B19301\")\n> head(county_data)\n> \n> I can construct the county fips code from county_data at geography\n> \n> I can construct the estimates from estimate(county_data).\n> \n> I am not sure how to get the margins of error. If I type \"head(county_data)\" the estimates\n> are printed along with the margins of error. However, there does not seem to be a\n> \"margin.of.error\" function to strip out just the margins of error:\n> \n> >head(county_data)\n> ACS DATA: \n>  2007 -- 2011 ;\n>   Estimates w/90% confidence intervals;\n>   for different intervals, see confint()\n>                         B19301_001    \n> Autauga County, Alabama 25035 +/- 916 \n> Baldwin County, Alabama 27217 +/- 591 \n> Barbour County, Alabama 15899 +/- 883 \n> Bibb County, Alabama    18462 +/- 1267\n> Blount County, Alabama  21185 +/- 862 \n> Bullock County, Alabama 20678 +/- 3797\n> \n> However, there does seem to be a standard.error function which provides the  standard\n> errors:\n> \n> > head(standard.error(county_data))\n>                         B19301_001\n> Autauga County, Alabama   556.8389\n> Baldwin County, Alabama   359.2705\n> Barbour County, Alabama   536.7781\n> Bibb County, Alabama      770.2128\n> Blount County, Alabama    524.0122\n> Bullock County, Alabama  2308.2067\n> \n> Can someone help me understand this discrepancy?\n> \n> Also, it would be great if someone could provide guidance about which of these metrics\n> (margin of error vs standard deviation) is better to report along with the esimate. \n> \n> My situation is that I have a mapping package that uses the acs package to get census data\n> estimates as a data.frame and then maps it. I would like to improve the package by making\n> the data.frames also have an error metric. But I'm confused about whether margin of error\n> or standard error is the best metric to include.\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "The package keeps acs-class objects with geographies, estimates, and\nstandard.errors (not standard deviations -- lookup both to see the\ndifference).  When printing out such an object, the package\nauto",
+      "thread_id": "thread-f40cba284843",
+      "thread_depth": 1,
+      "month": "2016-02"
+    },
+    {
+      "id": "msg-4f3c2efcb7dd",
+      "message_id": "<CAEO2ku+ZGZURQ01EoCOFcBvADSfkRvoYwELaG563cGZb=B=5Sg@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2016-02-23T01:18:34Z",
+      "subject": "[acs-r] accessing margin of error in acs.r",
+      "subject_clean": "[acs-r] accessing margin of error in acs.r",
+      "in_reply_to": "<86y4ac1b8b.wl%eglenn@mit.edu>",
+      "references": [
+        "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>",
+        "<86y4ac1b8b.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Thanks Ezra.\n\nAlso, it looks like I made a typo in my email. When I wrote:\n\n\"Also, it would be great if someone could provide guidance about which of\nthese metrics (margin of error vs *standard deviation*) is better to report\nalong with the esimate.\"\n\nI meant to write \"standard error\".\n\nI will plan to do what you suggested, and report the 90% margin of error.\n\n\nOn Mon, Feb 22, 2016 at 5:12 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> The package keeps acs-class objects with geographies, estimates, and\n> standard.errors (not standard deviations -- lookup both to see the\n> difference).  When printing out such an object, the package\n> automatically converts the standard error to a 90% margin of error, by\n> multiplying it by 1.645.  (For other MOEs, you'd need to use a\n> different multiplier.)\n>\n> So for your table, you can use 1.645*standard.error(county_data) to\n> get the 90% MOEs.\n>\n> --Ezra\n>\n> At Mon, 22 Feb 2016 17:03:13 -0800, arilamstein wrote:\n> >\n> > I am trying to create a data.frame of acs data with 3 columns: region\n> (for example county\n> > fips), estimate and margin.of.error. I'm starting with this code:\n> >\n> > counties = geo.make(state=\"*\", county=\"*\")\n> > county_data = acs.fetch(geography=counties, table.number=\"B19301\")\n> > head(county_data)\n> >\n> > I can construct the county fips code from county_data at geography\n> >\n> > I can construct the estimates from estimate(county_data).\n> >\n> > I am not sure how to get the margins of error. If I type\n> \"head(county_data)\" the estimates\n> > are printed along with the margins of error. However, there does not\n> seem to be a\n> > \"margin.of.error\" function to strip out just the margins of error:\n> >\n> > >head(county_data)\n> > ACS DATA:\n> >  2007 -- 2011 ;\n> >   Estimates w/90% confidence intervals;\n> >   for different intervals, see confint()\n> >                         B19301_001\n> > Autauga County, Alabama 25035 +/- 916\n> > Baldwin County, Alabama 27217 +/- 591\n> > Barbour County, Alabama 15899 +/- 883\n> > Bibb County, Alabama    18462 +/- 1267\n> > Blount County, Alabama  21185 +/- 862\n> > Bullock County, Alabama 20678 +/- 3797\n> >\n> > However, there does seem to be a standard.error function which provides\n> the  standard\n> > errors:\n> >\n> > > head(standard.error(county_data))\n> >                         B19301_001\n> > Autauga County, Alabama   556.8389\n> > Baldwin County, Alabama   359.2705\n> > Barbour County, Alabama   536.7781\n> > Bibb County, Alabama      770.2128\n> > Blount County, Alabama    524.0122\n> > Bullock County, Alabama  2308.2067\n> >\n> > Can someone help me understand this discrepancy?\n> >\n> > Also, it would be great if someone could provide guidance about which of\n> these metrics\n> > (margin of error vs standard deviation) is better to report along with\n> the esimate.\n> >\n> > My situation is that I have a mapping package that uses the acs package\n> to get census data\n> > estimates as a data.frame and then maps it. I would like to improve the\n> package by making\n> > the data.frames also have an error metric. But I'm confused about\n> whether margin of error\n> > or standard error is the best metric to include.\n> >\n> >\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |\n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160222/8d386344/attachment.html",
+      "body_snippet": "Thanks Ezra.\n\nAlso, it looks like I made a typo in my email. When I wrote:\n\n\"Also, it would be great if someone could provide guidance about which of\nthese metrics (margin of error vs *standard deviat",
+      "thread_id": "thread-f40cba284843",
+      "thread_depth": 2,
+      "month": "2016-02"
+    },
+    {
+      "id": "msg-58ac229b64b3",
+      "message_id": "<86wppw1ab2.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-02-23T01:32:01Z",
+      "subject": "[acs-r] accessing margin of error in acs.r",
+      "subject_clean": "[acs-r] accessing margin of error in acs.r",
+      "in_reply_to": "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>",
+      "references": [
+        "<CAEO2kuKKJ9KoDCpV6aNTDyFrUV3LFgCUtSc1ejd0zT=XEpKyOw@mail.gmail.com>"
+      ],
+      "body_plain": "PS:  You might want to check out ?confint in the acs package as well.\n\nAt Mon, 22 Feb 2016 17:03:13 -0800, arilamstein wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> I am trying to create a data.frame of acs data with 3 columns: region (for example county\n> fips), estimate and margin.of.error. I'm starting with this code:\n> \n> counties = geo.make(state=\"*\", county=\"*\")\n> county_data = acs.fetch(geography=counties, table.number=\"B19301\")\n> head(county_data)\n> \n> I can construct the county fips code from county_data at geography\n> \n> I can construct the estimates from estimate(county_data).\n> \n> I am not sure how to get the margins of error. If I type \"head(county_data)\" the estimates\n> are printed along with the margins of error. However, there does not seem to be a\n> \"margin.of.error\" function to strip out just the margins of error:\n> \n> >head(county_data)\n> ACS DATA: \n>  2007 -- 2011 ;\n>   Estimates w/90% confidence intervals;\n>   for different intervals, see confint()\n>                         B19301_001    \n> Autauga County, Alabama 25035 +/- 916 \n> Baldwin County, Alabama 27217 +/- 591 \n> Barbour County, Alabama 15899 +/- 883 \n> Bibb County, Alabama    18462 +/- 1267\n> Blount County, Alabama  21185 +/- 862 \n> Bullock County, Alabama 20678 +/- 3797\n> \n> However, there does seem to be a standard.error function which provides the  standard\n> errors:\n> \n> > head(standard.error(county_data))\n>                         B19301_001\n> Autauga County, Alabama   556.8389\n> Baldwin County, Alabama   359.2705\n> Barbour County, Alabama   536.7781\n> Bibb County, Alabama      770.2128\n> Blount County, Alabama    524.0122\n> Bullock County, Alabama  2308.2067\n> \n> Can someone help me understand this discrepancy?\n> \n> Also, it would be great if someone could provide guidance about which of these metrics\n> (margin of error vs standard deviation) is better to report along with the esimate. \n> \n> My situation is that I have a mapping package that uses the acs package to get census data\n> estimates as a data.frame and then maps it. I would like to improve the package by making\n> the data.frames also have an error metric. But I'm confused about whether margin of error\n> or standard error is the best metric to include.\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "PS:  You might want to check out ?confint in the acs package as well.\n\nAt Mon, 22 Feb 2016 17:03:13 -0800, arilamstein wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)",
+      "thread_id": "thread-f40cba284843",
+      "thread_depth": 1,
+      "month": "2016-02"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-f40cba284843",
+      "subject": "[acs-r] accessing margin of error in acs.r",
+      "message_count": 4,
+      "participants": [
+        "Ezra Haber Glenn",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2016-02-23T01:03:13Z",
+      "last_reply": "2016-02-23T01:32:01Z",
+      "root_message_id": "msg-f40cba284843"
+    }
+  ]
+}

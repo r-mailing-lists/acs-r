@@ -1,0 +1,39 @@
+From ccambron at uw.edu  Wed Jun 29 17:50:10 2016
+From: ccambron at uw.edu (Chris Cambron)
+Date: Wed, 29 Jun 2016 14:50:10 -0700
+Subject: [acs-r] Block group level employment status data?
+Message-ID: <CAHNWBy1+KzdOWbwyb73fCa_Zp0ALEZRxfxmq4EHdodCsSAzJFw@mail.gmail.com>
+
+Hi ACS users,
+Has anyone been able to use the R package to gather block group level
+employment status data for the 2014 5-year estimates (or any other year)?
+
+I've tried the following tables and they produce all NA's:
+
+   - B23001 Sex By Age By Employment Status For the Population 16 Years and
+   Over
+   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=B23001>
+
+   - B23025 Employment Status For the Population 16 Years and Over
+   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=B23025>
+   - C18120 Employment Status By Disability Status
+   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=C18120>
+
+
+The Census Bureau has released block group level employment data for
+2006-2010 <http://www.census.gov/people/laborforce/about/acs_employ.html>
+and says it should be available at the block group level for the 2014
+5-year estimates here <https://ask.census.gov/faq.php?id=5000&faqId=8280>.
+
+Any ideas would be most helpful.
+Thanks!
+
+*Chris Cambron, MSW, MPP*
+Doctoral Candidate
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160629/d3159afb/attachment.html
+

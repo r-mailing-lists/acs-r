@@ -1,0 +1,36 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2019-01",
+  "messages": [
+    {
+      "id": "msg-4c001517eca4",
+      "message_id": "<1d8466ab-b367-4202-84fe-2de0fc95fffc@Spark>",
+      "from_name": "Jon Zadra",
+      "from_email_hash": "d8401be2a89bf70d6c6b05ccb995d3a8ccd5cedb074f5d6f1080a106b0f1e7e6",
+      "date": "2019-01-03T22:38:42Z",
+      "subject": "[acs-r] ACS 2017 Support?",
+      "subject_clean": "[acs-r] ACS 2017 Support?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\n\nJust wondering if you are going to support the 2017 changes in the ACS package, and if so, what a timeline might be? I?m debating whether I need to move all my code to tidycensus, but I much prefer acs-r!\n\nThanks,\n\nJon\n\n--\nJonathan Zadra, PhD\nDirector of Data Science\nSorenson Impact Center\nDavid Eccles School of Business, University of Utah\n(801) 581-4815\njonathan.zadra at sorensonimpact.com\nwww.sorensonimpact.com\n\n-- \n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20190103/c11632e3/attachment.html",
+      "body_snippet": "Hi,\n\nJust wondering if you are going to support the 2017 changes in the ACS package, and if so, what a timeline might be? I?m debating whether I need to move all my code to tidycensus, but I much pref",
+      "thread_id": "thread-4c001517eca4",
+      "thread_depth": 0,
+      "month": "2019-01"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-4c001517eca4",
+      "subject": "[acs-r] ACS 2017 Support?",
+      "message_count": 1,
+      "participants": [
+        "Jon Zadra"
+      ],
+      "started": "2019-01-03T22:38:42Z",
+      "last_reply": "2019-01-03T22:38:42Z",
+      "root_message_id": "msg-4c001517eca4"
+    }
+  ]
+}

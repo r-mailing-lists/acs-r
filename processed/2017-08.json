@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-08",
+  "messages": [
+    {
+      "id": "msg-bcf015fd9399",
+      "message_id": "<E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>",
+      "from_name": "Patton, Andrew",
+      "from_email_hash": "1f73e19c2e78b21fadf9ed87015b7bb4adeec2f5aca9284cbd2bd35ee3cbd369",
+      "date": "2017-08-03T18:46:16Z",
+      "subject": "[acs-r] 2.1.1 Error Message",
+      "subject_clean": "[acs-r] 2.1.1 Error Message",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi all,\n\nI just updated to 2.1.1 after some issues with earlier updates. I had several lengthy scripts that worked perfectly, but now there does not appear to be a connection that works.\n\nI removed the older package, installed 2.1.1, and acquired and activated a new key. The following code generates the attached error. When I run the code via the census api directly, it works fine.\n\ncali <- acs.fetch(endyear = 2014, geography = geo.make(state = 6), table.number = \"B15001\")\nError in file(file, \"rt\") : cannot open the connection\n\nThoughts on solutions? Am I just doing  something dumb somewhere? I'm on Windows.\n\nThanks,\n\nAndrew\n\nEmail Disclaimer: http://www.marincounty.org/main/disclaimers\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170803/615c60a5/attachment.html",
+      "body_snippet": "Hi all,\n\nI just updated to 2.1.1 after some issues with earlier updates. I had several lengthy scripts that worked perfectly, but now there does not appear to be a connection that works.\n\nI removed th",
+      "thread_id": "thread-bcf015fd9399",
+      "thread_depth": 0,
+      "month": "2017-08"
+    },
+    {
+      "id": "msg-03a967cb56d1",
+      "message_id": "<861sosmq14.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-08-03T19:04:23Z",
+      "subject": "[acs-r] 2.1.1 Error Message",
+      "subject_clean": "[acs-r] 2.1.1 Error Message",
+      "in_reply_to": "<E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>",
+      "references": [
+        "<E3F173581173E54C84F63F803B7F9F3E83D316@MSB.co.marin.ca.us>"
+      ],
+      "body_plain": "I just tested and this seems to work fine for me.  It may be that the\nAPI was just down for a little bit (it can sometimes drop out) -- can\nyou try again to check?\n\nIf it still fails, try it like this (with a blank key):\n\n> acs.fetch(key=\"\", endyear = 2014, geography = geo.make(state = 6), table.number = \"B15001\")\n\nIf that works, it may be that your key is bad.\n\n--Ezra\n\nOn Thu, 03 Aug 2017 14:46:16 -0400, Patton, Andrew wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; us-ascii (quoted-printable)>]\n> [1.2  <text/html; us-ascii (quoted-printable)>]\n> Hi all,\n> \n> I just updated to 2.1.1 after some issues with earlier updates. I had several lengthy\n> scripts that worked perfectly, but now there does not appear to be a connection that\n> works.\n> \n> I removed the older package, installed 2.1.1, and acquired and activated a new key. The\n> following code generates the attached error. When I run the code via the census api\n> directly, it works fine.\n> \n> cali <- acs.fetch(endyear = 2014, geography = geo.make(state = 6), table.number =\n> \"B15001\")\n> \n> Error in file(file, \"rt\") : cannot open the connection\n> \n> Thoughts on solutions? Am I just doing  something dumb somewhere? I?m on Windows.\n> \n> Thanks,\n> \n> Andrew\n> \n> Email Disclaimer: http://www.marincounty.org/main/disclaimers\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "I just tested and this seems to work fine for me.  It may be that the\nAPI was just down for a little bit (it can sometimes drop out) -- can\nyou try again to check?\n\nIf it still fails, try it like this",
+      "thread_id": "thread-bcf015fd9399",
+      "thread_depth": 1,
+      "month": "2017-08"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-bcf015fd9399",
+      "subject": "[acs-r] 2.1.1 Error Message",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Patton, Andrew"
+      ],
+      "started": "2017-08-03T18:46:16Z",
+      "last_reply": "2017-08-03T19:04:23Z",
+      "root_message_id": "msg-bcf015fd9399"
+    }
+  ]
+}

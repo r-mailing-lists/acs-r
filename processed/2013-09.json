@@ -1,0 +1,175 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2013-09",
+  "messages": [
+    {
+      "id": "msg-d2d5070f4b7f",
+      "message_id": "<182fb772b3ad4366b73d66c4dd91eb31@BLUPR09MB022.namprd09.prod.outlook.com>",
+      "from_name": "Corrales, Mark",
+      "from_email_hash": "8700eff86e7f04de11c84d4cc4e4b5d19f986bc16a770eb98de57d01192a9f8a",
+      "date": "2013-09-03T15:18:49Z",
+      "subject": "[acs-r] Table and variable names",
+      "subject_clean": "[acs-r] Table and variable names",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Highest resolution will be Census 2010 (blocks), not ACS (block groups).\n\n\nAnother useful resource, if you want a simple list of all table ID numbers & variables by subject area, is the text files or Excel files for the latest 5-year ACS summary file, here:\n\nhttp://www2.census.gov/acs2011_5yr/summaryfile/\n\nhttp://www2.census.gov/acs2011_5yr/summaryfile/Sequence_Number_and_Table_Number_Lookup.txt\n\nhttp://www2.census.gov/acs2011_5yr/summaryfile/Sequence_Number_and_Table_Number_Lookup.xls\n\nhttp://www2.census.gov/acs2011_5yr/summaryfile/ACS2011_5-Year_TableShells.xls\n\n\n\n\nMark A. Corrales, MPP\nOffice of Policy, Office of the Administrator\n(202) 564-7493\n\nUS EPA Headquarters\nWilliam Jefferson Clinton Building North\n1200 Pennsylvania Ave, NW\nRoom 3512, mail Code 1803A\nWashington, DC 20460\n\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20130903/54581461/attachment.htm",
+      "body_snippet": "Highest resolution will be Census 2010 (blocks), not ACS (block groups).\n\n\nAnother useful resource, if you want a simple list of all table ID numbers & variables by subject area, is the text files or ",
+      "thread_id": "thread-d2d5070f4b7f",
+      "thread_depth": 0,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-cfeec1a654da",
+      "message_id": "<20130904001233.1km0ks1xwokks4gs-mazro@webmail.spamcop.net>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2013-09-04T04:12:33Z",
+      "subject": "[acs-r] Table and variable names",
+      "subject_clean": "[acs-r] Table and variable names",
+      "in_reply_to": "<182fb772b3ad4366b73d66c4dd91eb31@BLUPR09MB022.namprd09.prod.outlook.com>",
+      "references": [
+        "<182fb772b3ad4366b73d66c4dd91eb31@BLUPR09MB022.namprd09.prod.outlook.com>"
+      ],
+      "body_plain": "Quoting \"Corrales, Mark\" <Corrales.Mark at epa.gov>:\n\n>\n> Highest resolution will be Census 2010 (blocks), not ACS (block groups).\n>\n>\n> Another useful resource, if you want a simple list of all table ID   \n> numbers & variables by subject area, is the text files or Excel   \n> files for the latest 5-year ACS summary file, here:\n>\n> http://www2.census.gov/acs2011_5yr/summaryfile/\n>\n> http://www2.census.gov/acs2011_5yr/summaryfile/Sequence_Number_and_Table_Number_Lookup.txt\n>\n> http://www2.census.gov/acs2011_5yr/summaryfile/Sequence_Number_and_Table_Number_Lookup.xls\n>\n> http://www2.census.gov/acs2011_5yr/summaryfile/ACS2011_5-Year_TableShells.xls\n>\n>\n>\n>\n> Mark A. Corrales, MPP\n> Office of Policy, Office of the Administrator\n> (202) 564-7493\n>\n> US EPA Headquarters\n> William Jefferson Clinton Building North\n> 1200 Pennsylvania Ave, NW\n> Room 3512, mail Code 1803A\n> Washington, DC 20460\n>\n>\n>\n\nThanks! That's actually better, since I won't need to write an XML  \nparser for these!\n\n\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism Publishers  \nWorkbench\nhttp://j.mp/CompJournBench/\n\nGet out of the building - and don't come back till you have the order!",
+      "body_snippet": "Quoting \"Corrales, Mark\" <Corrales.Mark at epa.gov>:\n\n>\n> Highest resolution will be Census 2010 (blocks), not ACS (block groups).\n>\n>\n> Another useful resource, if you want a simple list of all table",
+      "thread_id": "thread-d2d5070f4b7f",
+      "thread_depth": 1,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-47e9776412ba",
+      "message_id": "<87fvtkf2do.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-09-05T02:06:43Z",
+      "subject": "[acs-r] acs.R Webinar: now online",
+      "subject_clean": "[acs-r] acs.R Webinar: now online",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "For those who were unable to attend the recent acs.R webinar (or if\nyou fell asleep halfway through), we've posted the complete video, the\npresentation slides, and the webinar demo script. See\n<http://eglenn.scripts.mit.edu/citystate/2013/09/acs-r-webinar-now-online/>\nfor links.\n\nEnjoy, and thanks again to Ray DiGiacomo and the Orange County R User\nfor hosting this event.\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu\n617.253.2024 (w)\n617.721.7131 (c)\nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate",
+      "body_snippet": "For those who were unable to attend the recent acs.R webinar (or if\nyou fell asleep halfway through), we've posted the complete video, the\npresentation slides, and the webinar demo script. See\n<http:/",
+      "thread_id": "thread-47e9776412ba",
+      "thread_depth": 0,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-6e1020a80f2f",
+      "message_id": "<87bo3wms4g.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-09-13T19:35:59Z",
+      "subject": "[acs-r] divide.acs question",
+      "subject_clean": "[acs-r] divide.acs question",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Brian:\n\nThanks for your email, and for using the package.\n\nThe divide.acs function implements the formulas recommended by the\nCensus in their \"Compass\" series -- see, for example, \"A Compass for\nUnderstanding and Using American Community Survey Data: What State and\nLocal Governments Need to Know\"\n(<http://www.census.gov/acs/www/Downloads/handbooks/ACSstateLocal.pdf>).  \n\nTo calculate the MOE (or standard error) for proportions, there is a\nformula in the appendix (page A-14) of that guide.  As noted there:\n\n  \"There are rare instances where this formula will fail---the value\n  under the square root will be negative.  If that happens, use the\n  formula for derived ratios ... which will provide a conservative\n  estimate of the MOE.\"\n\nAs far as I can tell, this is the best option -- but I would note that\nif only some of your calculations trigger this issue, you may want to\nbe consistent as use method=\"ratio\" for all of them.\n\nAlso, since others may be wondering about this as well, would you mind\nif I posted your question (and my answer) to the acs-r user group mail\nlist (see <http://mailman.mit.edu/mailman/listinfo/acs-r>)...?\n\n--Ezra\n\nAt Fri, 13 Sep 2013 15:00:21 -0400, Brian Bowling wrote:\n> \n> [1  <text/plain; us-ascii (quoted-printable)>]\n> \n> [2  <text/html; us-ascii (quoted-printable)>]\n> Hello,\n> \n> I was working my way through the acs.R presentation you did for the\n> Orange County R Users Group, but I was using data for Allegheny\n> County, Pa., instead of Bristol County, Wash.\n> \n> When I tried to get divide.acs to use the proportion method instead of\n> the ratio method, I received the following warning:\n> \n> Warning message:\n> \n> In .acs.divider(num = numerator, den = denominator, proportion = T, :\n> \n>   ** due to the nature of some of the errors, using the more\n>      conservative formula for RATIOS,\n> which assumes that numerator is not a subset of denominator **\n> \n> Is there any way to compel it to use the proportion method?\n> \n> Regards,\n> \n> Brian Bowling\n> \n> Reporter\n> \n> Pittsburgh Tribune-Review\n> \n> triblive.com\n> \n> (o) 412-325-4301\n> \n> (c) 412-549-1707\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Brian:\n\nThanks for your email, and for using the package.\n\nThe divide.acs function implements the formulas recommended by the\nCensus in their \"Compass\" series -- see, for example, \"A Compass for\nUnder",
+      "thread_id": "thread-6e1020a80f2f",
+      "thread_depth": 0,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-c2a558f280f7",
+      "message_id": "<573D976C6CF7374BB2D13D91EA326D77011AB659@ex1.tribweb.com>",
+      "from_name": "Brian Bowling",
+      "from_email_hash": "2b936123e9cd2b16046fce6456ef0abb7aeee9432acb60b1b6b211cb3096d7ad",
+      "date": "2013-09-19T19:11:17Z",
+      "subject": "[acs-r] ACS 1-year 2012 data added to API",
+      "subject_clean": "[acs-r] ACS 1-year 2012 data added to API",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "The Census Bureau announced today that the 2012 1-year data is available through the API. I've been trying to fetch the DP02 table using the acs package without any luck.\nFor example, this code produces the following error message:\ndp02 <- acs.fetch(state='PA', table.number=\"DP02\", endyear=2012)\n\n\nIn acs.fetch(state = \"PA\", table.number = \"DP02\", endyear = 2012) :\n\n  As of the date of this version of the acs package\n\n  Census API did not provides data for selected endyear\n\nDoes this mean the package has to be updated before it can fetch the 2012 data or am I using the wrong variables for the fetch?\n\nRegards,\n\nBrian Bowling\nReporter\nPittsburgh Tribune-Review\ntriblive.com\n(o) 412-325-4301\n(c) 412-549-1707\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20130919/ab498e48/attachment.htm",
+      "body_snippet": "The Census Bureau announced today that the 2012 1-year data is available through the API. I've been trying to fetch the DP02 table using the acs package without any luck.\nFor example, this code produc",
+      "thread_id": "thread-c2a558f280f7",
+      "thread_depth": 0,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-40f0b49d27f8",
+      "message_id": "<874n9g4n59.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-09-19T19:38:58Z",
+      "subject": "[acs-r] ACS 1-year 2012 data added to API",
+      "subject_clean": "[acs-r] ACS 1-year 2012 data added to API",
+      "in_reply_to": "<573D976C6CF7374BB2D13D91EA326D77011AB659@ex1.tribweb.com>",
+      "references": [
+        "<573D976C6CF7374BB2D13D91EA326D77011AB659@ex1.tribweb.com>"
+      ],
+      "body_plain": "As I understand it, the only 2012 1-year data available through the\nAPI is the \"Data Profiles,\" which are different in character from the\nother census tables -- they look like this:\n<http://factfinder2.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_11_5YR_DP02&prodType=table>.\nThe acs package doesn't currently download them, although I could\nmodify it to do so -- do you think those are often used by people\nworking in R?\n\nAt Thu, 19 Sep 2013 15:11:17 -0400, Brian Bowling wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; us-ascii (quoted-printable)>]\n> \n> [1.2  <text/html; us-ascii (quoted-printable)>]\n> The Census Bureau announced today that the 2012 1-year data is available through the API. I?ve been\n> trying to fetch the DP02 table using the acs package without any luck.\n> \n> For example, this code produces the following error message:\n> \n> dp02 <- acs.fetch(state='PA', table.number=\"DP02\", endyear=2012)\n> \n> In acs.fetch(state = \"PA\", table.number = \"DP02\", endyear = 2012) :\n> \n>   As of the date of this version of the acs package\n> \n>   Census API did not provides data for selected endyear\n> \n> Does this mean the package has to be updated before it can fetch the 2012 data or am I using the wrong\n> variables for the fetch?\n> \n> Regards,\n> \n> Brian Bowling\n> \n> Reporter\n> \n> Pittsburgh Tribune-Review\n> \n> triblive.com\n> \n> (o) 412-325-4301\n> \n> (c) 412-549-1707\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "As I understand it, the only 2012 1-year data available through the\nAPI is the \"Data Profiles,\" which are different in character from the\nother census tables -- they look like this:\n<http://factfinder",
+      "thread_id": "thread-c2a558f280f7",
+      "thread_depth": 1,
+      "month": "2013-09"
+    },
+    {
+      "id": "msg-2afdb6454e41",
+      "message_id": "<20130919185347.lh79i98q8skkg0g4-mazro@webmail.spamcop.net>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2013-09-19T22:53:47Z",
+      "subject": "[acs-r] ACS 1-year 2012 data added to API",
+      "subject_clean": "[acs-r] ACS 1-year 2012 data added to API",
+      "in_reply_to": "<874n9g4n59.wl%eglenn@mit.edu>",
+      "references": [
+        "<573D976C6CF7374BB2D13D91EA326D77011AB659@ex1.tribweb.com>",
+        "<874n9g4n59.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Quoting Ezra Haber Glenn <eglenn at MIT.EDU>:\n\n>\n> As I understand it, the only 2012 1-year data available through the\n> API is the \"Data Profiles,\" which are different in character from the\n> other census tables -- they look like this:\n> <http://factfinder2.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_11_5YR_DP02&prodType=table>.\n> The acs package doesn't currently download them, although I could\n> modify it to do so -- do you think those are often used by people\n> working in R?\n\nThe data journalists I hang out with generally camp out on the Census  \n(and other government data sites) and grab data as soon as it's  \nposted. Most of them work with Excel and perhaps an RDBMS - the name  \nof the game is getting the story right and fast, which precludes  \nlearning a new programming language with some rather obscure  \nprogramming paradigms. ;-)\n\nSo I'd say poll the acs.R community, but I wouldn't rush to code  \nsomething for general Census users.\n\nHere's a sample Census story - data was released yesterday or today!\n\nhttp://t.co/XWciqOfGS0\n\n>\n> At Thu, 19 Sep 2013 15:11:17 -0400, Brian Bowling wrote:\n>>\n>> [1  <multipart/alternative (7bit)>]\n>> [1.1  <text/plain; us-ascii (quoted-printable)>]\n>>\n>> [1.2  <text/html; us-ascii (quoted-printable)>]\n>> The Census Bureau announced today that the 2012 1-year data is   \n>> available through the API. I?ve been\n>> trying to fetch the DP02 table using the acs package without any luck.\n>>\n>> For example, this code produces the following error message:\n>>\n>> dp02 <- acs.fetch(state='PA', table.number=\"DP02\", endyear=2012)\n>>\n>> In acs.fetch(state = \"PA\", table.number = \"DP02\", endyear = 2012) :\n>>\n>>   As of the date of this version of the acs package\n>>\n>>   Census API did not provides data for selected endyear\n>>\n>> Does this mean the package has to be updated before it can fetch   \n>> the 2012 data or am I using the wrong\n>> variables for the fetch?\n>>\n>> Regards,\n>>\n>> Brian Bowling\n>>\n>> Reporter\n>>\n>> Pittsburgh Tribune-Review\n>>\n>> triblive.com\n>>\n>> (o) 412-325-4301\n>>\n>> (c) 412-549-1707\n>>\n>>\n>> [2  <text/plain; us-ascii (7bit)>]\n>> _______________________________________________\n>> acs-r mailing list\n>> acs-r at mit.edu\n>> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |   \n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n>\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n\n\n\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism on a Stick\nhttp://znmeb.github.io/CompJournoStick/\n\nPondering the pandemonium of pontificating pantheism to ponderous  \npandas since 1994",
+      "body_snippet": "Quoting Ezra Haber Glenn <eglenn at MIT.EDU>:\n\n>\n> As I understand it, the only 2012 1-year data available through the\n> API is the \"Data Profiles,\" which are different in character from the\n> other c",
+      "thread_id": "thread-c2a558f280f7",
+      "thread_depth": 2,
+      "month": "2013-09"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-d2d5070f4b7f",
+      "subject": "[acs-r] Table and variable names",
+      "message_count": 2,
+      "participants": [
+        "Corrales, Mark",
+        "M. Edward (Ed) Borasky"
+      ],
+      "started": "2013-09-03T15:18:49Z",
+      "last_reply": "2013-09-04T04:12:33Z",
+      "root_message_id": "msg-d2d5070f4b7f"
+    },
+    {
+      "id": "thread-47e9776412ba",
+      "subject": "[acs-r] acs.R Webinar: now online",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-09-05T02:06:43Z",
+      "last_reply": "2013-09-05T02:06:43Z",
+      "root_message_id": "msg-47e9776412ba"
+    },
+    {
+      "id": "thread-6e1020a80f2f",
+      "subject": "[acs-r] divide.acs question",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-09-13T19:35:59Z",
+      "last_reply": "2013-09-13T19:35:59Z",
+      "root_message_id": "msg-6e1020a80f2f"
+    },
+    {
+      "id": "thread-c2a558f280f7",
+      "subject": "[acs-r] ACS 1-year 2012 data added to API",
+      "message_count": 3,
+      "participants": [
+        "Brian Bowling",
+        "Ezra Haber Glenn",
+        "M. Edward (Ed) Borasky"
+      ],
+      "started": "2013-09-19T19:11:17Z",
+      "last_reply": "2013-09-19T22:53:47Z",
+      "root_message_id": "msg-c2a558f280f7"
+    }
+  ]
+}

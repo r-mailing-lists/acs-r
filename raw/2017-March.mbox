@@ -1,0 +1,148 @@
+From Ron.Campbell at nbcuni.com  Tue Mar 21 19:04:26 2017
+From: Ron.Campbell at nbcuni.com (Campbell, Ron (NBCUniversal))
+Date: Tue, 21 Mar 2017 23:04:26 +0000
+Subject: [acs-r] Creating 3-digit ZCTA data
+Message-ID: <D4F6FF89.ACAD%ron.campbell@nbcuni.com>
+
+I?m sure there?s a simple answer to this. My attempts so far have crashed and burned.
+
+I?m trying to create ACS estimates of population from Table B01003 for 3-digit ZCTAs nationwide. I need these as a basis for measuring per capita rates of some other data that is available only at the 3-digit ZCTA level.
+
+I have a data frame of 33,000 5-digit ZCTAs with total estimated population, the margin of error and the 3-digit ZCTA (a substring of the 5-digit ZCTA). I want to create a new data frame consisting of 3-digit ZCTAs with their estimated populations and margin of error.
+
+I tried to do this using variations on the geo.make() function:
+
+> census2 = geo.make(substring(census1$ZCTA5,1,3))
+Error: evaluation nested too deeply: infinite recursion / options(expressions=)?
+
+And
+
+> census2 = geo.make(census1, combine=TRUE, combine.term='ZCTA3')
+Error in (function (us, region, division, state, county, county.subdivision,  :
+  (list) object cannot be coerced to type 'double'
+
+Any ideas?
+
+Thanks.
+
+Ronald Campbell
+Data Editor
+NBC Owned Television Stations
+1411 N. Batavia St., Suite 113
+Orange, CA 92867
+cell: 818-232-2585
+ron.campbell at nbcuni.com<mailto:ron.campbell at nbcuni.com>
+@campbellronaldw
+
+[cid:52D6227E-0DE0-49AE-8C1C-A333D62934F6]
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170321/1b428c46/attachment.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 7C556B6E-DC38-4F5E-BDFC-D1CD239B18AD[8].png
+Type: image/png
+Size: 6496 bytes
+Desc: 7C556B6E-DC38-4F5E-BDFC-D1CD239B18AD[8].png
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20170321/1b428c46/attachment.png
+
+From eglenn at mit.edu  Wed Mar 22 09:58:27 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 22 Mar 2017 09:58:27 -0400
+Subject: [acs-r] Creating 3-digit ZCTA data
+In-Reply-To: <D4F6FF89.ACAD%ron.campbell@nbcuni.com>
+References: <D4F6FF89.ACAD%ron.campbell@nbcuni.com>
+Message-ID: <8660j1e7lo.wl-eglenn@mit.edu>
+
+
+My understanding of ZCTAs (based on
+<https://factfinder.census.gov/help/en/zip_code_tabulation_area_zcta.htm>)
+is that the three-digit ones were only used for the 2000 census (and
+unfortunately, even for that data, the census does not provide data by
+ZCTA through their API).
+
+You can certainly get more recent ACS data for ZCTAs, but they are
+always five digits.  For example:
+
+> all.zips=geo.make(zip.code="*")
+> zip.pops=acs.fetch(endyear=2015, geography=all.zips, table.number="B01003")
+> head(zip.pops)
+ACS DATA: 
+ 2011 -- 2015 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+            B01003_001    
+ZCTA5 00601 17982 +/- 287 
+ZCTA5 00602 40260 +/- 167 
+ZCTA5 00603 52408 +/- 810 
+ZCTA5 00606 6331 +/- 293  
+ZCTA5 00610 28328 +/- 205 
+ZCTA5 00612 64816 +/- 1468
+>
+
+I'm not sure what you are trying to do, but perhaps you could download
+the data you need for all the zip codes, and then aggregate by the
+first three digits?
+
+--Ezra
+
+On Tue, 21 Mar 2017 19:04:26 -0400, Campbell, Ron (NBCUniversal) wrote:
+> 
+> I?m sure there?s a simple answer to this. My attempts so far have
+> crashed and burned.
+> 
+> I?m trying to create ACS estimates of population from Table B01003
+> for 3-digit ZCTAs nationwide. I need these as a basis for measuring
+> per capita rates of some other data that is available only at the
+> 3-digit ZCTA level.
+> 
+> I have a data frame of 33,000 5-digit ZCTAs with total estimated
+> population, the margin of error and the 3-digit ZCTA (a substring of
+> the 5-digit ZCTA). I want to create a new data frame consisting of
+> 3-digit ZCTAs with their estimated populations and margin of error.
+> 
+> I tried to do this using variations on the geo.make() function:
+> 
+> > census2 = geo.make(substring(census1$ZCTA5,1,3))
+> Error: evaluation nested too deeply: infinite recursion / options(expressions=)?
+> 
+> And
+> 
+> > census2 = geo.make(census1, combine=TRUE, combine.term='ZCTA3')
+> Error in (function (us, region, division, state, county, county.subdivision,  : 
+>   (list) object cannot be coerced to type 'double'
+> 
+> Any ideas?
+> 
+> Thanks.
+> 
+> Ronald Campbell
+> Data Editor
+> NBC Owned Television Stations
+> 1411 N. Batavia St., Suite 113
+> Orange, CA 92867
+> cell: 818-232-2585
+> ron.campbell at nbcuni.com
+> @campbellronaldw
+> 
+> [cid]   
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+

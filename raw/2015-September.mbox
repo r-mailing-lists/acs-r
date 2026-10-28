@@ -1,0 +1,299 @@
+From arilamstein at gmail.com  Mon Sep  7 15:00:56 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 7 Sep 2015 12:00:56 -0700
+Subject: [acs-r] 2010 zcta data not available
+Message-ID: <CAEO2kuK7p3zyDRx4H=QC4DyqDRp0cW9Bq-20CupUHVPTtPCTmQ@mail.gmail.com>
+
+I expected 2010 ZCTA data to be available. However, I get an error when I
+try to access it:
+
+zip_geo = acs::geo.make(zip.code = "*")
+acs::acs.fetch(geography = zip_geo, table.number = "B03002",
++ col.names = "pretty", endyear = 2010, span = 5)
+Error in file(file, "rt") : cannot open the connection
+
+2011 data works fine for me:
+zip_geo = acs::geo.make(zip.code = "*")
+acs::acs.fetch(geography = zip_geo, table.number = "B03002",
+                           col.names = "pretty", endyear = 2011, span = 5)
+
+I am unclear whether this error is because the ZCTA info is simply not
+available, or whether there is an error somewhere else in the code.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150907/e2b0bc43/attachment.html
+
+From eglenn at mit.edu  Tue Sep  8 16:54:51 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 08 Sep 2015 16:54:51 -0400
+Subject: [acs-r] 2010 zcta data not available
+In-Reply-To: <CAEO2kuK7p3zyDRx4H=QC4DyqDRp0cW9Bq-20CupUHVPTtPCTmQ@mail.gmail.com>
+References: <CAEO2kuK7p3zyDRx4H=QC4DyqDRp0cW9Bq-20CupUHVPTtPCTmQ@mail.gmail.com>
+Message-ID: <86io7kfx7o.wl%eglenn@mit.edu>
+
+
+I'm pretty sure the issue is just that the 2010 zcta data is not
+avaiable through the API -- sorry!
+
+At Mon, 7 Sep 2015 12:00:56 -0700, arilamstein wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> I expected 2010 ZCTA data to be available. However, I get an error when I try to access
+> it:
+> 
+> zip_geo = acs::geo.make(zip.code = "*")
+> acs::acs.fetch(geography = zip_geo, table.number = "B03002",
+> + col.names = "pretty", endyear = 2010, span = 5)
+> Error in file(file, "rt") : cannot open the connection
+> 
+> 2011 data works fine for me:
+> zip_geo = acs::geo.make(zip.code = "*")
+> acs::acs.fetch(geography = zip_geo, table.number = "B03002", 
+>                            col.names = "pretty", endyear = 2011, span = 5)
+> 
+> I am unclear whether this error is because the ZCTA info is simply not available, or
+> whether there is an error somewhere else in the code.
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From arilamstein at gmail.com  Tue Sep  8 17:04:07 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Tue, 8 Sep 2015 14:04:07 -0700
+Subject: [acs-r] 2010 zcta data not available
+In-Reply-To: <86io7kfx7o.wl%eglenn@mit.edu>
+References: <CAEO2kuK7p3zyDRx4H=QC4DyqDRp0cW9Bq-20CupUHVPTtPCTmQ@mail.gmail.com>
+	<86io7kfx7o.wl%eglenn@mit.edu>
+Message-ID: <CAEO2ku+Nz3mzS9ckFArEvdXgtG45CF6gWB54wA4v6-c7E8m3ww@mail.gmail.com>
+
+Thanks Ezra. I just wanted to make sure I wasn't missing something.
+
+On Tue, Sep 8, 2015 at 1:54 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> I'm pretty sure the issue is just that the 2010 zcta data is not
+> avaiable through the API -- sorry!
+>
+> At Mon, 7 Sep 2015 12:00:56 -0700, arilamstein wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > I expected 2010 ZCTA data to be available. However, I get an error when
+> I try to access
+> > it:
+> >
+> > zip_geo = acs::geo.make(zip.code = "*")
+> > acs::acs.fetch(geography = zip_geo, table.number = "B03002",
+> > + col.names = "pretty", endyear = 2010, span = 5)
+> > Error in file(file, "rt") : cannot open the connection
+> >
+> > 2011 data works fine for me:
+> > zip_geo = acs::geo.make(zip.code = "*")
+> > acs::acs.fetch(geography = zip_geo, table.number = "B03002",
+> >                            col.names = "pretty", endyear = 2011, span =
+> 5)
+> >
+> > I am unclear whether this error is because the ZCTA info is simply not
+> available, or
+> > whether there is an error somewhere else in the code.
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150908/dabe15cc/attachment.html
+
+From ccambron at uw.edu  Mon Sep 21 12:33:38 2015
+From: ccambron at uw.edu (Chris Cambron)
+Date: Mon, 21 Sep 2015 09:33:38 -0700
+Subject: [acs-r] Block group level poverty measures?
+Message-ID: <CAHNWBy0d_qDzrHFUqujaeRnVgQNmz=y2OPpidKmvde8VcpmN7g@mail.gmail.com>
+
+Hi,
+I've been attempting to pull data on poverty measures through the ACS
+package (vars: B17001_001, B17001_002). These don't seem to be available at
+the block group level (tract comes through fine). They appear to be
+published though in other places. Any thoughts on why this might be?
+Thanks!
+
+*Chris Cambron, MSW, MPP*
+Doctoral Student
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150921/43bc00fa/attachment.html
+
+From eglenn at mit.edu  Mon Sep 21 12:42:17 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 21 Sep 2015 12:42:17 -0400
+Subject: [acs-r] Block group level poverty measures?
+In-Reply-To: <CAHNWBy0d_qDzrHFUqujaeRnVgQNmz=y2OPpidKmvde8VcpmN7g@mail.gmail.com>
+References: <CAHNWBy0d_qDzrHFUqujaeRnVgQNmz=y2OPpidKmvde8VcpmN7g@mail.gmail.com>
+Message-ID: <866133g1w6.wl%eglenn@mit.edu>
+
+
+I suspect the blockgroups are too small and they are not reporting the
+data.  Can you provide an example of somewhere you saw the data
+reported at this level elsewhere (e.g., on factfinder)?
+
+At Mon, 21 Sep 2015 09:33:38 -0700, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi,
+> I've been attempting to pull data on poverty measures through the ACS package (vars:
+> B17001_001, B17001_002). These don't seem to be available at the block group level (tract
+> comes through fine). They appear to be published though in other places. Any thoughts on
+> why this might be?  
+> Thanks!
+> 
+> Chris Cambron, MSW, MPP
+> Doctoral Student
+> Social Development Research Group
+> School of Social Work   |  University of Washington
+> ccambron at uw.edu  |  www.sdrg.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From Corrales.Mark at epa.gov  Tue Sep 22 13:01:32 2015
+From: Corrales.Mark at epa.gov (Corrales, Mark)
+Date: Tue, 22 Sep 2015 17:01:32 +0000
+Subject: [acs-r] block group poverty measures ACS tables
+In-Reply-To: <mailman.835.1442937758.9022.acs-r@mit.edu>
+References: <mailman.835.1442937758.9022.acs-r@mit.edu>
+Message-ID: <CY1PR09MB0794095DFD75F4B7A97CF588F2450@CY1PR09MB0794.namprd09.prod.outlook.com>
+
+For the 5-year summary file only, ACS table C17002 has poverty information by block group, and that is the one I have found most useful in our work (http://www2.epa.gov/ejscreen). In fact if you need nationwide block group estimates from that table, we posted those here for the 2008-2012 dataset: 
+ftp://newftp.epa.gov//EJSCREEN/ACS2008-2012_Race_Ethnicity_subgroup_counts_and_percents_by_block_group.zip 
+Percent poor would be calculated as (C17002.002 + C17002.003) / C17002.001
+
+One of these four is probably what you want:
+
+C17002	Ratio Of Income To Poverty Level In The Past 12 Months
+B17010	Poverty Status In The Past 12 Months Of Families By Family Type By Presence Of Related Children Under 18 Years By Age Of Related Children
+B17017	Poverty Status In The Past 12 Months By Household Type By Age Of Householder
+B17021	Poverty Status Of Individuals In The Past 12 Months By Living Arrangement
+
+For a quick look at which tables have the word poverty in their title, you could do this:
+require(acs)
+y=acs.lookup(table.name  = "Poverty")
+z=unique(y at results[,c('table.number', 'table.name')])
+sapply(z, function(x) substr(x,1,60))
+
+But to see which ones are available at block group resolution, you could check here, for the 20135 dataset, for example:
+http://www2.census.gov/programs-surveys/acs/summary_file/2013/documentation/tech_docs/ACS_2013_SF_5YR_Appendices.xls 
+
+
+
+---------------------------------------------------------------------------
+Mark A. Corrales
+Office of Policy, Office of the Administrator, US EPA
+1200 Pennsylvania Avenue, NW, Washington DC 20460
+
+---------------------------------------------------------------------------
+________________________________________
+
+
+
+Message: 1
+Date: Mon, 21 Sep 2015 09:33:38 -0700
+From: Chris Cambron <ccambron at uw.edu>
+Subject: [acs-r] Block group level poverty measures?
+To: acs-r at mit.edu
+Message-ID:
+        <CAHNWBy0d_qDzrHFUqujaeRnVgQNmz=y2OPpidKmvde8VcpmN7g at mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+
+Hi,
+I've been attempting to pull data on poverty measures through the ACS
+package (vars: B17001_001, B17001_002). These don't seem to be available at
+the block group level (tract comes through fine). They appear to be
+published though in other places. Any thoughts on why this might be?
+Thanks!
+
+*Chris Cambron, MSW, MPP*
+Doctoral Student
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+
+From Corrales.Mark at epa.gov  Wed Sep 23 14:43:38 2015
+From: Corrales.Mark at epa.gov (Corrales, Mark)
+Date: Wed, 23 Sep 2015 18:43:38 +0000
+Subject: [acs-r] block group poverty measures ACS tables
+In-Reply-To: <mailman.891.1443024147.12078.acs-r@mit.edu>
+References: <mailman.891.1443024147.12078.acs-r@mit.edu>
+Message-ID: <CY1PR09MB079496B27047D2CBB488CA86F2440@CY1PR09MB0794.namprd09.prod.outlook.com>
+
+
+Actually, the file you would want is this one:
+ftp://newftp.epa.gov/EJSCREEN/ACS2008-2012_EJSCREEN_inputs_raw_count_tables_with_MOE_by_block_group.zip
+
+________________________________________
+
+Date: Tue, 22 Sep 2015 17:01:32 +0000
+From: "Corrales, Mark" <Corrales.Mark at epa.gov>
+Subject: [acs-r] block group poverty measures ACS tables
+To: "acs-r at mit.edu" <acs-r at mit.edu>
+
+For the 5-year summary file only, ACS table C17002 has poverty information by block group, and that is the one I have found most useful in our work (http://www2.epa.gov/ejscreen). In fact if you need nationwide block group estimates from that table, we posted those here for the 2008-2012 dataset:
+...
+Percent poor would be calculated as (C17002.002 + C17002.003) / C17002.001
+...
+
+

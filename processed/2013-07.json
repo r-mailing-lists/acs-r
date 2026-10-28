@@ -1,0 +1,127 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2013-07",
+  "messages": [
+    {
+      "id": "msg-3ca08c044310",
+      "message_id": "<87hagbfs96.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-07-03T17:49:41Z",
+      "subject": "[acs-r]  Difficulty with worked example on blog",
+      "subject_clean": "[acs-r]  Difficulty with worked example on blog",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Peter:\n\nSorry for the delay in replying -- this is a new list and I think the\nmoderation settings were messed up.\n\nAs far as I can tell, this seems to be a problem with your API key.\nCan you check your key again, run a fresh:\n\n> api.key.install(key=\"YOURKEYHERE\")\n\nand let me know if it works?\n\nWhen I try it, I get the following:\n\n=================\n\n> my.tract=geo.make(state=\"MA\", county=\"Middlesex\",  tract=387201, block.group=\"*\", check=T)\nTesting geography item 1: Tract 387201, Blockgroup *, Middlesex County, Massachusetts .... OK.\n> total.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n\ntotal.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n> total.pop\nACS DATA: \n 2007 -- 2011 ;\n  Estimates w/90% confidence intervals;\n  for different intervals, see confint()\n                                                                     B01003_001  \nBlock Group 1, Census Tract 3872.01, Middlesex County, Massachusetts 2681 +/- 319\nBlock Group 2, Census Tract 3872.01, Middlesex County, Massachusetts 952 +/- 213 \nBlock Group 3, Census Tract 3872.01, Middlesex County, Massachusetts 1010 +/- 156\nBlock Group 4, Census Tract 3872.01, Middlesex County, Massachusetts 938 +/- 214 \n> \n\n==================\n\nOn Sat Jun 1 13:45:21 EDT 2013 Peter Cowan cowan.pd at gmail.com wrote:\n\n> I'm trying to work the example at:\n> \n> http://eglenn.scripts.mit.edu/citystate/2013/03/acs-r-a-worked-example-using-blockgroup-level-data/\n>\n> There appears to be a problem with the acs.fetch function for me. I have\n> previously saved an API key file.\n>\n> > my.tract=geo.make(state=\"MA\", county=\"Middlesex\",\n> +   tract=387201, block.group=\"*\", check=T)\n> Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County,\n> Massachusetts .... Error in seq.default(1, (length(in.data) - geo.length),\n> 2) :\n>   wrong sign in 'by' argument\n> > my.tract=geo.make(state=\"MA\", county=\"Middlesex\",\n> +   tract=387201, block.group=\"*\")\n> > total.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n> Error in seq.default(1, (length(in.data) - geo.length), 2) :\n>   wrong sign in 'by' argument\n>\n>  Thanks\n>\n> Peter\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Peter:\n\nSorry for the delay in replying -- this is a new list and I think the\nmoderation settings were messed up.\n\nAs far as I can tell, this seems to be a problem with your API key.\nCan you check you",
+      "thread_id": "thread-3ca08c044310",
+      "thread_depth": 0,
+      "month": "2013-07"
+    },
+    {
+      "id": "msg-d4186553a81e",
+      "message_id": "<87fvvvfrvu.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-07-03T17:57:41Z",
+      "subject": "[acs-r] Difficulty with worked example on blog",
+      "subject_clean": "[acs-r] Difficulty with worked example on blog",
+      "in_reply_to": "<87hagbfs96.wl%eglenn@mit.edu>",
+      "references": [
+        "<87hagbfs96.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "One other thing to check: can you confirm that you are using the most\nrecent version of the acs.R package -- currently version 1.0, which is\nnow available directly from CRAN?  (See\nhttp://eglenn.scripts.mit.edu/citystate/2013/06/now-on-cran-acs-r-version-1-0/\nfor more info.).\n\n--Ezra\n\nAt Wed, 3 Jul 2013 13:49:41 -0400, Ezra Haber Glenn wrote:\n> \n> \n> Peter:\n> \n> Sorry for the delay in replying -- this is a new list and I think the\n> moderation settings were messed up.\n> \n> As far as I can tell, this seems to be a problem with your API key.\n> Can you check your key again, run a fresh:\n> \n> > api.key.install(key=\"YOURKEYHERE\")\n> \n> and let me know if it works?\n> \n> When I try it, I get the following:\n> \n> =================\n> \n> > my.tract=geo.make(state=\"MA\", county=\"Middlesex\",  tract=387201, block.group=\"*\", check=T)\n> Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County, Massachusetts .... OK.\n> > total.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n> \n> total.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n> > total.pop\n> ACS DATA: \n>  2007 -- 2011 ;\n>   Estimates w/90% confidence intervals;\n>   for different intervals, see confint()\n>                                                                      B01003_001  \n> Block Group 1, Census Tract 3872.01, Middlesex County, Massachusetts 2681 +/- 319\n> Block Group 2, Census Tract 3872.01, Middlesex County, Massachusetts 952 +/- 213 \n> Block Group 3, Census Tract 3872.01, Middlesex County, Massachusetts 1010 +/- 156\n> Block Group 4, Census Tract 3872.01, Middlesex County, Massachusetts 938 +/- 214 \n> > \n> \n> ==================\n> \n> On Sat Jun 1 13:45:21 EDT 2013 Peter Cowan cowan.pd at gmail.com wrote:\n> \n> > I'm trying to work the example at:\n> > \n> > http://eglenn.scripts.mit.edu/citystate/2013/03/acs-r-a-worked-example-using-blockgroup-level-data/\n> >\n> > There appears to be a problem with the acs.fetch function for me. I have\n> > previously saved an API key file.\n> >\n> > > my.tract=geo.make(state=\"MA\", county=\"Middlesex\",\n> > +   tract=387201, block.group=\"*\", check=T)\n> > Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County,\n> > Massachusetts .... Error in seq.default(1, (length(in.data) - geo.length),\n> > 2) :\n> >   wrong sign in 'by' argument\n> > > my.tract=geo.make(state=\"MA\", county=\"Middlesex\",\n> > +   tract=387201, block.group=\"*\")\n> > > total.pop=acs.fetch(geo=my.tract, table.number=\"B01003\")\n> > Error in seq.default(1, (length(in.data) - geo.length), 2) :\n> >   wrong sign in 'by' argument\n> >\n> >  Thanks\n> >\n> > Peter\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu \n> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "One other thing to check: can you confirm that you are using the most\nrecent version of the acs.R package -- currently version 1.0, which is\nnow available directly from CRAN?  (See\nhttp://eglenn.scrip",
+      "thread_id": "thread-3ca08c044310",
+      "thread_depth": 1,
+      "month": "2013-07"
+    },
+    {
+      "id": "msg-5376eaeff4ca",
+      "message_id": "<CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>",
+      "from_name": "Anon RUser",
+      "from_email_hash": "68e622fc4a15ec7a54e07e775d882e2bca26e42ce17692fab7290a54699bca6f",
+      "date": "2013-07-05T23:32:43Z",
+      "subject": "[acs-r] Best way to visualize ACS data?",
+      "subject_clean": "[acs-r] Best way to visualize ACS data?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hello,\n\nI was very excited to learn about the R ACS package and think that it can\nbe extremely useful for me.  I would like to create visualizations of\ndemographic data.   For example, on Ezra's blog he explains how to get all\ncensus tract population data for Middlesex county:\n\n> my.tracts=geo.make(state=\"MA\", county=\"Middlesex\", tract=\"*\")\n> acs.fetch(geography=my.tracts, table.number=\"B01003\")\n\nI have two questions:\n\n1.  I would like to turn this data into a choropleth, but don't know how.\nI have created choropleths using ggplot2 as described in the R Graphics\nCookbook (\nhttp://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956).\nThere they call ggplot2's \"map_data()\" function.  But while map_data can\naccept \"usa\" or \"county\", I don't think that it supports census tracts, so\nI don't know how to create a choropleth of this data.\n\n2.  How does table.number correspond to ACS question number?  I found what\nappears to be a complete list of ACS questions here:\nhttp://www.census.gov/acs/www/about_the_survey/questions_and_why_we_ask/\n\nHow do these questions map to the table.number parameter?  For example, I\nwould like to make a choropleth showing the ratio of people in Middlesex\ncounty who speak a language other than English at home (ie \"% of people\nanswering 'yes' to question 14(a)\").  I don't know how to translate this to\na table.number.\n\nThank you very much!\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/mailman/private/acs-r/attachments/20130705/b51d37e7/attachment.htm",
+      "body_snippet": "Hello,\n\nI was very excited to learn about the R ACS package and think that it can\nbe extremely useful for me.  I would like to create visualizations of\ndemographic data.   For example, on Ezra's blog ",
+      "thread_id": "thread-5376eaeff4ca",
+      "thread_depth": 0,
+      "month": "2013-07"
+    },
+    {
+      "id": "msg-93585d5f76cd",
+      "message_id": "<87k3ksq3zj.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-07-14T20:30:08Z",
+      "subject": "[acs-r] acs.R: version 1.1 now available",
+      "subject_clean": "[acs-r] acs.R: version 1.1 now available",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs-R Users:\n\nDevelopment continues on the acs package for R, with the latest update\n(version 1.1) now officially available on the CRAN repository at\n<http://cran.r-project.org/web/packages/acs/index.html>. If you've\nalready installed the package in the past, you can easily update with\nthe update.packages() command; if you've never installed it, you can\njust as easily install it for the first time, by simply typing\ninstall.packages(\"acs\"). In either case, be sure to load the library\nafter installing by typing library(acs), and install (or re-install)\nan API key with api.key.install() ? see the documentation and the\nlatest version of the acs user guide\n(<http://eglenn.scripts.mit.edu/citystate/wp-content/uploads/2013/07/wpid-working_with_acs_R1.pdf>,\nwhich still references version 1.0, but is otherwise fine for this\nversion).\n\nBeyond improvements described on CityState about version 1.0\n(<http://eglenn.scripts.mit.edu/citystate/2013/06/now-on-cran-acs-r-version-1-0/>),\nthe most significant change in the latest version is support for many\nmore different combinations of census geography via the geo.make\nfunction. As described in the manual and on-line help, users can now\nspecify options to create user-defined geographies composed of\ncombinations of states, counties, county subdivisions, tracts, places,\nblockgroups (all available in the previous version), plus many more:\npublic use microdata areas (PUMAs), metropolitan statistical areas\n(MSAs), combined statistical areas (CSAs), zip code tabulation areas,\ncensus regions and divisions, congressional district and state\nlegislative districts (both upper and lower chambers), American Indian\nAreas, state school districts (of various types), New England County\nand Town Areas (NECTAs), and census urban areas. These geographies can\nbe combined to create 25 different census summary levels, which can\nthen even be bundled together to make even more complex geo.sets.\n\nOnce created and saved, these new user-defined geo.sets can be fed\ninto the existing acs.fetch function to immediately download data from\nthe ACS for these areas, combining them as desired in the process (and\nhandling all those pesky estimates and margins of error in\nstatistically-appropriate ways.)\n\nWe encourage you to update to the latest version and begin to explore\nthe full power of the census data now available through the Census\nAmerican Community Survey API.\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs-R Users:\n\nDevelopment continues on the acs package for R, with the latest update\n(version 1.1) now officially available on the CRAN repository at\n<http://cran.r-project.org/web/packages/acs/i",
+      "thread_id": "thread-93585d5f76cd",
+      "thread_depth": 0,
+      "month": "2013-07"
+    },
+    {
+      "id": "msg-69ed9e1cba87",
+      "message_id": "<878v17zg2v.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-07-15T21:08:40Z",
+      "subject": "[acs-r] Best way to visualize ACS data?",
+      "subject_clean": "[acs-r] Best way to visualize ACS data?",
+      "in_reply_to": "<CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>",
+      "references": [
+        "<CAFWa_VvzEMefM1bGbMS6B8YxYtK6towQYYCPBqY9ZRTie4ubbg@mail.gmail.com>"
+      ],
+      "body_plain": "Dear Anon RUser:\n\nThanks for your question -- answers below.\n\n1) Concerning the use of the package to create choropleth maps, this\n   is really more of a question for the ggplot2/maps packages than for\n   the acs package.  As for tract-level data in particular, any data\n   you download via acs.fetch() -- including the tract data from that\n   example -- should be able to be fed into the these mapping\n   functions, but I don't believe that they currently support mapping\n   of tract boundaries at this point.\n\n   From what I can tell, the maps package and the map_data() function\n   do include support for county level maps in the US, so you could\n   definitely try that.  I've just added an example of this on the\n   CityState blog -- see\n   <http://eglenn.scripts.mit.edu/citystate/2013/07/using-acs-r-to-create-chorpleth-maps/>\n   for more.\n\n2) As for how Census table numbers relate to the questions in the\n   surveys they use, this is a pretty complicated one, and there is no\n   easy answer.  Census tables do not simply tabulate\n   question-by-question answers, but instead tabulate results across\n   questions.  To help you find the tables you want, the acs package\n   does include a special \"acs.lookup\" helper function, which will\n   take text strings to search for in with table names or variable\n   keywords -- see ?acs.lookup for more.\n\nThanks for the feedback and query, and I this helps.\n\n--Ezra\n\nAt Fri, 5 Jul 2013 16:32:43 -0700, Anon RUser wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; ISO-8859-1 (7bit)>]\n> \n> [1.2  <text/html; ISO-8859-1 (quoted-printable)>]\n> Hello,\n> \n> I was very excited to learn about the R ACS package and think that\n> it can be extremely useful for me.  I would like to create\n> visualizations of demographic data.  For example, on Ezra's blog he\n> explains how to get all census tract population data for Middlesex\n> county:\n> \n> > my.tracts=geo.make(state=\"MA\", county=\"Middlesex\", tract=\"*\") \n> > acs.fetch(geography=my.tracts, table.number=\"B01003\")\n> \n> I have two questions:\n> \n> 1.  I would like to turn this data into a choropleth, but don't know\n> how.  I have created choropleths using ggplot2 as described in the R\n> Graphics Cookbook\n> (http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/\n> 1449316956).  There they call ggplot2's \"map_data()\" function.  But\n> while map_data can accept \"usa\" or \"county\", I don't think that it\n> supports census tracts, so I don't know how to create a choropleth\n> of this data.\n> \n> 2.  How does table.number correspond to ACS question number?  I\n> found what appears to be a complete list of ACS questions here:\n> http://www.census.gov/acs/www/about_the_survey/questions_and_why_we_ask/\n> \n> How do these questions map to the table.number parameter?  For\n> example, I would like to make a choropleth showing the ratio of\n> people in Middlesex county who speak a language other than English\n> at home (ie \"% of people answering 'yes' to question 14(a)\").  I\n> don't know how to translate this to a table.number.\n> \n> Thank you very much!\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear Anon RUser:\n\nThanks for your question -- answers below.\n\n1) Concerning the use of the package to create choropleth maps, this\n   is really more of a question for the ggplot2/maps packages than fo",
+      "thread_id": "thread-5376eaeff4ca",
+      "thread_depth": 1,
+      "month": "2013-07"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-3ca08c044310",
+      "subject": "[acs-r]  Difficulty with worked example on blog",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-07-03T17:49:41Z",
+      "last_reply": "2013-07-03T17:57:41Z",
+      "root_message_id": "msg-3ca08c044310"
+    },
+    {
+      "id": "thread-5376eaeff4ca",
+      "subject": "[acs-r] Best way to visualize ACS data?",
+      "message_count": 2,
+      "participants": [
+        "Anon RUser",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-07-05T23:32:43Z",
+      "last_reply": "2013-07-15T21:08:40Z",
+      "root_message_id": "msg-5376eaeff4ca"
+    },
+    {
+      "id": "thread-93585d5f76cd",
+      "subject": "[acs-r] acs.R: version 1.1 now available",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-07-14T20:30:08Z",
+      "last_reply": "2013-07-14T20:30:08Z",
+      "root_message_id": "msg-93585d5f76cd"
+    }
+  ]
+}

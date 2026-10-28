@@ -1,0 +1,300 @@
+From arilamstein at gmail.com  Sun Apr 13 13:57:32 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Sun, 13 Apr 2014 13:57:32 -0400
+Subject: [acs-r] Getting all zipcodes in the continental US
+Message-ID: <CAEO2ku+t2SnvquYMWgYFgSms=Kiv5TvONngk_7HrHUNcD7Z58Q@mail.gmail.com>
+
+I am trying to use geo.make to create a geography of all zip codes / zctas
+in the continental US.  This is slightly challenging because the
+documentation to geo.make says that if you specify the zip.code parameter
+then no other geographies can be selected.
+
+My solution is to use the zipcode package to create a list of all zipcodes
+in the continental us, and then pass that to geo.make.  However, this
+creates an error:
+
+library(maps)
+library(zipcode)
+data(zipcode)
+
+states_continental = setdiff(state.abb, c("AK", "HI"))
+states_continental = c(states_continental, "DC")
+zips = zipcode[zipcode$state %in% states_continental, "zip"]
+
+geo = geo.make(zip.code=zips)
+Error: evaluation nested too deeply: infinite recursion /
+options(expressions=)?
+Error during wrapup: evaluation nested too deeply: infinite recursion /
+options(expressions=)?
+
+I tried to step thru the geo.make code but was not sure how it worked.  I
+suspect the error is that the zipcode package includes valid zips that are
+not zctas (e.g. zip codes that refer to post offices), and that might cause
+a problem.  But I am wondering if there is a bug in the acs code, or if
+there is a better way to get the result I am looking for.
+
+As a workaround, is there an easy way to remove elements from the result of
+geo.make(zip.code="*")?  The resulting object is an S4 object, which I
+don't have experience with.  If the result were a data.frame I could just
+use subsetting against the zips variable I have above.  But I am not sure
+how to do the equivalent operation with the resulting S4 object.
+
+Thanks.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140413/1866ef17/attachment.htm
+
+From eglenn at MIT.EDU  Mon Apr 14 12:47:38 2014
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 14 Apr 2014 12:47:38 -0400
+Subject: [acs-r] Getting all zipcodes in the continental US
+In-Reply-To: <CAEO2ku+t2SnvquYMWgYFgSms=Kiv5TvONngk_7HrHUNcD7Z58Q@mail.gmail.com>
+References: <CAEO2ku+t2SnvquYMWgYFgSms=Kiv5TvONngk_7HrHUNcD7Z58Q@mail.gmail.com>
+Message-ID: <86y4z7c0yd.wl%eglenn@mit.edu>
+
+
+Ari:
+
+Good question.  Here are some thoughts on how to approach it:
+
+Your idea of creating something with geo.make(zip.code= "*"), and then
+modifying, if a great idea, but unfortunately it won't work: the
+geo.set that you create with a wildcard is pretty dumb -- it just
+contain the wildcard, not all the geographies that it matches to.  
+
+Nonetheless, it's a good start, and can be used to get those
+geographies through a simple acs.fetch.  Try this:
+
+> my.geos=geo.make(zip.code="*")
+
+# the actual table number doesn't really matter here 
+> some.data=acs.fetch(geography=my.geos, table.number="B01003") 
+
+Now we have an acs.object, called some.data, that *does* include all
+the geographic info we need.  We can view it with 
+
+# careful -- the whole thing is really long; 
+# let's just look at the first few rows
+> head(geography(some.data))
+         NAME zipcodetabulationarea
+1 ZCTA5 01001                 01001
+2 ZCTA5 01002                 01002
+3 ZCTA5 01003                 01003
+4 ZCTA5 01005                 01005
+5 ZCTA5 01007                 01007
+6 ZCTA5 01008                 01008
+
+We can capture the "zipcodetabulationarea" values and use some subset
+of them to make a new geo.make:
+
+> sample.zips=geo.make(zip.code=sample(geography(some.data)$zipcodetabulationarea, 100))
+
+Unfortunately, if you try to make a geo.set with *all* of them, you
+get that same error you encountered -- it has to do with the way the
+function uses nested recursive loops, which may be less-than-ideal in
+theory, but in practice is fine.  (I think the upper limit may be
+around 700 or 800 items.)  To get around this, you could create your
+geo.set in multiple pieces, and then combine them with "geo.set.a +
+geo.set.b" of something similar.
+
+But all that said, I'd warn you that the acs.fetch command is *very*
+slow with very large geo.sets -- each one needs to be individually
+fetched, and then the results assembled.  (This is one reason why the
+limit of geo.set size at creation is not really a big problem from my
+point of view.)  Far better is to just use the wildcard and then
+*remove* the rows that you don't want (i.e., select and remove the
+ones for Alaska and Hawaii, in this case).  Would that work?
+
+--Ezra
+
+At Sun, 13 Apr 2014 13:57:32 -0400, arilamstein wrote:
+> 
+> I am trying to use geo.make to create a geography of all zip codes /
+> zctas in the continental US.  This is slightly challenging because the
+> documentation to geo.make says that if you specify the zip.code
+> parameter then no other geographies can be selected.
+> 
+> My solution is to use the zipcode package to create a list of all
+> zipcodes in the continental us, and then pass that to geo.make.
+> However, this creates an error:
+> 
+> library(maps) library(zipcode) data(zipcode)
+> 
+> states_continental = setdiff(state.abb, c("AK", "HI"))
+> states_continental = c(states_continental, "DC") zips =
+> zipcode[zipcode$state %in% states_continental, "zip"]
+> 
+> geo = geo.make(zip.code=zips) Error: evaluation nested too deeply:
+> infinite recursion / options(expressions=)?  Error during wrapup:
+> evaluation nested too deeply: infinite recursion /
+> options(expressions=)?
+> 
+> I tried to step thru the geo.make code but was not sure how it worked.
+> I suspect the error is that the zipcode package includes valid zips
+> that are not zctas (e.g. zip codes that refer to post offices), and
+> that might cause a problem.  But I am wondering if there is a bug in
+> the acs code, or if there is a better way to get the result I am
+> looking for.
+> 
+> As a workaround, is there an easy way to remove elements from the
+> result of geo.make(zip.code= "*")?  The resulting object is an S4
+> object, which I don't have experience with.  If the result were a
+> data.frame I could just use subsetting against the zips variable I
+> have above.  But I am not sure how to do the equivalent operation with
+> the resulting S4 object.
+> 
+> Thanks.
+> 
+> Ari
+> 
+> 
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From arilamstein at gmail.com  Tue Apr 15 14:22:41 2014
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Tue, 15 Apr 2014 14:22:41 -0400
+Subject: [acs-r] Getting all zipcodes in the continental US
+In-Reply-To: <86y4z7c0yd.wl%eglenn@mit.edu>
+References: <CAEO2ku+t2SnvquYMWgYFgSms=Kiv5TvONngk_7HrHUNcD7Z58Q@mail.gmail.com>
+	<86y4z7c0yd.wl%eglenn@mit.edu>
+Message-ID: <CAEO2kuKUN2zzcNoN8wfCQY36WyQOfhkMZs83iFx4QhjXKvjCbQ@mail.gmail.com>
+
+Hi Ezra,
+
+Thanks for your help.  It sounds like implementing this feature will be
+hard if I reply on making a custom geo.  I'm going to try what you suggest
+at the end - making the geo with the wildcard, and then removingwhat I
+don't need before returning it to the client.
+
+Ari
+
+
+On Mon, Apr 14, 2014 at 12:47 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Ari:
+>
+> Good question.  Here are some thoughts on how to approach it:
+>
+> Your idea of creating something with geo.make(zip.code= "*"), and then
+> modifying, if a great idea, but unfortunately it won't work: the
+> geo.set that you create with a wildcard is pretty dumb -- it just
+> contain the wildcard, not all the geographies that it matches to.
+>
+> Nonetheless, it's a good start, and can be used to get those
+> geographies through a simple acs.fetch.  Try this:
+>
+> > my.geos=geo.make(zip.code="*")
+>
+> # the actual table number doesn't really matter here
+> > some.data=acs.fetch(geography=my.geos, table.number="B01003")
+>
+> Now we have an acs.object, called some.data, that *does* include all
+> the geographic info we need.  We can view it with
+>
+> # careful -- the whole thing is really long;
+> # let's just look at the first few rows
+> > head(geography(some.data))
+>          NAME zipcodetabulationarea
+> 1 ZCTA5 01001                 01001
+> 2 ZCTA5 01002                 01002
+> 3 ZCTA5 01003                 01003
+> 4 ZCTA5 01005                 01005
+> 5 ZCTA5 01007                 01007
+> 6 ZCTA5 01008                 01008
+>
+> We can capture the "zipcodetabulationarea" values and use some subset
+> of them to make a new geo.make:
+>
+> >
+> sample.zips=geo.make(zip.code=sample(geography(some.data)$zipcodetabulationarea,
+> 100))
+>
+> Unfortunately, if you try to make a geo.set with *all* of them, you
+> get that same error you encountered -- it has to do with the way the
+> function uses nested recursive loops, which may be less-than-ideal in
+> theory, but in practice is fine.  (I think the upper limit may be
+> around 700 or 800 items.)  To get around this, you could create your
+> geo.set in multiple pieces, and then combine them with "geo.set.a +
+> geo.set.b" of something similar.
+>
+> But all that said, I'd warn you that the acs.fetch command is *very*
+> slow with very large geo.sets -- each one needs to be individually
+> fetched, and then the results assembled.  (This is one reason why the
+> limit of geo.set size at creation is not really a big problem from my
+> point of view.)  Far better is to just use the wildcard and then
+> *remove* the rows that you don't want (i.e., select and remove the
+> ones for Alaska and Hawaii, in this case).  Would that work?
+>
+> --Ezra
+>
+> At Sun, 13 Apr 2014 13:57:32 -0400, arilamstein wrote:
+> >
+> > I am trying to use geo.make to create a geography of all zip codes /
+> > zctas in the continental US.  This is slightly challenging because the
+> > documentation to geo.make says that if you specify the zip.code
+> > parameter then no other geographies can be selected.
+> >
+> > My solution is to use the zipcode package to create a list of all
+> > zipcodes in the continental us, and then pass that to geo.make.
+> > However, this creates an error:
+> >
+> > library(maps) library(zipcode) data(zipcode)
+> >
+> > states_continental = setdiff(state.abb, c("AK", "HI"))
+> > states_continental = c(states_continental, "DC") zips =
+> > zipcode[zipcode$state %in% states_continental, "zip"]
+> >
+> > geo = geo.make(zip.code=zips) Error: evaluation nested too deeply:
+> > infinite recursion / options(expressions=)?  Error during wrapup:
+> > evaluation nested too deeply: infinite recursion /
+> > options(expressions=)?
+> >
+> > I tried to step thru the geo.make code but was not sure how it worked.
+> > I suspect the error is that the zipcode package includes valid zips
+> > that are not zctas (e.g. zip codes that refer to post offices), and
+> > that might cause a problem.  But I am wondering if there is a bug in
+> > the acs code, or if there is a better way to get the result I am
+> > looking for.
+> >
+> > As a workaround, is there an easy way to remove elements from the
+> > result of geo.make(zip.code= "*")?  The resulting object is an S4
+> > object, which I don't have experience with.  If the result were a
+> > data.frame I could just use subsetting against the zips variable I
+> > have above.  But I am not sure how to do the equivalent operation with
+> > the resulting S4 object.
+> >
+> > Thanks.
+> >
+> > Ari
+> >
+> >
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140415/86512db2/attachment.htm
+

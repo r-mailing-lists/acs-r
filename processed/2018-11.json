@@ -1,0 +1,95 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2018-11",
+  "messages": [
+    {
+      "id": "msg-e496d23322ec",
+      "message_id": "<CAJOuEKRc7ipaLBpV=WBAxMd4RQWYBjRHgMb7dpYq01pU=Uw+AA@mail.gmail.com>",
+      "from_name": "Leo Barlach",
+      "from_email_hash": "b2db66b0ad69b00ef6d2af49e40add630c33ca93e86bf10c737580d416e9845e",
+      "date": "2018-11-02T16:38:41Z",
+      "subject": "[acs-r] Access to Business Patterns data",
+      "subject_clean": "[acs-r] Access to Business Patterns data",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\n\nMy team has been using acs for a while to download Census data, but now we\nneed to download business pattern data, ideally the zip code business\npatters:\nhttps://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html\n\nThe package doesn't seem to find it. Is this data not available through the\npackage?\n\n\"\"\"\nacs::api.key.install(key = census_key)\nacs::acs.tables.install()\ngeo_set <- acs::geo.make(zip.code = '*')\nlookup <- acs::acs.lookup(endyear = 2016, keyword = 'ZBP', case.sensitive =\nF)\n\"\"\"\n\nThanks!\nLeo Barlach\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20181102/f949ca66/attachment.html",
+      "body_snippet": "Hi,\n\nMy team has been using acs for a while to download Census data, but now we\nneed to download business pattern data, ideally the zip code business\npatters:\nhttps://www.census.gov/data/developers/da",
+      "thread_id": "thread-e496d23322ec",
+      "thread_depth": 0,
+      "month": "2018-11"
+    },
+    {
+      "id": "msg-93a476ee2b78",
+      "message_id": "<864lczib4m.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-11-02T18:32:09Z",
+      "subject": "[acs-r] Access to Business Patterns data",
+      "subject_clean": "[acs-r] Access to Business Patterns data",
+      "in_reply_to": "<CAJOuEKRc7ipaLBpV=WBAxMd4RQWYBjRHgMb7dpYq01pU=Uw+AA@mail.gmail.com>",
+      "references": [
+        "<CAJOuEKRc7ipaLBpV=WBAxMd4RQWYBjRHgMb7dpYq01pU=Uw+AA@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks for your email.  Although those datasets are available through\nthe Census API, they are not in the same format (and can't really be\ntreated in the same ways) as the ACS data, and so the acs package\ncan't fetch them.\n\nSorry!\n\nOn Fri, 02 Nov 2018 12:38:41 -0400, Leo Barlach wrote:\n> \n> Hi,\n> \n> My team has been using acs for a while to download Census data, but now we need to\n> download business pattern data, ideally the zip code business patters: \n> https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html\n> \n> The package doesn't seem to find it. Is this data not available through the package?\n> \n> \"\"\"\n> acs::api.key.install(key = census_key)\n> acs::acs.tables.install()\n> geo_set <- acs::geo.make(zip.code = '*')\n> lookup <- acs::acs.lookup(endyear = 2016, keyword = 'ZBP', case.sensitive = F)\n> \"\"\"\n> \n> Thanks!\n> Leo Barlach\n> \n> \n\n--\nEzra Haber Glenn, AICP  \nDepartment of Urban Studies and Planning  \nMassachusetts Institute of Technology  \n77 Massachusetts Ave., Room 7-346  \nCambridge, MA 02139  \neglenn at mit.edu  \nhttp://dusp.mit.edu/faculty/ezra-glenn  \n617.253.2024 (w)  \n617.721.7131 (c)",
+      "body_snippet": "Thanks for your email.  Although those datasets are available through\nthe Census API, they are not in the same format (and can't really be\ntreated in the same ways) as the ACS data, and so the acs pac",
+      "thread_id": "thread-e496d23322ec",
+      "thread_depth": 1,
+      "month": "2018-11"
+    },
+    {
+      "id": "msg-624e70887376",
+      "message_id": "<CAEO2kuJF-MhBeHZhXaHk8-mHkKkmy9tCDqJF2KSYSKJn5=r2CQ@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2018-11-02T18:33:41Z",
+      "subject": "[acs-r] Access to Business Patterns data",
+      "subject_clean": "[acs-r] Access to Business Patterns data",
+      "in_reply_to": "<864lczib4m.wl-eglenn@mit.edu>",
+      "references": [
+        "<CAJOuEKRc7ipaLBpV=WBAxMd4RQWYBjRHgMb7dpYq01pU=Uw+AA@mail.gmail.com>",
+        "<864lczib4m.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Leo,\n\nYou might be interested in the censusapi package:\nhttps://github.com/hrecht/censusapi\n\nIt is designed to fetch all data from the Census API into R.\n\nAri\n\nOn Fri, Nov 2, 2018 at 11:32 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Thanks for your email.  Although those datasets are available through\n> the Census API, they are not in the same format (and can't really be\n> treated in the same ways) as the ACS data, and so the acs package\n> can't fetch them.\n>\n> Sorry!\n>\n> On Fri, 02 Nov 2018 12:38:41 -0400, Leo Barlach wrote:\n> >\n> > Hi,\n> >\n> > My team has been using acs for a while to download Census data, but now\n> we need to\n> > download business pattern data, ideally the zip code business patters:\n> >\n> https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html\n> >\n> > The package doesn't seem to find it. Is this data not available through\n> the package?\n> >\n> > \"\"\"\n> > acs::api.key.install(key = census_key)\n> > acs::acs.tables.install()\n> > geo_set <- acs::geo.make(zip.code = '*')\n> > lookup <- acs::acs.lookup(endyear = 2016, keyword = 'ZBP',\n> case.sensitive = F)\n> > \"\"\"\n> >\n> > Thanks!\n> > Leo Barlach\n> >\n> >\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-346\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20181102/4cc1edcb/attachment.html",
+      "body_snippet": "Leo,\n\nYou might be interested in the censusapi package:\nhttps://github.com/hrecht/censusapi\n\nIt is designed to fetch all data from the Census API into R.\n\nAri\n\nOn Fri, Nov 2, 2018 at 11:32 AM Ezra Hab",
+      "thread_id": "thread-e496d23322ec",
+      "thread_depth": 2,
+      "month": "2018-11"
+    },
+    {
+      "id": "msg-8a1291083b2f",
+      "message_id": "<CAJOuEKQRfP9Q_T8vToOiLZL2sey=2Pv_JRET-f=Zbsj7E3MfKg@mail.gmail.com>",
+      "from_name": "Leo Barlach",
+      "from_email_hash": "b2db66b0ad69b00ef6d2af49e40add630c33ca93e86bf10c737580d416e9845e",
+      "date": "2018-11-02T19:53:09Z",
+      "subject": "[acs-r] Access to Business Patterns data",
+      "subject_clean": "[acs-r] Access to Business Patterns data",
+      "in_reply_to": "<CAEO2kuJF-MhBeHZhXaHk8-mHkKkmy9tCDqJF2KSYSKJn5=r2CQ@mail.gmail.com>",
+      "references": [
+        "<CAJOuEKRc7ipaLBpV=WBAxMd4RQWYBjRHgMb7dpYq01pU=Uw+AA@mail.gmail.com>",
+        "<864lczib4m.wl-eglenn@mit.edu>",
+        "<CAEO2kuJF-MhBeHZhXaHk8-mHkKkmy9tCDqJF2KSYSKJn5=r2CQ@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks! The censusapi  package worked.\n\nOn Fri, Nov 2, 2018 at 12:33 PM <arilamstein at gmail.com> wrote:\n\n> Leo,\n>\n> You might be interested in the censusapi package:\n> https://github.com/hrecht/censusapi\n>\n> It is designed to fetch all data from the Census API into R.\n>\n> Ari\n>\n> On Fri, Nov 2, 2018 at 11:32 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:\n>\n>>\n>> Thanks for your email.  Although those datasets are available through\n>> the Census API, they are not in the same format (and can't really be\n>> treated in the same ways) as the ACS data, and so the acs package\n>> can't fetch them.\n>>\n>> Sorry!\n>>\n>> On Fri, 02 Nov 2018 12:38:41 -0400, Leo Barlach wrote:\n>> >\n>> > Hi,\n>> >\n>> > My team has been using acs for a while to download Census data, but now\n>> we need to\n>> > download business pattern data, ideally the zip code business patters:\n>> >\n>> https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html\n>> >\n>> > The package doesn't seem to find it. Is this data not available through\n>> the package?\n>> >\n>> > \"\"\"\n>> > acs::api.key.install(key = census_key)\n>> > acs::acs.tables.install()\n>> > geo_set <- acs::geo.make(zip.code = '*')\n>> > lookup <- acs::acs.lookup(endyear = 2016, keyword = 'ZBP',\n>> case.sensitive = F)\n>> > \"\"\"\n>> >\n>> > Thanks!\n>> > Leo Barlach\n>> >\n>> >\n>>\n>> --\n>> Ezra Haber Glenn, AICP\n>> Department of Urban Studies and Planning\n>> Massachusetts Institute of Technology\n>> 77 Massachusetts Ave., Room 7-346\n>> Cambridge, MA 02139\n>> eglenn at mit.edu\n>> http://dusp.mit.edu/faculty/ezra-glenn\n>> 617.253.2024 (w)\n>> 617.721.7131 (c)\n>> _______________________________________________\n>> acs-r mailing list\n>> acs-r at mit.edu\n>> http://mailman.mit.edu/mailman/listinfo/acs-r\n>>\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20181102/0a0b1c6c/attachment.html",
+      "body_snippet": "Thanks! The censusapi  package worked.\n\nOn Fri, Nov 2, 2018 at 12:33 PM <arilamstein at gmail.com> wrote:\n\n> Leo,\n>\n> You might be interested in the censusapi package:\n> https://github.com/hrecht/cens",
+      "thread_id": "thread-e496d23322ec",
+      "thread_depth": 3,
+      "month": "2018-11"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-e496d23322ec",
+      "subject": "[acs-r] Access to Business Patterns data",
+      "message_count": 4,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Leo Barlach",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2018-11-02T16:38:41Z",
+      "last_reply": "2018-11-02T19:53:09Z",
+      "root_message_id": "msg-e496d23322ec"
+    }
+  ]
+}

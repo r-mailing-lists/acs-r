@@ -1,0 +1,116 @@
+From ccambron at uw.edu  Wed Aug 12 21:37:49 2015
+From: ccambron at uw.edu (Chris Cambron)
+Date: Wed, 12 Aug 2015 18:37:49 -0700
+Subject: [acs-r] 2013 data release
+Message-ID: <CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>
+
+Hi,
+I'm wondering if there are any plans for 2013 data to be incorporated into
+the acs package?
+Thanks again for the package.  It's been tremendously helpful.
+Best,
+Chris
+
+*Chris Cambron, MSW, MPP*
+Doctoral Student
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150812/94e2bf77/attachment.htm
+
+From eglenn at mit.edu  Mon Aug 17 16:46:44 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 17 Aug 2015 16:46:44 -0400
+Subject: [acs-r] 2013 data release
+In-Reply-To: <CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>
+References: <CAHNWBy3Cnsmd_kPcrmZwahLyTTq1+MgH81VZuBMWgmC_DOfqbA@mail.gmail.com>
+Message-ID: <86pp2lk5hn.wl%eglenn@mit.edu>
+
+
+Thanks for your email, and for using the acs.R package.
+
+At present, the package can actually fetch the 2013 5-year ACS data,
+with two important caveats:
+
+(1) you must specify the table number or variable number directly --
+    you can't use keywords, since the current version of the package
+    lacks the correct lookup tables for 2013; and
+
+(2) the acs.fetch function will give you some warnings about how "As
+    of the date of this version of the acs package Census API did not
+    provides data for selected endyear" -- but you can safely ignore
+    that.
+
+See below for a basic example.  (This said, I do want to release an
+updated version soon that will include the lookup tables and avoid the
+warnings.)
+
+--Ezra
+
+
+> acs.fetch(geography=geo.make(state=25, county="*"), table.number="B01003", endyear=2013)
+ACS DATA: 
+ 2009 -- 2013 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                 B01003_001   
+Barnstable County, Massachusetts 215449 +/- 0 
+Berkshire County, Massachusetts  130545 +/- 0 
+Bristol County, Massachusetts    549870 +/- 0 
+Dukes County, Massachusetts      16739 +/- 0  
+Essex County, Massachusetts      750808 +/- 0 
+Franklin County, Massachusetts   71408 +/- 0  
+Hampden County, Massachusetts    465144 +/- 0 
+Hampshire County, Massachusetts  159267 +/- 0 
+Middlesex County, Massachusetts  1522533 +/- 0
+Nantucket County, Massachusetts  10224 +/- 0  
+Norfolk County, Massachusetts    677296 +/- 0 
+Plymouth County, Massachusetts   497386 +/- 0 
+Suffolk County, Massachusetts    735701 +/- 0 
+Worcester County, Massachusetts  802688 +/- 0 
+Warning messages:
+1: In acs.fetch(geography = geo.make(state = 25, county = "*"), table.number = "B01003",  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+2: In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+
+At Wed, 12 Aug 2015 18:37:49 -0700, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi,
+> I'm wondering if there are any plans for 2013 data to be incorporated into the acs
+> package?
+> Thanks again for the package.  It's been tremendously helpful.
+> Best,
+> Chris
+> 
+> Chris Cambron, MSW, MPP
+> Doctoral Student
+> Social Development Research Group
+> School of Social Work   |  University of Washington
+> ccambron at uw.edu  |  www.sdrg.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

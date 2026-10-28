@@ -1,0 +1,22 @@
+From ccambron at uw.edu  Tue Jun 30 20:12:51 2015
+From: ccambron at uw.edu (Chris Cambron)
+Date: Tue, 30 Jun 2015 17:12:51 -0700
+Subject: [acs-r] calling specific block codes
+Message-ID: <CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>
+
+Hi,
+First off, this package is great.  Thank you!  Secondly, I'm working with a
+sample of people scattered throughout the country.  Only one or two in some
+states, hundreds in others.  Can I input a vector of block level fips codes
+to geo.make or acs.fetch so that I'm only access census data for specific
+block codes?  I've tried a few options but all I can figure is grabbing a
+whole state at the block level and subsetting those I need.  Any thoughts
+would be much appreciated.
+
+
+Best,
+Chris
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150630/35d5d5b8/attachment.htm
+

@@ -1,0 +1,74 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2018-01",
+  "messages": [
+    {
+      "id": "msg-991eae583800",
+      "message_id": "<CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2018-01-08T20:27:05Z",
+      "subject": "[acs-r] Which tables are available?",
+      "subject_clean": "[acs-r] Which tables are available?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I am not clear whether the acs package is designed to fetch all acs data\nwhich the Census exposes via the API, or just a subset of it. And if a\nsubset, which subset?\n\nFor example, this page from the Census Bureau:\n\nhttps://api.census.gov/data/2016/acs/acs1.html\n\nlists 4 types of tables which are available via the API: Detailed,\nComparison Profile, Data Profile and Subject Profile. I tried to pull a few\nData Profile tables via the acs package but kept on getting error messages.\n\nAre only the Detailed tables available via the acs package?\n\nAri\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180108/0a037aea/attachment.html",
+      "body_snippet": "I am not clear whether the acs package is designed to fetch all acs data\nwhich the Census exposes via the API, or just a subset of it. And if a\nsubset, which subset?\n\nFor example, this page from the C",
+      "thread_id": "thread-991eae583800",
+      "thread_depth": 0,
+      "month": "2018-01"
+    },
+    {
+      "id": "msg-5aea21220c04",
+      "message_id": "<864lnw3vi2.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-01-08T21:12:37Z",
+      "subject": "[acs-r] Which tables are available?",
+      "subject_clean": "[acs-r] Which tables are available?",
+      "in_reply_to": "<CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>",
+      "references": [
+        "<CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>"
+      ],
+      "body_plain": "Just the Detailed Tables -- the others are generally in different\nformats, or represent combinations of datasets provided in the\ndetailed ones.\n\n\n\nOn Mon, 08 Jan 2018 15:27:05 -0500, arilamstein wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> I am not clear whether the acs package is designed to fetch all acs data which the Census\n> exposes via the API, or just a subset of it. And if a subset, which subset?\n> \n> For example, this page from the Census Bureau:\n> \n> https://api.census.gov/data/2016/acs/acs1.html\n> \n> lists 4 types of tables which are available via the API: Detailed, Comparison Profile,\n> Data Profile and Subject Profile. I tried to pull a few Data Profile tables via the acs\n> package but kept on getting error messages. \n> \n> Are only the Detailed tables available via the acs package?\n> \n> Ari\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Just the Detailed Tables -- the others are generally in different\nformats, or represent combinations of datasets provided in the\ndetailed ones.\n\n\n\nOn Mon, 08 Jan 2018 15:27:05 -0500, arilamstein wrote",
+      "thread_id": "thread-991eae583800",
+      "thread_depth": 1,
+      "month": "2018-01"
+    },
+    {
+      "id": "msg-dc7a71d4a9a5",
+      "message_id": "<CAEO2kuJ2drEFysfeJb0XaN8Dj40E4sRPRSc8TtztsL8u7r=oGQ@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2018-01-08T21:38:14Z",
+      "subject": "[acs-r] Which tables are available?",
+      "subject_clean": "[acs-r] Which tables are available?",
+      "in_reply_to": "<864lnw3vi2.wl-eglenn@mit.edu>",
+      "references": [
+        "<CAEO2ku+OS0rAyzG+DK8zxOFy7rNUQkeP49fuoGry3WL-kPwMOw@mail.gmail.com>",
+        "<864lnw3vi2.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Thank you!\n\nOn Mon, Jan 8, 2018 at 1:12 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Just the Detailed Tables -- the others are generally in different\n> formats, or represent combinations of datasets provided in the\n> detailed ones.\n>\n>\n>\n> On Mon, 08 Jan 2018 15:27:05 -0500, arilamstein wrote:\n> >\n> > [1  <multipart/alternative (7bit)>]\n> > [1.1  <text/plain; UTF-8 (7bit)>]\n> > [1.2  <text/html; UTF-8 (quoted-printable)>]\n> > I am not clear whether the acs package is designed to fetch all acs data\n> which the Census\n> > exposes via the API, or just a subset of it. And if a subset, which\n> subset?\n> >\n> > For example, this page from the Census Bureau:\n> >\n> > https://api.census.gov/data/2016/acs/acs1.html\n> >\n> > lists 4 types of tables which are available via the API: Detailed,\n> Comparison Profile,\n> > Data Profile and Subject Profile. I tried to pull a few Data Profile\n> tables via the acs\n> > package but kept on getting error messages.\n> >\n> > Are only the Detailed tables available via the acs package?\n> >\n> > Ari\n> >\n> >\n> > [2  <text/plain; us-ascii (7bit)>]\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-346\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180108/da54a7c6/attachment.html",
+      "body_snippet": "Thank you!\n\nOn Mon, Jan 8, 2018 at 1:12 PM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Just the Detailed Tables -- the others are generally in different\n> formats, or represent combinations of d",
+      "thread_id": "thread-991eae583800",
+      "thread_depth": 2,
+      "month": "2018-01"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-991eae583800",
+      "subject": "[acs-r] Which tables are available?",
+      "message_count": 3,
+      "participants": [
+        "Ezra Haber Glenn",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2018-01-08T20:27:05Z",
+      "last_reply": "2018-01-08T21:38:14Z",
+      "root_message_id": "msg-991eae583800"
+    }
+  ]
+}

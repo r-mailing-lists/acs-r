@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-12",
+  "messages": [
+    {
+      "id": "msg-d26dac9ca8b9",
+      "message_id": "<BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>",
+      "from_name": "Sara Hintze",
+      "from_email_hash": "10e65898906e356edecfc0132689c535fc7b38aa7ba9cb5eb6f1f391d2102a8c",
+      "date": "2017-12-14T15:07:27Z",
+      "subject": "[acs-r] Issue with 2012-2016 ACS data retrieval",
+      "subject_clean": "[acs-r] Issue with 2012-2016 ACS data retrieval",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi there,\n\nI am attempting to acquire the 2012-2016 ACS data and the scripts I've created to download previous ACS datasets are not working. I ran these against the 2016, 1-year data back in September, and they worked fine. However, now they error out on both the 1-year and 5-year 2016 datasets. On a simple lookup, I get the following:\n\nacs.lookup(table.number=\"B01001\", span=5, endyear=2016)\nError in data.frame(variable.code = names, table.number = table.numbers,  :\n  arguments imply differing number of rows: 13, 25\n\nHowever, if I include the keyword attribute as follows, it works just fine:\n\nacs.lookup(endyear=2016, span=5, table.number=\"B01001\", keyword=\"Female\")\nAn object of class \"acs.lookup\"\nendyear= 2016  ; span= 5\n\nresults:\n   variable.code table.number table.name                         variable.name\n1     B01001_026       B01001 SEX BY AGE                 Estimate Total Female\n2     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years\n3     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years\n4     B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years\n5     B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years\n6     B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years\n7     B01001_026       B01001 SEX BY AGE                 Estimate Total Female\n8     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years\n9     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years\n10    B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years\n11    B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years\n12    B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years\n\nAlso, changing the endyear attribute to 2015, for example, works just fine. Any thoughts on what may be going on?\n\nThanks,\nSara\n\nSara Hintze\nGIS Data Developer/Analyst | Research Services\nMid-America Regional Council\n600 Broadway Blvd., Ste 200\nKansas City, MO 64105\n816-701-8220 | www.marc.org\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20171214/b5d7e0c7/attachment.html",
+      "body_snippet": "Hi there,\n\nI am attempting to acquire the 2012-2016 ACS data and the scripts I've created to download previous ACS datasets are not working. I ran these against the 2016, 1-year data back in September",
+      "thread_id": "thread-d26dac9ca8b9",
+      "thread_depth": 0,
+      "month": "2017-12"
+    },
+    {
+      "id": "msg-f79f9579fec7",
+      "message_id": "<867etp2usu.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-12-14T15:28:17Z",
+      "subject": "[acs-r] Issue with 2012-2016 ACS data retrieval",
+      "subject_clean": "[acs-r] Issue with 2012-2016 ACS data retrieval",
+      "in_reply_to": "<BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>",
+      "references": [
+        "<BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>"
+      ],
+      "body_plain": "Hmm: looking into this, it seems that the census folks have *once\nagain* changed the format of the ACS variable lookup code XML files,\nwhich is messing up the package -- sorry about that.\n\nBasically, at this point, the package needs to make all sorts of\nlittle corrections for each different endyear/span combination.  I'll\ntry to troubleshoot and get it to work.\n\nIn the meanwhile, here's a clever trick you can use to trick the\npackage to use the variable numbers from a previous year (which is\nsafe, unless the variable numbers change, which is pretty rare):\n\n# save a lookup from a year that works\na=acs.lookup(table.number=\"B01001\", endyear=2015, span=5)\n\n# use this in your new fetch:\nacs.fetch(geography=geo.make(state=\"MA\", county=\"*\"), variable=a, endyear=2016, span=5)\n\n\nTa-da!\n\n--Ezra\n\nOn Thu, 14 Dec 2017 10:07:27 -0500, Sara Hintze wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; us-ascii (quoted-printable)>]\n> [1.2  <text/html; us-ascii (quoted-printable)>]\n> Hi there,\n> \n> I am attempting to acquire the 2012-2016 ACS data and the scripts I?ve created to download\n> previous ACS datasets are not working. I ran these against the 2016, 1-year data back in\n> September, and they worked fine. However, now they error out on both the 1-year and 5-year\n> 2016 datasets. On a simple lookup, I get the following:\n> \n> acs.lookup(table.number=\"B01001\", span=5, endyear=2016)\n> \n> Error in data.frame(variable.code = names, table.number = table.numbers,  :\n> \n>   arguments imply differing number of rows: 13, 25\n> \n> However, if I include the keyword attribute as follows, it works just fine:\n> \n> acs.lookup(endyear=2016, span=5, table.number=\"B01001\", keyword=\"Female\")\n> \n> An object of class \"acs.lookup\"\n> \n> endyear= 2016  ; span= 5\n> \n> results:\n> \n>    variable.code table.number table.name                         variable.name\n> \n> 1     B01001_026       B01001 SEX BY AGE                 Estimate Total Female\n> \n> 2     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years\n> \n> 3     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years\n> \n> 4     B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years\n> \n> 5     B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years\n> \n> 6     B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years\n> \n> 7     B01001_026       B01001 SEX BY AGE                 Estimate Total Female\n> \n> 8     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years\n> \n> 9     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years\n> \n> 10    B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years\n> \n> 11    B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years\n> \n> 12    B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years\n> \n> Also, changing the endyear attribute to 2015, for example, works just fine. Any thoughts\n> on what may be going on?\n> \n> Thanks,\n> \n> Sara\n> \n> Sara Hintze\n> \n> GIS Data Developer/Analyst | Research Services\n> \n> Mid-America Regional Council\n> \n> 600 Broadway Blvd., Ste 200\n> \n> Kansas City, MO 64105\n> \n> 816-701-8220 | www.marc.org\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Hmm: looking into this, it seems that the census folks have *once\nagain* changed the format of the ACS variable lookup code XML files,\nwhich is messing up the package -- sorry about that.\n\nBasically, ",
+      "thread_id": "thread-d26dac9ca8b9",
+      "thread_depth": 1,
+      "month": "2017-12"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-d26dac9ca8b9",
+      "subject": "[acs-r] Issue with 2012-2016 ACS data retrieval",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Sara Hintze"
+      ],
+      "started": "2017-12-14T15:07:27Z",
+      "last_reply": "2017-12-14T15:28:17Z",
+      "root_message_id": "msg-d26dac9ca8b9"
+    }
+  ]
+}

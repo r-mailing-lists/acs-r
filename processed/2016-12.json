@@ -1,0 +1,96 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-12",
+  "messages": [
+    {
+      "id": "msg-f699a52cf307",
+      "message_id": "<CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2016-12-08T21:04:03Z",
+      "subject": "[acs-r] Plans for updated data??",
+      "subject_clean": "[acs-r] Plans for updated data??",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I'm getting back to Census data and acs.R this month for a project with\nHack Oregon. I believe the latest ACS data went public today; are there any\nplans to add the XML descriptions to acs.tables.install?\n-- \nHow many people can stand on the shoulders of a giant before the giant\ncollapses?\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161208/3a19647a/attachment.html",
+      "body_snippet": "I'm getting back to Census data and acs.R this month for a project with\nHack Oregon. I believe the latest ACS data went public today; are there any\nplans to add the XML descriptions to acs.tables.inst",
+      "thread_id": "thread-f699a52cf307",
+      "thread_depth": 0,
+      "month": "2016-12"
+    },
+    {
+      "id": "msg-9efd6fe37154",
+      "message_id": "<8637hv3izy.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-12-10T15:24:01Z",
+      "subject": "[acs-r] Plans for updated data??",
+      "subject_clean": "[acs-r] Plans for updated data??",
+      "in_reply_to": "<CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>",
+      "references": [
+        "<CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks for the email -- I've added these.  (But note: for some reason\nthe new 2015 data is only provided for 1- and 5-year, not the 3-year.)\n\nOn Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> I'm getting back to Census data and acs.R this month for a project with Hack Oregon. I\n> believe the latest ACS data went public today; are there any plans to add the XML\n> descriptions to acs.tables.install?\n> --\n> How many people can stand on the shoulders of a giant before the giant collapses?\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks for the email -- I've added these.  (But note: for some reason\nthe new 2015 data is only provided for 1- and 5-year, not the 3-year.)\n\nOn Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky ",
+      "thread_id": "thread-f699a52cf307",
+      "thread_depth": 1,
+      "month": "2016-12"
+    },
+    {
+      "id": "msg-7a8d3734b066",
+      "message_id": "<CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>",
+      "from_name": "Camille Seaberry",
+      "from_email_hash": "80fdd129769d6fb6b3f0c8e3fa806d0038db64a14aaaec3957bb65b298fc9c52",
+      "date": "2016-12-10T16:28:35Z",
+      "subject": "[acs-r] Plans for updated data??",
+      "subject_clean": "[acs-r] Plans for updated data??",
+      "in_reply_to": "<8637hv3izy.wl-eglenn@mit.edu>",
+      "references": [
+        "<CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>",
+        "<8637hv3izy.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "The 3-year estimates were eliminated last year because of budget cuts:\nhttp://apdu.org/2015/02/03/the-acs-3-year-demographic-estimates-are-history/\n\n\nOn Sat, Dec 10, 2016 at 10:24 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Thanks for the email -- I've added these.  (But note: for some reason\n> the new 2015 data is only provided for 1- and 5-year, not the 3-year.)\n>\n> On Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:\n> >\n> > [1  <multipart/alternative (7bit)>]\n> > [1.1  <text/plain; UTF-8 (7bit)>]\n> > [1.2  <text/html; UTF-8 (quoted-printable)>]\n> > I'm getting back to Census data and acs.R this month for a project with\n> Hack Oregon. I\n> > believe the latest ACS data went public today; are there any plans to\n> add the XML\n> > descriptions to acs.tables.install?\n> > --\n> > How many people can stand on the shoulders of a giant before the giant\n> collapses?\n> >\n> >\n> > [2  <text/plain; us-ascii (7bit)>]\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-346\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/\n> citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161210/7f06dcb4/attachment.html",
+      "body_snippet": "The 3-year estimates were eliminated last year because of budget cuts:\nhttp://apdu.org/2015/02/03/the-acs-3-year-demographic-estimates-are-history/\n\n\nOn Sat, Dec 10, 2016 at 10:24 AM, Ezra Haber Glenn",
+      "thread_id": "thread-f699a52cf307",
+      "thread_depth": 2,
+      "month": "2016-12"
+    },
+    {
+      "id": "msg-695f8b2aadad",
+      "message_id": "<CAEO2kuK-=9iJyBmY9rCyn402FNKursTtNi1cB1RKJ_Y8kDY+FA@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2016-12-12T17:26:25Z",
+      "subject": "[acs-r] Plans for updated data??",
+      "subject_clean": "[acs-r] Plans for updated data??",
+      "in_reply_to": "<CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>",
+      "references": [
+        "<CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>",
+        "<8637hv3izy.wl-eglenn@mit.edu>",
+        "<CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>"
+      ],
+      "body_plain": "Wow- I had no idea!\n\nOn Sat, Dec 10, 2016 at 8:28 AM, Camille Seaberry <\ncamille.seaberry at gmail.com> wrote:\n\n> The 3-year estimates were eliminated last year because of budget cuts:\n> http://apdu.org/2015/02/03/the-acs-3-year-demographic-\n> estimates-are-history/\n>\n>\n> On Sat, Dec 10, 2016 at 10:24 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n>\n>>\n>> Thanks for the email -- I've added these.  (But note: for some reason\n>> the new 2015 data is only provided for 1- and 5-year, not the 3-year.)\n>>\n>> On Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:\n>> >\n>> > [1  <multipart/alternative (7bit)>]\n>> > [1.1  <text/plain; UTF-8 (7bit)>]\n>> > [1.2  <text/html; UTF-8 (quoted-printable)>]\n>> > I'm getting back to Census data and acs.R this month for a project with\n>> Hack Oregon. I\n>> > believe the latest ACS data went public today; are there any plans to\n>> add the XML\n>> > descriptions to acs.tables.install?\n>> > --\n>> > How many people can stand on the shoulders of a giant before the giant\n>> collapses?\n>> >\n>> >\n>> > [2  <text/plain; us-ascii (7bit)>]\n>> > _______________________________________________\n>> > acs-r mailing list\n>> > acs-r at mit.edu\n>> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>>\n>> --\n>> Ezra Haber Glenn, AICP\n>> Department of Urban Studies and Planning\n>> Massachusetts Institute of Technology\n>> 77 Massachusetts Ave., Room 7-346\n>> Cambridge, MA 02139\n>> eglenn at mit.edu\n>> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/\n>> citystate/\n>> 617.253.2024 (w)\n>> 617.721.7131 (c)\n>> _______________________________________________\n>> acs-r mailing list\n>> acs-r at mit.edu\n>> http://mailman.mit.edu/mailman/listinfo/acs-r\n>>\n>\n>\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161212/8eee3fe2/attachment.html",
+      "body_snippet": "Wow- I had no idea!\n\nOn Sat, Dec 10, 2016 at 8:28 AM, Camille Seaberry <\ncamille.seaberry at gmail.com> wrote:\n\n> The 3-year estimates were eliminated last year because of budget cuts:\n> http://apdu.o",
+      "thread_id": "thread-f699a52cf307",
+      "thread_depth": 3,
+      "month": "2016-12"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-f699a52cf307",
+      "subject": "[acs-r] Plans for updated data??",
+      "message_count": 4,
+      "participants": [
+        "Camille Seaberry",
+        "Ezra Haber Glenn",
+        "M. Edward (Ed) Borasky",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2016-12-08T21:04:03Z",
+      "last_reply": "2016-12-12T17:26:25Z",
+      "root_message_id": "msg-f699a52cf307"
+    }
+  ]
+}

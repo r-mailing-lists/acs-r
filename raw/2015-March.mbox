@@ -1,0 +1,280 @@
+From tfrazier at wrcog.org  Tue Mar 10 12:36:07 2015
+From: tfrazier at wrcog.org (Tyler Frazier)
+Date: Tue, 10 Mar 2015 12:36:07 -0400
+Subject: [acs-r] fetch census data and estimates alongside ACS
+Message-ID: <9d9f6e83629322262aa181f1695b25a1@mail.gmail.com>
+
+Hi list,
+
+
+
+I was wondering if someone would mind giving me a pointer on how to fetch
+the Census 2010 Total Population count as well as the 2013 estimate.
+
+
+
+pawleys <- geo.make(state="SC", county="Georgetown", place="Pawleys")
+
+
+
+pawleys_pop <- acs.fetch(endyear=2013, span=5, geography=pawleys,
+table.number="B01003")
+
+
+
+maybe a dataset=?
+
+
+
+thanks,
+
+Tyler
+
+-- 
+
+
+
+
+
+*This e-mail, in its entirety and including all attachments, is intended 
+solely for the use of the person or entity to whom it is addressed and may 
+contain sensitive information which is privileged, confidential, and the 
+disclosure of which is governed by applicable law. If you are not the 
+intended recipient, you are hereby notified that disclosing, distributing, 
+copying, or taking any action in relation to this e-mail is STRICTLY 
+PROHIBITED. If you have received this e-mail in error, please notify the 
+sender immediately and destroy the related message and any 
+attachments.WARNING: All e-mail correspondence to and from this address may 
+be subject to public disclosure under the South Carolina Freedom of 
+Information Act (FOIA), ?30-410 SC Code of Laws*
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150310/334390d2/attachment.htm
+
+From eglenn at mit.edu  Tue Mar 10 16:23:17 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 10 Mar 2015 16:23:17 -0400
+Subject: [acs-r] fetch census data and estimates alongside ACS
+In-Reply-To: <9d9f6e83629322262aa181f1695b25a1@mail.gmail.com>
+References: <9d9f6e83629322262aa181f1695b25a1@mail.gmail.com>
+Message-ID: <86h9ts1u16.wl%eglenn@mit.edu>
+
+
+Unfortunately, although the API provides access to the decennial data,
+the acs.R package is not currently configured to access it (the format
+for the api calls is a bit different, and the data fetched doesn't
+include standard errors).  That said, I think I can pretty easily
+write up a modified version of acs.fetch() to provide this
+functionality, at least is a clunky way  -- give me a day or so to try
+it out.
+
+At Tue, 10 Mar 2015 12:36:07 -0400, Tyler Frazier wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (quoted-printable)>]
+> 
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi list,
+> 
+> I was wondering if someone would mind giving me a pointer on how to fetch the Census 2010
+> Total Population count as well as the 2013 estimate.
+> 
+> pawleys <- geo.make(state="SC", county="Georgetown", place="Pawleys")
+> 
+> pawleys_pop <- acs.fetch(endyear=2013, span=5, geography=pawleys, table.number="B01003")
+> 
+> maybe a dataset=?
+> 
+> thanks,
+> 
+> Tyler
+> 
+> This e-mail, in its entirety and including all attachments, is intended solely for the use
+>   of the person or entity to whom it is addressed and may contain sensitive information   
+>  which is privileged, confidential, and the disclosure of which is governed by applicable 
+>    law. If you are not the intended recipient, you are hereby notified that disclosing,   
+>     distributing, copying, or taking any action in relation to this e-mail is STRICTLY    
+>      PROHIBITED. If you have received this e-mail in error, please notify the sender      
+>              immediately and destroy the related message and any attachments.             
+>                                                                                           
+>    WARNING: All e-mail correspondence to and from this address may be subject to public   
+> disclosure under the South Carolina Freedom of Information Act (FOIA), ?30-410 SC Code of 
+>                                            Laws                                           
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+//----------------------------------------------------------------------\\
+||         Sick and tired of surveillance?  Use GnuPG with me.          ||
+||                                                                      ||
+||                  My public key is available here:                    ||
+|| <https://pgp.mit.edu/pks/lookup?op=vindex&search=0x322B632172CDB8DF> ||
+\\----------------------------------------------------------------------//
+
+
+From info at biglakedata.com  Fri Mar 13 11:46:28 2015
+From: info at biglakedata.com (BigLakeData LLC)
+Date: Fri, 13 Mar 2015 10:46:28 -0500
+Subject: [acs-r] 2013 5-year available?
+Message-ID: <CAF9fhhdR3xT7w=LA8rC6ccsq0AJKE17A5Qku9YQLGHriPEi4iw@mail.gmail.com>
+
+Hello,
+
+It seems that the 2013 5-yr ACS is now available on the Census API
+<http://www.census.gov/data/developers/updates/acs-5-yr-summary-available-2009-2013.html>.
+However, the latest year I can load with this package is 2012
+<http://eglenn.scripts.mit.edu/citystate/2014/01/acs-r-version-1-2-now-with-2012-data/>
+.
+
+I am running the latest version of this package (1.2). Are there plans to
+include access to the 2013 data? Or is there a method to do this currently
+that I have missed?
+
+Thank you for maintaining this great package!
+
+Sincerely,
+
+Matt Schumwinger
+biglakedata.com
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150313/8a47fe8e/attachment.htm
+
+From eglenn at mit.edu  Fri Mar 20 15:18:26 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 20 Mar 2015 15:18:26 -0400
+Subject: [acs-r] 2013 5-year available?
+In-Reply-To: <CAF9fhhdR3xT7w=LA8rC6ccsq0AJKE17A5Qku9YQLGHriPEi4iw@mail.gmail.com>
+References: <CAF9fhhdR3xT7w=LA8rC6ccsq0AJKE17A5Qku9YQLGHriPEi4iw@mail.gmail.com>
+Message-ID: <864mpfh3zx.wl%eglenn@mit.edu>
+
+
+Thanks for your email, and for using the acs.R package.
+
+At present, the package will fetch the 2013 5-year ACS data, with two
+important caveats: 
+
+(1) you must specify the table number or variable number directly --
+you can't use keywords, since the current version of the package lacks
+the correct lookup tables for 2013; and
+
+(2) the acs.fetch function will give you some warnings about how "As
+of the date of this version of the acs package Census API did not
+provides data for selected endyear" -- but you can safely ignore that.
+
+See below for a basic example:
+
+--Ezra
+
+
+> acs.fetch(geography=geo.make(state=25, county="*"), table.number="B01003", endyear=2013)
+ACS DATA: 
+ 2009 -- 2013 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+                                 B01003_001   
+Barnstable County, Massachusetts 215449 +/- 0 
+Berkshire County, Massachusetts  130545 +/- 0 
+Bristol County, Massachusetts    549870 +/- 0 
+Dukes County, Massachusetts      16739 +/- 0  
+Essex County, Massachusetts      750808 +/- 0 
+Franklin County, Massachusetts   71408 +/- 0  
+Hampden County, Massachusetts    465144 +/- 0 
+Hampshire County, Massachusetts  159267 +/- 0 
+Middlesex County, Massachusetts  1522533 +/- 0
+Nantucket County, Massachusetts  10224 +/- 0  
+Norfolk County, Massachusetts    677296 +/- 0 
+Plymouth County, Massachusetts   497386 +/- 0 
+Suffolk County, Massachusetts    735701 +/- 0 
+Worcester County, Massachusetts  802688 +/- 0 
+Warning messages:
+1: In acs.fetch(geography = geo.make(state = 25, county = "*"), table.number = "B01003",  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+2: In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+
+
+At Fri, 13 Mar 2015 10:46:28 -0500, BigLakeData LLC wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> 
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hello,
+> 
+> It seems that the 2013 5-yr ACS is now available on the Census
+> API. However, the latest year I can load with this package is 2012.
+> 
+> I am running the latest version of this package (1.2). Are there
+> plans to include access to the 2013 data? Or is there a method to do
+> this currently that I have missed?
+> 
+> Thank you for maintaining this great package!
+> 
+> Sincerely,
+> 
+> Matt Schumwinger
+> biglakedata.com
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+//----------------------------------------------------------------------\\
+||         Sick and tired of surveillance?  Use GnuPG with me.          ||
+||                                                                      ||
+||                  My public key is available here:                    ||
+|| <https://pgp.mit.edu/pks/lookup?op=vindex&search=0x322B632172CDB8DF> ||
+\\----------------------------------------------------------------------//
+
+From arilamstein at gmail.com  Sat Mar 21 18:18:44 2015
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Sat, 21 Mar 2015 15:18:44 -0700
+Subject: [acs-r] Visualize ACS ZCTA data with choroplethrZip
+Message-ID: <CAEO2kuLh0aRjqdSWxQXHK46OkRi+ZGW3hAqLFXTRB9jc9L3ztg@mail.gmail.com>
+
+Hi everyone,
+
+I wanted to let you know that I just wrote a package which can visualize
+the ZCTA (Zip Code Tabulated Area) data from the acs package with my new
+package choroplethrZip <https://github.com/arilamstein/choroplethrZip>.
+
+The acs visualization capability are described in this vignette
+<http://rpubs.com/arilamstein/choroplethrZip-b>.
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150321/e204a5ed/attachment.htm
+

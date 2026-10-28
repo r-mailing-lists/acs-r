@@ -1,0 +1,271 @@
+From anon.r.user at gmail.com  Mon Dec 16 10:43:43 2013
+From: anon.r.user at gmail.com (john doe)
+Date: Mon, 16 Dec 2013 07:43:43 -0800
+Subject: [acs-r] Error message accessing table GCT0103
+Message-ID: <CAFWa_VvsNOB_GWewgXH_j34oasmRfbXXCdKyUbgh6CPWhd9Svg@mail.gmail.com>
+
+Table.number "GCT0103" is a valid table in the 2011 5 year ACS as listed
+here
+http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=dataset.en.ACS_11_5YR#
+
+But when I try to access it with either all state or all county geographies
+it causes what appears to be an internal acs.R error message:
+
+> us.state = geo.make(state = "*");
+> acs.fetch(geography=us.state, table.number = "GCT0103")
+Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+
+ us.county = geo.make(state = "*", county = "*");
+> acs.fetch(geography=us.county, table.number = "GCT0103")
+Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20131216/0616c809/attachment.htm
+
+From eglenn at MIT.EDU  Mon Dec 16 10:58:36 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 16 Dec 2013 10:58:36 -0500
+Subject: [acs-r] Error message accessing table GCT0103
+In-Reply-To: <CAFWa_VvsNOB_GWewgXH_j34oasmRfbXXCdKyUbgh6CPWhd9Svg@mail.gmail.com>
+References: <CAFWa_VvsNOB_GWewgXH_j34oasmRfbXXCdKyUbgh6CPWhd9Svg@mail.gmail.com>
+Message-ID: <86d2kwu6s3.wl%eglenn@mit.edu>
+
+
+The API (and thus, the acs.R package) do not support the "GCT" tables
+-- but this same data should be available through table B01002
+(<http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_11_5YR_B01002#>).  
+
+(And as an aside, even if the API did support the GCT tables, the
+format for them isn't as friendly, since the include in them a sort of
+"hard coding" for the geography, whereas the acs package allows you to
+"mix and match" tables and geographies.)
+
+Hope that helps.
+
+--Ezra
+
+At Mon, 16 Dec 2013 07:43:43 -0800, Anon RUser wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; ISO-8859-1 (7bit)>]
+> 
+> [1.2  <text/html; ISO-8859-1 (quoted-printable)>]
+> Table.number "GCT0103" is a valid table in the 2011 5 year ACS as listed here
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=
+> dataset.en.ACS_11_5YR#
+> 
+> But when I try to access it with either all state or all county geographies it causes what
+> appears to be an internal acs.R error message:
+> 
+> > us.state = geo.make(state = "*");
+> > acs.fetch(geography=us.state, table.number = "GCT0103")
+> Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+> 
+>  us.county = geo.make(state = "*", county = "*");
+> > acs.fetch(geography=us.county, table.number = "GCT0103")
+> Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From anon.r.user at gmail.com  Mon Dec 16 23:58:35 2013
+From: anon.r.user at gmail.com (john doe)
+Date: Mon, 16 Dec 2013 20:58:35 -0800
+Subject: [acs-r] Error message accessing table GCT0103
+In-Reply-To: <86d2kwu6s3.wl%eglenn@mit.edu>
+References: <CAFWa_VvsNOB_GWewgXH_j34oasmRfbXXCdKyUbgh6CPWhd9Svg@mail.gmail.com>
+	<86d2kwu6s3.wl%eglenn@mit.edu>
+Message-ID: <CAFWa_VtdeTA4boaYNa0sLxNM09eoRCq-iEnmwhOb7Z1m___cwQ@mail.gmail.com>
+
+Thanks for the quick reply Ezra.  Is it possible to update the acs package
+to give a more informative error in that situation?
+
+Also, have you considered putting the code up on github?  If it were there
+I could just make a pull request for this.
+
+Thanks again.
+
+On Mon, Dec 16, 2013 at 7:58 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> The API (and thus, the acs.R package) do not support the "GCT" tables
+> -- but this same data should be available through table B01002
+> (<
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=table&id=table.en.ACS_11_5YR_B01002#
+> >).
+>
+> (And as an aside, even if the API did support the GCT tables, the
+> format for them isn't as friendly, since the include in them a sort of
+> "hard coding" for the geography, whereas the acs package allows you to
+> "mix and match" tables and geographies.)
+>
+> Hope that helps.
+>
+> --Ezra
+>
+> At Mon, 16 Dec 2013 07:43:43 -0800, Anon RUser wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; ISO-8859-1 (7bit)>]
+> >
+> > [1.2  <text/html; ISO-8859-1 (quoted-printable)>]
+> > Table.number "GCT0103" is a valid table in the 2011 5 year ACS as listed
+> here
+> >
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=dataset&id=
+> > dataset.en.ACS_11_5YR#
+> >
+> > But when I try to access it with either all state or all county
+> geographies it causes what
+> > appears to be an internal acs.R error message:
+> >
+> > > us.state = geo.make(state = "*");
+> > > acs.fetch(geography=us.state, table.number = "GCT0103")
+> > Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+> >
+> >  us.county = geo.make(state = "*", county = "*");
+> > > acs.fetch(geography=us.county, table.number = "GCT0103")
+> > Error in seq.default(1, length(names), 2) : wrong sign in 'by' argument
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20131216/6c026ba1/attachment.htm
+
+From anon.r.user at gmail.com  Sun Dec 29 21:26:30 2013
+From: anon.r.user at gmail.com (john doe)
+Date: Sun, 29 Dec 2013 18:26:30 -0800
+Subject: [acs-r] 2012 5 year acs is out
+Message-ID: <CAFWa_VsbuF5cj+DZ56NX_dg1GbfEsRk5gF_RU=jKHgBbDi9=_Q@mail.gmail.com>
+
+The census just released the 2012 5 year ACS:
+http://www.census.gov/acs/www/data_documentation/2012_release/
+
+But when I tried to use acs.R to get data from it I got this message:
+In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :
+  As of the date of this version of the acs package
+  Census API did not provides data for selected endyear
+
+Is there an ETA for acs.R supporting this data?
+
+Also, I finally found a page listing all the ACS ever done:
+http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=survey.en.ACS_ACS
+
+But when I try to access a lot of this data via the acs.R package I get
+errors saying that it's not available via the census api.  Is there any
+source listing which subset of this data is available via the api?
+
+Thanks.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20131229/2c0cef96/attachment.htm
+
+From eglenn at MIT.EDU  Mon Dec 30 11:15:51 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Mon, 30 Dec 2013 11:15:51 -0500
+Subject: [acs-r] 2012 5 year acs is out
+In-Reply-To: <CAFWa_VsbuF5cj+DZ56NX_dg1GbfEsRk5gF_RU=jKHgBbDi9=_Q@mail.gmail.com>
+References: <CAFWa_VsbuF5cj+DZ56NX_dg1GbfEsRk5gF_RU=jKHgBbDi9=_Q@mail.gmail.com>
+Message-ID: <86wqim9ux4.wl%eglenn@mit.edu>
+
+
+As long as you are using the current version of the acs.R package
+(1.1), the acs.fetch command will actually succeed in fetching the
+2012 data, despite this warning message.  Since R is notoriously
+silent when completing commands, users may mistake the warning for a
+failure, but the data should be there.  That said, I do need to update
+the scripts to remove this warning for the next version of the
+package.
+
+As for a list of all ACS tables supported by the package, it should be
+the same as those available through the census API, as described here:
+http://www.census.gov/developers/data/.  In the sidebar on the left,
+there are links to describe all table and variables.  (The one
+important difference being that the acs.R package does not fetch the
+"data profile" tables, since these are pretty different in character
+from most of the other available tables -- more like mini-reports,
+really.)
+
+Thanks for using the package, and I hope this helps clarify things a
+bit.
+
+--Ezra
+
+
+At Sun, 29 Dec 2013 18:26:30 -0800, Anon RUser wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; ISO-8859-1 (7bit)>]
+> 
+> [1.2  <text/html; ISO-8859-1 (quoted-printable)>]
+> The census just released the 2012 5 year ACS: 
+> http://www.census.gov/acs/www/data_documentation/2012_release/
+> 
+> But when I tried to use acs.R to get data from it I got this message:
+> In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :
+>   As of the date of this version of the acs package
+>   Census API did not provides data for selected endyear
+> 
+> Is there an ETA for acs.R supporting this data?  
+> 
+> Also, I finally found a page listing all the ACS ever done:
+> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=
+> survey.en.ACS_ACS
+> 
+> But when I try to access a lot of this data via the acs.R package I get errors saying that
+> it's not available via the census api.  Is there any source listing which subset of this
+> data is available via the api?
+> 
+> Thanks.
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

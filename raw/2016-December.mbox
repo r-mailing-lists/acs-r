@@ -1,0 +1,192 @@
+From znmeb at znmeb.net  Thu Dec  8 16:04:03 2016
+From: znmeb at znmeb.net (M. Edward (Ed) Borasky)
+Date: Thu, 08 Dec 2016 21:04:03 +0000
+Subject: [acs-r] Plans for updated data??
+Message-ID: <CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>
+
+I'm getting back to Census data and acs.R this month for a project with
+Hack Oregon. I believe the latest ACS data went public today; are there any
+plans to add the XML descriptions to acs.tables.install?
+-- 
+How many people can stand on the shoulders of a giant before the giant
+collapses?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161208/3a19647a/attachment.html
+
+From eglenn at mit.edu  Sat Dec 10 10:24:01 2016
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Sat, 10 Dec 2016 10:24:01 -0500
+Subject: [acs-r] Plans for updated data??
+In-Reply-To: <CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>
+References: <CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>
+Message-ID: <8637hv3izy.wl-eglenn@mit.edu>
+
+
+Thanks for the email -- I've added these.  (But note: for some reason
+the new 2015 data is only provided for 1- and 5-year, not the 3-year.)
+
+On Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> I'm getting back to Census data and acs.R this month for a project with Hack Oregon. I
+> believe the latest ACS data went public today; are there any plans to add the XML
+> descriptions to acs.tables.install?
+> --
+> How many people can stand on the shoulders of a giant before the giant collapses?
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From camille.seaberry at gmail.com  Sat Dec 10 11:28:35 2016
+From: camille.seaberry at gmail.com (Camille Seaberry)
+Date: Sat, 10 Dec 2016 11:28:35 -0500
+Subject: [acs-r] Plans for updated data??
+In-Reply-To: <8637hv3izy.wl-eglenn@mit.edu>
+References: <CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>
+	<8637hv3izy.wl-eglenn@mit.edu>
+Message-ID: <CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>
+
+The 3-year estimates were eliminated last year because of budget cuts:
+http://apdu.org/2015/02/03/the-acs-3-year-demographic-estimates-are-history/
+
+
+On Sat, Dec 10, 2016 at 10:24 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Thanks for the email -- I've added these.  (But note: for some reason
+> the new 2015 data is only provided for 1- and 5-year, not the 3-year.)
+>
+> On Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:
+> >
+> > [1  <multipart/alternative (7bit)>]
+> > [1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+> > I'm getting back to Census data and acs.R this month for a project with
+> Hack Oregon. I
+> > believe the latest ACS data went public today; are there any plans to
+> add the XML
+> > descriptions to acs.tables.install?
+> > --
+> > How many people can stand on the shoulders of a giant before the giant
+> collapses?
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/
+> citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161210/7f06dcb4/attachment.html
+
+From arilamstein at gmail.com  Mon Dec 12 12:26:25 2016
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Mon, 12 Dec 2016 09:26:25 -0800
+Subject: [acs-r] Plans for updated data??
+In-Reply-To: <CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>
+References: <CAHkRx6GcCF4kOXdFAFAjPQRLe8_K4V4o7rwZrVLeqO_+vEv5Hw@mail.gmail.com>
+	<8637hv3izy.wl-eglenn@mit.edu>
+	<CAKG7=e19xrHXaz9WhUAos7HDVWGth4T_5hpAqRrSQfBNUhE3fg@mail.gmail.com>
+Message-ID: <CAEO2kuK-=9iJyBmY9rCyn402FNKursTtNi1cB1RKJ_Y8kDY+FA@mail.gmail.com>
+
+Wow- I had no idea!
+
+On Sat, Dec 10, 2016 at 8:28 AM, Camille Seaberry <
+camille.seaberry at gmail.com> wrote:
+
+> The 3-year estimates were eliminated last year because of budget cuts:
+> http://apdu.org/2015/02/03/the-acs-3-year-demographic-
+> estimates-are-history/
+>
+>
+> On Sat, Dec 10, 2016 at 10:24 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:
+>
+>>
+>> Thanks for the email -- I've added these.  (But note: for some reason
+>> the new 2015 data is only provided for 1- and 5-year, not the 3-year.)
+>>
+>> On Thu, 08 Dec 2016 16:04:03 -0500, M Edward (Ed) Borasky wrote:
+>> >
+>> > [1  <multipart/alternative (7bit)>]
+>> > [1.1  <text/plain; UTF-8 (7bit)>]
+>> > [1.2  <text/html; UTF-8 (quoted-printable)>]
+>> > I'm getting back to Census data and acs.R this month for a project with
+>> Hack Oregon. I
+>> > believe the latest ACS data went public today; are there any plans to
+>> add the XML
+>> > descriptions to acs.tables.install?
+>> > --
+>> > How many people can stand on the shoulders of a giant before the giant
+>> collapses?
+>> >
+>> >
+>> > [2  <text/plain; us-ascii (7bit)>]
+>> > _______________________________________________
+>> > acs-r mailing list
+>> > acs-r at mit.edu
+>> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>>
+>> --
+>> Ezra Haber Glenn, AICP
+>> Department of Urban Studies and Planning
+>> Massachusetts Institute of Technology
+>> 77 Massachusetts Ave., Room 7-346
+>> Cambridge, MA 02139
+>> eglenn at mit.edu
+>> http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/
+>> citystate/
+>> 617.253.2024 (w)
+>> 617.721.7131 (c)
+>> _______________________________________________
+>> acs-r mailing list
+>> acs-r at mit.edu
+>> http://mailman.mit.edu/mailman/listinfo/acs-r
+>>
+>
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161212/8eee3fe2/attachment.html
+

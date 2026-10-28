@@ -1,0 +1,87 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2014-01",
+  "messages": [
+    {
+      "id": "msg-26e59c2d1545",
+      "message_id": "<CAHkRx6GmdFN6Aj+eCn+NOD8FRaVBW-5A0nDYYVQq06Br4ejX9w@mail.gmail.com>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2014-01-11T06:01:58Z",
+      "subject": "[acs-r] 2012 5 year acs is out",
+      "subject_clean": "[acs-r] 2012 5 year acs is out",
+      "in_reply_to": "<86wqim9ux4.wl%eglenn@mit.edu>",
+      "references": [
+        "<CAFWa_VsbuF5cj+DZ56NX_dg1GbfEsRk5gF_RU=jKHgBbDi9=_Q@mail.gmail.com>",
+        "<86wqim9ux4.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Interesting side note - I was hacking around on this today and noticed\nsomething - the XML file listing the 2012 variable names has a much\ndifferent naming scheme than the previous two. The names are\n\nhttp://www.census.gov/developers/data/acs_5yr_2010_var.xml\nhttp://www.census.gov/developers/data/acs_5yr_2011_var.xml\nhttp://www.census.gov/developers/data/2012_acs5_variables.xml\n\nI've hacked up my code (https://github.com/znmeb/pdxcensusdata) and renamed\nthe 2012 file to the same format as 2010 and 2011. If you're just\ninterested in the table names, see the CSV files in that repo. I'm about to\ncode up a demo with the Gini coefficients of the PDX metro area to the\nfinest granularity I can get - it should be up in the repo Sunday.\n\n\nOn Mon, Dec 30, 2013 at 8:15 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> As long as you are using the current version of the acs.R package\n> (1.1), the acs.fetch command will actually succeed in fetching the\n> 2012 data, despite this warning message.  Since R is notoriously\n> silent when completing commands, users may mistake the warning for a\n> failure, but the data should be there.  That said, I do need to update\n> the scripts to remove this warning for the next version of the\n> package.\n>\n> As for a list of all ACS tables supported by the package, it should be\n> the same as those available through the census API, as described here:\n> http://www.census.gov/developers/data/.  In the sidebar on the left,\n> there are links to describe all table and variables.  (The one\n> important difference being that the acs.R package does not fetch the\n> \"data profile\" tables, since these are pretty different in character\n> from most of the other available tables -- more like mini-reports,\n> really.)\n>\n> Thanks for using the package, and I hope this helps clarify things a\n> bit.\n>\n> --Ezra\n>\n>\n> At Sun, 29 Dec 2013 18:26:30 -0800, Anon RUser wrote:\n> >\n> > [1  <multipart/alternative (7bit)>]\n> > [1.1  <text/plain; ISO-8859-1 (7bit)>]\n> >\n> > [1.2  <text/html; ISO-8859-1 (quoted-printable)>]\n> > The census just released the 2012 5 year ACS:\n> > http://www.census.gov/acs/www/data_documentation/2012_release/\n> >\n> > But when I tried to use acs.R to get data from it I got this message:\n> > In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],\n>  :\n> >   As of the date of this version of the acs package\n> >   Census API did not provides data for selected endyear\n> >\n> > Is there an ETA for acs.R supporting this data?\n> >\n> > Also, I finally found a page listing all the ACS ever done:\n> >\n> http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=survey&id=\n> > survey.en.ACS_ACS\n> >\n> > But when I try to access a lot of this data via the acs.R package I get\n> errors saying that\n> > it's not available via the census api.  Is there any source listing\n> which subset of this\n> > data is available via the api?\n> >\n> > Thanks.\n> >\n> >\n> > [2  <text/plain; us-ascii (7bit)>]\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |\n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n\n\n\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism Publishers\nWorkbench\nhttp://j.mp/CompJournBench/\n\nGet out of the building - and don't come back till you have the order!\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20140110/7308511b/attachment.htm",
+      "body_snippet": "Interesting side note - I was hacking around on this today and noticed\nsomething - the XML file listing the 2012 variable names has a much\ndifferent naming scheme than the previous two. The names are\n",
+      "thread_id": "thread-26e59c2d1545",
+      "thread_depth": 0,
+      "month": "2014-01"
+    },
+    {
+      "id": "msg-95b4817bf9da",
+      "message_id": "<86y52lf5la.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2014-01-12T17:54:57Z",
+      "subject": "[acs-r] 2012 5 year acs is out",
+      "subject_clean": "[acs-r] 2012 5 year acs is out",
+      "in_reply_to": "<CAHkRx6GmdFN6Aj+eCn+NOD8FRaVBW-5A0nDYYVQq06Br4ejX9w@mail.gmail.com>",
+      "references": [
+        "<CAFWa_VsbuF5cj+DZ56NX_dg1GbfEsRk5gF_RU=jKHgBbDi9=_Q@mail.gmail.com>",
+        "<86wqim9ux4.wl%eglenn@mit.edu>",
+        "<CAHkRx6GmdFN6Aj+eCn+NOD8FRaVBW-5A0nDYYVQq06Br4ejX9w@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks -- I'll look into this and see how it affects the acs.R\npackage.  Right now, I'm pretty sure the package will just use the\n2011 xml table to try to find table and variable numbers.  From what I\ncan tell, the name of the *file* has changed, and the *order* that\ntables are listed seems to have changed, but the rest is that same.\nIs that your impression as well?\n\nAt Fri, 10 Jan 2014 22:01:58 -0800, M Edward (Ed) Borasky wrote:\n> \n> Interesting side note - I was hacking around on this today and noticed something - the XML\n> file listing the 2012 variable names has a much different naming scheme than the previous\n> two. The names are\n> \n> http://www.census.gov/developers/data/acs_5yr_2010_var.xml\n> http://www.census.gov/developers/data/acs_5yr_2011_var.xml\n> http://www.census.gov/developers/data/2012_acs5_variables.xml\n> \n> I've hacked up my code (https://github.com/znmeb/pdxcensusdata) and renamed the 2012 file\n> to the same format as 2010 and 2011. If you're just interested in the table names, see the\n> CSV files in that repo. I'm about to code up a demo with the Gini coefficients of the PDX\n> metro area to the finest granularity I can get - it should be up in the repo Sunday.\n> \n> On Mon, Dec 30, 2013 at 8:15 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n> \n>     As long as you are using the current version of the acs.R package\n>     (1.1), the acs.fetch command will actually succeed in fetching the\n>     2012 data, despite this warning message.  Since R is notoriously\n>     silent when completing commands, users may mistake the warning for a\n>     failure, but the data should be there.  That said, I do need to update\n>     the scripts to remove this warning for the next version of the\n>     package.\n>    \n>     As for a list of all ACS tables supported by the package, it should be\n>     the same as those available through the census API, as described here:\n>     http://www.census.gov/developers/data/.  In the sidebar on the left,\n>     there are links to describe all table and variables.  (The one\n>     important difference being that the acs.R package does not fetch the\n>     \"data profile\" tables, since these are pretty different in character\n>     from most of the other available tables -- more like mini-reports,\n>     really.)\n>    \n>     Thanks for using the package, and I hope this helps clarify things a\n>     bit.\n>    \n>     --Ezra\n> \n>     At Sun, 29 Dec 2013 18:26:30 -0800, Anon RUser wrote:\n>     >\n>     > [1  <multipart/alternative (7bit)>]\n>     > [1.1  <text/plain; ISO-8859-1 (7bit)>]\n>     >\n>     > [1.2  <text/html; ISO-8859-1 (quoted-printable)>]\n>     > The census just released the 2012 5 year ACS:\n>     > http://www.census.gov/acs/www/data_documentation/2012_release/\n>     >\n>     > But when I tried to use acs.R to get data from it I got this message:\n>     > In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],  :\n>     >   As of the date of this version of the acs package\n>     >   Census API did not provides data for selected endyear\n>     >\n>     > Is there an ETA for acs.R supporting this data?\n>     >\n>     > Also, I finally found a page listing all the ACS ever done:\n>     > http://factfinder2.census.gov/faces/help/jsf/pages/metadata.xhtml?lang=en&type=\n>     survey&id=\n>     > survey.en.ACS_ACS\n>     >\n>     > But when I try to access a lot of this data via the acs.R package I get errors\n>     saying that\n>     > it's not available via the census api.  Is there any source listing which subset of\n>     this\n>     > data is available via the api?\n>     >\n>     > Thanks.\n>     >\n>     >\n>     > [2  <text/plain; us-ascii (7bit)>]\n>     > _______________________________________________\n>     > acs-r mailing list\n>     > acs-r at mit.edu\n>     > http://mailman.mit.edu/mailman/listinfo/acs-r\n>    \n>     --\n>     Ezra Haber Glenn, AICP\n>     Department of Urban Studies and Planning\n>     Massachusetts Institute of Technology\n>     77 Massachusetts Ave., Room 7-337\n>     Cambridge, MA 02139\n>     eglenn at mit.edu\n>     http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n>     617.253.2024 (w)\n>     617.721.7131 (c)\n>     _______________________________________________\n>     acs-r mailing list\n>     acs-r at mit.edu\n>     http://mailman.mit.edu/mailman/listinfo/acs-r\n> \n> --\n> Twitter: http://twitter.com/znmeb; Computational Journalism Publishers Workbench\n> http://j.mp/CompJournBench/\n> \n> Get out of the building - and don't come back till you have the order!\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks -- I'll look into this and see how it affects the acs.R\npackage.  Right now, I'm pretty sure the package will just use the\n2011 xml table to try to find table and variable numbers.  From what I",
+      "thread_id": "thread-26e59c2d1545",
+      "thread_depth": 1,
+      "month": "2014-01"
+    },
+    {
+      "id": "msg-12671f1f5e7f",
+      "message_id": "<867g9r5vsr.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2014-01-23T01:30:44Z",
+      "subject": "[acs-r] acs.R version 1.2: Now, with 2012 data",
+      "subject_clean": "[acs-r] acs.R version 1.2: Now, with 2012 data",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs.R folks:\n\nAs some of you have noticed, the new five-year Census ACS data has\njust come out (see <http://www.census.gov/developers/data/>), and is\nnow available via the Census API. To make sure you are able to fetch\nthe freshest possible data to play with in R, I?ve updated the acs.R\npackage to version 1.2, which now includes full support for the\n2008?2012 ACS data.\n\nThe latest version is now available on the CRAN repository -- see\n<http://cran.r-project.org/web/packages/acs/index.html>. If you?ve\nalready installed the package in the past, you can easily update with\nthe update.packages() command; if you?ve never installed it, you can\njust as easily install it for the first time, by simply typing\ninstall.packages(?acs?). In either case, be sure to load the library\nafter installing by typing library(acs), and install (or re-install)\nan API key with api.key.install() ? see the documentation and the\nlatest version of the acs user guide for more info.\n\nTo get the latest data, just continue to use the acs.fetch() function\nas usual, but specify endyear=2012. (By default, endyear is set to\n2011 if no year is explicitly passed to acs.fetch, and I didn?t want\nto change this for fear of breaking existing user scripts. In the\nfuture, we might to rethink this, so that it selects the most recent\nendyear by default. Thoughts?)\n\n(Note: It might take a day or two for the updates to percolate through\nthe CRAN system.  If you update and you?re not sure which version you\nare using, you can always type packageVersion(?acs?) to find out.)\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs.R folks:\n\nAs some of you have noticed, the new five-year Census ACS data has\njust come out (see <http://www.census.gov/developers/data/>), and is\nnow available via the Census API. To make sur",
+      "thread_id": "thread-12671f1f5e7f",
+      "thread_depth": 0,
+      "month": "2014-01"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-26e59c2d1545",
+      "subject": "[acs-r] 2012 5 year acs is out",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "M. Edward (Ed) Borasky"
+      ],
+      "started": "2014-01-11T06:01:58Z",
+      "last_reply": "2014-01-12T17:54:57Z",
+      "root_message_id": "msg-26e59c2d1545"
+    },
+    {
+      "id": "thread-12671f1f5e7f",
+      "subject": "[acs-r] acs.R version 1.2: Now, with 2012 data",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2014-01-23T01:30:44Z",
+      "last_reply": "2014-01-23T01:30:44Z",
+      "root_message_id": "msg-12671f1f5e7f"
+    }
+  ]
+}

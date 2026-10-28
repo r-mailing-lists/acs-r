@@ -1,0 +1,36 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2013-11",
+  "messages": [
+    {
+      "id": "msg-05b4c0290d98",
+      "message_id": "<CALuSPaZ91MuBc2STtCcymKUPKYxcw1Jcs5tccZeap8-Jvih+Sg@mail.gmail.com>",
+      "from_name": "Pamela Dalal",
+      "from_email_hash": "31a6552f1b3ecafc2eadd1ed519233fb253cc8bdf4b55535dc4df89f1a435c1e",
+      "date": "2013-11-06T01:25:06Z",
+      "subject": "[acs-r] Tests of statistical significance",
+      "subject_clean": "[acs-r] Tests of statistical significance",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Thank you so much for developing this package.  I'm having difficulty\nunderstanding how to run a t-test or other statistical tests between\ngeographies (counties, specifically).  Can you share an example?\n\nThank you!\nPam\n-- \nPamela Dalal\nwww.linkedin.com/in/pamdalal\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20131105/d56167a8/attachment.htm",
+      "body_snippet": "Thank you so much for developing this package.  I'm having difficulty\nunderstanding how to run a t-test or other statistical tests between\ngeographies (counties, specifically).  Can you share an examp",
+      "thread_id": "thread-05b4c0290d98",
+      "thread_depth": 0,
+      "month": "2013-11"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-05b4c0290d98",
+      "subject": "[acs-r] Tests of statistical significance",
+      "message_count": 1,
+      "participants": [
+        "Pamela Dalal"
+      ],
+      "started": "2013-11-06T01:25:06Z",
+      "last_reply": "2013-11-06T01:25:06Z",
+      "root_message_id": "msg-05b4c0290d98"
+    }
+  ]
+}

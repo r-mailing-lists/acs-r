@@ -1,0 +1,177 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2014-10",
+  "messages": [
+    {
+      "id": "msg-21d14c072936",
+      "message_id": "<CADBMApVH8YMZ0G7NyZWxopAeLWsO=-9NpBP0ts7DNAWxYCKQ2w@mail.gmail.com>",
+      "from_name": "Nevin Krishna",
+      "from_email_hash": "fb7fd7cbb1e347492a3c3c3e644914dd87bec92c547cd59b4053f5d9447d44b7",
+      "date": "2014-10-14T01:27:10Z",
+      "subject": "[acs-r] Selecting",
+      "subject_clean": "[acs-r] Selecting",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hello all,\n\ni am fairly new to R and just started using the ACS package.\n\nI have been playing with the examples in the link here:\n\nhttp://eglenn.scripts.mit.edu/citystate/category/code/\n\nI have adapted the code to look at another table (foreign born individuals)\nby county  in Louisiana:  5 year ACS ending in 2011: B05006\nIn the example the code ultimately calculates a proportion which is then\nplotted on a map. I however want to create a dataset with the  estimate of\nthe populations (no standard errors) of a few countries of origin (Liberia\n:HD01_VD111 and Nigeria: HD01_VD112 and Sierra Leone: HD01_VD112). also i\nwould like to create a new variable say \"combined\" which is the sum of each\nof these variables.\nI cannot seem to figure out how to create a dataset with these variables. i\nam unsure of how to manipulate the code:\n\n\nus.pub.fb=divide.acs(numerator=us.fb[,111],\n                 denominator=us.fb[,1], method=\"proportion\")\npub.fb.est=data.frame(county=geography(us.pub.fb)[[1]],\n\nto not calculate a proportion but to simply list the variables of interst\nin a dataframe. below is the full code:\n\nany suggestions on how to accomplish this would be appreciated.\n\nThanks in advance for your help!\nNevin\n\nPS..the full code below calculates the proportion:\n\nus.county=geo.make(state=\"LA\", county=\"*\")\n\n\nus.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n\n\nus.pub.fb=divide.acs(numerator=us.fb[,111],\n                        denominator=us.fb[,1], method=\"proportion\")\npub.fb.est=data.frame(county=geography(us.pub.fb)[[1]],\n                         percent.pub.trans=as.numeric(estimate(us.pub.fb)))\n# this next step is all for Louisiana!\npub.fb.est$county=gsub(\"Parish\", \"County\", pub.fb.est$county)\n# clean up county names and find the states\npub.fb.est$state=gsub(\"^.*County, \", \"\", pub.fb.est$county)\npub.fb.est$county=gsub(\" County,.*\", \"\", pub.fb.est$county)\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20141013/b460fc57/attachment.htm",
+      "body_snippet": "Hello all,\n\ni am fairly new to R and just started using the ACS package.\n\nI have been playing with the examples in the link here:\n\nhttp://eglenn.scripts.mit.edu/citystate/category/code/\n\nI have adapte",
+      "thread_id": "thread-21d14c072936",
+      "thread_depth": 0,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-facdc9978a5e",
+      "message_id": "<86k342g06j.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2014-10-14T15:07:00Z",
+      "subject": "[acs-r] Selecting",
+      "subject_clean": "[acs-r] Selecting",
+      "in_reply_to": "<CADBMApVH8YMZ0G7NyZWxopAeLWsO=-9NpBP0ts7DNAWxYCKQ2w@mail.gmail.com>",
+      "references": [
+        "<CADBMApVH8YMZ0G7NyZWxopAeLWsO=-9NpBP0ts7DNAWxYCKQ2w@mail.gmail.com>"
+      ],
+      "body_plain": "Nevin:\n\nThis is actually a lot easier than you might think -- you've pretty\nmuch already got everything you need.  \n\nThe following will load the acs package, create the LA tracts\ngeography, and then fetch the data:\n\n> library(acs)\n> us.county=geo.make(state=\"LA\", county=\"*\")\n> us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n\n   Note that technically, you are fetching a lot more data than you\n   even need here -- if you really only want three columns, you could\n   just specify that with:\n\n   > acs.fetch(geography=us.county, variable=c(\"B05006_111\", \"B05006_112\", \"B05006_113\")\n\n   (But for now, let's assume you downloaded the whole table into us.fb)\n\nNow, how to get just a few columns out, and maybe sum them as well?\n\nIf you want to look at the data, you can just use:\n\n> us.fb[,111:113]   # that's all the rows, columns 111 through 113\n\nIf you just want the estimates without the errors, try:\n\n> estimate(us.fb[,111:113])\n\n\nYou could make a new acs object with just these three columns:\n\n> my.data=us.fb[,111:113]\n\nAnd then add a fourth column for the sum:\n\n> my.data[,4]=apply(X=my.data, FUN=sum, MARGIN=2)\n\n   Note that you could have done a few of these steps together, with \n\n   > my.data=cbind(us.fb[,111:113], apply(X=us.fb[,111:113], FUN=sum, MARGIN=2)) \n\n   But it amounts to the same thing either way.\n\n\nYou might want to give it nicer column names, such as:\n\n> acs.colnames(my.data)=c(\"Liberia\",\"Nigeria\",\"Sierra Leone\",\"Combined\")\n\n\nAnd then, as before, if you only want the estimates, you can just say:\n\n> estimate(my.data)\n\n\nOne final warning: please note that the estimate() function allows you\nto ignore the margins of error for this data, but this is not\nrecommended.  Especially when working with small parishes, the errors\nmay be larger than the perceived differences in the estimates -- but\nthis is a statistical issue, not a programming one.  In any event, let\nthe dowloader beware!\n\n--Ezra  \n \nAt Mon, 13 Oct 2014 21:27:10 -0400, Nevin Krishna wrote:\n> \n> Hello all,\n> \n> i am fairly new to R and just started using the ACS package.\n> \n> I have been playing with the examples in the link here:\n> \n> http://eglenn.scripts.mit.edu/citystate/category/code/\n>  \n> I have adapted the code to look at another table (foreign born individuals) by county  in\n> Louisiana:  5 year ACS ending in 2011: B05006\n> In the example the code ultimately calculates a proportion which is then plotted on a map.\n> I however want to create a dataset with the  estimate of the populations (no standard\n> errors) of a few countries of origin (Liberia :HD01_VD111 and Nigeria: HD01_VD112 and\n> Sierra Leone: HD01_VD112). also i would like to create a new variable say \"combined\" which\n> is the sum of each of these variables.\n> I cannot seem to figure out how to create a dataset with these variables. i am unsure of\n> how to manipulate the code:\n> \n> us.pub.fb=divide.acs(numerator=us.fb[,111], \n>                  denominator=us.fb[,1], method=\"proportion\")\n> pub.fb.est=data.frame(county=geography(us.pub.fb)[[1]], \n> \n> to not calculate a proportion but to simply list the variables of interst in a dataframe.\n> below is the full code:\n> \n> any suggestions on how to accomplish this would be appreciated.\n> \n> Thanks in advance for your help!\n> Nevin\n> \n> PS..the full code below calculates the proportion:\n> \n> us.county=geo.make(state=\"LA\", county=\"*\")\n> \n> us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n> \n> us.pub.fb=divide.acs(numerator=us.fb[,111], \n>                         denominator=us.fb[,1], method=\"proportion\")\n> pub.fb.est=data.frame(county=geography(us.pub.fb)[[1]], \n>                          percent.pub.trans=as.numeric(estimate(us.pub.fb)))\n> # this next step is all for Louisiana!\n> pub.fb.est$county=gsub(\"Parish\", \"County\", pub.fb.est$county)\n> # clean up county names and find the states\n> pub.fb.est$state=gsub(\"^.*County, \", \"\", pub.fb.est$county)\n> pub.fb.est$county=gsub(\" County,.*\", \"\", pub.fb.est$county)\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Nevin:\n\nThis is actually a lot easier than you might think -- you've pretty\nmuch already got everything you need.  \n\nThe following will load the acs package, create the LA tracts\ngeography, and then f",
+      "thread_id": "thread-21d14c072936",
+      "thread_depth": 1,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-603e01d22b4e",
+      "message_id": "<CADBMApU3AeLyS2rZO6rCKq8Bzeo1tX=MF5=yvot1ZtCc96X=mQ@mail.gmail.com>",
+      "from_name": "Nevin Krishna",
+      "from_email_hash": "fb7fd7cbb1e347492a3c3c3e644914dd87bec92c547cd59b4053f5d9447d44b7",
+      "date": "2014-10-14T18:54:09Z",
+      "subject": "[acs-r] acs-r Digest, Vol 13, Issue 1",
+      "subject_clean": "[acs-r] acs-r Digest, Vol 13, Issue 1",
+      "in_reply_to": "<mailman.21.1413302553.22534.acs-r@mit.edu>",
+      "references": [
+        "<mailman.21.1413302553.22534.acs-r@mit.edu>"
+      ],
+      "body_plain": "Hi Ezra,\n\nI implemented some of the code you supplied but ran into a problem with the\nportion that deals with creating  a new variable to catch the sum of all\nthree variables. Here is the code I used:\n\nlibrary(acs)\nus.county=geo.make(state=\"LA\", county=\"*\")\n  us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n          my.data.est=estimate(us.fb[,111:113])\n          my.data.est[,4]=apply(X=my.data.est, FUN=sum, MARGIN=2)\n\nwhen I run  my.data.est, I get the following  error:\n\n\nError in `[<-`(`*tmp*`, , 4, value = c(155, 1241, 223)) :\n  subscript out of bounds\n\n\n\nI am looking to get an output that looks like this:\n                                                    B05006_111 B05006_112\nB05006_113  combined\nAcadia Parish, Louisiana                        0\n0              0                          0\nAllen Parish, Louisiana                           0\n 25           10                       35\nAscension Parish, Louisiana                  0\n0              0                         0\n\n\nAny ideas on how to correct this?\n\nNevin\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20141014/8d7b91a0/attachment.htm",
+      "body_snippet": "Hi Ezra,\n\nI implemented some of the code you supplied but ran into a problem with the\nportion that deals with creating  a new variable to catch the sum of all\nthree variables. Here is the code I used:",
+      "thread_id": "thread-603e01d22b4e",
+      "thread_depth": 0,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-d8dd9860cb9c",
+      "message_id": "<8661fmfo1f.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2014-10-14T19:29:16Z",
+      "subject": "[acs-r] acs-r Digest, Vol 13, Issue 1",
+      "subject_clean": "[acs-r] acs-r Digest, Vol 13, Issue 1",
+      "in_reply_to": "<CADBMApU3AeLyS2rZO6rCKq8Bzeo1tX=MF5=yvot1ZtCc96X=mQ@mail.gmail.com>",
+      "references": [
+        "<mailman.21.1413302553.22534.acs-r@mit.edu>",
+        "<CADBMApU3AeLyS2rZO6rCKq8Bzeo1tX=MF5=yvot1ZtCc96X=mQ@mail.gmail.com>"
+      ],
+      "body_plain": "Sorry -- there is a slight difference related to whether you are\nworking run the \"apply\" command to sum the rows of the acs object\n(which has estimate and errors) and then extract the estimates (which\nis what I did) or extract the estimates and then run the apply command\nto sum them (which is what you did).\n\nOnce you extract the estimates, you are working with a object of class\n\"matrix,\" not an acs-class object.  This creates two issues:\n\n1) Unlike dataframes and acs objects and lots of other R data objects,\nmatrices don't allow you to just add a new column by assigning\nsomething to a part of the data that isn't there yet.  So is my.data\nis dataframe or acs object with three columns and I say\nmy.data[,4]=XXXXXX, R doesn't worry about the fact that there isn't\nanything in my.data[,4] yet -- it just adds the new data to there.\nBut for a matrix, this breaks some of the rules -- you need to create\na new matrix that combines the old matrix with the new data, maybe\nusing cbind or something like that.\n\nEven worse, it turns out that matrices are a little backwards\ndimension-wise, which confuses the script I gave you: in the apply\ncommand, do you see where is says \"MARGIN=2\"?  That tells is you want\nit to sum across the rows (the second dimension of the object), not\nthe columns (which would be the first dimension -- MARGIN=1).  When\nyou extract the estimates and thus make a matrix, these dimensions are\nreversed -- the rows are the \"first\" dimension and the columns the\nsecond.  (This has to do with the way R deals with matrices -- unlike\ndataframes and acs objects, which have an obvious two-dimensional\nspreadsheet like structure, matrices can have any number of\ndimensions, and I guess rows are first and columns are second.)\n\nSo, either of the following would work:\n\n> library(acs)\n> us.county=geo.make(state=\"LA\", county=\"*\")\n> us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n> my.data.est=estimate(us.fb[,111:113])\n> my.data.est=cbind(my.data.est, apply(X=my.data.est, FUN=sum, MARGIN=1))\n\n\n> library(acs)\n> us.county=geo.make(state=\"LA\", county=\"*\")\n> us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n> my.data=us.fb[,111:113]\n> my.data[,4]=apply(X=my.data, FUN=sum, MARGIN=2)\n> estimate(my.data)\n\nSorry for the added confusion.  My advice: work with the data in the\nacs format (the second option here), and only extract the estimates\nwhen you want them. \n\n--Ezra\n\nAt Tue, 14 Oct 2014 14:54:09 -0400, Nevin Krishna wrote:\n> \n> Hi Ezra,\n>  \n> I implemented some of the code you supplied but ran into a problem with the portion that\n> deals with creating  a new variable to catch the sum of all three variables. Here is the\n> code I used:\n>  \n> library(acs)\n> us.county=geo.make(state=\"LA\", county=\"*\")\n>   us.fb= acs.fetch(geography=us.county, table.number=\"B05006\")\n>           my.data.est=estimate(us.fb[,111:113])\n>           my.data.est[,4]=apply(X=my.data.est, FUN=sum, MARGIN=2)\n>  \n> when I run  my.data.est, I get the following  error:\n> \n> Error in `[<-`(`*tmp*`, , 4, value = c(155, 1241, 223)) : \n>   subscript out of bounds\n> \n> I am looking to get an output that looks like this:\n>                                                     B05006_111 B05006_112 B05006_113 \n> combined\n> Acadia Parish, Louisiana                        0                 0            \n>  0                          0\n> Allen Parish, Louisiana                           0                 25         \n>  10                       35\n> Ascension Parish, Louisiana                  0                  0            \n>  0                         0\n> \n> Any ideas on how to correct this?\n>  \n> Nevin\n> \n> \n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Sorry -- there is a slight difference related to whether you are\nworking run the \"apply\" command to sum the rows of the acs object\n(which has estimate and errors) and then extract the estimates (which",
+      "thread_id": "thread-603e01d22b4e",
+      "thread_depth": 1,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-903cddf23cec",
+      "message_id": "<CADBMApWx7mE_Qy7rS4X6yem7KoXT+Bir+rSSzh_sB2niYdwZ6w@mail.gmail.com>",
+      "from_name": "Nevin Krishna",
+      "from_email_hash": "fb7fd7cbb1e347492a3c3c3e644914dd87bec92c547cd59b4053f5d9447d44b7",
+      "date": "2014-10-17T17:00:32Z",
+      "subject": "[acs-r] How to include STATE and COUNTY FIPS codes in ACS.FETCH",
+      "subject_clean": "[acs-r] How to include STATE and COUNTY FIPS codes in ACS.FETCH",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi All,\n\nThe following code extracts key ACS variables for a given state. The\ngeographic variables in \"us.fb\" are the \"spelled out\" state and county\nnames. Since I am using this data to eventually merge with other\ndatasets by geography I would like to use something a little less\nerror prone than the spelled out counties. I am wondering if and how I\ncan retrieve the FIPS codes for state and County in the acs.fetch function.\n\nlibrary(acs)\nus.county=geo.make(state=\"GA\", county=\"*\")\nus.fb= acs.fetch(geography=us.county,\nvariable=c(\"B05006_110\",\"B05006_111\",\"B05006_112\"), endyear=2012)\nus.fb\n\n\nThanks for any advice!\nNevin\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20141017/f5dbf746/attachment.htm",
+      "body_snippet": "Hi All,\n\nThe following code extracts key ACS variables for a given state. The\ngeographic variables in \"us.fb\" are the \"spelled out\" state and county\nnames. Since I am using this data to eventually mer",
+      "thread_id": "thread-903cddf23cec",
+      "thread_depth": 0,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-d5878bf4e8b4",
+      "message_id": "<86fvemtxc0.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2014-10-17T17:33:51Z",
+      "subject": "[acs-r] How to include STATE and COUNTY FIPS codes in ACS.FETCH",
+      "subject_clean": "[acs-r] How to include STATE and COUNTY FIPS codes in ACS.FETCH",
+      "in_reply_to": "<CADBMApWx7mE_Qy7rS4X6yem7KoXT+Bir+rSSzh_sB2niYdwZ6w@mail.gmail.com>",
+      "references": [
+        "<CADBMApWx7mE_Qy7rS4X6yem7KoXT+Bir+rSSzh_sB2niYdwZ6w@mail.gmail.com>"
+      ],
+      "body_plain": "Good question -- thanks for the email.  \n\nThe answer is: the FIPS codes are already in there.  When acs.fetch\ngets data, it also retrieves some geographic info (in addition to the\nwritten place names).  This geographic data is stored in the acs.class\nobject, but not shown by default.  To see it, use:\n\n> geography(us.fb)\n\nIn this example, there will be three columns: NAME, state, and county.\nThe last two use standard FIPS codes, and can be merged to form more\ncomplex GEOIDs.\n\nTo learn more about what's bundled into an acs.class object, try this:\n\n> str(us.fb)\n\nEnjoy!\n\nAt Fri, 17 Oct 2014 13:00:32 -0400, Nevin Krishna wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> \n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi All,\n>  \n> The following code extracts key ACS variables for a given state. The geographic variables\n> in \"us.fb\" are the \"spelled out\" state and county names. Since I am using this data to\n> eventually merge with other datasets by geography I would like to use something a\n> little less error prone than the spelled out counties. I am wondering if and how I\n> can retrieve the FIPS codes for state and County in the acs.fetch function. \n>  \n> library(acs)\n> us.county=geo.make(state=\"GA\", county=\"*\")\n> us.fb= acs.fetch(geography=us.county, variable=c(\"B05006_110\",\"B05006_111\",\"B05006_112\"),\n> endyear=2012)\n> us.fb\n> \n> Thanks for any advice!\n> Nevin\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Good question -- thanks for the email.  \n\nThe answer is: the FIPS codes are already in there.  When acs.fetch\ngets data, it also retrieves some geographic info (in addition to the\nwritten place names)",
+      "thread_id": "thread-903cddf23cec",
+      "thread_depth": 1,
+      "month": "2014-10"
+    },
+    {
+      "id": "msg-27e415fd423e",
+      "message_id": "<86siiithkv.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2014-10-21T00:03:12Z",
+      "subject": "[acs-r] Share your acs.R success stories",
+      "subject_clean": "[acs-r] Share your acs.R success stories",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Dear acs.R useRs:\n\nHave you been using the acs.R package to download and analyze Census\ndata in your work? Do you have a story you'd be willing to share to\nhelp us promote the package and show off all the cool ways people are\nusing open source tools to make sense of data and help inform\ncommunities, policy-makers, and researchers?\n\nIf so, please let us know: email your news or project descriptions\n(reply to this email, or contact <mailto:eglenn at mit.edu>) and we'll\npost them on the CityState website\n(<http://eglenn.scripts.mit.edu/citystate/>) to inform and inspire\nothers. Be sure to include good images, news coverage, quotations, or\nother materials to help tell the story --- and feel free to include\nlinks, scripts, or examples as well.\n\nThanks!\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs.R useRs:\n\nHave you been using the acs.R package to download and analyze Census\ndata in your work? Do you have a story you'd be willing to share to\nhelp us promote the package and show off all",
+      "thread_id": "thread-27e415fd423e",
+      "thread_depth": 0,
+      "month": "2014-10"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-21d14c072936",
+      "subject": "[acs-r] Selecting",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Nevin Krishna"
+      ],
+      "started": "2014-10-14T01:27:10Z",
+      "last_reply": "2014-10-14T15:07:00Z",
+      "root_message_id": "msg-21d14c072936"
+    },
+    {
+      "id": "thread-603e01d22b4e",
+      "subject": "[acs-r] acs-r Digest, Vol 13, Issue 1",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Nevin Krishna"
+      ],
+      "started": "2014-10-14T18:54:09Z",
+      "last_reply": "2014-10-14T19:29:16Z",
+      "root_message_id": "msg-603e01d22b4e"
+    },
+    {
+      "id": "thread-903cddf23cec",
+      "subject": "[acs-r] How to include STATE and COUNTY FIPS codes in ACS.FETCH",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Nevin Krishna"
+      ],
+      "started": "2014-10-17T17:00:32Z",
+      "last_reply": "2014-10-17T17:33:51Z",
+      "root_message_id": "msg-903cddf23cec"
+    },
+    {
+      "id": "thread-27e415fd423e",
+      "subject": "[acs-r] Share your acs.R success stories",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2014-10-21T00:03:12Z",
+      "last_reply": "2014-10-21T00:03:12Z",
+      "root_message_id": "msg-27e415fd423e"
+    }
+  ]
+}

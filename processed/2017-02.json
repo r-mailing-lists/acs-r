@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-02",
+  "messages": [
+    {
+      "id": "msg-d111baac035a",
+      "message_id": "<831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>",
+      "from_name": "Jianchao Yang",
+      "from_email_hash": "841ae03477b20758a8910e850b4df5be6b8c07ab487e62189f77b7b6a43a3911",
+      "date": "2017-02-17T06:42:52Z",
+      "subject": "[acs-r] Make \"204 No Content\" an acceptable status code",
+      "subject_clean": "[acs-r] Make \"204 No Content\" an acceptable status code",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\n\nFirst of all, thanks for creating this awesome tool.\n\nI found that when fetching data for a (valid) geographic unit without any data, census.gov API returns status code 204. But `acs` code breaks in this case.\n\nWouldn?t it be nicer if it just returns empty values?\n\n\n\nThanks,\nJianchao",
+      "body_snippet": "Hi,\n\nFirst of all, thanks for creating this awesome tool.\n\nI found that when fetching data for a (valid) geographic unit without any data, census.gov API returns status code 204. But `acs` code breaks",
+      "thread_id": "thread-d111baac035a",
+      "thread_depth": 0,
+      "month": "2017-02"
+    },
+    {
+      "id": "msg-8c680be3746b",
+      "message_id": "<86fujd2an0.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-02-17T13:46:11Z",
+      "subject": "[acs-r] Make \"204 No Content\" an acceptable status code",
+      "subject_clean": "[acs-r] Make \"204 No Content\" an acceptable status code",
+      "in_reply_to": "<831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>",
+      "references": [
+        "<831C8980-304F-4DCF-928B-053F86293214@husky.neu.edu>"
+      ],
+      "body_plain": "Thanks for your email, and for using the package.  The package is\npretty bad at this sort of \"error-handling,\" and I agree it would be\ngreat if it was smarter about it -- maybe issuing a warning but still\nreturning a well-formatted, empty acs object, as you suggest.\n\nThe package is long overdue for an update, partially because I'm sort\nof looking for someone to help with maintenance and future development\n(any interest?), but I'll definitely add this to the \"feature request\"\nlist.\n\nThanks.\n\n--Ezra\n\nOn Fri, 17 Feb 2017 01:42:52 -0500, Jianchao Yang wrote:\n> \n> Hi,\n> \n> First of all, thanks for creating this awesome tool.\n> \n> I found that when fetching data for a (valid) geographic unit without any data, census.gov API returns status code 204. But `acs` code breaks in this case.\n> \n> Wouldn?t it be nicer if it just returns empty values?\n> \n> \n> \n> Thanks,\n> Jianchao\n> \n> \n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks for your email, and for using the package.  The package is\npretty bad at this sort of \"error-handling,\" and I agree it would be\ngreat if it was smarter about it -- maybe issuing a warning but s",
+      "thread_id": "thread-d111baac035a",
+      "thread_depth": 1,
+      "month": "2017-02"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-d111baac035a",
+      "subject": "[acs-r] Make \"204 No Content\" an acceptable status code",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Jianchao Yang"
+      ],
+      "started": "2017-02-17T06:42:52Z",
+      "last_reply": "2017-02-17T13:46:11Z",
+      "root_message_id": "msg-d111baac035a"
+    }
+  ]
+}

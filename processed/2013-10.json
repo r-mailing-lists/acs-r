@@ -1,0 +1,82 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2013-10",
+  "messages": [
+    {
+      "id": "msg-9115b5f7aaaa",
+      "message_id": "<87fvsjzhr3.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-10-02T17:48:16Z",
+      "subject": "[acs-r] Census API down",
+      "subject_clean": "[acs-r] Census API down",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "acs.R users:\n\nPlease note, due to the shutdown of the federal government, it appears\nthat many federal website are down as well, including the Census API\n(see <http://outage.census.gov/closed.txt>).  As a result, the acs.R\npackage is currently unable to download data -- sorry!  If you to use\nacs.fetch or anything related that requires the API, you will\nprobably get the following error:\n\n> acs.fetch(geo=geo.make(state=25), table.number=\"B01003\")\nError in file(file, \"rt\") : cannot open the connection\n\nI assume that once this all gets sorted out, the site will come right\nback as before.\n\n--Ezra\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "acs.R users:\n\nPlease note, due to the shutdown of the federal government, it appears\nthat many federal website are down as well, including the Census API\n(see <http://outage.census.gov/closed.txt>).  ",
+      "thread_id": "thread-9115b5f7aaaa",
+      "thread_depth": 0,
+      "month": "2013-10"
+    },
+    {
+      "id": "msg-7e856cfbd557",
+      "message_id": "<20131002155553.mw0uopdxwo0w8c84-mazro@webmail.spamcop.net>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2013-10-02T19:55:53Z",
+      "subject": "[acs-r] Census API down",
+      "subject_clean": "[acs-r] Census API down",
+      "in_reply_to": "<87fvsjzhr3.wl%eglenn@mit.edu>",
+      "references": [
+        "<87fvsjzhr3.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Quoting Ezra Haber Glenn <eglenn at mit.edu>:\n\n>\n> acs.R users:\n>\n> Please note, due to the shutdown of the federal government, it appears\n> that many federal website are down as well, including the Census API\n> (see <http://outage.census.gov/closed.txt>).  As a result, the acs.R\n> package is currently unable to download data -- sorry!  If you to use\n> acs.fetch or anything related that requires the API, you will\n> probably get the following error:\n>\n>> acs.fetch(geo=geo.make(state=25), table.number=\"B01003\")\n> Error in file(file, \"rt\") : cannot open the connection\n>\n> I assume that once this all gets sorted out, the site will come right\n> back as before.\n>\n> --Ezra\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |   \n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n\nThey caught me in the middle of a project, sadly. My code is working  \nbut I can't continue with actual use cases until the site comes back  \nup. Meanwhile, I have managed to get CSV dumps of the XML table  \ndefinitions up on Github for browsing:\n\nhttps://github.com/znmeb/pdxcensusdata/blob/master/sf1-cheat-sheet.csv\nhttps://github.com/znmeb/pdxcensusdata/blob/master/acs-cheat-sheet-2011.csv\nhttps://github.com/znmeb/pdxcensusdata/blob/master/acs-cheat-sheet-2010.csv\n\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism on a Stick\nhttp://znmeb.github.io/CompJournoStick/\n\nPondering the pandemonium of pontificating pantheism to ponderous  \npandas since 1994",
+      "body_snippet": "Quoting Ezra Haber Glenn <eglenn at mit.edu>:\n\n>\n> acs.R users:\n>\n> Please note, due to the shutdown of the federal government, it appears\n> that many federal website are down as well, including the C",
+      "thread_id": "thread-9115b5f7aaaa",
+      "thread_depth": 1,
+      "month": "2013-10"
+    },
+    {
+      "id": "msg-623b261f1067",
+      "message_id": "<87ppr22y9m.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-10-18T19:07:49Z",
+      "subject": "[acs-r] Census API Back In Action: acs.R is once again fully functional",
+      "subject_clean": "[acs-r] Census API Back In Action: acs.R is once again fully functional",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Now that the federal government is back on its feet, the Census API is\nserving up data again, and the acs.R package should work like it was\nsupposed to.\n\nFor example:\n\n> acs.fetch(geo=geo.make(state=25), table.number=\"B01003\")\nACS DATA: \n 2007 -- 2011 ;\n  Estimates w/90% confidence intervals;\n  for different intervals, see confint()\n              B01003_001   \nMassachusetts 6512227 +/- 0\n> \n\nHooray!\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Now that the federal government is back on its feet, the Census API is\nserving up data again, and the acs.R package should work like it was\nsupposed to.\n\nFor example:\n\n> acs.fetch(geo=geo.make(state=2",
+      "thread_id": "thread-623b261f1067",
+      "thread_depth": 0,
+      "month": "2013-10"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-9115b5f7aaaa",
+      "subject": "[acs-r] Census API down",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "M. Edward (Ed) Borasky"
+      ],
+      "started": "2013-10-02T17:48:16Z",
+      "last_reply": "2013-10-02T19:55:53Z",
+      "root_message_id": "msg-9115b5f7aaaa"
+    },
+    {
+      "id": "thread-623b261f1067",
+      "subject": "[acs-r] Census API Back In Action: acs.R is once again fully functional",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-10-18T19:07:49Z",
+      "last_reply": "2013-10-18T19:07:49Z",
+      "root_message_id": "msg-623b261f1067"
+    }
+  ]
+}

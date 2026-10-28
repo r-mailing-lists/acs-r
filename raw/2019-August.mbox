@@ -1,0 +1,310 @@
+From tighe at brandeis.edu  Tue Aug  6 14:14:31 2019
+From: tighe at brandeis.edu (Elizabeth Tighe)
+Date: Tue, 6 Aug 2019 14:14:31 -0400
+Subject: [acs-r] acs.tables.install() question
+In-Reply-To: <86tvgyy3xp.wl-eglenn@mit.edu>
+References: <86woluy5an.wl-eglenn@mit.edu>
+	<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>
+	<86tvgyy3xp.wl-eglenn@mit.edu>
+Message-ID: <aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+
+Hi,
+
+I've run the acs.tables.install() command and see that .gz files have 
+been downloaded to C:\Program Files\R\R-3.6.0\library\acs directory, but 
+acs.fetch still defaults to URL downloads. Have copied the .gz files 
+into the /extdata subdirectory based on comments on listserv, but fetch 
+still directs to URL. (running on windows machine).
+
+Any tips/suggestions would be appreciated!
+
+Thanks,
+Liz
+
+Elizabeth Tighe, Ph.D.
+Research Scientist
+Steinhardt Social Research Institute
+Brandeis University
+781.736.3824
+
+
+
+From Michael.Laviolette at dhhs.nh.gov  Tue Aug  6 14:23:04 2019
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Tue, 6 Aug 2019 18:23:04 +0000
+Subject: [acs-r] acs.tables.install() question
+In-Reply-To: <aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+References: <86woluy5an.wl-eglenn@mit.edu>
+	<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>	<86tvgyy3xp.wl-eglenn@mit.edu>
+	<aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+Message-ID: <733e26ce1aa8491f8d67e1d3715bccfe@dhhs.nh.gov>
+
+Hi Liz,
+
+I recently found a solution and called it to Ezra's attention. Delete the .gz files from the incorrect location where they're downloaded. Then run this code: 
+
+filelist <- readLines("http://web.mit.edu/eglenn/www/acs/acs-variables/filelist.txt") 
+  dir.create(file.path(system.file(package = "acs"), "extdata"), showWarnings = FALSE) 
+  for (i in filelist) { 
+    download.file(url =  
+                    paste0("http://web.mit.edu/eglenn/www/acs/acs-variables/", i), 
+                  destfile = file.path(system.file("extdata", package = "acs"), i))}
+
+I tested it on my Windows system and it seemed to work--the .gz files should now have the correct name (no leading "extdata" and appear in the correct subfolder ("extdata"). Try it and let me know how it works. Thanks!
+
+Michael Laviolette PhD MPH
+Chronic Disease Epidemiologist
+Bureau of Population Health and Community Services
+New Hampshire Division of Public Health Services
+29 Hazen Drive
+Concord, NH 03301-6504
+(603) 271-4568
+Michael.Laviolette at dhhs.nh.gov
+"We Protect, Promote and Improve the Health and Well-Being of ALL People in New Hampshire through Leadership, Expertise, and Partnership."
+
+
+
+-----Original Message-----
+From: acs-r-bounces at mit.edu <acs-r-bounces at mit.edu> On Behalf Of Elizabeth Tighe
+Sent: Tuesday, August 6, 2019 2:15 PM
+To: acs-r at mit.edu
+Subject: [acs-r] acs.tables.install() question
+
+ EXTERNAL:  Do not open attachments or click on links unless you recognize and trust the sender.
+
+Hi,
+
+
+
+I've run the acs.tables.install() command and see that .gz files have 
+
+been downloaded to C:\Program Files\R\R-3.6.0\library\acs directory, but 
+
+acs.fetch still defaults to URL downloads. Have copied the .gz files 
+
+into the /extdata subdirectory based on comments on listserv, but fetch 
+
+still directs to URL. (running on windows machine).
+
+
+
+Any tips/suggestions would be appreciated!
+
+
+
+Thanks,
+
+Liz
+
+
+
+Elizabeth Tighe, Ph.D.
+
+Research Scientist
+
+Steinhardt Social Research Institute
+
+Brandeis University
+
+781.736.3824
+
+
+
+
+
+_______________________________________________
+
+acs-r mailing list
+
+acs-r at mit.edu
+
+https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=QAL8AGnyWUhY1J9Sq_xvCnNgYYsXQ6J-OGouy_NuU2M&s=EoZtIjGHgbdKkyHa-HirFBxygtjUZlh6J2ZfjB7E-_w&e= 
+
+
+
+From Michael.Laviolette at dhhs.nh.gov  Tue Aug  6 14:28:14 2019
+From: Michael.Laviolette at dhhs.nh.gov (Laviolette, Michael)
+Date: Tue, 6 Aug 2019 18:28:14 +0000
+Subject: [acs-r] acs.tables.install() question
+In-Reply-To: <aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+References: <86woluy5an.wl-eglenn@mit.edu>
+	<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>	<86tvgyy3xp.wl-eglenn@mit.edu>
+	<aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+Message-ID: <b1ae58196c67481dbb440bba9b7c19d1@dhhs.nh.gov>
+
+Hi Liz--my email system is altering the URLs. I've attached the fix as a small script.
+
+-Mike
+
+-----Original Message-----
+From: acs-r-bounces at mit.edu <acs-r-bounces at mit.edu> On Behalf Of Elizabeth Tighe
+Sent: Tuesday, August 6, 2019 2:15 PM
+To: acs-r at mit.edu
+Subject: [acs-r] acs.tables.install() question
+
+ EXTERNAL:  Do not open attachments or click on links unless you recognize and trust the sender.
+
+Hi,
+
+
+
+I've run the acs.tables.install() command and see that .gz files have 
+
+been downloaded to C:\Program Files\R\R-3.6.0\library\acs directory, but 
+
+acs.fetch still defaults to URL downloads. Have copied the .gz files 
+
+into the /extdata subdirectory based on comments on listserv, but fetch 
+
+still directs to URL. (running on windows machine).
+
+
+
+Any tips/suggestions would be appreciated!
+
+
+
+Thanks,
+
+Liz
+
+
+
+Elizabeth Tighe, Ph.D.
+
+Research Scientist
+
+Steinhardt Social Research Institute
+
+Brandeis University
+
+781.736.3824
+
+
+
+
+
+_______________________________________________
+
+acs-r mailing list
+
+acs-r at mit.edu
+
+https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=QAL8AGnyWUhY1J9Sq_xvCnNgYYsXQ6J-OGouy_NuU2M&s=EoZtIjGHgbdKkyHa-HirFBxygtjUZlh6J2ZfjB7E-_w&e= 
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: acs-tables-install-fix.R
+Type: application/octet-stream
+Size: 401 bytes
+Desc: acs-tables-install-fix.R
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20190806/d809634d/attachment-0001.obj
+
+From tighe at brandeis.edu  Tue Aug  6 14:53:24 2019
+From: tighe at brandeis.edu (Elizabeth Tighe)
+Date: Tue, 6 Aug 2019 14:53:24 -0400
+Subject: [acs-r] acs.tables.install() question
+In-Reply-To: <733e26ce1aa8491f8d67e1d3715bccfe@dhhs.nh.gov>
+References: <86woluy5an.wl-eglenn@mit.edu>
+	<328914c6513b4198930e87d3be632abc@dhhs.nh.gov>
+	<86tvgyy3xp.wl-eglenn@mit.edu>
+	<aebf047d-bc26-188f-24a3-b599a2ae7280@brandeis.edu>
+	<733e26ce1aa8491f8d67e1d3715bccfe@dhhs.nh.gov>
+Message-ID: <d139d366-3582-29a7-b067-0423ff07a2fc@brandeis.edu>
+
+Michael,
+
+Perfect!? This worked.
+
+Many thanks!
+
+Elizabeth Tighe, Ph.D.
+Research Scientist
+Steinhardt Social Research Institute
+Brandeis University
+781.736.3824
+
+On 8/6/2019 2:23 PM, Laviolette, Michael wrote:
+> Hi Liz,
+>
+> I recently found a solution and called it to Ezra's attention. Delete the .gz files from the incorrect location where they're downloaded. Then run this code:
+>
+> filelist <- readLines("http://web.mit.edu/eglenn/www/acs/acs-variables/filelist.txt")
+>    dir.create(file.path(system.file(package = "acs"), "extdata"), showWarnings = FALSE)
+>    for (i in filelist) {
+>      download.file(url =
+>                      paste0("http://web.mit.edu/eglenn/www/acs/acs-variables/", i),
+>                    destfile = file.path(system.file("extdata", package = "acs"), i))}
+>
+> I tested it on my Windows system and it seemed to work--the .gz files should now have the correct name (no leading "extdata" and appear in the correct subfolder ("extdata"). Try it and let me know how it works. Thanks!
+>
+> Michael Laviolette PhD MPH
+> Chronic Disease Epidemiologist
+> Bureau of Population Health and Community Services
+> New Hampshire Division of Public Health Services
+> 29 Hazen Drive
+> Concord, NH 03301-6504
+> (603) 271-4568
+> Michael.Laviolette at dhhs.nh.gov
+> "We Protect, Promote and Improve the Health and Well-Being of ALL People in New Hampshire through Leadership, Expertise, and Partnership."
+>
+>
+>
+> -----Original Message-----
+> From: acs-r-bounces at mit.edu <acs-r-bounces at mit.edu> On Behalf Of Elizabeth Tighe
+> Sent: Tuesday, August 6, 2019 2:15 PM
+> To: acs-r at mit.edu
+> Subject: [acs-r] acs.tables.install() question
+>
+>   EXTERNAL:  Do not open attachments or click on links unless you recognize and trust the sender.
+>
+> Hi,
+>
+>
+>
+> I've run the acs.tables.install() command and see that .gz files have
+>
+> been downloaded to C:\Program Files\R\R-3.6.0\library\acs directory, but
+>
+> acs.fetch still defaults to URL downloads. Have copied the .gz files
+>
+> into the /extdata subdirectory based on comments on listserv, but fetch
+>
+> still directs to URL. (running on windows machine).
+>
+>
+>
+> Any tips/suggestions would be appreciated!
+>
+>
+>
+> Thanks,
+>
+> Liz
+>
+>
+>
+> Elizabeth Tighe, Ph.D.
+>
+> Research Scientist
+>
+> Steinhardt Social Research Institute
+>
+> Brandeis University
+>
+> 781.736.3824
+>
+>
+>
+>
+>
+> _______________________________________________
+>
+> acs-r mailing list
+>
+> acs-r at mit.edu
+>
+> https://urldefense.proofpoint.com/v2/url?u=http-3A__mailman.mit.edu_mailman_listinfo_acs-2Dr&d=DwICAg&c=vYl7KJMDeuM7F-Nqf_hfailBifPmyspo7hrJGlNN7nU&r=A-NFPWpVnTqH3_lfE4EaPrGH70GxaybCJOqSqCTkLLY&m=QAL8AGnyWUhY1J9Sq_xvCnNgYYsXQ6J-OGouy_NuU2M&s=EoZtIjGHgbdKkyHa-HirFBxygtjUZlh6J2ZfjB7E-_w&e=
+>
+
+

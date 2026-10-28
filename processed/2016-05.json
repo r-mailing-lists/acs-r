@@ -1,0 +1,75 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-05",
+  "messages": [
+    {
+      "id": "msg-3340d0fceed7",
+      "message_id": "<66E3B0FC-A467-449A-A079-DFF930BDE094@hwerealestate.com>",
+      "from_name": "Tim Kiely",
+      "from_email_hash": "ee05955a383ae36c08bd0be322f0784deee73f11e5d4d809b49356e3d6811c80",
+      "date": "2016-05-05T20:25:08Z",
+      "subject": "[acs-r] Reference for ACS table numbers?",
+      "subject_clean": "[acs-r] Reference for ACS table numbers?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi - If I?m interested in looking up a specific table in ACS, is there a lookup table? Unfortunately, sometimes using ?acs.lookup? returns a frustratingly high number of results. Thanks!\n\n\n--\nTim Kiely\n+1-978-590-7176\nHodges Ward Elliott, Inc.\n1140 Avenue of the Americas, 19th Floor\nNew York, NY 10036\nwww.hwerealestate.com<http://www.hwerealestate.com/>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160505/07651554/attachment.html",
+      "body_snippet": "Hi - If I?m interested in looking up a specific table in ACS, is there a lookup table? Unfortunately, sometimes using ?acs.lookup? returns a frustratingly high number of results. Thanks!\n\n\n--\nTim Kiel",
+      "thread_id": "thread-3340d0fceed7",
+      "thread_depth": 0,
+      "month": "2016-05"
+    },
+    {
+      "id": "msg-371ec54162a4",
+      "message_id": "<86d1out5sf.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-05-10T13:13:20Z",
+      "subject": "[acs-r] Reference for ACS table numbers?",
+      "subject_clean": "[acs-r] Reference for ACS table numbers?",
+      "in_reply_to": "<66E3B0FC-A467-449A-A079-DFF930BDE094@hwerealestate.com>",
+      "references": [
+        "<66E3B0FC-A467-449A-A079-DFF930BDE094@hwerealestate.com>"
+      ],
+      "body_plain": "acs.lookup is really a pretty crude tool -- most helpful when you know\nthe table number and just want to see the variable names, or when you\nare looking for some particular needle in the haystack (e.g., variable\nabout the \"Urdu\" language).  Other than that, you just get too many\nhits, as you note.\n\nProbably a better source would be th CensusReporter site at\n<https://censusreporter.org/>.\n\n--Ezra\n\nOn Thu, 05 May 2016 16:25:08 -0400, Tim Kiely wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; utf-8 (base64)>]\n> [1.2  <text/html; utf-8 (base64)>]\n> Hi - If I?m interested in looking up a specific table in ACS, is there a lookup table? Unfortunately,\n> sometimes using ?acs.lookup? returns a frustratingly high number of results. Thanks!\n> \n> -- \n> \n> Tim Kiely\n> \n> +1-978-590-7176\n> \n> Hodges Ward Elliott, Inc.\n> \n> 1140 Avenue of the Americas, 19th Floor\n> \n> New York, NY 10036\n> \n> www.hwerealestate.com\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "acs.lookup is really a pretty crude tool -- most helpful when you know\nthe table number and just want to see the variable names, or when you\nare looking for some particular needle in the haystack (e.g",
+      "thread_id": "thread-3340d0fceed7",
+      "thread_depth": 1,
+      "month": "2016-05"
+    },
+    {
+      "id": "msg-6e04d30c65b3",
+      "message_id": "<CAEO2ku+oL8zt6Jvur5w8sgtmPzQh6AQFu_fiKPxVh7EVYKz8Eg@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2016-05-10T23:10:40Z",
+      "subject": "[acs-r] Reference for ACS table numbers?",
+      "subject_clean": "[acs-r] Reference for ACS table numbers?",
+      "in_reply_to": "<86d1out5sf.wl-eglenn@mit.edu>",
+      "references": [
+        "<66E3B0FC-A467-449A-A079-DFF930BDE094@hwerealestate.com>",
+        "<86d1out5sf.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Ezra,\n\nI'm curious - do you find census reporter easier to use than American\nFactFinder? I've heard quite a bit about Census Reporter but haven't used\nit myself.\n\nAri\n\n\n\nOn Tue, May 10, 2016 at 6:13 AM, Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> acs.lookup is really a pretty crude tool -- most helpful when you know\n> the table number and just want to see the variable names, or when you\n> are looking for some particular needle in the haystack (e.g., variable\n> about the \"Urdu\" language).  Other than that, you just get too many\n> hits, as you note.\n>\n> Probably a better source would be th CensusReporter site at\n> <https://censusreporter.org/>.\n>\n> --Ezra\n>\n> On Thu, 05 May 2016 16:25:08 -0400, Tim Kiely wrote:\n> >\n> > [1  <multipart/alternative (7bit)>]\n> > [1.1  <text/plain; utf-8 (base64)>]\n> > [1.2  <text/html; utf-8 (base64)>]\n> > Hi - If I?m interested in looking up a specific table in ACS, is there a\n> lookup table? Unfortunately,\n> > sometimes using ?acs.lookup? returns a frustratingly high number of\n> results. Thanks!\n> >\n> > --\n> >\n> > Tim Kiely\n> >\n> > +1-978-590-7176\n> >\n> > Hodges Ward Elliott, Inc.\n> >\n> > 1140 Avenue of the Americas, 19th Floor\n> >\n> > New York, NY 10036\n> >\n> > www.hwerealestate.com\n> >\n> >\n> > [2  <text/plain; us-ascii (7bit)>]\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |\n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160510/ae2fcec8/attachment.html",
+      "body_snippet": "Ezra,\n\nI'm curious - do you find census reporter easier to use than American\nFactFinder? I've heard quite a bit about Census Reporter but haven't used\nit myself.\n\nAri\n\n\n\nOn Tue, May 10, 2016 at 6:13 A",
+      "thread_id": "thread-3340d0fceed7",
+      "thread_depth": 2,
+      "month": "2016-05"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-3340d0fceed7",
+      "subject": "[acs-r] Reference for ACS table numbers?",
+      "message_count": 3,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Tim Kiely",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2016-05-05T20:25:08Z",
+      "last_reply": "2016-05-10T23:10:40Z",
+      "root_message_id": "msg-3340d0fceed7"
+    }
+  ]
+}

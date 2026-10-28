@@ -1,0 +1,36 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-06",
+  "messages": [
+    {
+      "id": "msg-9a02374089f9",
+      "message_id": "<CAHNWBy1+KzdOWbwyb73fCa_Zp0ALEZRxfxmq4EHdodCsSAzJFw@mail.gmail.com>",
+      "from_name": "Chris Cambron",
+      "from_email_hash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+      "date": "2016-06-29T21:50:10Z",
+      "subject": "[acs-r] Block group level employment status data?",
+      "subject_clean": "[acs-r] Block group level employment status data?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi ACS users,\nHas anyone been able to use the R package to gather block group level\nemployment status data for the 2014 5-year estimates (or any other year)?\n\nI've tried the following tables and they produce all NA's:\n\n   - B23001 Sex By Age By Employment Status For the Population 16 Years and\n   Over\n   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=B23001>\n\n   - B23025 Employment Status For the Population 16 Years and Over\n   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=B23025>\n   - C18120 Employment Status By Disability Status\n   <https://www.socialexplorer.com/data/ACS2014_5yr/metadata/?ds=ACS14_5yr&table=C18120>\n\n\nThe Census Bureau has released block group level employment data for\n2006-2010 <http://www.census.gov/people/laborforce/about/acs_employ.html>\nand says it should be available at the block group level for the 2014\n5-year estimates here <https://ask.census.gov/faq.php?id=5000&faqId=8280>.\n\nAny ideas would be most helpful.\nThanks!\n\n*Chris Cambron, MSW, MPP*\nDoctoral Candidate\nSocial Development Research Group\nSchool of Social Work   |  University of Washington\nccambron at uw.edu  |  www.sdrg.org\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160629/d3159afb/attachment.html",
+      "body_snippet": "Hi ACS users,\nHas anyone been able to use the R package to gather block group level\nemployment status data for the 2014 5-year estimates (or any other year)?\n\nI've tried the following tables and they ",
+      "thread_id": "thread-9a02374089f9",
+      "thread_depth": 0,
+      "month": "2016-06"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-9a02374089f9",
+      "subject": "[acs-r] Block group level employment status data?",
+      "message_count": 1,
+      "participants": [
+        "Chris Cambron"
+      ],
+      "started": "2016-06-29T21:50:10Z",
+      "last_reply": "2016-06-29T21:50:10Z",
+      "root_message_id": "msg-9a02374089f9"
+    }
+  ]
+}

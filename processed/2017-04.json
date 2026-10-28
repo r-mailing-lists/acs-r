@@ -1,0 +1,84 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-04",
+  "messages": [
+    {
+      "id": "msg-9ea04ee2aa39",
+      "message_id": "<86r315mnkm.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-04-06T17:51:37Z",
+      "subject": "[acs-r] Extended Interruption for the Census Data API",
+      "subject_clean": "[acs-r] Extended Interruption for the Census Data API",
+      "in_reply_to": "<17131865.10761@subscriptions.census.gov>",
+      "references": [
+        "<17131865.10761@subscriptions.census.gov>"
+      ],
+      "body_plain": "FYI -- this might affect users of the acs.R package.  Sorry.\n\n--Ezra\n\nOn Thu, 06 Apr 2017 13:05:29 -0400, U S Census Bureau wrote:\n> \n> We are currently experiencing an extended interruption in service                         \n> for the Census data API. We are working to resolve the issue and                          \n> apologize for any inconvenience.                                                          \n> \n> ------------------------------------------------------------------------------------------\n> This is an official email from the U.S. Census Bureau. If you have any                    \n> questions or comments, please contact us (                                                \n> http://www.census.gov/about/contact-us.html).                                             \n> *\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "FYI -- this might affect users of the acs.R package.  Sorry.\n\n--Ezra\n\nOn Thu, 06 Apr 2017 13:05:29 -0400, U S Census Bureau wrote:\n> \n> We are currently experiencing an extended interruption in servic",
+      "thread_id": "thread-9ea04ee2aa39",
+      "thread_depth": 0,
+      "month": "2017-04"
+    },
+    {
+      "id": "msg-37fd8d93be5e",
+      "message_id": "<DM5PR04MB0300E5C01EB75607ACA8BF39B00D0@DM5PR04MB0300.namprd04.prod.outlook.com>",
+      "from_name": "Jonah Newman",
+      "from_email_hash": "4b6de00a1c2fa2dfe163031a9464f2349576f4edcaae097d3c5e818087583593",
+      "date": "2017-04-06T21:53:36Z",
+      "subject": "[acs-r] Error when trying to fetch data",
+      "subject_clean": "[acs-r] Error when trying to fetch data",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi all,\n\nI'm trying to fetch data from table B03002 using a custom geography of all zipcodes in Illinois. I have a dataframe of Illinois zip codes (zipcodes) with the zip codes as integers in the first column. Then, I run the following acs.fetch:\n\n\ndata <- acs.fetch(endyear=2014, span=5, geography=geo.make(zip.code=zipcodes[,1]), table.number=\"B03002\", dataset=\"acs\")\n\nBut I keep getting this error:\n\nError: evaluation nested too deeply: infinite recursion / options(expressions=)?\nError during wrapup: evaluation nested too deeply: infinite recursion / options(expressions=)?\n\nWhat am I doing wrong? Can I not use zipcodes in this way? Any help would be greatly appreciated!\n\nThanks!\nJonah\n\n[cid:image001.jpg at 01D1EBF6.55DD6570]<http://chicagoreporter.com/>\n\nJonah Newman\nDatabase Reporter\n111 W. Jackson Blvd. | Suite 820 | Chicago, IL | 60604\nOffice (312) 673-3807 | Cell (312) 857-8675 | Twitter @jonahshai<https://twitter.com/jonahshai>\n\n________________________________\nInvestigating race and poverty since 1972 | Facebook<http://facebook.com/TheChicagoReporter> | Twitter<http://twitter.com/chicagoreporter> | Newsletter<http://chicagoreporter.com/signup> | Donate<https://salsa3.salsalabs.com/o/50480/p/salsa/donation/common/public/?donate_page_KEY=8223> | Website<http://chicagoreporter.com/>\n\nCheck out Settling for Misconduct<http://chicagoreporter.com/settlements>, our database of police settlements in Chicago\n\n\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170406/079b3686/attachment-0001.html\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: image001.jpg\nType: image/jpeg\nSize: 13270 bytes\nDesc: image001.jpg\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20170406/079b3686/attachment-0001.jpg",
+      "body_snippet": "Hi all,\n\nI'm trying to fetch data from table B03002 using a custom geography of all zipcodes in Illinois. I have a dataframe of Illinois zip codes (zipcodes) with the zip codes as integers in the firs",
+      "thread_id": "thread-37fd8d93be5e",
+      "thread_depth": 0,
+      "month": "2017-04"
+    },
+    {
+      "id": "msg-a52288fd5826",
+      "message_id": "<86bms9ma9a.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-04-06T22:39:13Z",
+      "subject": "[acs-r] Error when trying to fetch data",
+      "subject_clean": "[acs-r] Error when trying to fetch data",
+      "in_reply_to": "<DM5PR04MB0300E5C01EB75607ACA8BF39B00D0@DM5PR04MB0300.namprd04.prod.outlook.com>",
+      "references": [
+        "<DM5PR04MB0300E5C01EB75607ACA8BF39B00D0@DM5PR04MB0300.namprd04.prod.outlook.com>"
+      ],
+      "body_plain": "Hmm.  I tried something similar with a different (partial) list of\nzipcodes.  Can you try with subset of your zipcodes set and see if it\nworks:\n\neg:\n\n> acs.fetch(endyear=2014, span=5, geography=geo.make(zip.code=zipcodes[1:10,1]), table.number=\"B03002\", dataset=\"acs\")\n\n> acs.fetch(endyear=2014, span=5, geography=geo.make(zip.code=zipcodes[15:20,1]), table.number=\"B03002\", dataset=\"acs\")\n\n> acs.fetch(endyear=2014, span=5, geography=geo.make(zip.code=zipcodes[30:40,1]), table.number=\"B03002\", dataset=\"acs\")\n\nAnything?\n\n\nOn Thu, 06 Apr 2017 17:53:36 -0400, Jonah Newman wrote:\n> \n> [1  <multipart/related (7bit)>]\n> [1.1  <multipart/alternative (7bit)>]\n> [1.1.1  <text/plain; us-ascii (quoted-printable)>]\n> [1.1.2  <text/html; us-ascii (quoted-printable)>]\n> Hi all,\n> \n> I?m trying to fetch data from table B03002 using a custom geography of all zipcodes in\n> Illinois. I have a dataframe of Illinois zip codes (zipcodes) with the zip codes as\n> integers in the first column. Then, I run the following acs.fetch:\n> \n> data <- acs.fetch(endyear=2014, span=5, geography=geo.make(zip.code=zipcodes[,1]), table.number=\"B03002\", dataset=\"acs\")\n> \n> But I keep getting this error:\n> \n> Error: evaluation nested too deeply: infinite recursion / options(expressions=)?\n> \n> Error during wrapup: evaluation nested too deeply: infinite recursion / options\n> (expressions=)?\n> \n> What am I doing wrong? Can I not use zipcodes in this way? Any help would be greatly\n> appreciated!\n> \n> Thanks!\n> \n> Jonah\n> \n>                         Jonah Newman                                    \n> cid:image001.jpg at 01D1EB                                                 \n>                         Database Reporter                               \n>                                                                         \n>                         111 W. Jackson Blvd. | Suite 820 | Chicago, IL |\n>                         60604                                           \n>                                                                         \n>                         Office (312) 673-3807 | Cell (312) 857-8675 |   \n>                         Twitter @jonahshai                              \n>                                                                         \n> ------------------------------------------------------------------------\n>                                                                         \n> Investigating race and poverty since 1972 | Facebook | Twitter |        \n> Newsletter | Donate | Website                                           \n> \n> Check out Settling for Misconduct, our database of police settlements in\n> Chicago                                                                 \n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Hmm.  I tried something similar with a different (partial) list of\nzipcodes.  Can you try with subset of your zipcodes set and see if it\nworks:\n\neg:\n\n> acs.fetch(endyear=2014, span=5, geography=geo.ma",
+      "thread_id": "thread-37fd8d93be5e",
+      "thread_depth": 1,
+      "month": "2017-04"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-9ea04ee2aa39",
+      "subject": "[acs-r] Extended Interruption for the Census Data API",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2017-04-06T17:51:37Z",
+      "last_reply": "2017-04-06T17:51:37Z",
+      "root_message_id": "msg-9ea04ee2aa39"
+    },
+    {
+      "id": "thread-37fd8d93be5e",
+      "subject": "[acs-r] Error when trying to fetch data",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Jonah Newman"
+      ],
+      "started": "2017-04-06T21:53:36Z",
+      "last_reply": "2017-04-06T22:39:13Z",
+      "root_message_id": "msg-37fd8d93be5e"
+    }
+  ]
+}

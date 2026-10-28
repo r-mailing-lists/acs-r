@@ -1,0 +1,1112 @@
+From coblentz at mit.edu  Thu Mar  1 09:01:35 2018
+From: coblentz at mit.edu (Jacob Coblentz)
+Date: Thu, 1 Mar 2018 14:01:35 +0000
+Subject: [acs-r] Error in downloading 2016 census data?
+Message-ID: <3093FA0E-B3C1-459B-894C-65F2718ED511@mit.edu>
+
+require(acs)
+api.key.install(key=my_key)
+all_counties<-geo.make(state="*",county="*")
+race_table<-acs.fetch(endyear = 2016, span=1, geography = all_counties, table.number = "B02001", col.names = "pretty")
+Error in data.frame(variable.code = names, table.number = table.numbers,  : 
+  arguments imply differing number of rows: 3, 5
+
+
+What?s up with this error?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180301/0be023e8/attachment.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 1847 bytes
+Desc: not available
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20180301/0be023e8/attachment.bin
+
+From eglenn at mit.edu  Thu Mar  1 10:23:51 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 01 Mar 2018 10:23:51 -0500
+Subject: [acs-r] Error in downloading 2016 census data?
+In-Reply-To: <3093FA0E-B3C1-459B-894C-65F2718ED511@mit.edu>
+References: <3093FA0E-B3C1-459B-894C-65F2718ED511@mit.edu>
+Message-ID: <86bmg7lszc.wl-eglenn@mit.edu>
+
+
+Ugh.  Here's the deal, I think:
+
+It seems that the census folks have *once again* changed the format of
+the ACS variable lookup code XML files, which is messing up the
+package -- sorry about that.  (Each year has a different set of
+variable code tables, so this problem only affects the latest one,
+2016.)
+
+Basically, at this point, the package needs to make all sorts of
+little corrections for each different endyear/span combination.  I'll
+try to troubleshoot and get it to work. 
+
+In the meanwhile, here's a clever trick you can use to trick the
+package to use the variable numbers from a previous year (which is
+safe, unless the variable numbers change, which is pretty rare):
+
+# save a lookup from a year that works
+a=acs.lookup(table.number = "B02001", endyear=2015, span=5)
+
+# use this in your new fetch:
+acs.fetch(geography = all_counties, variable=a, endyear=2016, span=5)
+
+
+Ta-da!
+
+Let me know if that sort of thing works, or if you have more questions.
+
+
+--Ezra
+
+
+
+On Thu, 01 Mar 2018 09:01:35 -0500, Jacob Coblentz wrote:
+> 
+> [1  <multipart/signed (7bit)>]
+> [1.1  <multipart/alternative (7bit)>]
+> [1.1.1  <text/plain; utf-8 (quoted-printable)>]
+> [1.1.2  <text/html; utf-8 (quoted-printable)>]
+> require(acs)
+> api.key.install(key=my_key)
+> all_counties<-geo.make(state="*",county="*")
+> race_table<-acs.fetch(endyear = 2016, span=1, geography = all_counties, table.number = "B02001", col.names = "pretty")
+> 
+> Error in data.frame(variable.code = names, table.number = table.numbers,  : 
+>   arguments imply differing number of rows: 3, 5
+> 
+> What?s up with this error?
+> 
+> 
+> [1.2 smime.p7s <application/pkcs7-signature (base64)>]
+> Bad signature from BFFC03C590AF469434E317E8CFA9EE5397231274 /CN=Jacob Coblentz/OU=Client CA v1/O=Massachusetts Institute of Technology/ST=Massachusetts/C=US/EMail=coblentz at MIT.EDU
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Thu Mar  1 12:05:31 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 01 Mar 2018 12:05:31 -0500
+Subject: [acs-r] Error in downloading 2016 census data?
+In-Reply-To: <86bmg7lszc.wl-eglenn@mit.edu>
+References: <3093FA0E-B3C1-459B-894C-65F2718ED511@mit.edu>
+	<86bmg7lszc.wl-eglenn@mit.edu>
+Message-ID: <86y3jbk9pg.wl-eglenn@mit.edu>
+
+
+PS: Is it also possible that the tract-level 2016/1year ACS data is
+not available via the API (yet)?  See
+<https://api.census.gov/data/2016/acs/acs1/geography.html>.
+
+I am able to get state and county data for 2016/1yr, but not tract.
+
+--Ezra
+
+On Thu, 01 Mar 2018 10:23:51 -0500, Ezra Haber Glenn wrote:
+> 
+> 
+> Ugh.  Here's the deal, I think:
+> 
+> It seems that the census folks have *once again* changed the format of
+> the ACS variable lookup code XML files, which is messing up the
+> package -- sorry about that.  (Each year has a different set of
+> variable code tables, so this problem only affects the latest one,
+> 2016.)
+> 
+> Basically, at this point, the package needs to make all sorts of
+> little corrections for each different endyear/span combination.  I'll
+> try to troubleshoot and get it to work. 
+> 
+> In the meanwhile, here's a clever trick you can use to trick the
+> package to use the variable numbers from a previous year (which is
+> safe, unless the variable numbers change, which is pretty rare):
+> 
+> # save a lookup from a year that works
+> a=acs.lookup(table.number = "B02001", endyear=2015, span=5)
+> 
+> # use this in your new fetch:
+> acs.fetch(geography = all_counties, variable=a, endyear=2016, span=5)
+> 
+> 
+> Ta-da!
+> 
+> Let me know if that sort of thing works, or if you have more questions.
+> 
+> 
+> --Ezra
+> 
+> 
+> 
+> On Thu, 01 Mar 2018 09:01:35 -0500, Jacob Coblentz wrote:
+> > 
+> > [1  <multipart/signed (7bit)>]
+> > [1.1  <multipart/alternative (7bit)>]
+> > [1.1.1  <text/plain; utf-8 (quoted-printable)>]
+> > [1.1.2  <text/html; utf-8 (quoted-printable)>]
+> > require(acs)
+> > api.key.install(key=my_key)
+> > all_counties<-geo.make(state="*",county="*")
+> > race_table<-acs.fetch(endyear = 2016, span=1, geography = all_counties, table.number = "B02001", col.names = "pretty")
+> > 
+> > Error in data.frame(variable.code = names, table.number = table.numbers,  : 
+> >   arguments imply differing number of rows: 3, 5
+> > 
+> > What?s up with this error?
+> > 
+> > 
+> > [1.2 smime.p7s <application/pkcs7-signature (base64)>]
+> > Bad signature from BFFC03C590AF469434E317E8CFA9EE5397231274 /CN=Jacob Coblentz/OU=Client CA v1/O=Massachusetts Institute of Technology/ST=Massachusetts/C=US/EMail=coblentz at MIT.EDU
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> 
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From eglenn at mit.edu  Thu Mar  1 16:14:03 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 01 Mar 2018 16:14:03 -0500
+Subject: [acs-r] acs version 2.1.3: test-drive it now
+Message-ID: <86sh9jjy78.wl-eglenn@mit.edu>
+
+
+Dear acs-r community:
+
+In order to address some pesky issues related to fetching 2016 ACS
+data and strange census XML variable tables, we've update the package
+with a quick patch.  As a special benefit to our loyal members of the
+the acs.R mailing list (technically: as a way to recruit some
+beta-testers), we are making available a special sneak-peak,
+pre-release version for you to try out.
+
+Pretty much everything should work the same --- no improvements, just
+a patch to allow you to get 2016 data.
+
+*** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+> install.packages("http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz", 
+  clean=T, repos=NULL)
+> acs.tables.install()
+
+If you prefer to download it first, you can grab it from
+<http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz>.  After
+downloading, you can install via the command line:
+
+
+$ R CMD INSTALL acs_2.1.3.tar.gz --clean
+
+
+or via an R session:
+
+
+> install.packages(pkgs="acs_2.1.3.tar.gz", clean=T, repos=NULL)
+> acs.tables.install()
+
+Don't forget to reinstall or "api.key.migrate()" your api key if it
+doesn't seem to have been migrated during install.  I also strongly
+recommend you run "acs.tables.install()" as well -- you only need to
+do this once per installation (or update), and it will really speed up
+the package.
+
+
+
+** Please note: this fix is more of a "workaround" than a true fix:
+   starting with the 2016 release, the Census Bureau changed the
+   format for the XML variable lookup tables and calls to acs.lookup
+   (and acs.fetch) were failing; the quick solution was to simply use
+   the 2015 lookup tables for these requests, which should be safe in
+   most situations, since table numbers and variable codes generally
+   do not change from year to year.  (In some situations this
+   assumption is not true: see
+   https://www.census.gov/programs-surveys/acs/technical-documentation/table-and-geography-changes/2016/5-year.html
+   for details.)
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+From eglenn at mit.edu  Fri Mar  2 11:32:54 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 02 Mar 2018 11:32:54 -0500
+Subject: [acs-r] acs package update / 2.1.3: 2016 5-year data fix
+Message-ID: <861sh21lqh.wl-eglenn@mit.edu>
+
+
+Dear acs.R users:
+
+In order to address some pesky issues related to fetching 2016 ACS
+data, we've updated the acs package with a quick patch. Pretty much
+everything should work the same --- no improvements, no new features,
+just a patch to allow you to get 2016 data.
+
+Please note: this fix is more of a "workaround" than a true fix:
+starting with the 2016 release, the Census Bureau changed the format
+for the XML variable lookup tables and calls to acs.lookup (and
+acs.fetch) were failing; the quick solution was to simply use the 2015
+lookup tables for these requests, which should be safe in most
+situations, since table numbers and variable codes generally do not
+change from year to year. (In some situations this assumption is not
+true: see ?acs.lookup and
+<https://www.census.gov/programs-surveys/acs/technical-documentation/table-and-geography-changes/2016/5-year.html>
+for details.)
+
+No other aspects of the package were changed with this release. 
+
+
+** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+> install.packages("acs", clean=T)
+> acs.tables.install()
+
+If you're updating from a previous version, don't forget to re-install
+or "api.key.migrate()" your api key if it doesn't seem to have been
+migrated during install. We also strongly recommend you run
+"acs.tables.install()" as well ? you only need to do this once per
+installation (or update), and it will really speed up the package.
+
+
+Thanks for using the package, and please continue to let me know if
+you notice any problems or odd behavior.
+
+--Ezra
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From rgramirez at att.net  Fri Mar  2 19:23:43 2018
+From: rgramirez at att.net (Ricardo Ramirez)
+Date: Fri, 02 Mar 2018 18:23:43 -0600
+Subject: [acs-r] acs-r Digest, Vol 43, Issue 2
+Message-ID: <9dwsrobn61grlcr2p241amcl.1520036623823@email.android.com>
+
+I didn't think tract level data were available for the 1-year, only for the 5-year.
+Ricardo
+
+-------- Original message --------
+From: acs-r-request at mit.edu 
+Date: 03/02/2018  11:01 AM  (GMT-06:00) 
+To: acs-r at mit.edu 
+Subject: acs-r Digest, Vol 43, Issue 2 
+
+Send acs-r mailing list submissions to
+	acs-r at mit.edu
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://mailman.mit.edu/mailman/listinfo/acs-r
+or, via email, send a message with subject or body 'help' to
+	acs-r-request at mit.edu
+
+You can reach the person managing the list at
+	acs-r-owner at mit.edu
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of acs-r digest..."
+
+
+Today's Topics:
+
+?? 1. Re: Error in downloading 2016 census data? (Ezra Haber Glenn)
+?? 2. acs version 2.1.3: test-drive it now (Ezra Haber Glenn)
+?? 3. acs package update / 2.1.3: 2016 5-year data fix
+????? (Ezra Haber Glenn)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Thu, 01 Mar 2018 12:05:31 -0500
+From: Ezra Haber Glenn <eglenn at mit.edu>
+Subject: Re: [acs-r] Error in downloading 2016 census data?
+To: Jacob Coblentz <coblentz at mit.edu>
+Cc: acs-r <acs-r at mit.edu>
+Message-ID: <86y3jbk9pg.wl-eglenn at mit.edu>
+Content-Type: text/plain; charset=ISO-8859-7
+
+
+PS: Is it also possible that the tract-level 2016/1year ACS data is
+not available via the API (yet)?? See
+<https://api.census.gov/data/2016/acs/acs1/geography.html>.
+
+I am able to get state and county data for 2016/1yr, but not tract.
+
+--Ezra
+
+On Thu, 01 Mar 2018 10:23:51 -0500, Ezra Haber Glenn wrote:
+> 
+> 
+> Ugh.? Here's the deal, I think:
+> 
+> It seems that the census folks have *once again* changed the format of
+> the ACS variable lookup code XML files, which is messing up the
+> package -- sorry about that.? (Each year has a different set of
+> variable code tables, so this problem only affects the latest one,
+> 2016.)
+> 
+> Basically, at this point, the package needs to make all sorts of
+> little corrections for each different endyear/span combination.? I'll
+> try to troubleshoot and get it to work. 
+> 
+> In the meanwhile, here's a clever trick you can use to trick the
+> package to use the variable numbers from a previous year (which is
+> safe, unless the variable numbers change, which is pretty rare):
+> 
+> # save a lookup from a year that works
+> a=acs.lookup(table.number = "B02001", endyear=2015, span=5)
+> 
+> # use this in your new fetch:
+> acs.fetch(geography = all_counties, variable=a, endyear=2016, span=5)
+> 
+> 
+> Ta-da!
+> 
+> Let me know if that sort of thing works, or if you have more questions.
+> 
+> 
+> --Ezra
+> 
+> 
+> 
+> On Thu, 01 Mar 2018 09:01:35 -0500, Jacob Coblentz wrote:
+> > 
+> > [1? <multipart/signed (7bit)>]
+> > [1.1? <multipart/alternative (7bit)>]
+> > [1.1.1? <text/plain; utf-8 (quoted-printable)>]
+> > [1.1.2? <text/html; utf-8 (quoted-printable)>]
+> > require(acs)
+> > api.key.install(key=my_key)
+> > all_counties<-geo.make(state="*",county="*")
+> > race_table<-acs.fetch(endyear = 2016, span=1, geography = all_counties, table.number = "B02001", col.names = "pretty")
+> > 
+> > Error in data.frame(variable.code = names, table.number = table.numbers,? : 
+> >?? arguments imply differing number of rows: 3, 5
+> > 
+> > What?s up with this error?
+> > 
+> > 
+> > [1.2 smime.p7s <application/pkcs7-signature (base64)>]
+> > Bad signature from BFFC03C590AF469434E317E8CFA9EE5397231274 /CN=Jacob Coblentz/OU=Client CA v1/O=Massachusetts Institute of Technology/ST=Massachusetts/C=US/EMail=coblentz at MIT.EDU
+> > [2? <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> 
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+
+------------------------------
+
+Message: 2
+Date: Thu, 01 Mar 2018 16:14:03 -0500
+From: Ezra Haber Glenn <eglenn at mit.edu>
+Subject: [acs-r] acs version 2.1.3: test-drive it now
+To: acs-r <acs-r at mit.edu>
+Message-ID: <86sh9jjy78.wl-eglenn at mit.edu>
+Content-Type: text/plain; charset=US-ASCII
+
+
+Dear acs-r community:
+
+In order to address some pesky issues related to fetching 2016 ACS
+data and strange census XML variable tables, we've update the package
+with a quick patch.? As a special benefit to our loyal members of the
+the acs.R mailing list (technically: as a way to recruit some
+beta-testers), we are making available a special sneak-peak,
+pre-release version for you to try out.
+
+Pretty much everything should work the same --- no improvements, just
+a patch to allow you to get 2016 data.
+
+*** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+> install.packages("http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz", 
+? clean=T, repos=NULL)
+> acs.tables.install()
+
+If you prefer to download it first, you can grab it from
+<http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz>.? After
+downloading, you can install via the command line:
+
+
+$ R CMD INSTALL acs_2.1.3.tar.gz --clean
+
+
+or via an R session:
+
+
+> install.packages(pkgs="acs_2.1.3.tar.gz", clean=T, repos=NULL)
+> acs.tables.install()
+
+Don't forget to reinstall or "api.key.migrate()" your api key if it
+doesn't seem to have been migrated during install.? I also strongly
+recommend you run "acs.tables.install()" as well -- you only need to
+do this once per installation (or update), and it will really speed up
+the package.
+
+
+
+** Please note: this fix is more of a "workaround" than a true fix:
+?? starting with the 2016 release, the Census Bureau changed the
+?? format for the XML variable lookup tables and calls to acs.lookup
+?? (and acs.fetch) were failing; the quick solution was to simply use
+?? the 2015 lookup tables for these requests, which should be safe in
+?? most situations, since table numbers and variable codes generally
+?? do not change from year to year.? (In some situations this
+?? assumption is not true: see
+?? https://www.census.gov/programs-surveys/acs/technical-documentation/table-and-geography-changes/2016/5-year.html
+?? for details.)
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+------------------------------
+
+Message: 3
+Date: Fri, 02 Mar 2018 11:32:54 -0500
+From: Ezra Haber Glenn <eglenn at mit.edu>
+Subject: [acs-r] acs package update / 2.1.3: 2016 5-year data fix
+To: acs-r <acs-r at mit.edu>
+Message-ID: <861sh21lqh.wl-eglenn at mit.edu>
+Content-Type: text/plain; charset=BIG5
+
+
+Dear acs.R users:
+
+In order to address some pesky issues related to fetching 2016 ACS
+data, we've updated the acs package with a quick patch. Pretty much
+everything should work the same --- no improvements, no new features,
+just a patch to allow you to get 2016 data.
+
+Please note: this fix is more of a "workaround" than a true fix:
+starting with the 2016 release, the Census Bureau changed the format
+for the XML variable lookup tables and calls to acs.lookup (and
+acs.fetch) were failing; the quick solution was to simply use the 2015
+lookup tables for these requests, which should be safe in most
+situations, since table numbers and variable codes generally do not
+change from year to year. (In some situations this assumption is not
+true: see ?acs.lookup and
+<https://www.census.gov/programs-surveys/acs/technical-documentation/table-and-geography-changes/2016/5-year.html>
+for details.)
+
+No other aspects of the package were changed with this release. 
+
+
+** Downloading and installing
+
+To install the updated version, simply fire up an R session and type:
+
+> install.packages("acs", clean=T)
+> acs.tables.install()
+
+If you're updating from a previous version, don't forget to re-install
+or "api.key.migrate()" your api key if it doesn't seem to have been
+migrated during install. We also strongly recommend you run
+"acs.tables.install()" as well ? you only need to do this once per
+installation (or update), and it will really speed up the package.
+
+
+Thanks for using the package, and please continue to let me know if
+you notice any problems or odd behavior.
+
+--Ezra
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+
+------------------------------
+
+_______________________________________________
+acs-r mailing list
+acs-r at mit.edu
+http://mailman.mit.edu/mailman/listinfo/acs-r
+
+
+End of acs-r Digest, Vol 43, Issue 2
+************************************
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180302/f5e1c2bf/attachment-0001.html
+
+From arilamstein at gmail.com  Fri Mar  2 19:32:08 2018
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Fri, 2 Mar 2018 16:32:08 -0800
+Subject: [acs-r] acs-r Digest, Vol 43, Issue 2
+In-Reply-To: <9dwsrobn61grlcr2p241amcl.1520036623823@email.android.com>
+References: <9dwsrobn61grlcr2p241amcl.1520036623823@email.android.com>
+Message-ID: <CAEO2ku+dGoMdPSguFdX3jqvZj27oyfR-QMpukLpsOT7Ybyv0TA@mail.gmail.com>
+
+I think that you are correct here. The Census outlines this here:
+
+https://www.census.gov/programs-surveys/acs/guidance/estimates.html
+
+It looks like the rule of thumb is that 1 year estimates are provided for
+geographies which only have over 65,000 people. However, most tracts only
+have around 4,000 people.
+
+On Fri, Mar 2, 2018 at 4:23 PM, Ricardo Ramirez <rgramirez at att.net> wrote:
+
+> I didn't think tract level data were available for the 1-year, only for
+> the 5-year.
+>
+> Ricardo
+>
+>
+> -------- Original message --------
+> From: acs-r-request at mit.edu
+> Date: 03/02/2018 11:01 AM (GMT-06:00)
+> To: acs-r at mit.edu
+> Subject: acs-r Digest, Vol 43, Issue 2
+>
+> Send acs-r mailing list submissions to
+> acs-r at mit.edu
+>
+> To subscribe or unsubscribe via the World Wide Web, visit
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+> or, via email, send a message with subject or body 'help' to
+> acs-r-request at mit.edu
+>
+> You can reach the person managing the list at
+> acs-r-owner at mit.edu
+>
+> When replying, please edit your Subject line so it is more specific
+> than "Re: Contents of acs-r digest..."
+>
+>
+> Today's Topics:
+>
+>    1. Re: Error in downloading 2016 census data? (Ezra Haber Glenn)
+>    2. acs version 2.1.3: test-drive it now (Ezra Haber Glenn)
+>    3. acs package update / 2.1.3: 2016 5-year data fix
+>       (Ezra Haber Glenn)
+>
+>
+> ----------------------------------------------------------------------
+>
+> Message: 1
+> Date: Thu, 01 Mar 2018 12:05:31 -0500
+> From: Ezra Haber Glenn <eglenn at mit.edu>
+> Subject: Re: [acs-r] Error in downloading 2016 census data?
+> To: Jacob Coblentz <coblentz at mit.edu>
+> Cc: acs-r <acs-r at mit.edu>
+> Message-ID: <86y3jbk9pg.wl-eglenn at mit.edu>
+> Content-Type: text/plain; charset=ISO-8859-7
+>
+>
+> PS: Is it also possible that the tract-level 2016/1year ACS data is
+> not available via the API (yet)?  See
+> <https://api.census.gov/data/2016/acs/acs1/geography.html>.
+>
+> I am able to get state and county data for 2016/1yr, but not tract.
+>
+> --Ezra
+>
+> On Thu, 01 Mar 2018 10:23:51 -0500, Ezra Haber Glenn wrote:
+> >
+> >
+> > Ugh.  Here's the deal, I think:
+> >
+> > It seems that the census folks have *once again* changed the format of
+> > the ACS variable lookup code XML files, which is messing up the
+> > package -- sorry about that.  (Each year has a different set of
+> > variable code tables, so this problem only affects the latest one,
+> > 2016.)
+> >
+> > Basically, at this point, the package needs to make all sorts of
+> > little corrections for each different endyear/span combination.  I'll
+> > try to troubleshoot and get it to work.
+> >
+> > In the meanwhile, here's a clever trick you can use to trick the
+> > package to use the variable numbers from a previous year (which is
+> > safe, unless the variable numbers change, which is pretty rare):
+> >
+> > # save a lookup from a year that works
+> > a=acs.lookup(table.number = "B02001", endyear=2015, span=5)
+> >
+> > # use this in your new fetch:
+> > acs.fetch(geography = all_counties, variable=a, endyear=2016, span=5)
+> >
+> >
+> > Ta-da!
+> >
+> > Let me know if that sort of thing works, or if you have more questions.
+> >
+> >
+> > --Ezra
+> >
+> >
+> >
+> > On Thu, 01 Mar 2018 09:01:35 -0500, Jacob Coblentz wrote:
+> > >
+> > > [1  <multipart/signed (7bit)>]
+> > > [1.1  <multipart/alternative (7bit)>]
+> > > [1.1.1  <text/plain; utf-8 (quoted-printable)>]
+> > > [1.1.2  <text/html; utf-8 (quoted-printable)>]
+> > > require(acs)
+> > > api.key.install(key=my_key)
+> > > all_counties<-geo.make(state="*",county="*")
+> > > race_table<-acs.fetch(endyear = 2016, span=1, geography =
+> all_counties, table.number = "B02001", col.names = "pretty")
+> > >
+> > > Error in data.frame(variable.code = names, table.number =
+> table.numbers,  :
+> > >   arguments imply differing number of rows: 3, 5
+> > >
+> > > What?s up with this error?
+> > >
+> > >
+> > > [1.2 smime.p7s <application/pkcs7-signature (base64)>]
+> > > Bad signature from BFFC03C590AF469434E317E8CFA9EE5397231274 /CN=Jacob
+> Coblentz/OU=Client CA v1/O=Massachusetts Institute of
+> Technology/ST=Massachusetts/C=US/EMail=coblentz at MIT.EDU
+> > > [2  <text/plain; us-ascii (7bit)>]
+> > > _______________________________________________
+> > > acs-r mailing list
+> > > acs-r at mit.edu
+> > > http://mailman.mit.edu/mailman/listinfo/acs-r
+> >
+> > --
+> > Ezra Haber Glenn, AICP
+> > Department of Urban Studies and Planning
+> > Massachusetts Institute of Technology
+> > 77 Massachusetts Ave., Room 7-346
+> > Cambridge, MA 02139
+> > eglenn at mit.edu
+> > http://dusp.mit.edu/faculty/ezra-glenn
+> > 617.253.2024 <(617)%20253-2024> (w)
+> > 617.721.7131 <(617)%20721-7131> (c)
+> >
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 <(617)%20253-2024> (w)
+> 617.721.7131 <(617)%20721-7131> (c)
+>
+>
+>
+> ------------------------------
+>
+> Message: 2
+> Date: Thu, 01 Mar 2018 16:14:03 -0500
+> From: Ezra Haber Glenn <eglenn at mit.edu>
+> Subject: [acs-r] acs version 2.1.3: test-drive it now
+> To: acs-r <acs-r at mit.edu>
+> Message-ID: <86sh9jjy78.wl-eglenn at mit.edu>
+> Content-Type: text/plain; charset=US-ASCII
+>
+>
+> Dear acs-r community:
+>
+> In order to address some pesky issues related to fetching 2016 ACS
+> data and strange census XML variable tables, we've update the package
+> with a quick patch.  As a special benefit to our loyal members of the
+> the acs.R mailing list (technically: as a way to recruit some
+> beta-testers), we are making available a special sneak-peak,
+> pre-release version for you to try out.
+>
+> Pretty much everything should work the same --- no improvements, just
+> a patch to allow you to get 2016 data.
+>
+> *** Downloading and installing
+>
+> To install the updated version, simply fire up an R session and type:
+>
+> > install.packages("http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz",
+>   clean=T, repos=NULL)
+> > acs.tables.install()
+>
+> If you prefer to download it first, you can grab it from
+> <http://web.mit.edu/eglenn/www/acs/acs_2.1.3.tar.gz>.  After
+> downloading, you can install via the command line:
+>
+>
+> $ R CMD INSTALL acs_2.1.3.tar.gz --clean
+>
+>
+> or via an R session:
+>
+>
+> > install.packages(pkgs="acs_2.1.3.tar.gz", clean=T, repos=NULL)
+> > acs.tables.install()
+>
+> Don't forget to reinstall or "api.key.migrate()" your api key if it
+> doesn't seem to have been migrated during install.  I also strongly
+> recommend you run "acs.tables.install()" as well -- you only need to
+> do this once per installation (or update), and it will really speed up
+> the package.
+>
+>
+>
+> ** Please note: this fix is more of a "workaround" than a true fix:
+>    starting with the 2016 release, the Census Bureau changed the
+>    format for the XML variable lookup tables and calls to acs.lookup
+>    (and acs.fetch) were failing; the quick solution was to simply use
+>    the 2015 lookup tables for these requests, which should be safe in
+>    most situations, since table numbers and variable codes generally
+>    do not change from year to year.  (In some situations this
+>    assumption is not true: see
+>    https://www.census.gov/programs-surveys/acs/
+> technical-documentation/table-and-geography-changes/2016/5-year.html
+>    for details.)
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 <(617)%20253-2024> (w)
+> 617.721.7131 <(617)%20721-7131> (c)
+>
+>
+> ------------------------------
+>
+> Message: 3
+> Date: Fri, 02 Mar 2018 11:32:54 -0500
+> From: Ezra Haber Glenn <eglenn at mit.edu>
+> Subject: [acs-r] acs package update / 2.1.3: 2016 5-year data fix
+> To: acs-r <acs-r at mit.edu>
+> Message-ID: <861sh21lqh.wl-eglenn at mit.edu>
+> Content-Type: text/plain; charset=BIG5
+>
+>
+> Dear acs.R users:
+>
+> In order to address some pesky issues related to fetching 2016 ACS
+> data, we've updated the acs package with a quick patch. Pretty much
+> everything should work the same --- no improvements, no new features,
+> just a patch to allow you to get 2016 data.
+>
+> Please note: this fix is more of a "workaround" than a true fix:
+> starting with the 2016 release, the Census Bureau changed the format
+> for the XML variable lookup tables and calls to acs.lookup (and
+> acs.fetch) were failing; the quick solution was to simply use the 2015
+> lookup tables for these requests, which should be safe in most
+> situations, since table numbers and variable codes generally do not
+> change from year to year. (In some situations this assumption is not
+> true: see ?acs.lookup and
+> <https://www.census.gov/programs-surveys/acs/
+> technical-documentation/table-and-geography-changes/2016/5-year.html>
+> for details.)
+>
+> No other aspects of the package were changed with this release.
+>
+>
+> ** Downloading and installing
+>
+> To install the updated version, simply fire up an R session and type:
+>
+> > install.packages("acs", clean=T)
+> > acs.tables.install()
+>
+> If you're updating from a previous version, don't forget to re-install
+> or "api.key.migrate()" your api key if it doesn't seem to have been
+> migrated during install. We also strongly recommend you run
+> "acs.tables.install()" as well ? you only need to do this once per
+> installation (or update), and it will really speed up the package.
+>
+>
+> Thanks for using the package, and please continue to let me know if
+> you notice any problems or odd behavior.
+>
+> --Ezra
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 <(617)%20253-2024> (w)
+> 617.721.7131 <(617)%20721-7131> (c)
+>
+>
+>
+> ------------------------------
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+> End of acs-r Digest, Vol 43, Issue 2
+> ************************************
+>
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180302/3987463a/attachment-0001.html
+
+From eglenn at mit.edu  Wed Mar  7 16:30:56 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Wed, 07 Mar 2018 16:30:56 -0500
+Subject: [acs-r] Error in downloading 2016 census data?
+In-Reply-To: <86y3jbk9pg.wl-eglenn@mit.edu>
+References: <3093FA0E-B3C1-459B-894C-65F2718ED511@mit.edu>
+	<86bmg7lszc.wl-eglenn@mit.edu> <86y3jbk9pg.wl-eglenn@mit.edu>
+Message-ID: <86k1uny3n3.wl-eglenn@mit.edu>
+
+
+All that said, if you *were* using span = 5 and endyear = 2016 and
+still ran into problems with tract-level fetching, it could be this:
+
+1) updating the package to 2.1.3 (cures lookup problems)
+
+2) when running geo.make with tracts, do it like this:
+
+> mygeo <- geo.make(state=26,county=081,tract=c("001500","001600","001900","002600"))
+
+The quotation marks keep the leading zeroes from being dropped for
+tract numbers; this didn't matter in the past, but the API seems to be
+enforcing the six-digit rule for tracts starting in 2016.
+
+Let me know if that helps.
+
+--Ezra
+
+On Thu, 01 Mar 2018 12:05:31 -0500, Ezra Haber Glenn wrote:
+> 
+> 
+> PS: Is it also possible that the tract-level 2016/1year ACS data is
+> not available via the API (yet)?  See
+> <https://api.census.gov/data/2016/acs/acs1/geography.html>.
+> 
+> I am able to get state and county data for 2016/1yr, but not tract.
+> 
+> --Ezra
+> 
+> On Thu, 01 Mar 2018 10:23:51 -0500, Ezra Haber Glenn wrote:
+> > 
+> > 
+> > Ugh.  Here's the deal, I think:
+> > 
+> > It seems that the census folks have *once again* changed the format of
+> > the ACS variable lookup code XML files, which is messing up the
+> > package -- sorry about that.  (Each year has a different set of
+> > variable code tables, so this problem only affects the latest one,
+> > 2016.)
+> > 
+> > Basically, at this point, the package needs to make all sorts of
+> > little corrections for each different endyear/span combination.  I'll
+> > try to troubleshoot and get it to work. 
+> > 
+> > In the meanwhile, here's a clever trick you can use to trick the
+> > package to use the variable numbers from a previous year (which is
+> > safe, unless the variable numbers change, which is pretty rare):
+> > 
+> > # save a lookup from a year that works
+> > a=acs.lookup(table.number = "B02001", endyear=2015, span=5)
+> > 
+> > # use this in your new fetch:
+> > acs.fetch(geography = all_counties, variable=a, endyear=2016, span=5)
+> > 
+> > 
+> > Ta-da!
+> > 
+> > Let me know if that sort of thing works, or if you have more questions.
+> > 
+> > 
+> > --Ezra
+> > 
+> > 
+> > 
+> > On Thu, 01 Mar 2018 09:01:35 -0500, Jacob Coblentz wrote:
+> > > 
+> > > [1  <multipart/signed (7bit)>]
+> > > [1.1  <multipart/alternative (7bit)>]
+> > > [1.1.1  <text/plain; utf-8 (quoted-printable)>]
+> > > [1.1.2  <text/html; utf-8 (quoted-printable)>]
+> > > require(acs)
+> > > api.key.install(key=my_key)
+> > > all_counties<-geo.make(state="*",county="*")
+> > > race_table<-acs.fetch(endyear = 2016, span=1, geography = all_counties, table.number = "B02001", col.names = "pretty")
+> > > 
+> > > Error in data.frame(variable.code = names, table.number = table.numbers,  : 
+> > >   arguments imply differing number of rows: 3, 5
+> > > 
+> > > What?s up with this error?
+> > > 
+> > > 
+> > > [1.2 smime.p7s <application/pkcs7-signature (base64)>]
+> > > Bad signature from BFFC03C590AF469434E317E8CFA9EE5397231274 /CN=Jacob Coblentz/OU=Client CA v1/O=Massachusetts Institute of Technology/ST=Massachusetts/C=US/EMail=coblentz at MIT.EDU
+> > > [2  <text/plain; us-ascii (7bit)>]
+> > > _______________________________________________
+> > > acs-r mailing list
+> > > acs-r at mit.edu
+> > > http://mailman.mit.edu/mailman/listinfo/acs-r
+> > 
+> > --
+> > Ezra Haber Glenn, AICP
+> > Department of Urban Studies and Planning
+> > Massachusetts Institute of Technology
+> > 77 Massachusetts Ave., Room 7-346
+> > Cambridge, MA 02139
+> > eglenn at mit.edu 
+> > http://dusp.mit.edu/faculty/ezra-glenn
+> > 617.253.2024 (w)
+> > 617.721.7131 (c)
+> > 
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+> 
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu 
+> http://dusp.mit.edu/faculty/ezra-glenn
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> 
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+

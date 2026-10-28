@@ -1,0 +1,202 @@
+From ccambron at uw.edu  Thu Nov 10 20:47:00 2016
+From: ccambron at uw.edu (Chris Cambron)
+Date: Thu, 10 Nov 2016 17:47:00 -0800
+Subject: [acs-r] working examples of extracting 1990 and 2000 census data
+Message-ID: <CAHNWBy3FPOCah54gaqTB3ZHQTXSn7+hgytfi2HP1JRw=xm1D_A@mail.gmail.com>
+
+Hi all,
+Two questions that I'm guessing you all know something about:
+I am yet to find any working examples around the web for accessing 1990
+census tables at the block group level with the acs package. I'm having a
+great deal of trouble identifying the correct table names for 1990, if
+anyone has been successful at this.
+
+I have lat/long and street address data for a few thousand of addresses.
+Are there suggested methods for an amateur at this stuff to convert these
+into block groups codes? I've found some online tools but only for 2000 or
+2010 block groups.
+Thanks!
+
+
+
+*Chris Cambron, MSW, MPP*
+Doctoral Candidate
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161110/95a9ec06/attachment.html
+
+From jacob.curtis at ttu.edu  Thu Nov 10 18:19:12 2016
+From: jacob.curtis at ttu.edu (Curtis, Jacob)
+Date: Thu, 10 Nov 2016 23:19:12 +0000
+Subject: [acs-r] Can't download data before 2012
+Message-ID: <F80C5CC1-1CF2-4CE5-9910-DB0C9859AA95@ttu.edu>
+
+Greetings!
+
+I can?t seem to download data before 2012. When I run the following code:
+
+regions <- geo.make(us = 1)
+acs.fetch(endyear = 2011, span = 1, geography=regions, table.number= ?B01003?)
+
+I get this error message: "Warning message:
+In (function (endyear, span = 5, dataset = "acs", keyword, table.name,  :
+  As of the date of this version of the acs package
+  no variable?"
+
+It works just fine if I try 2012 or later. I also have the same problem with other tables (e.g., B01001, B17018, B19057). What am I missing?
+
+Also, if this isn?t the right place to ask questions, I apologize.
+
+Thank you for your help!
+
+--
+Jacob D. Curtis
+Graduate Research Assistant
+Research, Evaluation, Measurement & Statistics, Educational Psychology
+Texas Tech University
+
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161110/ffc31852/attachment.html
+
+From FLENK at MARC.ORG  Fri Nov 11 10:35:07 2016
+From: FLENK at MARC.ORG (Frank Lenk)
+Date: Fri, 11 Nov 2016 15:35:07 +0000
+Subject: [acs-r] working examples of extracting 1990 and 2000 census data
+In-Reply-To: <CAHNWBy3FPOCah54gaqTB3ZHQTXSn7+hgytfi2HP1JRw=xm1D_A@mail.gmail.com>
+References: <CAHNWBy3FPOCah54gaqTB3ZHQTXSn7+hgytfi2HP1JRw=xm1D_A@mail.gmail.com>
+Message-ID: <86F91358831A1E45A6999EFF11F6CB4434542590@JAZZ.marc.internal>
+
+If your addresses are all from a single metro, you might try contacting its Metropolitan Planning Organization (MPO) or Council of Governments (COG) to see if they have historical block-group files for their area.  I see you are at the University of Washington.  The MPO/COG in the Seattle areas is the Puget Sound Regional Council (http://www.psrc.org/ ).
+
+Frank
+
+Frank Lenk
+Director of Research Services
+Mid-America Regional Council
+600 Broadway, Suite 200
+Kansas City, MO 64105
+www.marc.org<http://www.marc.org>
+816.474.4240
+flenk at marc.org<mailto:flenk at marc.org>
+816.701.8237
+
+
+
+From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Chris Cambron
+Sent: Thursday, November 10, 2016 7:47 PM
+To: acs-r at mit.edu
+Subject: [acs-r] working examples of extracting 1990 and 2000 census data
+
+Hi all,
+Two questions that I'm guessing you all know something about:
+I am yet to find any working examples around the web for accessing 1990 census tables at the block group level with the acs package. I'm having a great deal of trouble identifying the correct table names for 1990, if anyone has been successful at this.
+
+I have lat/long and street address data for a few thousand of addresses. Are there suggested methods for an amateur at this stuff to convert these into block groups codes? I've found some online tools but only for 2000 or 2010 block groups.
+Thanks!
+
+
+
+Chris Cambron, MSW, MPP
+Doctoral Candidate
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu<mailto:ccambron at uw.edu>  |  www.sdrg.org<http://www.sdrg.org/>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161111/4a88aec8/attachment-0001.html
+
+From eglenn at mit.edu  Mon Nov 14 15:58:11 2016
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 14 Nov 2016 15:58:11 -0500
+Subject: [acs-r] Can't download data before 2012
+In-Reply-To: <F80C5CC1-1CF2-4CE5-9910-DB0C9859AA95@ttu.edu>
+References: <F80C5CC1-1CF2-4CE5-9910-DB0C9859AA95@ttu.edu>
+Message-ID: <86eg2dzsm4.wl-eglenn@mit.edu>
+
+
+Not all tables are available for all years for all geographies, and it
+gets pretty spotty as you get closer back to 2011 and earlier.  From
+<http://www.census.gov/data/developers/data-sets/acs-1year.2011.html":
+
+  Note: 2011 data are only available for Congressional Districts
+
+Sorry!
+
+
+On Thu, 10 Nov 2016 18:19:12 -0500, Curtis, Jacob wrote: > 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; utf-8 (base64)>]
+> [1.2  <text/html; utf-8 (base64)>]
+> Greetings! 
+> 
+> I can?t seem to download data before 2012. When I run the following code:
+> 
+> regions <- geo.make(us = 1)
+> acs.fetch(endyear = 2011, span = 1, geography=regions, table.number= ?B01003?)
+> 
+> I get this error message: "Warning message:
+> In (function (endyear, span = 5, dataset = "acs", keyword, table.name,  :
+>   As of the date of this version of the acs package
+>   no variable?"
+> 
+> It works just fine if I try 2012 or later. I also have the same problem with other tables
+> (e.g., B01001, B17018, B19057). What am I missing?
+> 
+> Also, if this isn?t the right place to ask questions, I apologize. 
+> 
+> Thank you for your help!
+> 
+> -- 
+> Jacob D. Curtis
+> Graduate Research Assistant
+> Research, Evaluation, Measurement & Statistics, Educational Psychology 
+> Texas Tech University
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From arilamstein at gmail.com  Tue Nov 15 12:08:46 2016
+From: arilamstein at gmail.com (arilamstein@gmail.com)
+Date: Tue, 15 Nov 2016 09:08:46 -0800
+Subject: [acs-r] Questions for the Census Bureau?
+Message-ID: <CAEO2ku+BiYjVxkyv9qVQqCmrPNHpBG84_qLe=pWhK-TueLMuEA@mail.gmail.com>
+
+Next week I'm having my first-ever meeting with someone from the Census
+Bureau.
+
+I have a list of questions that I'm planning to ask. But I'd also like to
+pass along questions from others in the R community that use their data.
+
+If you have any questions you'd like me to pass along, please just leave
+them as a comment on this blog post:
+
+http://www.arilamstein.com/blog/2016/11/14/questions-census-bureau/
+
+Ari
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161115/bfdeb1f5/attachment.html
+

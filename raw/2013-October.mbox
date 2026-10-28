@@ -1,0 +1,131 @@
+From eglenn at MIT.EDU  Wed Oct  2 13:48:16 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Wed, 02 Oct 2013 13:48:16 -0400
+Subject: [acs-r] Census API down
+Message-ID: <87fvsjzhr3.wl%eglenn@mit.edu>
+
+
+acs.R users:
+
+Please note, due to the shutdown of the federal government, it appears
+that many federal website are down as well, including the Census API
+(see <http://outage.census.gov/closed.txt>).  As a result, the acs.R
+package is currently unable to download data -- sorry!  If you to use
+acs.fetch or anything related that requires the API, you will
+probably get the following error:
+
+> acs.fetch(geo=geo.make(state=25), table.number="B01003")
+Error in file(file, "rt") : cannot open the connection
+
+I assume that once this all gets sorted out, the site will come right
+back as before.
+
+--Ezra
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From znmeb at znmeb.net  Wed Oct  2 15:55:53 2013
+From: znmeb at znmeb.net (M. Edward (Ed) Borasky)
+Date: Wed, 02 Oct 2013 15:55:53 -0400
+Subject: [acs-r] Census API down
+In-Reply-To: <87fvsjzhr3.wl%eglenn@mit.edu>
+References: <87fvsjzhr3.wl%eglenn@mit.edu>
+Message-ID: <20131002155553.mw0uopdxwo0w8c84-mazro@webmail.spamcop.net>
+
+Quoting Ezra Haber Glenn <eglenn at mit.edu>:
+
+>
+> acs.R users:
+>
+> Please note, due to the shutdown of the federal government, it appears
+> that many federal website are down as well, including the Census API
+> (see <http://outage.census.gov/closed.txt>).  As a result, the acs.R
+> package is currently unable to download data -- sorry!  If you to use
+> acs.fetch or anything related that requires the API, you will
+> probably get the following error:
+>
+>> acs.fetch(geo=geo.make(state=25), table.number="B01003")
+> Error in file(file, "rt") : cannot open the connection
+>
+> I assume that once this all gets sorted out, the site will come right
+> back as before.
+>
+> --Ezra
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-337
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |   
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 (w)
+> 617.721.7131 (c)
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+
+They caught me in the middle of a project, sadly. My code is working  
+but I can't continue with actual use cases until the site comes back  
+up. Meanwhile, I have managed to get CSV dumps of the XML table  
+definitions up on Github for browsing:
+
+https://github.com/znmeb/pdxcensusdata/blob/master/sf1-cheat-sheet.csv
+https://github.com/znmeb/pdxcensusdata/blob/master/acs-cheat-sheet-2011.csv
+https://github.com/znmeb/pdxcensusdata/blob/master/acs-cheat-sheet-2010.csv
+
+-- 
+Twitter: http://twitter.com/znmeb; Computational Journalism on a Stick
+http://znmeb.github.io/CompJournoStick/
+
+Pondering the pandemonium of pontificating pantheism to ponderous  
+pandas since 1994
+
+
+From eglenn at MIT.EDU  Fri Oct 18 15:07:49 2013
+From: eglenn at MIT.EDU (Ezra Haber Glenn)
+Date: Fri, 18 Oct 2013 15:07:49 -0400
+Subject: [acs-r] Census API Back In Action: acs.R is once again fully
+	functional
+Message-ID: <87ppr22y9m.wl%eglenn@mit.edu>
+
+
+Now that the federal government is back on its feet, the Census API is
+serving up data again, and the acs.R package should work like it was
+supposed to.
+
+For example:
+
+> acs.fetch(geo=geo.make(state=25), table.number="B01003")
+ACS DATA: 
+ 2007 -- 2011 ;
+  Estimates w/90% confidence intervals;
+  for different intervals, see confint()
+              B01003_001   
+Massachusetts 6512227 +/- 0
+> 
+
+Hooray!
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

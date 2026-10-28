@@ -1,0 +1,36 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-06",
+  "messages": [
+    {
+      "id": "msg-020f3dad6dd8",
+      "message_id": "<CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>",
+      "from_name": "Chris Cambron",
+      "from_email_hash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+      "date": "2015-07-01T00:12:51Z",
+      "subject": "[acs-r] calling specific block codes",
+      "subject_clean": "[acs-r] calling specific block codes",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi,\nFirst off, this package is great.  Thank you!  Secondly, I'm working with a\nsample of people scattered throughout the country.  Only one or two in some\nstates, hundreds in others.  Can I input a vector of block level fips codes\nto geo.make or acs.fetch so that I'm only access census data for specific\nblock codes?  I've tried a few options but all I can figure is grabbing a\nwhole state at the block level and subsetting those I need.  Any thoughts\nwould be much appreciated.\n\n\nBest,\nChris\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150630/35d5d5b8/attachment.htm",
+      "body_snippet": "Hi,\nFirst off, this package is great.  Thank you!  Secondly, I'm working with a\nsample of people scattered throughout the country.  Only one or two in some\nstates, hundreds in others.  Can I input a v",
+      "thread_id": "thread-020f3dad6dd8",
+      "thread_depth": 0,
+      "month": "2015-06"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-020f3dad6dd8",
+      "subject": "[acs-r] calling specific block codes",
+      "message_count": 1,
+      "participants": [
+        "Chris Cambron"
+      ],
+      "started": "2015-07-01T00:12:51Z",
+      "last_reply": "2015-07-01T00:12:51Z",
+      "root_message_id": "msg-020f3dad6dd8"
+    }
+  ]
+}

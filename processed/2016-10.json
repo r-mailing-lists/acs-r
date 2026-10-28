@@ -1,0 +1,147 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-10",
+  "messages": [
+    {
+      "id": "msg-65f5a53987e0",
+      "message_id": "<CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>",
+      "from_name": "Tiernan Martin",
+      "from_email_hash": "562f97894f3e8e0eb989bbf9cd7f7cf862fdc7165e398f306ae324521f406dc6",
+      "date": "2016-10-25T15:31:07Z",
+      "subject": "[acs-r] Sort acs object before plotting?",
+      "subject_clean": "[acs-r] Sort acs object before plotting?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I love the plotting method that the acs package implements, but if an acs\nobject has many records the resulting graph can be difficult to understand\n(see below).\n\n[image: acs-graph-ex.png]\n\nIs there a good way for arranging the records so that the graph shows them\nin ascending order? My efforts to use `sort()` and `dplyr::arrange()` have\nall resulted in errors.\n\nThanks,\n\nTiernan\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/99c16e5a/attachment-0001.html\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: acs-graph-ex.png\nType: image/png\nSize: 66467 bytes\nDesc: not available\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/99c16e5a/attachment-0001.png",
+      "body_snippet": "I love the plotting method that the acs package implements, but if an acs\nobject has many records the resulting graph can be difficult to understand\n(see below).\n\n[image: acs-graph-ex.png]\n\nIs there a",
+      "thread_id": "thread-65f5a53987e0",
+      "thread_depth": 0,
+      "month": "2016-10"
+    },
+    {
+      "id": "msg-a89cff6ef77e",
+      "message_id": "<86d1iogtzl.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-10-25T18:32:14Z",
+      "subject": "[acs-r] Sort acs object before plotting?",
+      "subject_clean": "[acs-r] Sort acs object before plotting?",
+      "in_reply_to": "<CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>",
+      "references": [
+        "<CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>"
+      ],
+      "body_plain": "Great question.  The trick would be to use order() as an index vector\ninside square brackets.  So if my.data is a acs object and you want to\nplot the first column, an unsorted plot would be:\n\n> plot(my.data[,1])\n\nand a sorted plot might be\n\n> plot(my.data[order(estimate(my.data[,1])),1])\n\nshould do the trick.\n\nIf you're doing a bunch of this sort of thing, or maybe if you want to\nplot one column based on the order of another (say, the percentage of\ncommuters in a tract, by order of the median HH income of the tracts),\nyou could save the indices:\n\n> my.index=order(estimate(my.data[,1]))\n> plot(my.data[my.index, 1])\n\n--Ezra\n\nOn Tue, 25 Oct 2016 11:31:07 -0400, Tiernan Martin wrote:\n> \n> [1  <multipart/related (7bit)>]\n> [1.1  <multipart/alternative (7bit)>]\n> [1.1.1  <text/plain; UTF-8 (7bit)>]\n> [1.1.2  <text/html; UTF-8 (quoted-printable)>]\n> I love the plotting method that the acs package implements, but if an acs object has many\n> records the resulting graph can be difficult to understand (see below).\n> \n> acs-grap\n> \n> Is there a good way for arranging the records so that the graph shows them in ascending\n> order? My efforts to use `sort()` and `dplyr::arrange()` have all resulted in errors.\n> \n> Thanks,\n> \n> Tiernan\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Great question.  The trick would be to use order() as an index vector\ninside square brackets.  So if my.data is a acs object and you want to\nplot the first column, an unsorted plot would be:\n\n> plot(m",
+      "thread_id": "thread-65f5a53987e0",
+      "thread_depth": 1,
+      "month": "2016-10"
+    },
+    {
+      "id": "msg-668e81853673",
+      "message_id": "<CAEo23y4wQLKxx3fD_g_RMuzBo4bz-QpvabrmRtacKo=nswapmw@mail.gmail.com>",
+      "from_name": "Tiernan Martin",
+      "from_email_hash": "562f97894f3e8e0eb989bbf9cd7f7cf862fdc7165e398f306ae324521f406dc6",
+      "date": "2016-10-25T23:26:15Z",
+      "subject": "[acs-r] Sort acs object before plotting?",
+      "subject_clean": "[acs-r] Sort acs object before plotting?",
+      "in_reply_to": "<86d1iogtzl.wl-eglenn@mit.edu>",
+      "references": [
+        "<CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>",
+        "<86d1iogtzl.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Works like a charm! I included a couple examples so folks can see the\nbenefit.\n\nThanks, Ezra.\n\n*Ordered by Estimate*\n[image: acs-ex-ordered1.png]\n*Ordered by Standard Error*\n\n*[image: acs-ex-ordered2.png]*\n\nOn Tue, Oct 25, 2016 at 11:32 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Great question.  The trick would be to use order() as an index vector\n> inside square brackets.  So if my.data is a acs object and you want to\n> plot the first column, an unsorted plot would be:\n>\n> > plot(my.data[,1])\n>\n> and a sorted plot might be\n>\n> > plot(my.data[order(estimate(my.data[,1])),1])\n>\n> should do the trick.\n>\n> If you're doing a bunch of this sort of thing, or maybe if you want to\n> plot one column based on the order of another (say, the percentage of\n> commuters in a tract, by order of the median HH income of the tracts),\n> you could save the indices:\n>\n> > my.index=order(estimate(my.data[,1]))\n> > plot(my.data[my.index, 1])\n>\n> --Ezra\n>\n> On Tue, 25 Oct 2016 11:31:07 -0400, Tiernan Martin wrote:\n> >\n> > [1  <multipart/related (7bit)>]\n> > [1.1  <multipart/alternative (7bit)>]\n> > [1.1.1  <text/plain; UTF-8 (7bit)>]\n> > [1.1.2  <text/html; UTF-8 (quoted-printable)>]\n> > I love the plotting method that the acs package implements, but if an\n> acs object has many\n> > records the resulting graph can be difficult to understand (see below).\n> >\n> > acs-grap\n> >\n> > Is there a good way for arranging the records so that the graph shows\n> them in ascending\n> > order? My efforts to use `sort()` and `dplyr::arrange()` have all\n> resulted in errors.\n> >\n> > Thanks,\n> >\n> > Tiernan\n> >\n> >\n> > [2  <text/plain; us-ascii (7bit)>]\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-346\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |\n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 <(617)%20253-2024> (w)\n> 617.721.7131 <(617)%20721-7131> (c)\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0001.html\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: acs-ex-ordered1.png\nType: image/png\nSize: 53182 bytes\nDesc: not available\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0002.png\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: acs-ex-ordered2.png\nType: image/png\nSize: 67005 bytes\nDesc: not available\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0003.png",
+      "body_snippet": "Works like a charm! I included a couple examples so folks can see the\nbenefit.\n\nThanks, Ezra.\n\n*Ordered by Estimate*\n[image: acs-ex-ordered1.png]\n*Ordered by Standard Error*\n\n*[image: acs-ex-ordered2.",
+      "thread_id": "thread-65f5a53987e0",
+      "thread_depth": 2,
+      "month": "2016-10"
+    },
+    {
+      "id": "msg-f133a1aff667",
+      "message_id": "<CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>",
+      "from_name": "Chris Cambron",
+      "from_email_hash": "57bdba51660e669210c0fdf8a3cd826f194bf394d1b7853094a4cca154e682f8",
+      "date": "2016-10-26T23:40:12Z",
+      "subject": "[acs-r] 5 year estimates of residential mobility at the block group level",
+      "subject_clean": "[acs-r] 5 year estimates of residential mobility at the block group level",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi acs-ers,\nHas anyone been able to extra a measure of residential mobility (living in\nsame house for past year) at the block group level? B07001 and B07101\nproduce all NAs for both 2006-2010 and 2010-2014.\nThanks\nChris\n\n*Chris Cambron, MSW, MPP*\nDoctoral Candidate\nSocial Development Research Group\nSchool of Social Work   |  University of Washington\nccambron at uw.edu  |  www.sdrg.org\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161026/07bc5d84/attachment.html",
+      "body_snippet": "Hi acs-ers,\nHas anyone been able to extra a measure of residential mobility (living in\nsame house for past year) at the block group level? B07001 and B07101\nproduce all NAs for both 2006-2010 and 2010",
+      "thread_id": "thread-f133a1aff667",
+      "thread_depth": 0,
+      "month": "2016-10"
+    },
+    {
+      "id": "msg-094e160979e7",
+      "message_id": "<861sz1ev2g.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-10-27T14:16:23Z",
+      "subject": "[acs-r] 5 year estimates of residential mobility at the block group\tlevel",
+      "subject_clean": "[acs-r] 5 year estimates of residential mobility at the block group\tlevel",
+      "in_reply_to": "<CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>",
+      "references": [
+        "<CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>"
+      ],
+      "body_plain": ">From what I can tell, these tables are not provided at the block group\nlevel -- it's not an acs.R limitation, it's an ACS limitation.\n\nOn Wed, 26 Oct 2016 19:40:12 -0400, Chris Cambron wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi acs-ers,\n> Has anyone been able to extra a measure of residential mobility (living in same house for\n> past year) at the block group level? B07001 and B07101 produce all NAs for both 2006-2010\n> and 2010-2014.\n> Thanks\n> Chris\n> \n> Chris Cambron, MSW, MPP\n> Doctoral Candidate\n> Social Development Research Group\n> School of Social Work   |  University of Washington\n> ccambron at uw.edu  |  www.sdrg.org\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": ">From what I can tell, these tables are not provided at the block group\nlevel -- it's not an acs.R limitation, it's an ACS limitation.\n\nOn Wed, 26 Oct 2016 19:40:12 -0400, Chris Cambron wrote:\n> \n> [1",
+      "thread_id": "thread-f133a1aff667",
+      "thread_depth": 1,
+      "month": "2016-10"
+    },
+    {
+      "id": "msg-3e76f3eba1d6",
+      "message_id": "<MWHPR09MB13115AF2D4FAB9D4D703711DF2AA0@MWHPR09MB1311.namprd09.prod.outlook.com>",
+      "from_name": "Corrales, Mark",
+      "from_email_hash": "8700eff86e7f04de11c84d4cc4e4b5d19f986bc16a770eb98de57d01192a9f8a",
+      "date": "2016-10-27T16:26:53Z",
+      "subject": "[acs-r] acs-r Mobility data from ACS/etc.?",
+      "subject_clean": "[acs-r] acs-r Mobility data from ACS/etc.?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Census provides an overview of various data sources related to residential mobility, here:\nhttp://www.census.gov/topics/population/migration.html \nhttp://www.census.gov/topics/population/migration/surveys-programs.html\nhttp://www.census.gov/topics/population/migration/data/tables.html \n\n\nMark A. Corrales, MPP\nActing Director, Policy and Regulatory Analysis Division\nOffice of the Administrator/ Office of Policy\nUS EPA\n(202) 564-7493?(o)\n(202) 495-8092 (m)\n\nWilliam Jefferson Clinton Building North\n1200 Pennsylvania Ave, NW\nRoom 3522, mail Code 1803A\nWashington, DC 20460\n\n\n-----Original Message-----\nFrom: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of acs-r-request at mit.edu\nSent: Thursday, October 27, 2016 12:02 PM\nTo: acs-r at mit.edu\nSubject: acs-r Digest, Vol 29, Issue 3\n\nSend acs-r mailing list submissions to\n\tacs-r at mit.edu\n\nTo subscribe or unsubscribe via the World Wide Web, visit\n\thttp://mailman.mit.edu/mailman/listinfo/acs-r\nor, via email, send a message with subject or body 'help' to\n\tacs-r-request at mit.edu\n\nYou can reach the person managing the list at\n\tacs-r-owner at mit.edu\n\nWhen replying, please edit your Subject line so it is more specific than \"Re: Contents of acs-r digest...\"\n\n\nToday's Topics:\n\n   1. 5 year estimates of residential mobility at the block group\n      level (Chris Cambron)\n   2. Re: 5 year estimates of residential mobility at the block\n      group\tlevel (Ezra Haber Glenn)\n\n\n----------------------------------------------------------------------\n\nMessage: 1\nDate: Wed, 26 Oct 2016 16:40:12 -0700\nFrom: Chris Cambron <ccambron at uw.edu>\nSubject: [acs-r] 5 year estimates of residential mobility at the block\n\tgroup\tlevel\nTo: acs-r at mit.edu\nMessage-ID:\n\t<CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ at mail.gmail.com>\nContent-Type: text/plain; charset=\"utf-8\"\n\nHi acs-ers,\nHas anyone been able to extra a measure of residential mobility (living in same house for past year) at the block group level? B07001 and B07101 produce all NAs for both 2006-2010 and 2010-2014.\nThanks\nChris\n\n*Chris Cambron, MSW, MPP*\nDoctoral Candidate\nSocial Development Research Group\nSchool of Social Work   |  University of Washington\nccambron at uw.edu  |  www.sdrg.org\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161026/07bc5d84/attachment-0001.html\n\n------------------------------\n\nMessage: 2\nDate: Thu, 27 Oct 2016 10:16:23 -0400\nFrom: Ezra Haber Glenn <eglenn at mit.edu>\nSubject: Re: [acs-r] 5 year estimates of residential mobility at the\n\tblock\tgroup\tlevel\nTo: Chris Cambron <ccambron at uw.edu>\nCc: acs-r at mit.edu\nMessage-ID: <861sz1ev2g.wl-eglenn at mit.edu>\nContent-Type: text/plain; charset=US-ASCII\n\n\n>From what I can tell, these tables are not provided at the block group\nlevel -- it's not an acs.R limitation, it's an ACS limitation.\n\nOn Wed, 26 Oct 2016 19:40:12 -0400, Chris Cambron wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>] Hi acs-ers, Has anyone \n> been able to extra a measure of residential mobility (living in same \n> house for past year) at the block group level? B07001 and B07101 \n> produce all NAs for both 2006-2010 and 2010-2014.\n> Thanks\n> Chris\n> \n> Chris Cambron, MSW, MPP\n> Doctoral Candidate\n> Social Development Research Group\n> School of Social Work   |  University of Washington\n> ccambron at uw.edu  |  www.sdrg.org\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning Massachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu\nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)\n\n\n\n------------------------------\n\n_______________________________________________\nacs-r mailing list\nacs-r at mit.edu\nhttp://mailman.mit.edu/mailman/listinfo/acs-r\n\n\nEnd of acs-r Digest, Vol 29, Issue 3\n************************************",
+      "body_snippet": "Census provides an overview of various data sources related to residential mobility, here:\nhttp://www.census.gov/topics/population/migration.html \nhttp://www.census.gov/topics/population/migration/sur",
+      "thread_id": "thread-3e76f3eba1d6",
+      "thread_depth": 0,
+      "month": "2016-10"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-65f5a53987e0",
+      "subject": "[acs-r] Sort acs object before plotting?",
+      "message_count": 3,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Tiernan Martin"
+      ],
+      "started": "2016-10-25T15:31:07Z",
+      "last_reply": "2016-10-25T23:26:15Z",
+      "root_message_id": "msg-65f5a53987e0"
+    },
+    {
+      "id": "thread-f133a1aff667",
+      "subject": "[acs-r] 5 year estimates of residential mobility at the block group level",
+      "message_count": 2,
+      "participants": [
+        "Chris Cambron",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2016-10-26T23:40:12Z",
+      "last_reply": "2016-10-27T14:16:23Z",
+      "root_message_id": "msg-f133a1aff667"
+    },
+    {
+      "id": "thread-3e76f3eba1d6",
+      "subject": "[acs-r] acs-r Mobility data from ACS/etc.?",
+      "message_count": 1,
+      "participants": [
+        "Corrales, Mark"
+      ],
+      "started": "2016-10-27T16:26:53Z",
+      "last_reply": "2016-10-27T16:26:53Z",
+      "root_message_id": "msg-3e76f3eba1d6"
+    }
+  ]
+}

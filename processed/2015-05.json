@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-05",
+  "messages": [
+    {
+      "id": "msg-93617ecb8fc1",
+      "message_id": "<CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>",
+      "from_name": "arilamstein@gmail.com",
+      "from_email_hash": "22f3367d2c8c62a56b5aec2585b7855e83dd8723aebc13c0fbd1fb8b34b7081d",
+      "date": "2015-05-18T17:34:05Z",
+      "subject": "[acs-r] reliability of census api",
+      "subject_clean": "[acs-r] reliability of census api",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I just tried to run the following query:\n\nstate_geo = acs::geo.make(state = \"*\")\nrace.data = acs::acs.fetch(geography = state_geo, table.number = \"B03002\",\n                           col.names = \"pretty\", endyear = 2013, span = 5)\n\nAnd got this error message:\n\nError in matrix(unlist(value, recursive = FALSE, use.names = FALSE), nrow =\nnr,  :\n  'data' must be of a vector type, was 'NULL'\n\nI'm pretty sure that my code is valid: I've run it before. I've noticed\nthat on and off I get errors like this. Is this due to the census api being\ndown?\n\nThanks.\n\nAri\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20150518/10d30a1f/attachment.htm",
+      "body_snippet": "I just tried to run the following query:\n\nstate_geo = acs::geo.make(state = \"*\")\nrace.data = acs::acs.fetch(geography = state_geo, table.number = \"B03002\",\n                           col.names = \"pret",
+      "thread_id": "thread-93617ecb8fc1",
+      "thread_depth": 0,
+      "month": "2015-05"
+    },
+    {
+      "id": "msg-d3920e97e821",
+      "message_id": "<86oalhok1i.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-05-18T17:46:49Z",
+      "subject": "[acs-r] reliability of census api",
+      "subject_clean": "[acs-r] reliability of census api",
+      "in_reply_to": "<CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>",
+      "references": [
+        "<CAEO2kuJ6-7jrpBeZQmaBBqfqWyh6vAjmMvWxVTv4GM8_jT-uSQ@mail.gmail.com>"
+      ],
+      "body_plain": "It just worked fine for me, so yes, I think it is probably a\ntemperamental API (or perhaps something related to the consistency of\nyour internet connection...?).\n\nAt Mon, 18 May 2015 10:34:05 -0700, arilamstein wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> I just tried to run the following query:\n> \n> state_geo = acs::geo.make(state = \"*\")\n> race.data = acs::acs.fetch(geography = state_geo, table.number = \"B03002\", \n>                            col.names = \"pretty\", endyear = 2013, span = 5)\n> \n> And got this error message:\n> \n> Error in matrix(unlist(value, recursive = FALSE, use.names = FALSE), nrow = nr,  : \n>   'data' must be of a vector type, was 'NULL'\n> \n> I'm pretty sure that my code is valid: I've run it before. I've noticed that on and off I\n> get errors like this. Is this due to the census api being down? \n> \n> Thanks.\n> \n> Ari\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "It just worked fine for me, so yes, I think it is probably a\ntemperamental API (or perhaps something related to the consistency of\nyour internet connection...?).\n\nAt Mon, 18 May 2015 10:34:05 -0700, a",
+      "thread_id": "thread-93617ecb8fc1",
+      "thread_depth": 1,
+      "month": "2015-05"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-93617ecb8fc1",
+      "subject": "[acs-r] reliability of census api",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "arilamstein@gmail.com"
+      ],
+      "started": "2015-05-18T17:34:05Z",
+      "last_reply": "2015-05-18T17:46:49Z",
+      "root_message_id": "msg-93617ecb8fc1"
+    }
+  ]
+}

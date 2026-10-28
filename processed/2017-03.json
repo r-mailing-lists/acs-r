@@ -1,0 +1,55 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2017-03",
+  "messages": [
+    {
+      "id": "msg-19fe0a5611ce",
+      "message_id": "<D4F6FF89.ACAD%ron.campbell@nbcuni.com>",
+      "from_name": "Campbell, Ron (NBCUniversal)",
+      "from_email_hash": "d3e1d1540703834e76e453302b3167ce813fd4c2f4661d2856e0e5fa15a2de12",
+      "date": "2017-03-21T23:04:26Z",
+      "subject": "[acs-r] Creating 3-digit ZCTA data",
+      "subject_clean": "[acs-r] Creating 3-digit ZCTA data",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I?m sure there?s a simple answer to this. My attempts so far have crashed and burned.\n\nI?m trying to create ACS estimates of population from Table B01003 for 3-digit ZCTAs nationwide. I need these as a basis for measuring per capita rates of some other data that is available only at the 3-digit ZCTA level.\n\nI have a data frame of 33,000 5-digit ZCTAs with total estimated population, the margin of error and the 3-digit ZCTA (a substring of the 5-digit ZCTA). I want to create a new data frame consisting of 3-digit ZCTAs with their estimated populations and margin of error.\n\nI tried to do this using variations on the geo.make() function:\n\n> census2 = geo.make(substring(census1$ZCTA5,1,3))\nError: evaluation nested too deeply: infinite recursion / options(expressions=)?\n\nAnd\n\n> census2 = geo.make(census1, combine=TRUE, combine.term='ZCTA3')\nError in (function (us, region, division, state, county, county.subdivision,  :\n  (list) object cannot be coerced to type 'double'\n\nAny ideas?\n\nThanks.\n\nRonald Campbell\nData Editor\nNBC Owned Television Stations\n1411 N. Batavia St., Suite 113\nOrange, CA 92867\ncell: 818-232-2585\nron.campbell at nbcuni.com<mailto:ron.campbell at nbcuni.com>\n@campbellronaldw\n\n[cid:52D6227E-0DE0-49AE-8C1C-A333D62934F6]\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20170321/1b428c46/attachment.html\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: 7C556B6E-DC38-4F5E-BDFC-D1CD239B18AD[8].png\nType: image/png\nSize: 6496 bytes\nDesc: 7C556B6E-DC38-4F5E-BDFC-D1CD239B18AD[8].png\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20170321/1b428c46/attachment.png",
+      "body_snippet": "I?m sure there?s a simple answer to this. My attempts so far have crashed and burned.\n\nI?m trying to create ACS estimates of population from Table B01003 for 3-digit ZCTAs nationwide. I need these as ",
+      "thread_id": "thread-19fe0a5611ce",
+      "thread_depth": 0,
+      "month": "2017-03"
+    },
+    {
+      "id": "msg-5892a64c1cb1",
+      "message_id": "<8660j1e7lo.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2017-03-22T13:58:27Z",
+      "subject": "[acs-r] Creating 3-digit ZCTA data",
+      "subject_clean": "[acs-r] Creating 3-digit ZCTA data",
+      "in_reply_to": "<D4F6FF89.ACAD%ron.campbell@nbcuni.com>",
+      "references": [
+        "<D4F6FF89.ACAD%ron.campbell@nbcuni.com>"
+      ],
+      "body_plain": "My understanding of ZCTAs (based on\n<https://factfinder.census.gov/help/en/zip_code_tabulation_area_zcta.htm>)\nis that the three-digit ones were only used for the 2000 census (and\nunfortunately, even for that data, the census does not provide data by\nZCTA through their API).\n\nYou can certainly get more recent ACS data for ZCTAs, but they are\nalways five digits.  For example:\n\n> all.zips=geo.make(zip.code=\"*\")\n> zip.pops=acs.fetch(endyear=2015, geography=all.zips, table.number=\"B01003\")\n> head(zip.pops)\nACS DATA: \n 2011 -- 2015 ;\n  Estimates w/90% confidence intervals;\n  for different intervals, see confint()\n            B01003_001    \nZCTA5 00601 17982 +/- 287 \nZCTA5 00602 40260 +/- 167 \nZCTA5 00603 52408 +/- 810 \nZCTA5 00606 6331 +/- 293  \nZCTA5 00610 28328 +/- 205 \nZCTA5 00612 64816 +/- 1468\n>\n\nI'm not sure what you are trying to do, but perhaps you could download\nthe data you need for all the zip codes, and then aggregate by the\nfirst three digits?\n\n--Ezra\n\nOn Tue, 21 Mar 2017 19:04:26 -0400, Campbell, Ron (NBCUniversal) wrote:\n> \n> I?m sure there?s a simple answer to this. My attempts so far have\n> crashed and burned.\n> \n> I?m trying to create ACS estimates of population from Table B01003\n> for 3-digit ZCTAs nationwide. I need these as a basis for measuring\n> per capita rates of some other data that is available only at the\n> 3-digit ZCTA level.\n> \n> I have a data frame of 33,000 5-digit ZCTAs with total estimated\n> population, the margin of error and the 3-digit ZCTA (a substring of\n> the 5-digit ZCTA). I want to create a new data frame consisting of\n> 3-digit ZCTAs with their estimated populations and margin of error.\n> \n> I tried to do this using variations on the geo.make() function:\n> \n> > census2 = geo.make(substring(census1$ZCTA5,1,3))\n> Error: evaluation nested too deeply: infinite recursion / options(expressions=)?\n> \n> And\n> \n> > census2 = geo.make(census1, combine=TRUE, combine.term='ZCTA3')\n> Error in (function (us, region, division, state, county, county.subdivision,  : \n>   (list) object cannot be coerced to type 'double'\n> \n> Any ideas?\n> \n> Thanks.\n> \n> Ronald Campbell\n> Data Editor\n> NBC Owned Television Stations\n> 1411 N. Batavia St., Suite 113\n> Orange, CA 92867\n> cell: 818-232-2585\n> ron.campbell at nbcuni.com\n> @campbellronaldw\n> \n> [cid]   \n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "My understanding of ZCTAs (based on\n<https://factfinder.census.gov/help/en/zip_code_tabulation_area_zcta.htm>)\nis that the three-digit ones were only used for the 2000 census (and\nunfortunately, even ",
+      "thread_id": "thread-19fe0a5611ce",
+      "thread_depth": 1,
+      "month": "2017-03"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-19fe0a5611ce",
+      "subject": "[acs-r] Creating 3-digit ZCTA data",
+      "message_count": 2,
+      "participants": [
+        "Campbell, Ron (NBCUniversal)",
+        "Ezra Haber Glenn"
+      ],
+      "started": "2017-03-21T23:04:26Z",
+      "last_reply": "2017-03-22T13:58:27Z",
+      "root_message_id": "msg-19fe0a5611ce"
+    }
+  ]
+}

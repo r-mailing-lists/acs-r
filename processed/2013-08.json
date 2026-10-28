@@ -1,0 +1,147 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2013-08",
+  "messages": [
+    {
+      "id": "msg-afa2c1b6db79",
+      "message_id": "<87zjst32d9.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-08-07T16:13:54Z",
+      "subject": "[acs-r] acs.R Webinar: Aug 29",
+      "subject_clean": "[acs-r] acs.R Webinar: Aug 29",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "On August 29, 2013 (1:00PM Eastern/10:00AM Pacific) I'll be presenting\na free webinar on using the acs package, hosted by the Orange County R\nUser Group. This one-hour on-line event will provide a general\nintroduction to the acs package, including a live demonstration and\ntime for Q&A.\n\nDetails:\n\n * Speaker: Ezra Haber Glenn, Lecturer at the Massachusetts Institute\n   of Technology; maintainer, acs.R package\n\n * Moderator: Ray DiGiacomo, President of The Orange County R User\n   Group\n\n * Registration (free):\n   https://www3.gotomeeting.com/register/730429166\n\nPlease note that in addition to attending from your laptop or desktop\ncomputer, you can also attend from a Wi-Fi connected iPhone, iPad,\nAndroid phone or Android tablet by installing the GoToMeeting App.\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "On August 29, 2013 (1:00PM Eastern/10:00AM Pacific) I'll be presenting\na free webinar on using the acs package, hosted by the Orange County R\nUser Group. This one-hour on-line event will provide a gen",
+      "thread_id": "thread-afa2c1b6db79",
+      "thread_depth": 0,
+      "month": "2013-08"
+    },
+    {
+      "id": "msg-cc587a327ca1",
+      "message_id": "<CAOhL9A+FSm-SSnoumzXoK5JX3a+J3uiCqpmWPHgXZnwgdCj7jg@mail.gmail.com>",
+      "from_name": "Peter Schmiedeskamp",
+      "from_email_hash": "395bdcae5391dd34afd0785db67c914d38b6ceb7319da85df2cf76dc2047d8cd",
+      "date": "2013-08-12T17:10:41Z",
+      "subject": "[acs-r] List of subgeography ids contained in a geo.set?",
+      "subject_clean": "[acs-r] List of subgeography ids contained in a geo.set?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "If I were looking to get a list of tract / blockgroup / block IDs back\nfrom a geo.set, is there a straightforward way of doing so?\n\nFor example, it might be nice to get a list of tract IDs from the\nexample geo.set in the acs docs:\n\n    > psrc <- geo.make(state=\"WA\", county=c(33,35,53,61), tract=\"*\")\n    > tract_ids(psrc) # made up tract_ids function\n    [1] 24300 24400 (...)\n\nI see that, if I fetch an acs object, the @geography slot contains the\ntract attribute. However, I'm wondering if there is a way of getting\nthe tracts independent of fetching a full ACS object. I'm guessing\nthat the tract numbers are only fetched as the result of submitting\nthe API request to the census, and perhaps there is no way to return\nan empty acs object with a NULL table number?\n\nCheers,\nPeter",
+      "body_snippet": "If I were looking to get a list of tract / blockgroup / block IDs back\nfrom a geo.set, is there a straightforward way of doing so?\n\nFor example, it might be nice to get a list of tract IDs from the\nex",
+      "thread_id": "thread-cc587a327ca1",
+      "thread_depth": 0,
+      "month": "2013-08"
+    },
+    {
+      "id": "msg-369da9c70a0b",
+      "message_id": "<87ioza206g.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-08-12T19:12:23Z",
+      "subject": "[acs-r] List of subgeography ids contained in a geo.set?",
+      "subject_clean": "[acs-r] List of subgeography ids contained in a geo.set?",
+      "in_reply_to": "<CAOhL9A+FSm-SSnoumzXoK5JX3a+J3uiCqpmWPHgXZnwgdCj7jg@mail.gmail.com>",
+      "references": [
+        "<CAOhL9A+FSm-SSnoumzXoK5JX3a+J3uiCqpmWPHgXZnwgdCj7jg@mail.gmail.com>"
+      ],
+      "body_plain": "Unfortunately, you are correct: the tract IDs are fetched when actual\ndata is fetched.  But you could fetch a very simple table, like\ntable.number=\"B01003\", which only has a single number for each, so it\nwon't take forever.  (And once you've done it once, you can save the\ntract IDs for later use.)\n\n> psrc=geo.make(state=\"WA\", county=c(33,35,53,61), tract=\"*\")\n> data=acs.fetch(geography=psrc, table.number=\"B01003\")\n> psrc.tracts=geography(data)$tract\n\nFor me, the fetch only took a few seconds.\n\n--Ezra\n\nAt Mon, 12 Aug 2013 10:10:41 -0700, Peter Schmiedeskamp wrote:\n> \n> If I were looking to get a list of tract / blockgroup / block IDs back\n> from a geo.set, is there a straightforward way of doing so?\n> \n> For example, it might be nice to get a list of tract IDs from the\n> example geo.set in the acs docs:\n> \n>     > psrc <- geo.make(state=\"WA\", county=c(33,35,53,61), tract=\"*\")\n>     > tract_ids(psrc) # made up tract_ids function\n>     [1] 24300 24400 (...)\n> \n> I see that, if I fetch an acs object, the @geography slot contains the\n> tract attribute. However, I'm wondering if there is a way of getting\n> the tracts independent of fetching a full ACS object. I'm guessing\n> that the tract numbers are only fetched as the result of submitting\n> the API request to the census, and perhaps there is no way to return\n> an empty acs object with a NULL table number?\n> \n> Cheers,\n> Peter\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Unfortunately, you are correct: the tract IDs are fetched when actual\ndata is fetched.  But you could fetch a very simple table, like\ntable.number=\"B01003\", which only has a single number for each, so",
+      "thread_id": "thread-cc587a327ca1",
+      "thread_depth": 1,
+      "month": "2013-08"
+    },
+    {
+      "id": "msg-0d31f84c4931",
+      "message_id": "<20130830014121.zd99363w0sg08000-mazro@webmail.spamcop.net>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2013-08-30T05:41:21Z",
+      "subject": "[acs-r] Table and variable names",
+      "subject_clean": "[acs-r] Table and variable names",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "I was on the webinar today and went digging for the table and variable  \nname \"cheat sheet\". I think I've found it:\n\n1. Go to http://www.census.gov/developers/data/. That's the  \ndevelopers' 'available data' page.\n2. On the left side of the page there are some documentation links.  \nUnder ACS, there are two links:\n\n    2007-2011 ACS API Variables [XML]  \nhttp://www.census.gov/developers/data/acs_5yr_2011_var.xml\n\n    2006-2010 ACS API Variables [XML]  \nhttp://www.census.gov/developers/data/acs_5yr_2010_var.xml\n\nI downloaded those and they look like a 'dictionary' of table and  \ncolumn names. It shouldn't be too hard to load these into a database.\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism Publishers  \nWorkbench\nhttp://j.mp/CompJournBench/\n\nGet out of the building - and don't come back till you have the order!",
+      "body_snippet": "I was on the webinar today and went digging for the table and variable  \nname \"cheat sheet\". I think I've found it:\n\n1. Go to http://www.census.gov/developers/data/. That's the  \ndevelopers' 'availabl",
+      "thread_id": "thread-0d31f84c4931",
+      "thread_depth": 0,
+      "month": "2013-08"
+    },
+    {
+      "id": "msg-cb9200c099b9",
+      "message_id": "<87sixrqnfm.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "f75460ed1ea3cf4998ff5933be68e4f1832577b7593907749264b14a901fcb11",
+      "date": "2013-08-30T14:10:37Z",
+      "subject": "[acs-r] Table and variable names",
+      "subject_clean": "[acs-r] Table and variable names",
+      "in_reply_to": "<20130830014121.zd99363w0sg08000-mazro@webmail.spamcop.net>",
+      "references": [
+        "<20130830014121.zd99363w0sg08000-mazro@webmail.spamcop.net>"
+      ],
+      "body_plain": "Thanks for pointing this out.  In fact, these are the tables used by\nthe on-board acs.lookup function.  (When the acs package is installed,\nthese get added as well -- you can view access them with \n\n> system.file(\"extdata/acs_5yr_2010_var.xml.gz\", package=\"acs\")\n\nand \n\n> system.file(\"extdata/acs_5yr_2011_var.xml.gz\", package=\"acs\")\n\nThe acs.lookup function uses some basic xml parser tricks, but as I\nmentioned in the webinar, I'm not convinced it's the best tool for the\njob.  There are just so so many census tables, many of which use the\nsame key words in different configurations.  My experience is that the\nacs.lookup tool is pretty helpful for the following:\n\n1) You know the exact table name or table number, and want to see the\nnames of the variables, maybe to allow you to download individual\ncolumns rather than entire table.  Example:\n\n#  B08301 = \"Means of Transportation to Work\"\n> table=acs.lookup(table.number=\"B08301\") \n\n# check it out\n> table\n\n# select variables for total and all related to carpools \n> carpool.vars=table[c(1,4:9),]\n\n# get data on just those variables\n> acs.fetch(geography=geo.make(state=25), variable=carpool.vars, col.names=\"pretty\")\n\n2) You are looking for some specific keyword in a variable --\nsomething like \"Bicycle\" or \"Creole.\"  Note the key distinction here,\nas stated in the \"Working with acs.R\" manual: as a rule of thumb,\ntable.name tells you what *sort of categories* the table's variables\ncontain, and keyword tells you what *particular categories* each\nspecific variable includes.\n\nHope that helps.\n\n--Ezra\n\nAt Fri, 30 Aug 2013 01:41:21 -0400, M Edward (Ed) Borasky wrote:\n> \n> I was on the webinar today and went digging for the table and variable  \n> name \"cheat sheet\". I think I've found it:\n> \n> 1. Go to http://www.census.gov/developers/data/. That's the  \n> developers' 'available data' page.\n> 2. On the left side of the page there are some documentation links.  \n> Under ACS, there are two links:\n> \n>     2007-2011 ACS API Variables [XML]  \n> http://www.census.gov/developers/data/acs_5yr_2011_var.xml\n> \n>     2006-2010 ACS API Variables [XML]  \n> http://www.census.gov/developers/data/acs_5yr_2010_var.xml\n> \n> I downloaded those and they look like a 'dictionary' of table and  \n> column names. It shouldn't be too hard to load these into a database.\n> -- \n> Twitter: http://twitter.com/znmeb; Computational Journalism Publishers  \n> Workbench\n> http://j.mp/CompJournBench/\n> \n> Get out of the building - and don't come back till you have the order!\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks for pointing this out.  In fact, these are the tables used by\nthe on-board acs.lookup function.  (When the acs package is installed,\nthese get added as well -- you can view access them with \n\n>",
+      "thread_id": "thread-0d31f84c4931",
+      "thread_depth": 1,
+      "month": "2013-08"
+    },
+    {
+      "id": "msg-9c8499862ac4",
+      "message_id": "<20130830141304.b7ppfggdqo8gk0ws-mazro@webmail.spamcop.net>",
+      "from_name": "M. Edward (Ed) Borasky",
+      "from_email_hash": "ef6e49c1dc23b41e55bee428092d31c3661e716db693e4cc11966cc2632cb2b6",
+      "date": "2013-08-30T18:13:04Z",
+      "subject": "[acs-r] Table and variable names",
+      "subject_clean": "[acs-r] Table and variable names",
+      "in_reply_to": "<87sixrqnfm.wl%eglenn@mit.edu>",
+      "references": [
+        "<20130830014121.zd99363w0sg08000-mazro@webmail.spamcop.net>",
+        "<87sixrqnfm.wl%eglenn@mit.edu>"
+      ],
+      "body_plain": "Quoting Ezra Haber Glenn <eglenn at MIT.EDU>:\n\n>\n> Thanks for pointing this out.  In fact, these are the tables used by\n> the on-board acs.lookup function.  (When the acs package is installed,\n> these get added as well -- you can view access them with\n>\n>> system.file(\"extdata/acs_5yr_2010_var.xml.gz\", package=\"acs\")\n>\n> and\n>\n>> system.file(\"extdata/acs_5yr_2011_var.xml.gz\", package=\"acs\")\n>\n> The acs.lookup function uses some basic xml parser tricks, but as I\n> mentioned in the webinar, I'm not convinced it's the best tool for the\n> job.  There are just so so many census tables, many of which use the\n> same key words in different configurations.  My experience is that the\n> acs.lookup tool is pretty helpful for the following:\n>\n> 1) You know the exact table name or table number, and want to see the\n> names of the variables, maybe to allow you to download individual\n> columns rather than entire table.  Example:\n>\n> #  B08301 = \"Means of Transportation to Work\"\n>> table=acs.lookup(table.number=\"B08301\")\n>\n> # check it out\n>> table\n>\n> # select variables for total and all related to carpools\n>> carpool.vars=table[c(1,4:9),]\n>\n> # get data on just those variables\n>> acs.fetch(geography=geo.make(state=25), variable=carpool.vars,   \n>> col.names=\"pretty\")\n>\n> 2) You are looking for some specific keyword in a variable --\n> something like \"Bicycle\" or \"Creole.\"  Note the key distinction here,\n> as stated in the \"Working with acs.R\" manual: as a rule of thumb,\n> table.name tells you what *sort of categories* the table's variables\n> contain, and keyword tells you what *particular categories* each\n> specific variable includes.\n>\n> Hope that helps.\n>\n> --Ezra\n\nYes ... it helps. Where I'm coming from on this is from a perspective  \nof reproducible research as applied to computational journalism. What  \nI want to do is build a database, either conventional SQL/GIS or  \nperhaps a NoSQL database if the algorithms dictate that, containing  \n*all* the most recent census data for the Vancouver/Portland/Salem  \narea. Maybe my friends over at Portland State University or Metro have  \nalready done this, loaded it into their (expensive) ESRI tools. etc.,  \nbut then again, maybe they haven't. ;-)\n\nIn any event, rather than say, looking for places where people of  \nCypriot descent over 65 can be found, I'm looking for reproducible,  \nsystematic, explorable, comprehensive and understandable data for my  \nregion. And that means, for the moment, downloading *all* the ACS  \ntables for the area at the highest possible resolution and knowing the  \ndefinitions of all the columns in those tables.\n\n> At Fri, 30 Aug 2013 01:41:21 -0400, M Edward (Ed) Borasky wrote:\n>>\n>> I was on the webinar today and went digging for the table and variable\n>> name \"cheat sheet\". I think I've found it:\n>>\n>> 1. Go to http://www.census.gov/developers/data/. That's the\n>> developers' 'available data' page.\n>> 2. On the left side of the page there are some documentation links.\n>> Under ACS, there are two links:\n>>\n>>     2007-2011 ACS API Variables [XML]\n>> http://www.census.gov/developers/data/acs_5yr_2011_var.xml\n>>\n>>     2006-2010 ACS API Variables [XML]\n>> http://www.census.gov/developers/data/acs_5yr_2010_var.xml\n>>\n>> I downloaded those and they look like a 'dictionary' of table and\n>> column names. It shouldn't be too hard to load these into a database.\n>> --\n>> Twitter: http://twitter.com/znmeb; Computational Journalism Publishers\n>> Workbench\n>> http://j.mp/CompJournBench/\n>>\n>> Get out of the building - and don't come back till you have the order!\n>> _______________________________________________\n>> acs-r mailing list\n>> acs-r at mit.edu\n>> http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-337\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn |   \n> http://eglenn.scripts.mit.edu/citystate/\n> 617.253.2024 (w)\n> 617.721.7131 (c)\n>\n\n\n\n-- \nTwitter: http://twitter.com/znmeb; Computational Journalism Publishers  \nWorkbench\nhttp://j.mp/CompJournBench/\n\nGet out of the building - and don't come back till you have the order!",
+      "body_snippet": "Quoting Ezra Haber Glenn <eglenn at MIT.EDU>:\n\n>\n> Thanks for pointing this out.  In fact, these are the tables used by\n> the on-board acs.lookup function.  (When the acs package is installed,\n> these",
+      "thread_id": "thread-0d31f84c4931",
+      "thread_depth": 2,
+      "month": "2013-08"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-afa2c1b6db79",
+      "subject": "[acs-r] acs.R Webinar: Aug 29",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2013-08-07T16:13:54Z",
+      "last_reply": "2013-08-07T16:13:54Z",
+      "root_message_id": "msg-afa2c1b6db79"
+    },
+    {
+      "id": "thread-cc587a327ca1",
+      "subject": "[acs-r] List of subgeography ids contained in a geo.set?",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Peter Schmiedeskamp"
+      ],
+      "started": "2013-08-12T17:10:41Z",
+      "last_reply": "2013-08-12T19:12:23Z",
+      "root_message_id": "msg-cc587a327ca1"
+    },
+    {
+      "id": "thread-0d31f84c4931",
+      "subject": "[acs-r] Table and variable names",
+      "message_count": 3,
+      "participants": [
+        "Ezra Haber Glenn",
+        "M. Edward (Ed) Borasky"
+      ],
+      "started": "2013-08-30T05:41:21Z",
+      "last_reply": "2013-08-30T18:13:04Z",
+      "root_message_id": "msg-0d31f84c4931"
+    }
+  ]
+}

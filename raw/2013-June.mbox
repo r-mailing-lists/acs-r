@@ -1,0 +1,32 @@
+From cowan.pd at gmail.com  Sat Jun  1 13:45:21 2013
+From: cowan.pd at gmail.com (Peter Cowan)
+Date: Sat, 1 Jun 2013 13:45:21 -0400
+Subject: [acs-r] Difficulty with worked example on blog
+Message-ID: <CAM4gt+6_z-bP=Fr94Kfst+R=d2p0w7g1u5bawTsLavK-txpHxw@mail.gmail.com>
+
+I'm trying to work the example at:
+
+http://eglenn.scripts.mit.edu/citystate/2013/03/acs-r-a-worked-example-using-blockgroup-level-data/
+
+There appears to be a problem with the acs.fetch function for me. I have
+previously saved an API key file.
+
+> my.tract=geo.make(state="MA", county="Middlesex",
++   tract=387201, block.group="*", check=T)
+Testing geography item 1: Tract 387201, Blockgroup *, Middlesex County,
+Massachusetts .... Error in seq.default(1, (length(in.data) - geo.length),
+2) :
+  wrong sign in 'by' argument
+> my.tract=geo.make(state="MA", county="Middlesex",
++   tract=387201, block.group="*")
+> total.pop=acs.fetch(geo=my.tract, table.number="B01003")
+Error in seq.default(1, (length(in.data) - geo.length), 2) :
+  wrong sign in 'by' argument
+
+ Thanks
+
+Peter
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/mailman/private/acs-r/attachments/20130601/73494f26/attachment.htm
+

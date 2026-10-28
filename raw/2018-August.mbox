@@ -1,0 +1,113 @@
+From shintze at MARC.ORG  Thu Aug  2 16:52:38 2018
+From: shintze at MARC.ORG (Sara Hintze)
+Date: Thu, 2 Aug 2018 20:52:38 +0000
+Subject: [acs-r] 5-year data lookups for 2013
+Message-ID: <BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>
+
+I am receiving an error for just the 2013, 5-year data when using acs.lookup such as: sex.by.age = acs.lookup(table.number="B01001", span=5, endyear=2013). The error within R reads: Error: XML content does not seem to be XML: ''
+
+The request can be made for the 2013, 1-year data, or another year of the 5-year estimates, without issue. Any thoughts?
+
+Thank you,
+Sara
+
+Sara Hintze
+GIS Data Developer/Analyst | Research Services
+Mid-America Regional Council
+600 Broadway Blvd., Ste 200
+Kansas City, MO 64105
+816-701-8220 | www.marc.org
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180802/2462ceea/attachment.html
+
+From eglenn at mit.edu  Thu Aug  2 22:29:53 2018
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 3 Aug 2018 02:29:53 +0000
+Subject: [acs-r] 5-year data lookups for 2013
+In-Reply-To: <BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>
+References: <BL0PR02MB4289ADCC5D5B12A502976DD5C42C0@BL0PR02MB4289.namprd02.prod.outlook.com>
+Message-ID: <2616727CE6B372D6.da9ac349-8814-4808-a8b1-067e6271564b@mail.outlook.com>
+
+Can you try running acs.tables.install() once and seeing if it works then?
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+
+
+On Thu, Aug 2, 2018 at 5:02 PM -0400, "Sara Hintze" <shintze at MARC.ORG<mailto:shintze at MARC.ORG>> wrote:
+
+I am receiving an error for just the 2013, 5-year data when using acs.lookup such as: sex.by.age = acs.lookup(table.number="B01001", span=5, endyear=2013). The error within R reads: Error: XML content does not seem to be XML: ''
+
+The request can be made for the 2013, 1-year data, or another year of the 5-year estimates, without issue. Any thoughts?
+
+Thank you,
+Sara
+
+Sara Hintze
+GIS Data Developer/Analyst | Research Services
+Mid-America Regional Council
+600 Broadway Blvd., Ste 200
+Kansas City, MO 64105
+816-701-8220 | www.marc.org
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180802/8359fcc3/attachment.html
+
+From tomschenkjr at gmail.com  Wed Aug  8 15:50:25 2018
+From: tomschenkjr at gmail.com (Tom Schenk Jr)
+Date: Wed, 8 Aug 2018 15:50:25 -0400
+Subject: [acs-r] ACS 5-year for 2013
+Message-ID: <CAJPE=ohFbqjgjYHEoOkn3zy495d5w5OZC8snN9SOTvowk4VBEQ@mail.gmail.com>
+
+Similar to a prior thread, appears that 5-year ACS data is missing from the
+"acs" package (2.1.3). To replicate:
+
+```
+key <- {KEY}
+place_name <- "Los Angeles city"
+state <- "CA"
+year <- 2013
+geo <- acs::geo.make(state = c(state), place = place_name)
+acs::acs.fetch(endyear = year, span = 5, geography = geo,
+  table.number = "B23025", col.names = "pretty",
+  key = key)
+```
+
+which results in:
+
+```
+Error: XML content does not seem to be XML: ''
+```
+
+Other years and span seems to work. This problem can be replicated across
+various tables.
+
+Attempted to try `acs.tables.install()` which generated a lot of activity,
+but rerunning the code did not work.
+
+I am not quite sure how these queries are assembled, but checked the ACS
+API which seemed to return valid data, e.g.,
+https://api.census.gov/data/2013/acs/acs5?get=B23025_001E&for=place:*
+-- 
+
+
+Tom Schenk Jr.
+tomschenkjr at gmail.com
+tomschenkjr.net
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180808/f4b72a90/attachment.html
+

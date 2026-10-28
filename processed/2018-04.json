@@ -1,0 +1,170 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2018-04",
+  "messages": [
+    {
+      "id": "msg-2fc847daa37d",
+      "message_id": "<fe850671-4f59-4b42-8332-99550a563ff6@Spark>",
+      "from_name": "Jon Zadra",
+      "from_email_hash": "d8401be2a89bf70d6c6b05ccb995d3a8ccd5cedb074f5d6f1080a106b0f1e7e6",
+      "date": "2018-04-08T16:40:20Z",
+      "subject": "[acs-r] Trick to get 2016 data failing for C16001",
+      "subject_clean": "[acs-r] Trick to get 2016 data failing for C16001",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "HI,\n\nI?ve been using the lookup 2015 then fetch 2016 trick without issue for many tables, however today I ran into an issue with table C16001 where it can?t find it in the 2016 lookup:\n\na <- acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5)\nWarning message: In acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5) : Sorry, no tables/keyword meets your search. Suggestions: try with 'case.sensitive=F', remove search terms, change 'keyword' to 'table.name' in search (or vice-versa\n\nI?m not sure if this is because they didn?t have C16001 in 2015 and it?s a new addition for 2016, or whether they don?t have the C version via the API (the B version exists).\n\nI really need the C version, as the B version has a lot of suppression due to about 20 more categories. ?Any help is appreciated!\n\nThanks,\n\nJon\n\n--\nJonathan Zadra, PhD\nData Scientist\nSorenson Impact Center\nDavid Eccles School of Business, University of Utah\n(801) 581-4815\njon.zadra at sorensonimpact.com\nwww.sorensonimpact.com\n\n\n-- \n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180408/ee3146c0/attachment.html",
+      "body_snippet": "HI,\n\nI?ve been using the lookup 2015 then fetch 2016 trick without issue for many tables, however today I ran into an issue with table C16001 where it can?t find it in the 2016 lookup:\n\na <- acs.looku",
+      "thread_id": "thread-2fc847daa37d",
+      "thread_depth": 0,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-aa9b92cff792",
+      "message_id": "<4b12dc3e-d131-45b5-b5df-d921fcfdc649@Spark>",
+      "from_name": "Jon Zadra",
+      "from_email_hash": "d8401be2a89bf70d6c6b05ccb995d3a8ccd5cedb074f5d6f1080a106b0f1e7e6",
+      "date": "2018-04-09T12:57:55Z",
+      "subject": "[acs-r] Trick to get 2016 data failing for C16001",
+      "subject_clean": "[acs-r] Trick to get 2016 data failing for C16001",
+      "in_reply_to": "<70611967e7d54b4e9eb8a7050a7c0347@pewtrusts.org>",
+      "references": [
+        "<fe850671-4f59-4b42-8332-99550a563ff6@Spark>",
+        "<70611967e7d54b4e9eb8a7050a7c0347@pewtrusts.org>"
+      ],
+      "body_plain": "Thanks. Then the issue is how to get it since the 2015 Lookup trick won't work.\n\nThanks,\n\nJon\n\n--\nJonathan Zadra, PhD\nData Scientist\nSorenson Impact Center\nDavid Eccles School of Business, University of Utah\n(801) 581-4815\njon.zadra at sorensonimpact.com\nwww.sorensonimpact.com\n\nOn Apr 9, 2018, 06:54 -0600, Meagan Pharis <mpharis at pewtrusts.org>, wrote:\n> Hi Jon,\n>\n> You can do searches using that, and any, table name at factfinder.census.gov. You can see from the picture of the search results below, that the table you?re looking for is only available in 5-year form for the 2016 5-year estimates.\n>\n> Best of luck,\n>\n>\n>\n>\n> Meagan Pharis\n> The Pew Charitable Trusts\n> p: 215-575-4773 | e: mpharis at pewtrusts.org\n>\n> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Jon Zadra\n> Sent: Sunday, April 08, 2018 12:40 PM\n> To: acs-r at mit.edu\n> Subject: [acs-r] Trick to get 2016 data failing for C16001\n>\n> HI,\n>\n> I?ve been using the lookup 2015 then fetch 2016 trick without issue for many tables, however today I ran into an issue with table C16001 where it can?t find it in the 2016 lookup:\n>\n> a <- acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5)\n> Warning message: In acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5) : Sorry, no tables/keyword meets your search. Suggestions: try with 'case.sensitive=F', remove search terms, change 'keyword' to 'table.name' in search (or vice-versa\n>\n> I?m not sure if this is because they didn?t have C16001 in 2015 and it?s a new addition for 2016, or whether they don?t have the C version via the API (the B version exists).\n>\n> I really need the C version, as the B version has a lot of suppression due to about 20 more categories. ?Any help is appreciated!\n>\n> Thanks,\n>\n> Jon\n>\n> --\n> Jonathan Zadra, PhD\n> Data Scientist\n> Sorenson Impact Center\n> David Eccles School of Business, University of Utah\n> (801) 581-4815\n> jon.zadra at sorensonimpact.com\n> www.sorensonimpact.com\n>\n>\n\n-- \n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180409/72404514/attachment-0001.html\n-------------- next part --------------\nA non-text attachment was scrubbed...\nName: image001.png\nType: image/png\nSize: 222866 bytes\nDesc: not available\nUrl : http://mailman.mit.edu/pipermail/acs-r/attachments/20180409/72404514/attachment-0001.png",
+      "body_snippet": "Thanks. Then the issue is how to get it since the 2015 Lookup trick won't work.\n\nThanks,\n\nJon\n\n--\nJonathan Zadra, PhD\nData Scientist\nSorenson Impact Center\nDavid Eccles School of Business, University ",
+      "thread_id": "thread-aa9b92cff792",
+      "thread_depth": 0,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-ed7f128da503",
+      "message_id": "<86tvskmrnb.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-04-09T13:32:56Z",
+      "subject": "[acs-r] Trick to get 2016 data failing for C16001",
+      "subject_clean": "[acs-r] Trick to get 2016 data failing for C16001",
+      "in_reply_to": "<fe850671-4f59-4b42-8332-99550a563ff6@Spark>",
+      "references": [
+        "<fe850671-4f59-4b42-8332-99550a563ff6@Spark>"
+      ],
+      "body_plain": "You can still get this data via the package, but it's definitely a\nlittle \"off road.\"  From what I can tell, there are 38 variables in\nC16001.  Since acs.fetch allows you to specify the variable codes\ndirectly -- and thus avoids a lookup -- you can just tell it the names\nof the variables, which will be C16001_001, C16001_002, C16001_002,\netc., up to C16001_038.\n\n> library(acs)\n> my.geo=geo.make(state=\"MA\", county=\"*\")\n\n# get leading zero for single digits\n> my.nums=c(paste(\"0\",1:9, sep=\"\"), 10:38) \n\n# construct all 38 codes\n> my.vars.2016=paste(\"C16001_0\", my.nums, sep=\"\")\n\nAnd then use these variable codes directly in acs.fetch:\n\n> acs.fetch(geography=my.geo, variable=my.vars.2016, endyear=2016)\n\nThat seems to work for me.  You'll need to be responsible for\nchecking, and for making sure you label the variable columns\ncorrectly.\n\nLet me know if that works.\n\nBest,\nEzra\n\n\nOn Sun, 08 Apr 2018 12:40:20 -0400, Jon Zadra wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (quoted-printable)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> HI,\n> \n> I?ve been using the lookup 2015 then fetch 2016 trick without issue for many tables,\n> however today I ran into an issue with table C16001 where it can?t find it in the 2016\n> lookup:\n> \n> a <- acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5) \n> Warning message: In acs.lookup(table.number = \"C16001\", endyear = 2015, span = 5) : Sorry,\n> no tables/keyword meets your search. Suggestions: try with 'case.sensitive=F', remove\n> search terms, change 'keyword' to 'table.name' in search (or vice-versa\n> \n> I?m not sure if this is because they didn?t have C16001 in 2015 and it?s a new addition\n> for 2016, or whether they don?t have the C version via the API (the B version exists).\n> \n> I really need the C version, as the B version has a lot of suppression due to about 20\n> more categories.  Any help is appreciated!\n> \n> Thanks,\n> \n> Jon\n> \n> --\n> Jonathan Zadra, PhD\n> Data Scientist\n> Sorenson Impact Center\n> David Eccles School of Business, University of Utah\n> (801) 581-4815\n> jon.zadra at sorensonimpact.com\n> www.sorensonimpact.com\n> \n> [email_]\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "You can still get this data via the package, but it's definitely a\nlittle \"off road.\"  From what I can tell, there are 38 variables in\nC16001.  Since acs.fetch allows you to specify the variable codes",
+      "thread_id": "thread-2fc847daa37d",
+      "thread_depth": 1,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-16c266a6a80e",
+      "message_id": "<CACwR0F9eYoi_io1Zkf2=6wzZApp0CRB-Zs+n+5foRaDBpS39Sw@mail.gmail.com>",
+      "from_name": "Harald Kliems",
+      "from_email_hash": "5b0e3b833cbd9e8004a1cb377f6e7b40ff06667a50adb24ca2355c508d5220a9",
+      "date": "2018-04-15T19:19:18Z",
+      "subject": "[acs-r] Different data via API vs FactFinder?",
+      "subject_clean": "[acs-r] Different data via API vs FactFinder?",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "For our bike advocacy organization, I have been looking into commuting\ndata from the ACS. Until recently, I used the FactFinder to download\ntables and then manipulate and analyze the data in LibreOffice Calc.\nI've now tried using the very useful ACS.r package to improve my work\nflow, but looking at the retrieved data, there seem to be differences\nbetween what I get through the ACS.r/API and what I download through\nthe web interface from FactFinder.\n\nFor example, for 2016 ACS 1-year data from table B08006 for Madison (WI):\n\n###########\n## set geography to city of Madison, Wisconsin\nMadison <- geo.make(state=\"WI\", place = 48000)\n\n## select only the total, car/truck/van, public transport, bicycle,\nwalk variables from table B08006\nTransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\ndataset = \"acs\")[c(1,2,8,14,15)]\n\n#fetch data for 2016 year and return them into acs object\n\nACSData2016 <- acs.fetch(2016, geography = Madison,\n                     variable = TransitVars,\n                     col.names = c(\"Total\", \"Motor Vehicle\", \"Public\ntransit\", \"Bicycle\", \"Walked\"))\n##########\n\nJust looking at the \"total\" column, I get 140,435 through ACS.r but\n146715 when looking up the same table and geography through\nFactFinder. Similar differences exist for other years and the other\nvariables.\n\nI'm pretty new to R, and so it's entirely possible that I'm doing\nsomething wrong, but I don't see an obvious explanation for the\ndiscrepancy.\n\nAny hints would be appreciated.\n\nThanks,\n Harald.",
+      "body_snippet": "For our bike advocacy organization, I have been looking into commuting\ndata from the ACS. Until recently, I used the FactFinder to download\ntables and then manipulate and analyze the data in LibreOffi",
+      "thread_id": "thread-16c266a6a80e",
+      "thread_depth": 0,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-ae836eeefc7e",
+      "message_id": "<86a7u2cai6.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-04-17T11:56:01Z",
+      "subject": "[acs-r] Different data via API vs FactFinder?",
+      "subject_clean": "[acs-r] Different data via API vs FactFinder?",
+      "in_reply_to": "<CACwR0F9eYoi_io1Zkf2=6wzZApp0CRB-Zs+n+5foRaDBpS39Sw@mail.gmail.com>",
+      "references": [
+        "<CACwR0F9eYoi_io1Zkf2=6wzZApp0CRB-Zs+n+5foRaDBpS39Sw@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks for your email, and for using the package.  The issue you've\nrun into here is that even though you set the \"span=1\" when you saved\nthe variables, you didn't set it for acs.fetch, which means that\nacs.fetch used span=5 as a default.\n\nIf you use this instead, I think you'll see the same numbers as\nFactFinder:\n\n###########\n## set geography to city of Madison, Wisconsin\nMadison <- geo.make(state=\"WI\", place = 48000)\n\n## select only the total, car/truck/van, public transport, bicycle,\nwalk variables from table B08006\nTransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\ndataset = \"acs\")[c(1,2,8,14,15)]\n\n#fetch data for 2016 year and return them into acs object\n\n###### ADD \"span = 5\" for acs.fetch()\n\nACSData2016 <- acs.fetch(2016, span = 5, geography = Madison,\n                     variable = TransitVars,\n                     col.names = c(\"Total\", \"Motor Vehicle\", \"Public\ntransit\", \"Bicycle\", \"Walked\"))\n##########\n\nBest,\nEzra\n\nOn Sun, 15 Apr 2018 15:19:18 -0400, Harald Kliems wrote:\n> \n> For our bike advocacy organization, I have been looking into commuting\n> data from the ACS. Until recently, I used the FactFinder to download\n> tables and then manipulate and analyze the data in LibreOffice Calc.\n> I've now tried using the very useful ACS.r package to improve my work\n> flow, but looking at the retrieved data, there seem to be differences\n> between what I get through the ACS.r/API and what I download through\n> the web interface from FactFinder.\n> \n> For example, for 2016 ACS 1-year data from table B08006 for Madison (WI):\n> \n> ###########\n> ## set geography to city of Madison, Wisconsin\n> Madison <- geo.make(state=\"WI\", place = 48000)\n> \n> ## select only the total, car/truck/van, public transport, bicycle,\n> walk variables from table B08006\n> TransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\n> dataset = \"acs\")[c(1,2,8,14,15)]\n> \n> #fetch data for 2016 year and return them into acs object\n> \n> ACSData2016 <- acs.fetch(2016, geography = Madison,\n>                      variable = TransitVars,\n>                      col.names = c(\"Total\", \"Motor Vehicle\", \"Public\n> transit\", \"Bicycle\", \"Walked\"))\n> ##########\n> \n> Just looking at the \"total\" column, I get 140,435 through ACS.r but\n> 146715 when looking up the same table and geography through\n> FactFinder. Similar differences exist for other years and the other\n> variables.\n> \n> I'm pretty new to R, and so it's entirely possible that I'm doing\n> something wrong, but I don't see an obvious explanation for the\n> discrepancy.\n> \n> Any hints would be appreciated.\n> \n> Thanks,\n>  Harald.\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Thanks for your email, and for using the package.  The issue you've\nrun into here is that even though you set the \"span=1\" when you saved\nthe variables, you didn't set it for acs.fetch, which means th",
+      "thread_id": "thread-16c266a6a80e",
+      "thread_depth": 1,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-faa9111c1caa",
+      "message_id": "<CACwR0F-ftHyE7jExuzvh6izzU02QEWN7NS2rVYkU1ZKGhdJdpw@mail.gmail.com>",
+      "from_name": "Harald Kliems",
+      "from_email_hash": "5b0e3b833cbd9e8004a1cb377f6e7b40ff06667a50adb24ca2355c508d5220a9",
+      "date": "2018-04-17T12:39:09Z",
+      "subject": "[acs-r] Different data via API vs FactFinder?",
+      "subject_clean": "[acs-r] Different data via API vs FactFinder?",
+      "in_reply_to": "<86a7u2cai6.wl-eglenn@mit.edu>",
+      "references": [
+        "<CACwR0F9eYoi_io1Zkf2=6wzZApp0CRB-Zs+n+5foRaDBpS39Sw@mail.gmail.com>",
+        "<86a7u2cai6.wl-eglenn@mit.edu>"
+      ],
+      "body_plain": "Ezra, thanks a lot for your quick response -- duh, I suspected it was\nsomething as simple as that, but couldn't figure it out myself!\n\nI really appreciate your work on this package!\n\nBest,\n Harald.\n\nOn Tue, Apr 17, 2018 at 6:56 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:\n\n>\n> Thanks for your email, and for using the package.  The issue you've\n> run into here is that even though you set the \"span=1\" when you saved\n> the variables, you didn't set it for acs.fetch, which means that\n> acs.fetch used span=5 as a default.\n>\n> If you use this instead, I think you'll see the same numbers as\n> FactFinder:\n>\n> ###########\n> ## set geography to city of Madison, Wisconsin\n> Madison <- geo.make(state=\"WI\", place = 48000)\n>\n> ## select only the total, car/truck/van, public transport, bicycle,\n> walk variables from table B08006\n> TransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\n> dataset = \"acs\")[c(1,2,8,14,15)]\n>\n> #fetch data for 2016 year and return them into acs object\n>\n> ###### ADD \"span = 5\" for acs.fetch()\n>\n> ACSData2016 <- acs.fetch(2016, span = 5, geography = Madison,\n>                      variable = TransitVars,\n>                      col.names = c(\"Total\", \"Motor Vehicle\", \"Public\n> transit\", \"Bicycle\", \"Walked\"))\n> ##########\n>\n> Best,\n> Ezra\n>\n> On Sun, 15 Apr 2018 15:19:18 -0400, Harald Kliems wrote:\n> >\n> > For our bike advocacy organization, I have been looking into commuting\n> > data from the ACS. Until recently, I used the FactFinder to download\n> > tables and then manipulate and analyze the data in LibreOffice Calc.\n> > I've now tried using the very useful ACS.r package to improve my work\n> > flow, but looking at the retrieved data, there seem to be differences\n> > between what I get through the ACS.r/API and what I download through\n> > the web interface from FactFinder.\n> >\n> > For example, for 2016 ACS 1-year data from table B08006 for Madison (WI):\n> >\n> > ###########\n> > ## set geography to city of Madison, Wisconsin\n> > Madison <- geo.make(state=\"WI\", place = 48000)\n> >\n> > ## select only the total, car/truck/van, public transport, bicycle,\n> > walk variables from table B08006\n> > TransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\n> > dataset = \"acs\")[c(1,2,8,14,15)]\n> >\n> > #fetch data for 2016 year and return them into acs object\n> >\n> > ACSData2016 <- acs.fetch(2016, geography = Madison,\n> >                      variable = TransitVars,\n> >                      col.names = c(\"Total\", \"Motor Vehicle\", \"Public\n> > transit\", \"Bicycle\", \"Walked\"))\n> > ##########\n> >\n> > Just looking at the \"total\" column, I get 140,435 through ACS.r but\n> > 146715 when looking up the same table and geography through\n> > FactFinder. Similar differences exist for other years and the other\n> > variables.\n> >\n> > I'm pretty new to R, and so it's entirely possible that I'm doing\n> > something wrong, but I don't see an obvious explanation for the\n> > discrepancy.\n> >\n> > Any hints would be appreciated.\n> >\n> > Thanks,\n> >  Harald.\n> > _______________________________________________\n> > acs-r mailing list\n> > acs-r at mit.edu\n> > http://mailman.mit.edu/mailman/listinfo/acs-r\n>\n> --\n> Ezra Haber Glenn, AICP\n> Department of Urban Studies and Planning\n> Massachusetts Institute of Technology\n> 77 Massachusetts Ave., Room 7-346\n> Cambridge, MA 02139\n> eglenn at mit.edu\n> http://dusp.mit.edu/faculty/ezra-glenn\n> 617.253.2024 <(617)%20253-2024> (w)\n> 617.721.7131 <(617)%20721-7131> (c)\n>\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180417/8fff5db8/attachment.html",
+      "body_snippet": "Ezra, thanks a lot for your quick response -- duh, I suspected it was\nsomething as simple as that, but couldn't figure it out myself!\n\nI really appreciate your work on this package!\n\nBest,\n Harald.\n\nO",
+      "thread_id": "thread-16c266a6a80e",
+      "thread_depth": 2,
+      "month": "2018-04"
+    },
+    {
+      "id": "msg-f50d0a7d342b",
+      "message_id": "<8509C65EB7E97381.22cae7b9-9709-47ff-9bbd-73dcf0daf3da@mail.outlook.com>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2018-04-17T12:45:03Z",
+      "subject": "[acs-r] Different data via API vs FactFinder?",
+      "subject_clean": "[acs-r] Different data via API vs FactFinder?",
+      "in_reply_to": "<CACwR0F-ftHyE7jExuzvh6izzU02QEWN7NS2rVYkU1ZKGhdJdpw@mail.gmail.com>",
+      "references": [
+        "<CACwR0F9eYoi_io1Zkf2=6wzZApp0CRB-Zs+n+5foRaDBpS39Sw@mail.gmail.com>",
+        "<86a7u2cai6.wl-eglenn@mit.edu>",
+        "<CACwR0F-ftHyE7jExuzvh6izzU02QEWN7NS2rVYkU1ZKGhdJdpw@mail.gmail.com>"
+      ],
+      "body_plain": "Thanks. Also, maybe you noticed my slight typo/oversight: if you want the 1-year acs data, you should say \"span=1\" in the acs.fetch below, not span=5.\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu http://dusp.mit.edu/faculty/ezra-glenn 617.253.2024 (w) 617.721.7131 (c)\n\n\n\n\nOn Tue, Apr 17, 2018 at 8:39 AM -0400, \"Harald Kliems\" <harald at madisonbikes.org<mailto:harald at madisonbikes.org>> wrote:\n\nEzra, thanks a lot for your quick response -- duh, I suspected it was something as simple as that, but couldn't figure it out myself!\n\nI really appreciate your work on this package!\n\nBest,\n Harald.\n\nOn Tue, Apr 17, 2018 at 6:56 AM Ezra Haber Glenn <eglenn at mit.edu<mailto:eglenn at mit.edu>> wrote:\n\nThanks for your email, and for using the package.  The issue you've\nrun into here is that even though you set the \"span=1\" when you saved\nthe variables, you didn't set it for acs.fetch, which means that\nacs.fetch used span=5 as a default.\n\nIf you use this instead, I think you'll see the same numbers as\nFactFinder:\n\n###########\n## set geography to city of Madison, Wisconsin\nMadison <- geo.make(state=\"WI\", place = 48000)\n\n## select only the total, car/truck/van, public transport, bicycle,\nwalk variables from table B08006\nTransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\ndataset = \"acs\")[c(1,2,8,14,15)]\n\n#fetch data for 2016 year and return them into acs object\n\n###### ADD \"span = 5\" for acs.fetch()\n\nACSData2016 <- acs.fetch(2016, span = 5, geography = Madison,\n                     variable = TransitVars,\n                     col.names = c(\"Total\", \"Motor Vehicle\", \"Public\ntransit\", \"Bicycle\", \"Walked\"))\n##########\n\nBest,\nEzra\n\nOn Sun, 15 Apr 2018 15:19:18 -0400, Harald Kliems wrote:\n>\n> For our bike advocacy organization, I have been looking into commuting\n> data from the ACS. Until recently, I used the FactFinder to download\n> tables and then manipulate and analyze the data in LibreOffice Calc.\n> I've now tried using the very useful ACS.r package to improve my work\n> flow, but looking at the retrieved data, there seem to be differences\n> between what I get through the ACS.r/API and what I download through\n> the web interface from FactFinder.\n>\n> For example, for 2016 ACS 1-year data from table B08006 for Madison (WI):\n>\n> ###########\n> ## set geography to city of Madison, Wisconsin\n> Madison <- geo.make(state=\"WI\", place = 48000)\n>\n> ## select only the total, car/truck/van, public transport, bicycle,\n> walk variables from table B08006\n> TransitVars <- acs.lookup(2016, span = 1, table.number = \"B08006\",\n> dataset = \"acs\")[c(1,2,8,14,15)]\n>\n> #fetch data for 2016 year and return them into acs object\n>\n> ACSData2016 <- acs.fetch(2016, geography = Madison,\n>                      variable = TransitVars,\n>                      col.names = c(\"Total\", \"Motor Vehicle\", \"Public\n> transit\", \"Bicycle\", \"Walked\"))\n> ##########\n>\n> Just looking at the \"total\" column, I get 140,435 through ACS.r but\n> 146715 when looking up the same table and geography through\n> FactFinder. Similar differences exist for other years and the other\n> variables.\n>\n> I'm pretty new to R, and so it's entirely possible that I'm doing\n> something wrong, but I don't see an obvious explanation for the\n> discrepancy.\n>\n> Any hints would be appreciated.\n>\n> Thanks,\n>  Harald.\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu<mailto:acs-r at mit.edu>\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-346\nCambridge, MA 02139\neglenn at mit.edu<mailto:eglenn at mit.edu>\nhttp://dusp.mit.edu/faculty/ezra-glenn\n617.253.2024<tel:(617)%20253-2024> (w)\n617.721.7131<tel:(617)%20721-7131> (c)\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20180417/23cdd55e/attachment-0001.html",
+      "body_snippet": "Thanks. Also, maybe you noticed my slight typo/oversight: if you want the 1-year acs data, you should say \"span=1\" in the acs.fetch below, not span=5.\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban St",
+      "thread_id": "thread-16c266a6a80e",
+      "thread_depth": 3,
+      "month": "2018-04"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-2fc847daa37d",
+      "subject": "[acs-r] Trick to get 2016 data failing for C16001",
+      "message_count": 2,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Jon Zadra"
+      ],
+      "started": "2018-04-08T16:40:20Z",
+      "last_reply": "2018-04-09T13:32:56Z",
+      "root_message_id": "msg-2fc847daa37d"
+    },
+    {
+      "id": "thread-aa9b92cff792",
+      "subject": "[acs-r] Trick to get 2016 data failing for C16001",
+      "message_count": 1,
+      "participants": [
+        "Jon Zadra"
+      ],
+      "started": "2018-04-09T12:57:55Z",
+      "last_reply": "2018-04-09T12:57:55Z",
+      "root_message_id": "msg-aa9b92cff792"
+    },
+    {
+      "id": "thread-16c266a6a80e",
+      "subject": "[acs-r] Different data via API vs FactFinder?",
+      "message_count": 4,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Harald Kliems"
+      ],
+      "started": "2018-04-15T19:19:18Z",
+      "last_reply": "2018-04-17T12:45:03Z",
+      "root_message_id": "msg-16c266a6a80e"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+From brandon.taylor221 at gmail.com  Mon Apr  5 11:25:53 2021
+From: brandon.taylor221 at gmail.com (Brandon Taylor)
+Date: Mon, 5 Apr 2021 11:25:53 -0400
+Subject: [acs-r] Issue
+In-Reply-To: <CAEx8kLX64mP=XppWxzNHdU+UB1Ce_NYYVy9nhDoYRY3zArKZbQ@mail.gmail.com>
+References: <CAEx8kLWD7D+2=NDasYdogjQETgqO3q=FSt+9FfHvXj7tQD0xow@mail.gmail.com>
+	<CAEx8kLX64mP=XppWxzNHdU+UB1Ce_NYYVy9nhDoYRY3zArKZbQ@mail.gmail.com>
+Message-ID: <CAEx8kLUSqq0RHoAHdmoqVL3aH8jYKbHnLNWLKpfb1mB0_vu6RA@mail.gmail.com>
+
+Ok, if anyone is out there...
+
+I just added a line:
+
+in.data$NAME = NULL
+
+after in.data is created and trimmed, and it seemed to have fixed things
+
+On Tue, Mar 30, 2021 at 10:55 AM Brandon Taylor <brandon.taylor221 at gmail.com>
+wrote:
+
+> After a round of debugging, I think the issue is in this line:
+>
+> col.names = names(in.data)[seq(1, (length(in.data) -
+>         geo.length), 2)]
+>
+> Browse[5]> names(in.data)[seq(1, (length(in.data) - +         geo.length), 2)] [1] "X..B01001_001E" "B01001_003E"    "B01001_004E"    "B01001_005E"    "B01001_006E"
+>  [6] "B01001_007E"    "B01001_008E"    "B01001_009E"    "B01001_010E"    "B01001_011E"
+> [11] "B01001_012E"    "B01001_013E"    "B01001_014E"    "B01001_015E"    "B01001_016E"
+> [16] "B01001_017E"    "B01001_018E"    "B01001_019E"    "B01001_020E"    "NAME"
+>
+>
+> I don't think NAME was supposed to have made it in there?
+>
+> On Mon, Mar 29, 2021 at 11:06 AM Brandon Taylor <
+> brandon.taylor221 at gmail.com> wrote:
+>
+>> Hi all,
+>> I'm not sure if I'm asking this question in the right place...
+>> I'm running into an error using the package. The code I'm running is:
+>>
+>> zip_codes = geo.make(zip.code = "*")
+>> census_data = acs.fetch( 2015, dataset = "acs", geography = zip_codes,
+>> span = 5, variable = c( "B01001_001", "B01001_003", "B01001_004",
+>> "B01001_005", "B01001_006", "B01001_007", "B01001_008", "B01001_009",
+>> "B01001_010", "B01001_011", "B01001_012", "B01001_013", "B01001_014",
+>> "B01001_015", "B01001_016", "B01001_017", "B01001_018", "B01001_019",
+>> "B01001_020", "B01001_021", "B01001_022", "B01001_023", "B01001_024",
+>> "B01001_025", "B01001_027", "B01001_028", "B01001_029", "B01001_030",
+>> "B01001_031", "B01001_032", "B01001_033", "B01001_034", "B01001_035",
+>> "B01001_036", "B01001_037", "B01001_038", "B01001_039", "B01001_040",
+>> "B01001_041", "B01001_042", "B01001_043", "B01001_044", "B01001_045",
+>> "B01001_046", "B01001_047", "B01001_048", "B01001_049", "B02001_001",
+>> "B02001_003", "B03001_001", "B03001_003", "B15003_001", "B15003_002",
+>> "B15003_003", "B15003_004", "B15003_005", "B15003_006", "B15003_007",
+>> "B15003_008", "B15003_009", "B15003_010", "B15003_011", "B15003_012",
+>> "B15003_013", "B15003_014", "B15003_015", "B15003_016", "B17001_001",
+>> "B17001_002", "B19013_001", "B25008_001", "B25008_002", "B25077_001" ) )
+>>
+>> And the result I'm getting is
+>>
+>> Error in dimnames(acs.obj at standard.error) <- list(acs.obj at geography[[1]],
+>>  :
+>>   length of 'dimnames' [2] not equal to array extent
+>> In addition: Warning message:
+>> In acs.fetch(endyear = endyear, span = span, geography = geography[[1]],
+>>  :
+>>   NAs introduced by coercion
+>>
+>
+>
+> --
+> brandon taylor
+> (978) 831-3135
+> pronouns: dealer's choice
+>
+
+
+-- 
+brandon taylor
+(978) 831-3135
+pronouns: dealer's choice
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20210405/a4ba3bf0/attachment.html
+

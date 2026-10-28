@@ -1,0 +1,417 @@
+From tiernanmartin at gmail.com  Tue Oct 25 11:31:07 2016
+From: tiernanmartin at gmail.com (Tiernan Martin)
+Date: Tue, 25 Oct 2016 15:31:07 +0000
+Subject: [acs-r] Sort acs object before plotting?
+Message-ID: <CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>
+
+I love the plotting method that the acs package implements, but if an acs
+object has many records the resulting graph can be difficult to understand
+(see below).
+
+[image: acs-graph-ex.png]
+
+Is there a good way for arranging the records so that the graph shows them
+in ascending order? My efforts to use `sort()` and `dplyr::arrange()` have
+all resulted in errors.
+
+Thanks,
+
+Tiernan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/99c16e5a/attachment-0001.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: acs-graph-ex.png
+Type: image/png
+Size: 66467 bytes
+Desc: not available
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/99c16e5a/attachment-0001.png
+
+From eglenn at mit.edu  Tue Oct 25 14:32:14 2016
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Tue, 25 Oct 2016 14:32:14 -0400
+Subject: [acs-r] Sort acs object before plotting?
+In-Reply-To: <CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>
+References: <CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>
+Message-ID: <86d1iogtzl.wl-eglenn@mit.edu>
+
+
+Great question.  The trick would be to use order() as an index vector
+inside square brackets.  So if my.data is a acs object and you want to
+plot the first column, an unsorted plot would be:
+
+> plot(my.data[,1])
+
+and a sorted plot might be
+
+> plot(my.data[order(estimate(my.data[,1])),1])
+
+should do the trick.
+
+If you're doing a bunch of this sort of thing, or maybe if you want to
+plot one column based on the order of another (say, the percentage of
+commuters in a tract, by order of the median HH income of the tracts),
+you could save the indices:
+
+> my.index=order(estimate(my.data[,1]))
+> plot(my.data[my.index, 1])
+
+--Ezra
+
+On Tue, 25 Oct 2016 11:31:07 -0400, Tiernan Martin wrote:
+> 
+> [1  <multipart/related (7bit)>]
+> [1.1  <multipart/alternative (7bit)>]
+> [1.1.1  <text/plain; UTF-8 (7bit)>]
+> [1.1.2  <text/html; UTF-8 (quoted-printable)>]
+> I love the plotting method that the acs package implements, but if an acs object has many
+> records the resulting graph can be difficult to understand (see below).
+> 
+> acs-grap
+> 
+> Is there a good way for arranging the records so that the graph shows them in ascending
+> order? My efforts to use `sort()` and `dplyr::arrange()` have all resulted in errors.
+> 
+> Thanks,
+> 
+> Tiernan
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+From tiernanmartin at gmail.com  Tue Oct 25 19:26:15 2016
+From: tiernanmartin at gmail.com (Tiernan Martin)
+Date: Tue, 25 Oct 2016 23:26:15 +0000
+Subject: [acs-r] Sort acs object before plotting?
+In-Reply-To: <86d1iogtzl.wl-eglenn@mit.edu>
+References: <CAEo23y4-cw0qoHnj=5xN3cy4r-SOHGhiizpV-NuJbQGP-YAnAA@mail.gmail.com>
+	<86d1iogtzl.wl-eglenn@mit.edu>
+Message-ID: <CAEo23y4wQLKxx3fD_g_RMuzBo4bz-QpvabrmRtacKo=nswapmw@mail.gmail.com>
+
+Works like a charm! I included a couple examples so folks can see the
+benefit.
+
+Thanks, Ezra.
+
+*Ordered by Estimate*
+[image: acs-ex-ordered1.png]
+*Ordered by Standard Error*
+
+*[image: acs-ex-ordered2.png]*
+
+On Tue, Oct 25, 2016 at 11:32 AM Ezra Haber Glenn <eglenn at mit.edu> wrote:
+
+>
+> Great question.  The trick would be to use order() as an index vector
+> inside square brackets.  So if my.data is a acs object and you want to
+> plot the first column, an unsorted plot would be:
+>
+> > plot(my.data[,1])
+>
+> and a sorted plot might be
+>
+> > plot(my.data[order(estimate(my.data[,1])),1])
+>
+> should do the trick.
+>
+> If you're doing a bunch of this sort of thing, or maybe if you want to
+> plot one column based on the order of another (say, the percentage of
+> commuters in a tract, by order of the median HH income of the tracts),
+> you could save the indices:
+>
+> > my.index=order(estimate(my.data[,1]))
+> > plot(my.data[my.index, 1])
+>
+> --Ezra
+>
+> On Tue, 25 Oct 2016 11:31:07 -0400, Tiernan Martin wrote:
+> >
+> > [1  <multipart/related (7bit)>]
+> > [1.1  <multipart/alternative (7bit)>]
+> > [1.1.1  <text/plain; UTF-8 (7bit)>]
+> > [1.1.2  <text/html; UTF-8 (quoted-printable)>]
+> > I love the plotting method that the acs package implements, but if an
+> acs object has many
+> > records the resulting graph can be difficult to understand (see below).
+> >
+> > acs-grap
+> >
+> > Is there a good way for arranging the records so that the graph shows
+> them in ascending
+> > order? My efforts to use `sort()` and `dplyr::arrange()` have all
+> resulted in errors.
+> >
+> > Thanks,
+> >
+> > Tiernan
+> >
+> >
+> > [2  <text/plain; us-ascii (7bit)>]
+> > _______________________________________________
+> > acs-r mailing list
+> > acs-r at mit.edu
+> > http://mailman.mit.edu/mailman/listinfo/acs-r
+>
+> --
+> Ezra Haber Glenn, AICP
+> Department of Urban Studies and Planning
+> Massachusetts Institute of Technology
+> 77 Massachusetts Ave., Room 7-346
+> Cambridge, MA 02139
+> eglenn at mit.edu
+> http://dusp.mit.edu/faculty/ezra-glenn |
+> http://eglenn.scripts.mit.edu/citystate/
+> 617.253.2024 <(617)%20253-2024> (w)
+> 617.721.7131 <(617)%20721-7131> (c)
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0001.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: acs-ex-ordered1.png
+Type: image/png
+Size: 53182 bytes
+Desc: not available
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0002.png
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: acs-ex-ordered2.png
+Type: image/png
+Size: 67005 bytes
+Desc: not available
+Url : http://mailman.mit.edu/pipermail/acs-r/attachments/20161025/1536497d/attachment-0003.png
+
+From ccambron at uw.edu  Wed Oct 26 19:40:12 2016
+From: ccambron at uw.edu (Chris Cambron)
+Date: Wed, 26 Oct 2016 16:40:12 -0700
+Subject: [acs-r] 5 year estimates of residential mobility at the block group
+	level
+Message-ID: <CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>
+
+Hi acs-ers,
+Has anyone been able to extra a measure of residential mobility (living in
+same house for past year) at the block group level? B07001 and B07101
+produce all NAs for both 2006-2010 and 2010-2014.
+Thanks
+Chris
+
+*Chris Cambron, MSW, MPP*
+Doctoral Candidate
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161026/07bc5d84/attachment.html
+
+From eglenn at mit.edu  Thu Oct 27 10:16:23 2016
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 27 Oct 2016 10:16:23 -0400
+Subject: [acs-r] 5 year estimates of residential mobility at the block
+	group	level
+In-Reply-To: <CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>
+References: <CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ@mail.gmail.com>
+Message-ID: <861sz1ev2g.wl-eglenn@mit.edu>
+
+
+>From what I can tell, these tables are not provided at the block group
+level -- it's not an acs.R limitation, it's an ACS limitation.
+
+On Wed, 26 Oct 2016 19:40:12 -0400, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi acs-ers,
+> Has anyone been able to extra a measure of residential mobility (living in same house for
+> past year) at the block group level? B07001 and B07101 produce all NAs for both 2006-2010
+> and 2010-2014.
+> Thanks
+> Chris
+> 
+> Chris Cambron, MSW, MPP
+> Doctoral Candidate
+> Social Development Research Group
+> School of Social Work   |  University of Washington
+> ccambron at uw.edu  |  www.sdrg.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From Corrales.Mark at epa.gov  Thu Oct 27 12:26:53 2016
+From: Corrales.Mark at epa.gov (Corrales, Mark)
+Date: Thu, 27 Oct 2016 16:26:53 +0000
+Subject: [acs-r] acs-r Mobility data from ACS/etc.?
+Message-ID: <MWHPR09MB13115AF2D4FAB9D4D703711DF2AA0@MWHPR09MB1311.namprd09.prod.outlook.com>
+
+
+Census provides an overview of various data sources related to residential mobility, here:
+http://www.census.gov/topics/population/migration.html 
+http://www.census.gov/topics/population/migration/surveys-programs.html
+http://www.census.gov/topics/population/migration/data/tables.html 
+
+
+Mark A. Corrales, MPP
+Acting Director, Policy and Regulatory Analysis Division
+Office of the Administrator/ Office of Policy
+US EPA
+(202) 564-7493?(o)
+(202) 495-8092 (m)
+
+William Jefferson Clinton Building North
+1200 Pennsylvania Ave, NW
+Room 3522, mail Code 1803A
+Washington, DC 20460
+
+
+-----Original Message-----
+From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of acs-r-request at mit.edu
+Sent: Thursday, October 27, 2016 12:02 PM
+To: acs-r at mit.edu
+Subject: acs-r Digest, Vol 29, Issue 3
+
+Send acs-r mailing list submissions to
+	acs-r at mit.edu
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	http://mailman.mit.edu/mailman/listinfo/acs-r
+or, via email, send a message with subject or body 'help' to
+	acs-r-request at mit.edu
+
+You can reach the person managing the list at
+	acs-r-owner at mit.edu
+
+When replying, please edit your Subject line so it is more specific than "Re: Contents of acs-r digest..."
+
+
+Today's Topics:
+
+   1. 5 year estimates of residential mobility at the block group
+      level (Chris Cambron)
+   2. Re: 5 year estimates of residential mobility at the block
+      group	level (Ezra Haber Glenn)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 26 Oct 2016 16:40:12 -0700
+From: Chris Cambron <ccambron at uw.edu>
+Subject: [acs-r] 5 year estimates of residential mobility at the block
+	group	level
+To: acs-r at mit.edu
+Message-ID:
+	<CAHNWBy2cfNS43s-o-uKwjqx-sMU67RUOjc3ig+dt7RVFFOJ-VQ at mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+
+Hi acs-ers,
+Has anyone been able to extra a measure of residential mobility (living in same house for past year) at the block group level? B07001 and B07101 produce all NAs for both 2006-2010 and 2010-2014.
+Thanks
+Chris
+
+*Chris Cambron, MSW, MPP*
+Doctoral Candidate
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20161026/07bc5d84/attachment-0001.html
+
+------------------------------
+
+Message: 2
+Date: Thu, 27 Oct 2016 10:16:23 -0400
+From: Ezra Haber Glenn <eglenn at mit.edu>
+Subject: Re: [acs-r] 5 year estimates of residential mobility at the
+	block	group	level
+To: Chris Cambron <ccambron at uw.edu>
+Cc: acs-r at mit.edu
+Message-ID: <861sz1ev2g.wl-eglenn at mit.edu>
+Content-Type: text/plain; charset=US-ASCII
+
+
+>From what I can tell, these tables are not provided at the block group
+level -- it's not an acs.R limitation, it's an ACS limitation.
+
+On Wed, 26 Oct 2016 19:40:12 -0400, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>] Hi acs-ers, Has anyone 
+> been able to extra a measure of residential mobility (living in same 
+> house for past year) at the block group level? B07001 and B07101 
+> produce all NAs for both 2006-2010 and 2010-2014.
+> Thanks
+> Chris
+> 
+> Chris Cambron, MSW, MPP
+> Doctoral Candidate
+> Social Development Research Group
+> School of Social Work   |  University of Washington
+> ccambron at uw.edu  |  www.sdrg.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+
+------------------------------
+
+_______________________________________________
+acs-r mailing list
+acs-r at mit.edu
+http://mailman.mit.edu/mailman/listinfo/acs-r
+
+
+End of acs-r Digest, Vol 29, Issue 3
+************************************
+
+

@@ -1,0 +1,138 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2016-04",
+  "messages": [
+    {
+      "id": "msg-01e881ad2f31",
+      "message_id": "<86d1q6p4ec.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-04-04T01:08:11Z",
+      "subject": "[acs-r] warning / guidance: working with combined geo.sets",
+      "subject_clean": "[acs-r] warning / guidance: working with combined geo.sets",
+      "in_reply_to": "<CANq2AxatYgNaFfuwxqwBqNyV9PA94GB0rDgeU3PqehySNJYsPA@mail.gmail.com>",
+      "references": [
+        "<CANq2AxZdbCwtKVeTcZPStpVSfqxAYumxS9MU7uhRKsookoVzyw@mail.gmail.com>",
+        "<543F7B9E-B115-4108-B676-501427D3053B@mit.edu>",
+        "<CANq2Axb4RBvxE3ArvP68S01GpZeCTAv6+3zhbSKiR9DB+DGARg@mail.gmail.com>",
+        "<86lh54yeo3.wl%eglenn@mit.edu>",
+        "<CANq2AxY+zW0qq5+mB2dAqQOKKMa55iGfp329DkVLqMH0DVqSGw@mail.gmail.com>",
+        "<86a8lfvozu.wl%eglenn@mit.edu>",
+        "<CANq2AxZJ5bWdj7t5H-y5nn6TLyo71U-7hnB223qzoKn3Taw1mQ@mail.gmail.com>",
+        "<861t6rvkr1.wl%eglenn@mit.edu>",
+        "<CANq2Axb+GGpapiOm_Dz8iq1ePt05wTC8sMH4qg4Q9wpZaECEHQ@mail.gmail.com>",
+        "<86zitfu39p.wl%eglenn@mit.edu>",
+        "<86vb43u2wb.wl%eglenn@mit.edu>",
+        "<CANq2AxY50aZqJwx=x13cYgVyGqaRcTMkYWVYrC-Wt+T_rBNPkQ@mail.gmail.com>",
+        "<86pouau7aa.wl%eglenn@mit.edu>",
+        "<CANq2AxatYgNaFfuwxqwBqNyV9PA94GB0rDgeU3PqehySNJYsPA@mail.gmail.com>"
+      ],
+      "body_plain": "Dear acs-R users:\n\nIf you have been using the acs package to create custom geo.sets which\n*combine* existing census geographies (i.e., geo.sets with\n\"combine=T\"), please read on.\n\nIt has come to my attention that some users working with custom\n*combined* geo.sets may be introducing errors into their data if they\nattempt to combine census variables dealing with medians, percentages,\nor similar derived summary data.\n\nMost of the data available through the package (via the ACS and the\nDecennial Census APIs) comes in the form of *raw counts* -- numbers of\npeople, households, commuters, etc.  When a geo.set includes multiple\nelements and \"combine=T\", the package will fetch the data, and then\ncombine the geographies by (1) adding the estimates and (2)\ncalculating the standard errors of these aggregate estimates.  This\nprocedure is absolutely proper for count-data, but if is *not*\nappropriate for median incomes (or median ages, or mean incomes, or\nmean travel times, or derived percentages, etc.).\n\nFor example, if you attempt to aggregate three tracts with median\nincomes of $25,000, $35,000, and $50,000 into a single neighborhood,\nthe acs.fetch will return a neighborhood with an \"aggregate\" median\nincome of $110,000: wrong.\n\nA quick demonstration:\n\n> all.us=geo.make(state=fips.state[1:51,2], combine=T)\n> median.income=acs.fetch(geography=all.us, table.number=\"B06011\", endyear=2014, span=1)\n> median.income\n\nTry this and you'll see that the country's \"median income\" is\n$1,394,002...\n\nIn the package's defense, there really *isn't* a proper way to\naggregate median incomes like this.  Since medians -- or means, or\npercentages - are *derived* from underlying data, they are really\n\"summaries,\" and without at least some more info about the underlying\ndata you can't always properly combine them.  So, in the example\nabove, we know that the median income for the neighborhood is\nsomewhere between $25,000 and $50,000, but not really where.  We can\ntake a median of the medians ($35,000), or a mean of the medians\n($100,000 / 3 = $36,667), but these are just guesses as well: without\nknowing how many observations there were in each tract and what they\nincomes were, we simply can't calculate it.  (This is why I didn't\nthink it would be an issue -- but now I'm thinking at least a stronger\nwarning somewhere would be a good idea, hence this email and some new\nlanguage I'll add to the guidance docs.)\n\nPlease note that this issue only occurs when users create geo.sets\nwith multiple elements and then *combine* them (by setting \"combine=T\"\nin the geo.set) before passing them to acs.fetch to download data.  As\nlong as you are not combining multiple tracts, counties, blockgroups,\netc., the package is still fine for fetching and working with median\nincomes, percentage, and the like.  (But be careful: you own code may\nslip in similar mistakes, if you combine this sort of data.)\n\nPlease pass on this info to your colleagues who may be using the\npackage, and be sure to check your code if it (a) deals with\n*combined* geo.set and (b) downloads non-count data.  If you have any\nquestions or concerns, by all means ask contact me and I'll be happy\nto discuss more.\n\nThanks, and sorry if this wasn't clear.\n\n--Ezra\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Dear acs-R users:\n\nIf you have been using the acs package to create custom geo.sets which\n*combine* existing census geographies (i.e., geo.sets with\n\"combine=T\"), please read on.\n\nIt has come to my at",
+      "thread_id": "thread-01e881ad2f31",
+      "thread_depth": 0,
+      "month": "2016-04"
+    },
+    {
+      "id": "msg-3d2c9b0a8a0b",
+      "message_id": "<SN1PR04MB209668277400C7238017D619B06B0@SN1PR04MB2096.namprd04.prod.outlook.com>",
+      "from_name": "Jonah Newman",
+      "from_email_hash": "4b6de00a1c2fa2dfe163031a9464f2349576f4edcaae097d3c5e818087583593",
+      "date": "2016-04-18T21:29:31Z",
+      "subject": "[acs-r] Error message in acs 2.0",
+      "subject_clean": "[acs-r] Error message in acs 2.0",
+      "in_reply_to": null,
+      "references": [],
+      "body_plain": "Hi everyone,\n\nI?m new to this listserv, and pretty new to R. I?ve used the acs package once before, on a fairly small set of geographies, and it was great! Now I?m trying it on a larger set, and it?s having some trouble. For reference, I?m using R version 3.2.5, and R Studio version 0.98.1103.\n\nMy geo.set has 591 elements (census tracts). I used check=T to make sure they were all good, and they are.\n\nBut when I try to use acs.fetch to download data, I?m getting the following error:\n\nError in if (url.test[\"statusMessage\"] != \"OK\") { :\n  missing value where TRUE/FALSE needed\n\nHere?s my code:\n\n#select race by Hispanic Origin data from ACS for selected geographies\nrace <- acs.fetch(endyear=2014, span=5, geography = mygeo, table.number=\"B03002\", dataset = \"acs\")\n\nCan anyone help me figure out what?s happening, and why?\n\nThanks!\nJonah\n---\n??Jonah Newman\n??Data & Investigative Reporter\n??The Chicago Reporter\n??(312) 673-3807 (office)\n(312) 857-8675 (cell)\n??@jonahshai\n\n??The Chicago Reporter is a nonprofit investigative news organization that focuses on race, poverty and income inequality.\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160418/09cac824/attachment.html",
+      "body_snippet": "Hi everyone,\n\nI?m new to this listserv, and pretty new to R. I?ve used the acs package once before, on a fairly small set of geographies, and it was great! Now I?m trying it on a larger set, and it?s ",
+      "thread_id": "thread-3d2c9b0a8a0b",
+      "thread_depth": 0,
+      "month": "2016-04"
+    },
+    {
+      "id": "msg-7a9bde2a4fb4",
+      "message_id": "<A5A30F1D451F924B902DDE8063410E670E88DA@EM1A.ad.ucla.edu>",
+      "from_name": "Ganz, Carl",
+      "from_email_hash": "180bb2a7138c630a7efb7fd07b3e17efc90ba315c7d5af18ead1dc96f818ce35",
+      "date": "2016-04-19T00:43:28Z",
+      "subject": "[acs-r] Error message in acs 2.0",
+      "subject_clean": "[acs-r] Error message in acs 2.0",
+      "in_reply_to": "<SN1PR04MB209668277400C7238017D619B06B0@SN1PR04MB2096.namprd04.prod.outlook.com>",
+      "references": [
+        "<SN1PR04MB209668277400C7238017D619B06B0@SN1PR04MB2096.namprd04.prod.outlook.com>"
+      ],
+      "body_plain": "Hello Jonah,\n\nI have had similar problems when dealing with geographies with many elements. I am guessing that you generated your geo.set by passing a vector of desired census tracts rather than doing something like,\n\ngeo.set(state=?IL?, county=?Cook?, tract=?*?)\n\nAs a result, your geo.set list has 591 geo objects. From my experience, any geo.set list with more than 550 elements will generate the error you mentioned. I have no idea whether this is a design decision, a bug, or some other issue.\n\nWhen I had this problem I divided my geo.set into two geo.sets, each with less than 550 elements, fetched results for the two geographies, and then combined the output. Perhaps there is a more elegant workaround.\n\nKind Regards,\nCarl Ganz\nAssistant Statistician\nUCLA Center for Health Policy Research\n\nFrom: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Jonah Newman\nSent: Monday, April 18, 2016 2:30 PM\nTo: acs-r at mit.edu\nSubject: [acs-r] Error message in acs 2.0\n\nHi everyone,\n\nI?m new to this listserv, and pretty new to R. I?ve used the acs package once before, on a fairly small set of geographies, and it was great! Now I?m trying it on a larger set, and it?s having some trouble. For reference, I?m using R version 3.2.5, and R Studio version 0.98.1103.\n\nMy geo.set has 591 elements (census tracts). I used check=T to make sure they were all good, and they are.\n\nBut when I try to use acs.fetch to download data, I?m getting the following error:\n\nError in if (url.test[\"statusMessage\"] != \"OK\") { :\n  missing value where TRUE/FALSE needed\n\nHere?s my code:\n\n#select race by Hispanic Origin data from ACS for selected geographies\nrace <- acs.fetch(endyear=2014, span=5, geography = mygeo, table.number=\"B03002\", dataset = \"acs\")\n\nCan anyone help me figure out what?s happening, and why?\n\nThanks!\nJonah\n---\n??Jonah Newman\n??Data & Investigative Reporter\n??The Chicago Reporter\n??(312) 673-3807 (office)\n(312) 857-8675 (cell)\n??@jonahshai\n\n??The Chicago Reporter is a nonprofit investigative news organization that focuses on race, poverty and income inequality.\n\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160418/ddad5bc2/attachment-0001.html",
+      "body_snippet": "Hello Jonah,\n\nI have had similar problems when dealing with geographies with many elements. I am guessing that you generated your geo.set by passing a vector of desired census tracts rather than doing",
+      "thread_id": "thread-3d2c9b0a8a0b",
+      "thread_depth": 1,
+      "month": "2016-04"
+    },
+    {
+      "id": "msg-cd2fa84b5b86",
+      "message_id": "<0D.51.15233.7EF26175@dmz-mailsec-scanner-1.mit.edu>",
+      "from_name": "Williams, Michael",
+      "from_email_hash": "8a1b6dc63bb477d8b40365b37aada9b59d43ee4c55a3f486e02090aa92432f20",
+      "date": "2016-04-19T13:16:53Z",
+      "subject": "[acs-r] Error message in acs 2.0",
+      "subject_clean": "[acs-r] Error message in acs 2.0",
+      "in_reply_to": "<A5A30F1D451F924B902DDE8063410E670E88DA@EM1A.ad.ucla.edu>",
+      "references": [
+        "<SN1PR04MB209668277400C7238017D619B06B0@SN1PR04MB2096.namprd04.prod.outlook.com>",
+        "<A5A30F1D451F924B902DDE8063410E670E88DA@EM1A.ad.ucla.edu>"
+      ],
+      "body_plain": "Hi Jonah,\n\nI?ve used this package a fair amount. I also wrote my own very basic package for using the census api for slightly different use cases. Long story short, whenever possible I?d suggest using the wildcard as Carl suggests. That results in one api call while if you query each individual tract, you?re making a call for each tract and the data will take considerably longer to pull (with more opportunities for connection errors). The acs package is essentially looping through each geography, downloading, and binding the results together.\n\nAfter you?ve got all the tracts from the wildcard you can filter the results locally.\n\n\n\n\nMichael Williams | Financial Analyst | Community Development | Federal Reserve Bank of Minneapolis | 612.204.5572 | www.minneapolisfed.org<http://www.minneapolisfed.org/>\n\nFrom: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ganz, Carl\nSent: Monday, April 18, 2016 7:43 PM\nTo: Jonah Newman <jnewman at chicagoreporter.com>; acs-r at mit.edu\nSubject: Re: [acs-r] Error message in acs 2.0\n\nHello Jonah,\n\nI have had similar problems when dealing with geographies with many elements. I am guessing that you generated your geo.set by passing a vector of desired census tracts rather than doing something like,\n\ngeo.set(state=?IL?, county=?Cook?, tract=?*?)\n\nAs a result, your geo.set list has 591 geo objects. From my experience, any geo.set list with more than 550 elements will generate the error you mentioned. I have no idea whether this is a design decision, a bug, or some other issue.\n\nWhen I had this problem I divided my geo.set into two geo.sets, each with less than 550 elements, fetched results for the two geographies, and then combined the output. Perhaps there is a more elegant workaround.\n\nKind Regards,\nCarl Ganz\nAssistant Statistician\nUCLA Center for Health Policy Research\n\nFrom: acs-r-bounces at mit.edu<mailto:acs-r-bounces at mit.edu> [mailto:acs-r-bounces at mit.edu] On Behalf Of Jonah Newman\nSent: Monday, April 18, 2016 2:30 PM\nTo: acs-r at mit.edu<mailto:acs-r at mit.edu>\nSubject: [acs-r] Error message in acs 2.0\n\nHi everyone,\n\nI?m new to this listserv, and pretty new to R. I?ve used the acs package once before, on a fairly small set of geographies, and it was great! Now I?m trying it on a larger set, and it?s having some trouble. For reference, I?m using R version 3.2.5, and R Studio version 0.98.1103.\n\nMy geo.set has 591 elements (census tracts). I used check=T to make sure they were all good, and they are.\n\nBut when I try to use acs.fetch to download data, I?m getting the following error:\n\nError in if (url.test[\"statusMessage\"] != \"OK\") { :\n  missing value where TRUE/FALSE needed\n\nHere?s my code:\n\n#select race by Hispanic Origin data from ACS for selected geographies\nrace <- acs.fetch(endyear=2014, span=5, geography = mygeo, table.number=\"B03002\", dataset = \"acs\")\n\nCan anyone help me figure out what?s happening, and why?\n\nThanks!\nJonah\n---\n??Jonah Newman\n??Data & Investigative Reporter\n??The Chicago Reporter\n??(312) 673-3807 (office)\n(312) 857-8675 (cell)\n??@jonahshai\n\n??The Chicago Reporter is a nonprofit investigative news organization that focuses on race, poverty and income inequality.\n\n\n\nThis e-mail message, including attachments, is for the sole use of the intended recipient(s) and may contain confidential or proprietary information.  If you are not the intended recipient, immediately contact the sender by reply e-mail and destroy all copies of the original message.\n-------------- next part --------------\nAn HTML attachment was scrubbed...\nURL: http://mailman.mit.edu/pipermail/acs-r/attachments/20160419/24ae3c1b/attachment.html",
+      "body_snippet": "Hi Jonah,\n\nI?ve used this package a fair amount. I also wrote my own very basic package for using the census api for slightly different use cases. Long story short, whenever possible I?d suggest using",
+      "thread_id": "thread-3d2c9b0a8a0b",
+      "thread_depth": 2,
+      "month": "2016-04"
+    },
+    {
+      "id": "msg-a402b84ecaf6",
+      "message_id": "<86wpntg21b.wl-eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2016-04-19T13:29:20Z",
+      "subject": "[acs-r] Error message in acs 2.0",
+      "subject_clean": "[acs-r] Error message in acs 2.0",
+      "in_reply_to": "<0D.51.15233.7EF26175@dmz-mailsec-scanner-1.mit.edu>",
+      "references": [
+        "<SN1PR04MB209668277400C7238017D619B06B0@SN1PR04MB2096.namprd04.prod.outlook.com>",
+        "<A5A30F1D451F924B902DDE8063410E670E88DA@EM1A.ad.ucla.edu>",
+        "<0D.51.15233.7EF26175@dmz-mailsec-scanner-1.mit.edu>"
+      ],
+      "body_plain": "Just to chime in as well, both of these comments are right on target.  \n\nThe census API has a limit on the amount of data that can be requested\nin a single call -- somewhere around 50 variables, I think.  When\ngiven geo.sets with more than this many geographies (say, 591 tracts),\nthe acs.fetch function calls itself recursively to get circle through\nand fetch it all, and then it simply combines them for you.\n\nThis generally works fine, but when the geo.sets get really large\n(Carl's 550 tracts fits with my experience as well), the package runs\ninto some of R's internal limits on how deeply nested things can get\nin calls like this.  In addition, even if you don't run into the\nnesting issue, acs.fetch really lags when you get up into the hundreds\nof geographies -- especially with the larger tables -- and I suspect\nthat sometimes this may cause timeouts on the API side.\n\nIn theory this can probably be fixed by changing options in the R\nsession to allow for more nesting (or smarter coding on the part of\nthe package developer -- sorry!), but in practice it's probably best\nto do as Carl and Michael suggest: either break the call down into a\nfew subsets and then combine after fetching, or (better yet) use the\nwildcard tracts=\"*\", download all the tracts in the county in a single\n(reasonably fast) fetch, and then filter (using the \"geography()\"\nfunction on the fetched acs object).\n\nThe only other small point I'd make is that Carl's (otherwise)\nexcellent advice gives the wrong function to create the geo.set.\nWhere he has\n\n> geo.set(state=\"IL\", county=\"Cook\", tract=\"*\")\n\nit should be \n\n> mygeo <- geo.make(state=\"IL\",county=\"Cook\" ,tract=\"*\")\n\nThis can then be followed with:\n\n> race <- acs.fetch(endyear=2014, span=5, geography = mygeo, table.number=\"B03002\", dataset = \"acs\")\n\nI tried and this fetch is actually pretty fast, even though it's\ngetting data for over 2,000 tracts.  And then pulling out the 591 you\nwant should be simple, since it's all on your own machine.\n\n--Ezra \n\n\nOn Tue, 19 Apr 2016 09:16:53 -0400, Michael Williams wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; utf-8 (base64)>]\n> [1.2  <text/html; utf-8 (base64)>]\n> Hi Jonah,\n> \n> I?ve used this package a fair amount. I also wrote my own very basic package for using the\n> census api for slightly different use cases. Long story short, whenever possible I?d\n> suggest using the wildcard as Carl suggests. That results in one api call while if you\n> query each individual tract, you?re making a call for each tract and the data will take\n> considerably longer to pull (with more opportunities for connection errors). The acs\n> package is essentially looping through each geography, downloading, and binding the\n> results together.\n> \n> After you?ve got all the tracts from the wildcard you can filter the results locally.\n> \n> Michael Williams | Financial Analyst | Community Development | Federal Reserve Bank of\n> Minneapolis | 612.204.5572 | www.minneapolisfed.org\n> \n> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Ganz, Carl\n> Sent: Monday, April 18, 2016 7:43 PM\n> To: Jonah Newman <jnewman at chicagoreporter.com>; acs-r at mit.edu\n> Subject: Re: [acs-r] Error message in acs 2.0\n> \n> Hello Jonah,\n> \n> I have had similar problems when dealing with geographies with many elements. I am\n> guessing that you generated your geo.set by passing a vector of desired census tracts\n> rather than doing something like,\n> \n> geo.set(state=?IL?, county=?Cook?, tract=?*?)\n> \n> As a result, your geo.set list has 591 geo objects. From my experience, any geo.set list\n> with more than 550 elements will generate the error you mentioned. I have no idea whether\n> this is a design decision, a bug, or some other issue.\n> \n> When I had this problem I divided my geo.set into two geo.sets, each with less than 550\n> elements, fetched results for the two geographies, and then combined the output. Perhaps\n> there is a more elegant workaround.\n> \n> Kind Regards,\n> \n> Carl Ganz\n> \n> Assistant Statistician\n> \n> UCLA Center for Health Policy Research\n> \n> From: acs-r-bounces at mit.edu [mailto:acs-r-bounces at mit.edu] On Behalf Of Jonah Newman\n> Sent: Monday, April 18, 2016 2:30 PM\n> To: acs-r at mit.edu\n> Subject: [acs-r] Error message in acs 2.0\n> \n> Hi everyone,\n> \n> I?m new to this listserv, and pretty new to R. I?ve used the acs package once before, on a\n> fairly small set of geographies, and it was great! Now I?m trying it on a larger set, and\n> it?s having some trouble. For reference, I?m using R version 3.2.5, and R Studio version\n> 0.98.1103.\n> \n> My geo.set has 591 elements (census tracts). I used check=T to make sure they were all\n> good, and they are.\n> \n> But when I try to use acs.fetch to download data, I?m getting the following error:\n> \n> Error in if (url.test[\"statusMessage\"] != \"OK\") { :\n> \n>   missing value where TRUE/FALSE needed\n> \n> Here?s my code:\n> \n> #select race by Hispanic Origin data from ACS for selected geographies\n> \n> race <- acs.fetch(endyear=2014, span=5, geography = mygeo, table.number=\"B03002\", dataset\n> = \"acs\")\n> \n> Can anyone help me figure out what?s happening, and why?\n> \n> Thanks!\n> \n> Jonah\n> \n> ---\n> \n> ??Jonah Newman\n> \n> ??Data & Investigative Reporter\n> \n> ??The Chicago Reporter\n> \n> ??(312) 673-3807 (office)\n> \n> (312) 857-8675 (cell)\n> \n> ??@jonahshai\n> \n> ??The Chicago Reporter is a nonprofit investigative news organization that focuses on\n> race, poverty and income inequality.\n> \n> This e-mail message, including attachments, is for the sole use of the intended recipient\n> (s) and may contain confidential or proprietary information. If you are not the intended\n> recipient, immediately contact the sender by reply e-mail and destroy all copies of the\n> original message.\n> \n> \n> [2  <text/plain; us-ascii (7bit)>]\n> _______________________________________________\n> acs-r mailing list\n> acs-r at mit.edu\n> http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Just to chime in as well, both of these comments are right on target.  \n\nThe census API has a limit on the amount of data that can be requested\nin a single call -- somewhere around 50 variables, I thi",
+      "thread_id": "thread-3d2c9b0a8a0b",
+      "thread_depth": 3,
+      "month": "2016-04"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-01e881ad2f31",
+      "subject": "[acs-r] warning / guidance: working with combined geo.sets",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2016-04-04T01:08:11Z",
+      "last_reply": "2016-04-04T01:08:11Z",
+      "root_message_id": "msg-01e881ad2f31"
+    },
+    {
+      "id": "thread-3d2c9b0a8a0b",
+      "subject": "[acs-r] Error message in acs 2.0",
+      "message_count": 4,
+      "participants": [
+        "Ezra Haber Glenn",
+        "Ganz, Carl",
+        "Jonah Newman",
+        "Williams, Michael"
+      ],
+      "started": "2016-04-18T21:29:31Z",
+      "last_reply": "2016-04-19T13:29:20Z",
+      "root_message_id": "msg-3d2c9b0a8a0b"
+    }
+  ]
+}

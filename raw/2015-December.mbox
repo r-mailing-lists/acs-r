@@ -1,0 +1,195 @@
+From eglenn at mit.edu  Fri Dec  4 16:07:00 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Fri, 04 Dec 2015 16:07:00 -0500
+Subject: [acs-r] ACS 2010-2014 Data Now Available
+Message-ID: <86fuzh3ouj.wl%eglenn@mit.edu>
+
+
+Dear acs.R Users:
+
+Just in time for the holidays, the Census has released new American
+Community Survey data, covering all states, counties, cities, and
+towns, down to the census tract and block-group level for the
+2010?2014 five-year period. Luckily, the data is also available via
+the Census Census API, which mean it is available to users of the the
+acs.R package (version 1.2 or later; if you?re not sure which version
+you are using, you can always type packageVersion(?acs?) to find out.)
+
+To get the latest data, just continue to use the acs.fetch() function
+as usual, but specify endyear=2014.  (Note that by default, endyear is
+set to 2011 if no year is explicitly passed to acs.fetch, and I didn?t
+want to change this for fear of breaking existing user scripts. In the
+future, we might to rethink this, so that it selects the most recent
+endyear by default.)
+
+Also, be aware that the function will give you some warnings about how
+?As of the date of this version of the acs package Census API did not
+provides data for selected endyear? ? but you can safely ignore that,
+and the data will still be fetched.
+
+Happy downloading!
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+
+
+From ccambron at uw.edu  Mon Dec 21 15:09:55 2015
+From: ccambron at uw.edu (Chris Cambron)
+Date: Mon, 21 Dec 2015 12:09:55 -0800
+Subject: [acs-r] ACS: Summing columns but keeping block group geographies
+Message-ID: <CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>
+
+Hi,
+I had a quick question that I can't seem to get a handle on.  I have an ACS
+object of about a 1000 block groups on table B15002 (Sex by Education).
+I'm attempting to sum columns (i.e. all the columns that indicate not
+finishing HS for both males and females) prior to dividing by the block
+group total.  However, when I sum columns, I seem to lose my block group
+geography info and all the estimates are aggregated into a single number.
+Is there a way sum columns to be divided by the total but each geography?
+
+Any suggestions would be most appreciated.
+
+
+vars<-c('B15002001', #Total followed by Males vars then Female vars
+        'B15002002', #Total Male
+
+'B15002003','B15002004','B15002005','B15002006','B15002007','B15002008','B15002009','B15002010','B15002011',
+#HS
+
+'B15002012','B15002013','B15002014','B15002015','B15002016','B15002017','B15002018',
+#College
+        'B15002019', #Total Female
+
+'B15002020','B15002021','B15002022','B15002023','B15002024','B15002025','B15002026','B15002027','B15002028',
+#HS
+
+'B15002029','B15002030','B15002031','B15002032','B15002033','B15002034','B15002035')
+#College
+
+vars<-paste(substr(vars, 1L, 6L), substr(vars, 7L, 9L), sep = '_')
+
+block.data<-acs.fetch(endyear=2010,span=5,geo=emah.blocks,variable=vars)
+
+cols.mf<-c(3:11,20:28)
+HSpct.mf <- sum(block.data[,cols.mf])
+
+Thanks so much,
+Best,
+Chris
+
+*Chris Cambron, MSW, MPP*
+Doctoral Student
+Social Development Research Group
+School of Social Work   |  University of Washington
+ccambron at uw.edu  |  www.sdrg.org
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20151221/26e129f5/attachment.html
+
+From eglenn at mit.edu  Mon Dec 21 17:22:22 2015
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Mon, 21 Dec 2015 17:22:22 -0500
+Subject: [acs-r] ACS: Summing columns but keeping block group geographies
+In-Reply-To: <CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>
+References: <CAHNWBy1=nut67OvYYmztiC61Yg7nn9m=WdixEqv1X0NaxN4sXg@mail.gmail.com>
+Message-ID: <8660zrtpb5.wl%eglenn@mit.edu>
+
+
+Dear Chris:
+
+When called on an acs-class object, the "sum" function sums both rows
+and columns, so the geography gets collapsed into a single
+"aggregate."   
+
+Alternatively, there is the possibility of using apply() if you only
+want to sum rows (MARGIN=1) *or* columns (MARGIN=2).
+
+# to sum all rows *and* all "cols.mf" rows columns:
+HSpct.mf <- sum(block.data[,cols.mf])
+            
+# to sum all columns for each row:
+
+HSpct.mf <- apply(block.data[,cols.mf], MARGIN=2, FUN="sum")
+
+(You could also sum all the rows and keep the columns -- just change
+option to MARGIN=1).
+
+Hope that helps -- let me know if you have more questions.
+
+--Ezra
+
+At Mon, 21 Dec 2015 12:09:55 -0800, Chris Cambron wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; UTF-8 (7bit)>]
+> [1.2  <text/html; UTF-8 (quoted-printable)>]
+> Hi,
+> I had a quick question that I can't seem to get a handle on.  I have an ACS object of about
+> a 1000 block groups on table B15002 (Sex by Education).  I'm attempting to sum columns
+> (i.e. all the columns that indicate not finishing HS for both males and females) prior to
+> dividing by the block group total.  However, when I sum columns, I seem to lose my block
+> group geography info and all the estimates are aggregated into a single number.  Is there a
+> way sum columns to be divided by the total but each geography?
+> 
+> Any suggestions would be most appreciated.
+> 
+> vars<-c('B15002001', #Total followed by Males vars then Female vars
+>         'B15002002', #Total Male
+>        
+> 'B15002003','B15002004','B15002005','B15002006','B15002007','B15002008','B15002009','B15002010','B15002011',
+> #HS
+>        
+> 'B15002012','B15002013','B15002014','B15002015','B15002016','B15002017','B15002018', #
+> College
+>         'B15002019', #Total Female
+>        
+> 'B15002020','B15002021','B15002022','B15002023','B15002024','B15002025','B15002026','B15002027','B15002028',
+> #HS
+>        
+> 'B15002029','B15002030','B15002031','B15002032','B15002033','B15002034','B15002035') #
+> College
+> 
+> vars<-paste(substr(vars, 1L, 6L), substr(vars, 7L, 9L), sep = '_')
+> 
+> block.data<-acs.fetch(endyear=2010,span=5,geo=emah.blocks,variable=vars)
+> 
+> cols.mf<-c(3:11,20:28)
+> HSpct.mf <- sum(block.data[,cols.mf])
+> 
+> Thanks so much,
+> Best,
+> Chris
+> 
+> Chris Cambron, MSW, MPP
+> Doctoral Student
+> Social Development Research Group
+> School of Social Work   |  University of Washington
+> ccambron at uw.edu  |  www.sdrg.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-337
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/
+617.253.2024 (w)
+617.721.7131 (c)
+

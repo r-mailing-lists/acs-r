@@ -1,0 +1,38 @@
+{
+  "list": "acs-r",
+  "description": "",
+  "month": "2015-07",
+  "messages": [
+    {
+      "id": "msg-3942ad07b6eb",
+      "message_id": "<86wpykvyie.wl%eglenn@mit.edu>",
+      "from_name": "Ezra Haber Glenn",
+      "from_email_hash": "97e7ed7f7dce2c2cec1d7cb672f982f3087af9f4e61a0cdb8e0ce347c1fd9f90",
+      "date": "2015-07-01T12:43:53Z",
+      "subject": "[acs-r] calling specific block codes",
+      "subject_clean": "[acs-r] calling specific block codes",
+      "in_reply_to": "<CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>",
+      "references": [
+        "<CAHNWBy3wD3vukb0+3t-G5Rj2H1Az8n+KLDzdpCg8e3DPJ_gn3w@mail.gmail.com>"
+      ],
+      "body_plain": "Chris:\n\nThanks for your email, and for using the acs.R package.\n\nWhen you say, \"I'm working with a sample of people...,\" I'm assuming\nyou mean a sample of blocks (or block groups), correct?  If so, then I\nthink this should be possible, if we parse the complete fips codes to\nsend the correct parts to state=, county=, tract=, etc.  Can you send\nme a few sample codes you'd want to us (maybe 5-10, ideally also\ntelling me in plain English what geographies they represent), and I\ncan recommend a couple lines of code to create the correct geo.set\nfrom them?\n\n--Ezra\n\nAt Tue, 30 Jun 2015 17:12:51 -0700, Chris Cambron wrote:\n> \n> [1  <multipart/alternative (7bit)>]\n> [1.1  <text/plain; UTF-8 (7bit)>]\n> [1.2  <text/html; UTF-8 (quoted-printable)>]\n> Hi, First off, this package is great.  Thank you!  Secondly, I'm\n> working with a sample of people scattered throughout the country.\n> Only one or two in some states, hundreds in others.  Can I input a\n> vector of block level fips codes to geo.make or acs.fetch so that I'm\n> only access census data for specific block codes?  I've tried a few\n> options but all I can figure is grabbing a whole state at the block\n> level and subsetting those I need.  Any thoughts would be much\n> appreciated.\n> \n> Best, Chris\n> \n> \n> [2 <text/plain; us-ascii (7bit)>]\n> _______________________________________________ acs-r mailing list\n> acs-r at mit.edu http://mailman.mit.edu/mailman/listinfo/acs-r\n\n--\nEzra Haber Glenn, AICP\nDepartment of Urban Studies and Planning\nMassachusetts Institute of Technology\n77 Massachusetts Ave., Room 7-337\nCambridge, MA 02139\neglenn at mit.edu \nhttp://dusp.mit.edu/faculty/ezra-glenn | http://eglenn.scripts.mit.edu/citystate/\n617.253.2024 (w)\n617.721.7131 (c)",
+      "body_snippet": "Chris:\n\nThanks for your email, and for using the acs.R package.\n\nWhen you say, \"I'm working with a sample of people...,\" I'm assuming\nyou mean a sample of blocks (or block groups), correct?  If so, th",
+      "thread_id": "thread-3942ad07b6eb",
+      "thread_depth": 0,
+      "month": "2015-07"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-3942ad07b6eb",
+      "subject": "[acs-r] calling specific block codes",
+      "message_count": 1,
+      "participants": [
+        "Ezra Haber Glenn"
+      ],
+      "started": "2015-07-01T12:43:53Z",
+      "last_reply": "2015-07-01T12:43:53Z",
+      "root_message_id": "msg-3942ad07b6eb"
+    }
+  ]
+}

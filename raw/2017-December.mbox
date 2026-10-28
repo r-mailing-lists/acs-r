@@ -1,0 +1,175 @@
+From shintze at MARC.ORG  Thu Dec 14 10:07:27 2017
+From: shintze at MARC.ORG (Sara Hintze)
+Date: Thu, 14 Dec 2017 15:07:27 +0000
+Subject: [acs-r] Issue with 2012-2016 ACS data retrieval
+Message-ID: <BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>
+
+Hi there,
+
+I am attempting to acquire the 2012-2016 ACS data and the scripts I've created to download previous ACS datasets are not working. I ran these against the 2016, 1-year data back in September, and they worked fine. However, now they error out on both the 1-year and 5-year 2016 datasets. On a simple lookup, I get the following:
+
+acs.lookup(table.number="B01001", span=5, endyear=2016)
+Error in data.frame(variable.code = names, table.number = table.numbers,  :
+  arguments imply differing number of rows: 13, 25
+
+However, if I include the keyword attribute as follows, it works just fine:
+
+acs.lookup(endyear=2016, span=5, table.number="B01001", keyword="Female")
+An object of class "acs.lookup"
+endyear= 2016  ; span= 5
+
+results:
+   variable.code table.number table.name                         variable.name
+1     B01001_026       B01001 SEX BY AGE                 Estimate Total Female
+2     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years
+3     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years
+4     B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years
+5     B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years
+6     B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years
+7     B01001_026       B01001 SEX BY AGE                 Estimate Total Female
+8     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years
+9     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years
+10    B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years
+11    B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years
+12    B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years
+
+Also, changing the endyear attribute to 2015, for example, works just fine. Any thoughts on what may be going on?
+
+Thanks,
+Sara
+
+Sara Hintze
+GIS Data Developer/Analyst | Research Services
+Mid-America Regional Council
+600 Broadway Blvd., Ste 200
+Kansas City, MO 64105
+816-701-8220 | www.marc.org
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: http://mailman.mit.edu/pipermail/acs-r/attachments/20171214/b5d7e0c7/attachment.html
+
+From eglenn at mit.edu  Thu Dec 14 10:28:17 2017
+From: eglenn at mit.edu (Ezra Haber Glenn)
+Date: Thu, 14 Dec 2017 10:28:17 -0500
+Subject: [acs-r] Issue with 2012-2016 ACS data retrieval
+In-Reply-To: <BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>
+References: <BL2PR02MB5291A98B74D47CEBBF72016C40A0@BL2PR02MB529.namprd02.prod.outlook.com>
+Message-ID: <867etp2usu.wl-eglenn@mit.edu>
+
+
+Hmm: looking into this, it seems that the census folks have *once
+again* changed the format of the ACS variable lookup code XML files,
+which is messing up the package -- sorry about that.
+
+Basically, at this point, the package needs to make all sorts of
+little corrections for each different endyear/span combination.  I'll
+try to troubleshoot and get it to work.
+
+In the meanwhile, here's a clever trick you can use to trick the
+package to use the variable numbers from a previous year (which is
+safe, unless the variable numbers change, which is pretty rare):
+
+# save a lookup from a year that works
+a=acs.lookup(table.number="B01001", endyear=2015, span=5)
+
+# use this in your new fetch:
+acs.fetch(geography=geo.make(state="MA", county="*"), variable=a, endyear=2016, span=5)
+
+
+Ta-da!
+
+--Ezra
+
+On Thu, 14 Dec 2017 10:07:27 -0500, Sara Hintze wrote:
+> 
+> [1  <multipart/alternative (7bit)>]
+> [1.1  <text/plain; us-ascii (quoted-printable)>]
+> [1.2  <text/html; us-ascii (quoted-printable)>]
+> Hi there,
+> 
+> I am attempting to acquire the 2012-2016 ACS data and the scripts I?ve created to download
+> previous ACS datasets are not working. I ran these against the 2016, 1-year data back in
+> September, and they worked fine. However, now they error out on both the 1-year and 5-year
+> 2016 datasets. On a simple lookup, I get the following:
+> 
+> acs.lookup(table.number="B01001", span=5, endyear=2016)
+> 
+> Error in data.frame(variable.code = names, table.number = table.numbers,  :
+> 
+>   arguments imply differing number of rows: 13, 25
+> 
+> However, if I include the keyword attribute as follows, it works just fine:
+> 
+> acs.lookup(endyear=2016, span=5, table.number="B01001", keyword="Female")
+> 
+> An object of class "acs.lookup"
+> 
+> endyear= 2016  ; span= 5
+> 
+> results:
+> 
+>    variable.code table.number table.name                         variable.name
+> 
+> 1     B01001_026       B01001 SEX BY AGE                 Estimate Total Female
+> 
+> 2     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years
+> 
+> 3     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years
+> 
+> 4     B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years
+> 
+> 5     B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years
+> 
+> 6     B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years
+> 
+> 7     B01001_026       B01001 SEX BY AGE                 Estimate Total Female
+> 
+> 8     B01001_030       B01001 SEX BY AGE  Estimate Total Female 15 to 17 years
+> 
+> 9     B01001_034       B01001 SEX BY AGE  Estimate Total Female 22 to 24 years
+> 
+> 10    B01001_038       B01001 SEX BY AGE  Estimate Total Female 40 to 44 years
+> 
+> 11    B01001_042       B01001 SEX BY AGE Estimate Total Female 60 and 61 years
+> 
+> 12    B01001_046       B01001 SEX BY AGE  Estimate Total Female 70 to 74 years
+> 
+> Also, changing the endyear attribute to 2015, for example, works just fine. Any thoughts
+> on what may be going on?
+> 
+> Thanks,
+> 
+> Sara
+> 
+> Sara Hintze
+> 
+> GIS Data Developer/Analyst | Research Services
+> 
+> Mid-America Regional Council
+> 
+> 600 Broadway Blvd., Ste 200
+> 
+> Kansas City, MO 64105
+> 
+> 816-701-8220 | www.marc.org
+> 
+> 
+> [2  <text/plain; us-ascii (7bit)>]
+> _______________________________________________
+> acs-r mailing list
+> acs-r at mit.edu
+> http://mailman.mit.edu/mailman/listinfo/acs-r
+
+--
+Ezra Haber Glenn, AICP
+Department of Urban Studies and Planning
+Massachusetts Institute of Technology
+77 Massachusetts Ave., Room 7-346
+Cambridge, MA 02139
+eglenn at mit.edu 
+http://dusp.mit.edu/faculty/ezra-glenn
+617.253.2024 (w)
+617.721.7131 (c)
+
+
